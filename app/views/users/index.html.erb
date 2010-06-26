@@ -1,0 +1,27 @@
+<h1><%= [t "user.t_title"] %></h1>
+<table border="1" cellpadding="0" cellspacing="0" >
+  <tr>
+    <th width="100"><%= t "user.number" %></th>
+    <th width="100"><%= t "user.username" %></th>
+    <th width="100"><%= t "global.email" %></th>
+    <th width="100"><%= t "global.role" %></th>
+    <th width="100"><%= t "global.active" %></th>
+    <th width="100"><%= t "supplier.actions" %></th>
+  </tr>
+
+<% @user.each do |user| %>
+  <tr align="center">
+    <td><%=h user.id %></td>
+    <td><%=h user.username %></td>
+    <td><%=h user.email %></td>
+    <td><%=h user.role_symbols %></td>
+    <td><%=h user.active %></td>
+    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path(user) ) %>
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />

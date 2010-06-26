@@ -1,0 +1,131 @@
+<h1><%= t ('supplier.t_new') %></h1>
+
+<% form_for(@supplier) do |f| %>
+    <%= f.error_messages %>
+    <table>
+      <tr>
+        <td align="right">
+          <%= t "supplier.company_name" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :company_name %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right" valign="top">
+          <%= t "supplier.address" %>
+          <br/>
+        </td>
+        <td colspan="2">
+          <%= f.text_area :address, :rows => 5 %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.city" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :city %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.state" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :state, :size => 5  %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.zip" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :zip %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.phone" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :phone %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.fax" %>
+
+        </td>
+        <td colspan="2">
+          <%= f.text_field :fax %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.email" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :email %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.credit_terms" %>
+
+        </td>
+        <td colspan="2">
+          <%= f.text_field :credit_terms %>
+        </td>
+      </tr><tr>
+        <td  align="right">
+          <%= t "supplier.credit_terms" %>
+
+        </td>
+        <td colspan="2">
+          <%= f.text_field :credit_amount %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.contact_name" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :contact_name %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= t "supplier.contact_phone" %>
+
+        </td>
+        <td colspan="2">
+          <%= f.text_field :contact_phone %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right" valign="top">
+          <%= t "supplier.notes" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_area :notes, :rows => 5 %>
+        </td>
+      </tr>      
+      <tr>
+        <td  align="right">
+          <%= t "supplier.leadtime" %>
+        </td>
+        <td colspan="2">
+          <%= f.text_field :parts_leadtime_days %>
+        </td>
+      </tr>
+      <tr>
+        <td  align="right">
+          <%= f.submit t "global.create" %>
+        </td>
+      </tr>
+    </table>
+
+<% end %>
+
+<%= link_to t('global.back'), suppliers_path %>

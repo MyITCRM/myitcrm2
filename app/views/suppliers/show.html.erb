@@ -1,0 +1,83 @@
+<p>
+  <b>Company name:</b>
+  <%=h @supplier.company_name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @supplier.address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%=h @supplier.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @supplier.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%=h @supplier.zip %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @supplier.phone %>
+</p>
+
+<p>
+  <b>Fax:</b>
+  <%=h @supplier.fax %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @supplier.email %>
+</p>
+
+<p>
+  <b>Credit terms:</b>
+  <%=h @supplier.credit_terms %>
+</p>
+
+<p>
+  <b>Contact name:</b>
+  <%=h @supplier.contact_name %>
+</p>
+
+<p>
+  <b>Contact phone:</b>
+  <%=h @supplier.contact_phone %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @supplier.notes %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%=h @supplier.active %>
+</p>
+
+<p>
+  <b>Date created:</b>
+  <%=h @supplier.date_created %>
+</p>
+
+<p>
+  <b>Date updated:</b>
+  <%=h @supplier.date_updated %>
+</p>
+
+<p>
+  <b>Parts leadtime days:</b>
+  <%=h @supplier.parts_leadtime_days %>
+</p>
+
+
+<%= link_to 'Edit', edit_supplier_path(@supplier) %> |
+<%= link_to 'Back', suppliers_path %>

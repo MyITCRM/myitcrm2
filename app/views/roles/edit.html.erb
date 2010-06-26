@@ -1,0 +1,15 @@
+<h1><%= (t "user_t_edit_user") %></h1>
+
+<% form_for(@role) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label t "user.username" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit t "global.submit" %>
+  </p>
+<% end %>
+
+<%= link_to (t "global.back"), roles_path %>

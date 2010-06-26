@@ -1,0 +1,36 @@
+
+<h1><%= [t "supplier.t_title"] %></h1>
+<%= link_to(image_tag('add.png',:title => [t "supplier.t_add_new_supplier"]), new_supplier_path) %><%= link_to [t "supplier.t_add_new_supplier"], new_supplier_path %>
+<p></p>
+
+<table border="1" cellpadding="0" cellspacing="0" >
+  <tr>
+    <th width="100"><%= t "supplier.company_name" %></th>
+    <th width="100"><%= t "supplier.phone" %></th>
+    <th width="100"><%= t "supplier.fax" %></th>
+    <th width="100"><%= t "supplier.email" %></th>
+    <th width="100"><%= t "supplier.contact_name" %></th>
+    <th width="100"><%= t "supplier.contact_phone" %></th>
+    <th width="100"><%= t "supplier.active" %></th>
+    <th width="100"><%= t "supplier.actions" %></th>
+  </tr>
+
+<% @suppliers.each do |supplier| %>
+  <tr align="center">
+    <td><%=h supplier.company_name %></td>
+    <td><%=h supplier.phone %></td>
+    <td><%=h supplier.fax %></td>
+    <td><%=h supplier.email %></td>
+    <td><%=h supplier.contact_name %></td>
+    <td><%=h supplier.contact_phone %></td>
+    <td><%=h supplier.active %></td>    
+    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), supplier )%>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_supplier_path(supplier)) %>
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), supplier, :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
