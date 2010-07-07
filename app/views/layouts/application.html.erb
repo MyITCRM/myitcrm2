@@ -6,44 +6,43 @@
   <%= stylesheet_link_tag 'application'  %>
 </head>
 <body>
-
+<table width="100%">
+  <tr align="center">
+    <td>
+      <%= image_tag 'rails.png', :height => 100 %>
+    </td>
+  </tr>
+</table>
 <div id="container" >
-  <%= image_tag 'rails.png', :height => 100%>
-  <%- flash.each do |name, msg| -%>
+<div id="user_nav">
+        <% if logged_in? %>
+         <%= link_to ( t "global.home"), root_url %> | 
+        <% if permitted_to? :show, Supplier.new %>
+         <%= link_to ( t "user.t_title"), users_path %> |
+         <%= link_to ( t "supplier.t_title"), suppliers_path %> |
+            <% end %>
+         <%= t "global.welcome" %> <% if permitted_to? :edit, User.new %>
+        <%= link_to current_user.username, user_path(:id => current_user.id) %>! Not you?
+          <% else %>
+      <%=h current_user.username %>! Not you?
+        <% end %>
+         <%= link_to (t "global.logout"), logout_path %>
+    <% else %>
+         <%= link_to ( t "global.home"), root_url %> |
+         <%= link_to ( t "global.register"), signup_path %> |
+         <%= link_to ( t "global.login"), login_path %>
+    <% end %>
+
+</div>
+  <p>
+    <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
-
-  <div id="user_nav">
-    <% if current_user %>
-         <%= link_to "Home", root_url %> |
-            <% if permitted_to? :create, @user %>
-         <%= link_to "New User", new_user_path %> |
-            <% end %>
-        <% if permitted_to? :index, @user %>
-         <%= link_to "List Users", users_path %> |
-            <% end %>
-        <% if permitted_to? :show, @supplier %>
-         <%= link_to "Suppliers", suppliers_path %> |
-            <% end %>
-         <%= link_to "Edit Profile", edit_user_path(:id => current_user.id) %> |
-         <%= link_to (t "global.logout"), logout_path %> 
-    <% else %>
-         <%= link_to "Home", root_url %> |                    
-         <%= link_to "Register", signup_path %> |
-         <%= link_to "Login", login_path %>
-    <% end %>
-  </div>
-
-  <%= yield %>
-
+  </p>
+     <%= yield %>
 </div>
 <div id="footer"  >
 <p > MyIT CRM Version 2.0.0</p>
-
 </div>
-
-
-
 </body>
-
 </html>

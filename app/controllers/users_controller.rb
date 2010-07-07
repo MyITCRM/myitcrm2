@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  filter_resource_access
 
   def new
     @title = t "user.t_new_user"

@@ -92,8 +92,11 @@ a {
 }
 
 #user_nav {
-    float:right;
+    text-align: center;
+    padding:inherit;
+    background-color:antiquewhite;
     font-size:12px;
+
 }
 
 #footer {

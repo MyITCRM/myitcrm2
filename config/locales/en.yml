@@ -29,8 +29,11 @@ en:
     role: "Role"
     restricted: "You don't have permission to view this section."
     active: "Active?"
+    user_type: "User Type"
+    welcome: "Welcome"
+    register: "Register"
   supplier:
-   t_title: "Supplier List"
+   t_title: "Supplier's"
    t_new: "New Supplier"
    t_view: "View Supplier"
    t_edit: "Edit Supplier"
@@ -54,7 +57,8 @@ en:
    flash_create_good: "Supplier was successfully created."
    flash_update_good: "Supplier was successfully updated."
    actions: "Actions"
-   
+
+   credit_amount: "Credit Amount"
   user:
      t_new_user: "New User Registration"
      username: "Username"
@@ -66,13 +70,16 @@ en:
      flash_update_user: "Successfully Updated Profile."
      login_success: "Successfully Logged in!."
      logout_success: "Successfully Logged out."
-     t_title: "List of Users"
+     t_title: "Users"
      user_t_edit_user: "Editing User Profile"
      t_view: "User Details"
      t_delete_user: "Delete User"
      flash_delete_user: "Successfully Deleted User"
      number: "Account Number"
      active: "Active?"
+     list_users: "List of Users"
+     edit_profile: "Edit My Details"
+     add_new_user: "Create New Client"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"

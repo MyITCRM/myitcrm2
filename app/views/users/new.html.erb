@@ -21,12 +21,15 @@
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
+
+    <% if permitted_to? :destroy, @user %>
     <%= f.label :roles %><br />
     <% for role in Role.all %>
       <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
       <%=h role.name %><br />
     <% end %>
-  </p>  
+    <% end %>
+  </p>
 
   <p>
     <%= f.submit t "global.submit" %>

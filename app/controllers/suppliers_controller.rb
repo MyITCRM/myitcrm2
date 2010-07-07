@@ -1,9 +1,10 @@
 class SuppliersController < ApplicationController
   filter_resource_access
+  
 
   def index
     @title = t "supplier.t_title"
-    @suppliers = Supplier.find(:all)
+    @supplier = Supplier.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +16,7 @@ class SuppliersController < ApplicationController
   # GET /suppliers/1.xml
   def show
     @title = t "supplier.t_view"
+    @supplier = Supplier.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,6 +28,7 @@ class SuppliersController < ApplicationController
   # GET /suppliers/new.xml
   def new
     @title = t "supplier.t_new"
+    @supplier = Supplier.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +44,7 @@ class SuppliersController < ApplicationController
   # POST /suppliers.xml
   def create
     @title = t "supplier.t_new"
+    @supplier = Supplier.new(params[:supplier])
 
     respond_to do |format|
       if @supplier.save
@@ -59,6 +63,7 @@ class SuppliersController < ApplicationController
   # PUT /suppliers/1.xml
   def update
     @title = t "supplier.t_new"
+    @supplier =Supplier.find(params[:id])
 
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])

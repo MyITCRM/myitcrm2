@@ -1,80 +1,80 @@
 <p>
-  <b>Company name:</b>
+  <strong>Company name:</strong>
   <%=h @supplier.company_name %>
 </p>
 
 <p>
-  <b>Address:</b>
+  <strong>Address:</strong>
   <%=h @supplier.address %>
 </p>
 
 <p>
-  <b>City:</b>
+  <strong>City:</strong>
   <%=h @supplier.city %>
 </p>
 
 <p>
-  <b>State:</b>
+  <strong>State:</strong>
   <%=h @supplier.state %>
 </p>
 
 <p>
-  <b>Zip:</b>
+  <strong>Zip:</strong>
   <%=h @supplier.zip %>
 </p>
 
 <p>
-  <b>Phone:</b>
+  <strong>Phone:</strong>
   <%=h @supplier.phone %>
 </p>
 
 <p>
-  <b>Fax:</b>
+  <strong>Fax:</strong>
   <%=h @supplier.fax %>
 </p>
 
 <p>
-  <b>Email:</b>
+  <strong>Email:</strong>
   <%=h @supplier.email %>
 </p>
 
 <p>
-  <b>Credit terms:</b>
+  <strong>Credit terms:</strong>
   <%=h @supplier.credit_terms %>
 </p>
 
 <p>
-  <b>Contact name:</b>
+  <strong>Contact name:</strong>
   <%=h @supplier.contact_name %>
 </p>
 
 <p>
-  <b>Contact phone:</b>
+  <strong>Contact phone:</strong>
   <%=h @supplier.contact_phone %>
 </p>
 
 <p>
-  <b>Notes:</b>
+  <strong>Notes:</strong>
   <%=h @supplier.notes %>
 </p>
 
 <p>
-  <b>Active:</b>
+  <strong>Active:</strong>
   <%=h @supplier.active %>
 </p>
 
 <p>
-  <b>Date created:</b>
-  <%=h @supplier.date_created %>
+  <strong>Date created:</strong>
+  <%=h @supplier.date_created.strftime('%b %d, %Y at %H:%M') %>
 </p>
 
 <p>
-  <b>Date updated:</b>
-  <%=h @supplier.date_updated %>
+  <strong>Date updated:</strong>
+  <%=h @supplier.date_updated.strftime('%b %d, %Y at %H:%M') %>
 </p>
 
 <p>
-  <b>Parts leadtime days:</b>
+  <strong>Parts leadtime days:</strong>
   <%=h @supplier.parts_leadtime_days %>
 </p>
 

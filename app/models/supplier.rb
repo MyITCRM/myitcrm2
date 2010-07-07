@@ -1,5 +1,11 @@
 class Supplier < ActiveRecord::Base
-  def before_create
+validates_presence_of :company_name, :address, :city, :contact_name, :contact_phone, :email, :fax, :phone, :parts_leadtime_days, :state, :zip
+  
+
+
+
+
+   def before_create
 self.date_created ||= Time.now
 self.active ||= "1"
 end

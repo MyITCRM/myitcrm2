@@ -27,6 +27,9 @@ module Rails
     def preinitialize
       load(preinitializer_path) if File.exist?(preinitializer_path)
     end
+def self.preinitializer_path(preinitializer_path)
+  # code here
+end
 
     def preinitializer_path
       "#{RAILS_ROOT}/config/preinitializer.rb"

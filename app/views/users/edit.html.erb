@@ -8,9 +8,6 @@
     <%= f.text_field :username %>  <%= f.label t "user.active" %><%= check_box "user", "active" %>
   </p>
   <p>
-    <br />    
-  </p>
-  <p>
     <%= f.label t "global.email" %><br />
     <%= f.text_field :email %>
   </p>
@@ -23,11 +20,16 @@
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
-    <%= f.label :roles %><br />
-    <% for role in Role.all %>
-      <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-      <%=h role.name %><br />
-    <% end %>
+
+    <% if permitted_to? :destroy, @user %>
+    
+        <%= f.label :roles %><br />
+         <% for role in Role.all %>
+            <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+            <%=h role.name %><br />
+         <% end %>
+         <% end %>
+
   </p> 
   <p>
     <%= f.submit t "global.submit" %>
