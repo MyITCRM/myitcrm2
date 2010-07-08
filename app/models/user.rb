@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  has_many :suppliers
   has_many :assignments
   has_many :roles, :through => :assignments
  # Used to set New Users to default to active

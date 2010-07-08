@@ -120,6 +120,11 @@
         </td>
       </tr>
       <tr>
+        <td >
+          <%= f.hidden_field :user_id, :value => current_user.username %>
+        </td>
+      </tr>
+      <tr>
         <td  align="right">
           <%= f.submit t "global.create" %>
         </td>

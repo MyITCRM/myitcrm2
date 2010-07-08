@@ -1,76 +1,153 @@
-<p>
-  <strong>Company name:</strong>
-  <%=h @supplier.company_name %>
-</p>
+<table>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Company name:</strong>
+    </td>
+    <td align="left">
+      <%=h @supplier.company_name %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Address:</strong>
+    </td>
+    <td align="left">
+      <%=h @supplier.address %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>City:</strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.city %>
+    </td>
+  </tr>
+ <tr>
+    <td colspan="2" align="right">
+      <strong>State:</strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.state %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Zip/Postcode:</strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.zip %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Phone:</strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.phone %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Fax:</strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.fax %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Email:</strong>
+    </td>
+    <td align="left">
+     <%= auto_link_email_addresses( @supplier.email ) %>
+    </td>
+  </tr>
+    <tr>
+    <td colspan="2" align="right">
+      <strong>Contact Name:</strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.contact_name %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t"supplier.contact_phone" %></strong>
+    </td>
+    <td align="left" >
+     <%=h @supplier.contact_phone %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Credit Terms:</strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.credit_terms %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong>Credit Amount:</strong>
+    </td>
+    <td align="left">
+     <%=h number_to_currency( @supplier.credit_amount ) %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "supplier.notes" %>:</strong>
+    </td>
+    <td align="left" >
+     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.notes  %></textarea>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t"supplier.active" %></strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.active? %>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t"supplier.date_created" %></strong>
+    </td>
+    <td align="left">
+     <%= distance_of_time_in_words_to_now( @supplier.date_created ) %>
+    </td>
+  </tr>
+<tr>                           
+    <td colspan="2" align="right">
+      <strong><%= t"supplier.active" %></strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.active? %>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t"supplier.active" %></strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.active? %>
+    </td>
+  </tr>
 
-<p>
-  <strong>Address:</strong>
-  <%=h @supplier.address %>
-</p>
 
-<p>
-  <strong>City:</strong>
-  <%=h @supplier.city %>
-</p>
 
-<p>
-  <strong>State:</strong>
-  <%=h @supplier.state %>
-</p>
 
-<p>
-  <strong>Zip:</strong>
-  <%=h @supplier.zip %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%=h @supplier.phone %>
-</p>
-
-<p>
-  <strong>Fax:</strong>
-  <%=h @supplier.fax %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%=h @supplier.email %>
-</p>
-
-<p>
-  <strong>Credit terms:</strong>
-  <%=h @supplier.credit_terms %>
-</p>
-
-<p>
-  <strong>Contact name:</strong>
-  <%=h @supplier.contact_name %>
-</p>
-
-<p>
-  <strong>Contact phone:</strong>
-  <%=h @supplier.contact_phone %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%=h @supplier.notes %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%=h @supplier.active %>
-</p>
-
+</table>
 <p>
   <strong>Date created:</strong>
   <%=h @supplier.date_created.strftime('%b %d, %Y at %H:%M') %>
 </p>
 
 <p>
-  <strong>Date updated:</strong>
-  <%=h @supplier.date_updated.strftime('%b %d, %Y at %H:%M') %>
+  <strong><%= t "global.last_updated_by" %></strong>
+    <%=h @supplier.user_id  %> on <%=h @supplier.date_updated.strftime('%B %d, %Y at %H:%M') %>
 </p>
 
 <p>
@@ -79,5 +156,4 @@
 </p>
 
 
-<%= link_to 'Edit', edit_supplier_path(@supplier) %> |
-<%= link_to 'Back', suppliers_path %>
+<%= button_to 'Edit', edit_supplier_path(@supplier) %><%= button_to 'Back', suppliers_path %>

@@ -61,6 +61,9 @@
     <%= f.text_field :parts_leadtime_days %>
   </p>
   <p>
+    <%= f.hidden_field :user_id, :value => current_user.username %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>

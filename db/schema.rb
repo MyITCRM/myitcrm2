@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20100708022342) do
     t.integer  "parts_leadtime_days"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.string   "user_id"
   end
 
   create_table "user_sessions", :force => true do |t|
