@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100623061304) do
+ActiveRecord::Schema.define(:version => 20100708022342) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20100623061304) do
     t.integer  "parts_leadtime_days"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "user_sessions", :force => true do |t|
@@ -57,10 +58,8 @@ ActiveRecord::Schema.define(:version => 20100623061304) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "role"
-    t.integer  "roles_mask"
-    t.integer  "login_count",        :default => 0, :null => false
-    t.integer  "failed_login_count", :default => 0, :null => false
+    t.integer  "login_count",        :default => 0,    :null => false
+    t.integer  "failed_login_count", :default => 0,    :null => false
     t.datetime "last_login"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
@@ -73,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20100623061304) do
     t.string   "mobile"
     t.string   "fax"
     t.text     "notes"
-    t.boolean  "active"
+    t.boolean  "active",             :default => true
   end
 
 end
