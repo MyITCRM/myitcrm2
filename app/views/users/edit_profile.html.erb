@@ -22,7 +22,7 @@
   <p>
 
     <% if permitted_to? :destroy, @user %>
-    
+
         <%= f.label :roles %><br />
          <% for role in Role.all %>
             <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
@@ -30,11 +30,11 @@
          <% end %>
          <% end %>
 
-  </p> 
+  </p>
   <p>
     <%= f.submit t "global.submit" %>
   </p>
 <% end %>
- <% if permitted_to? :edit, @user %>|
+<% if permitted_to? :edit, @user %>
 <%= link_to (t "global.back"), users_path %>
 <% end %>

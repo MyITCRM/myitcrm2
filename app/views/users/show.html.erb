@@ -17,5 +17,7 @@
 </p>
 
 
-<%= link_to (t "global.edit"), edit_user_path(@user) %> |
+<%= link_to (t "global.edit"), profile_url(:id => current_user) %>
+<% if permitted_to? :edit, @user %>|
 <%= link_to (t "global.back"), users_path %>
+ <% end %>

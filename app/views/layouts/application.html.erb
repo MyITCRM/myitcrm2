@@ -21,8 +21,8 @@
          <%= link_to ( t "user.t_title"), users_path %> |
          <%= link_to ( t "supplier.t_title"), suppliers_path %> |
             <% end %>
-         <%= t "global.welcome" %> <% if permitted_to? :edit, User.new %>
-        <%= link_to current_user.username, user_path(:id => current_user.id) %>! Not you?
+         <%= t "global.welcome" %> <% if permitted_to? :edit_profile, User.new %>
+        <%= link_to current_user.username, profile_url(:id => current_user)%>! Not you?
           <% else %>
       <%=h current_user.username %>! Not you?
         <% end %>

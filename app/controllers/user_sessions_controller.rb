@@ -3,7 +3,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new
 
     end
- 
+
   def create
     @title = t "global.login"
     @user_session = UserSession.new(params[:user_session])
@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
       else
         render :action => "new"
       end
-    end 
+    end
   def destroy
     @title = t "global.logout"
     @user_session = UserSession.find(params[:id])
