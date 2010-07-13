@@ -45,12 +45,7 @@ class UsersController < ApplicationController
 
   end
 
-  def index_clients
-    @title = t "user.t_title"
-    @user = User.find(:all, :conditions => "roles_mask >= 1")
-  end
-
-  def create
+ def create
     @title = t "user.t_new_user"
     if @user.save
       flash[:notice] = t "user.flash_new_success"

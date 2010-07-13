@@ -33,5 +33,5 @@
   </p>
 <% end %>
 <% if permitted_to? :edit, @user %>
-<%= button_to (t "global.back"), users_path %>
+<%= link_to (t "global.cancel"), users_path %>
 <% end %>

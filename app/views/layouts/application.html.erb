@@ -16,7 +16,7 @@
 <div id="container" >
 <div id="user_nav">
         <% if logged_in? %>
-         <%= link_to ( t "global.home"), root_url %> | 
+         <%= link_to ( t "global.dashboard"), root_url %> |
         <% if permitted_to? :show, Supplier.new %>
          <%= link_to ( t "user.t_title"), users_path %> |
          <%= link_to ( t "supplier.t_title"), suppliers_path %> |

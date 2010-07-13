@@ -3,12 +3,11 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   map.signup "signup", :controller => "users", :action => "new"
   map.profile "profile/:id", :controller => "users", :action => "edit_profile"
-  # map.clients "clients", :controller => "users", :action => "index_clients"
 
 
 
   map.resources :user_sessions
-  map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put, :index_clients => :get }
+  map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put }
   map.resources :suppliers
  
 
