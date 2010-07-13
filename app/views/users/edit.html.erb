@@ -11,14 +11,14 @@
     <%= f.label t "global.email" %><br />
     <%= f.text_field :email %>
   </p>
-  <p>
+  <p><% if permitted_to? :destroy, @user %>
     <%= f.label t "user.password" %><br />
     <%= f.password_field :password %>
   </p>
   <p>
     <%= f.label t "user.password_confirmation" %><br />
     <%= f.password_field :password_confirmation %>
-  </p>
+  </p><% end %>
   <p>
      <% if permitted_to? :destroy, @user %>
 <%= f.label :roles %><br />
