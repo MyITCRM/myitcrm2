@@ -65,6 +65,7 @@ en:
     register: "Register"
     last_updated_by: "Last updated by:"
     status: "Status"
+    roles_mask: "Role Mask"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"

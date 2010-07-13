@@ -20,21 +20,19 @@
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
-
-    <% if permitted_to? :destroy, @user %>
-    
-        <%= f.label :roles %><br />
-         <% for role in Role.all %>
-            <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-            <%=h role.name %><br />
-         <% end %>
-         <% end %>
-
+     <% if permitted_to? :destroy, @user %>
+<%= f.label :roles %><br />
+    <% for role in User::ROLES %>
+      <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
+      <%=h role.humanize %><br />
+    <% end %>
+    <%= hidden_field_tag "user[roles][]", "" %>
+        <% end %>
   </p> 
   <p>
     <%= f.submit t "global.submit" %>
   </p>
 <% end %>
- <% if permitted_to? :edit, @user %>|
+ <% if permitted_to? :edit, @user %>
 <%= link_to (t "global.back"), users_path %>
 <% end %>

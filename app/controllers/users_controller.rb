@@ -8,16 +8,21 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-    @user = User.find(:all)
-  end
+    @user = User.find(:all, :conditions => "roles_mask >= 32")
+    if permitted_to? :destroy, Supplier.new
+      @user = User.find(:all)
+    end
+ end
 
-  def show
+   def show
     @title = t "user.t_view"
-     if @user != current_user
-         flash[:error] = t "global.restricted"
-      redirect_to root_path
-
-  end
+    if @user.roles_mask <= 30
+    else
+      if @user != current_user
+        flash[:error] = t "global.restricted"
+        redirect_to root_path
+      end
+    end
   end
 
 
@@ -27,25 +32,23 @@ class UsersController < ApplicationController
 
   def edit_profile
     @title = t "user.t_edit_user"
-
-    if @user != current_user
-         flash[:error] = "Permission Denied......"
-      redirect_to user_path
-
   end
- end
-def update_profile
+
+  def update_profile
     @title = t "user.t_update_user"
-        if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user])
       flash[:notice] = t "user.flash_update_user"
       redirect_to user_path
-
     else
       render :action => "edit_profile"
     end
 
-    end
+  end
 
+  def index_clients
+    @title = t "user.t_title"
+   @user = User.find(:all, :conditions => "roles_mask >= 1")
+  end
 
   def create
     @title = t "user.t_new_user"

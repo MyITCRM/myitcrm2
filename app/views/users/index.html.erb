@@ -8,6 +8,7 @@
     <th width="100"><%= t "user.username" %></th>
     <th width="100"><%= t "global.email" %></th>
     <th width="100"><%= t "global.role" %></th>
+    <th width="100"><%= t "global.roles_mask" %></th>
     <th width="100"><%= t "global.active" %></th>
     <th width="100"><%= t "supplier.actions" %></th>
   </tr>
@@ -18,11 +19,19 @@
     <td><%=h user.username %></td>
     <td><%=h user.email %></td>
     <td><%=h user.role_symbols %></td>
+    <td><%=h user.roles_mask %></td>
     <td><%=h user.active %></td>
-    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
+    <td>
+      <% if permitted_to? :show, User.new  %>
+          <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
+      <% end %>
+      <% if permitted_to? :edit, User.new  %>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path(user) ) %>
+      <% end %>
+      <% if permitted_to? :destroy, User.new  %>
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
-    </td>
+      <% end %>
+          </td>
   </tr>
 <% end %>
 </table>
