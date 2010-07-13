@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
    def show
     @title = t "user.t_view"
-    if @user.roles_mask <= 30
+    if @user.roles_mask <= 32
     else
       if @user != current_user
         flash[:error] = t "global.restricted"
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
   def index_clients
     @title = t "user.t_title"
-   @user = User.find(:all, :conditions => "roles_mask >= 1")
+    @user = User.find(:all, :conditions => "roles_mask >= 1")
   end
 
   def create

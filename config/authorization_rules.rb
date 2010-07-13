@@ -9,8 +9,8 @@ authorization do
   end
   role :technician do
     includes :client
-    has_permission_on [:users], :to => [:index, :show, :new, :create, :edit, :update]
-    has_permission_on [:suppliers], :to => [:index, :show, :new, :create, :edit, :update]
+    has_permission_on :users, :to => [:index, :show, :new, :create, :edit, :update]
+    has_permission_on :suppliers, :to => [:index, :show, :new, :create, :edit, :update]
   end
   role :client do
     includes :guest
