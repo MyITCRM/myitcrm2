@@ -1,18 +1,35 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  
-  has_many :assignments
-  has_many :roles, :through => :assignments
- # Used to set New Users to default to active
-  def before_create
-    self.active ||= "1"
+
+named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
+
+
+  # Roles_Mask values
+  # Admin = 1
+  # Manager = 2
+  # Tech = 4
+  # Accounts = 8
+  # Clerk = 16
+  # Client = 32
+  # Guest = 64
+
+  ROLES = %w[administrator manager technician accounts clerk client guest]
+
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+  end
+
+  def roles
+    ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
   end
 
   def role_symbols
-    roles.map do |role|
-      role.name.underscore.to_sym
-    end
+    roles.map(&:to_sym)
   end
-  
+# Used to set New Users to default to active
+  def before_create
+    self.active ||= "1"
+    self.roles_mask ||= "32"
+  end
 
 end

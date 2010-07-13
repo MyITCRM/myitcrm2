@@ -21,14 +21,14 @@
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
-
-    <% if permitted_to? :destroy, @user %>
-    <%= f.label :roles %><br />
-    <% for role in Role.all %>
-      <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-      <%=h role.name %><br />
+    <% if permitted_to? :destroy, User.new %>
+<%= f.label :roles %><br />
+    <% for role in User::ROLES %>
+      <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
+      <%=h role.humanize %><br />
     <% end %>
-    <% end %>
+    <%= hidden_field_tag "user[roles][]", "" %>
+        <% end %>
   </p>
 
   <p>

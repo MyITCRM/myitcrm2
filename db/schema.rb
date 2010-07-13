@@ -11,19 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20100708022342) do
 
-  create_table "assignments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "suppliers", :force => true do |t|
     t.string   "company_name"
     t.text     "address"
@@ -58,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20100708022342) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
+    t.string   "role"
+    t.integer  "roles_mask"
     t.integer  "login_count",        :default => 0,    :null => false
     t.integer  "failed_login_count", :default => 0,    :null => false
     t.datetime "last_login"
