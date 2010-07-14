@@ -5,20 +5,30 @@
 
   <p>
     <%= f.label t "user.username" %><br />
+    <% if current_user.roles_mask < @user.roles_mask or current_user.id == @user.id %>
     <%= f.text_field :username %>  <%= f.label t "user.active" %><%= check_box "user", "active" %>
-  </p>
-  <p>
+    <p>
     <%= f.label t "global.email" %><br />
     <%= f.text_field :email %>
   </p>
-  <p><% if permitted_to? :destroy, @user %>
+  <p>
     <%= f.label t "user.password" %><br />
     <%= f.password_field :password %>
   </p>
   <p>
     <%= f.label t "user.password_confirmation" %><br />
     <%= f.password_field :password_confirmation %>
-  </p><% end %>
+  </p>
+
+
+        <% else %>
+    <%= f.text_field :username, :size => "15x1", :disabled => "disabled", :class => '' %><%= f.label t "user.active" %><%= check_box "user", "active", :disabled => "disabled" %>
+   <p>
+    <%= f.label t "global.email" %><br />
+    <%= f.text_field :email,  :disabled => "disabled" %>
+  </p>
+  <% end %>
+  
   <p>
      <% if permitted_to? :destroy, @user %>
 <%= f.label :roles %><br />

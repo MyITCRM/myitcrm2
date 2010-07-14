@@ -32,4 +32,13 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
     self.roles_mask ||= "32"
   end
 
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['username LIKE  ?', "%#{search}%"])
+    else
+      # find(:all, :conditions => "roles_mask >= 32")
+      find(:all)
+    end
+    
+   end
 end

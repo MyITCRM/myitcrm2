@@ -16,8 +16,9 @@
 <%= h @user.active  %>
 </p>
 
-
-<%= link_to (t "global.edit"), profile_url(:id => current_user) %>
-<% if permitted_to? :edit, @user %>|
+<% if current_user.roles_mask < @user.roles_mask %>
+<%= link_to (t "global.edit"),user_path %> |
+<% end %>
+<% if permitted_to? :edit, @user %>
 <%= link_to (t "global.back"), users_path %>
  <% end %>

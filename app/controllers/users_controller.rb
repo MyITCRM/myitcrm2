@@ -8,10 +8,8 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-    @user = User.find(:all, :conditions => "roles_mask >= 32")
-    if permitted_to? :destroy, Supplier.new
-      @user = User.find(:all)
-    end
+    @user = User.search(params[:search])
+    
  end
 
    def show
@@ -32,6 +30,8 @@ class UsersController < ApplicationController
 
   def edit_profile
     @title = t "user.t_edit_user"
+    @user = current_user
+    
   end
 
   def update_profile

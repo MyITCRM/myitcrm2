@@ -1,4 +1,12 @@
 <h1><%= [t "user.t_title"] %></h1>
+
+<% form_tag users_path, :method => 'get' do %>
+   <p>
+     <%=  text_field_tag :search, params[:search]  %>
+     <%= submit_tag "Apply", :name => nil %>
+
+   </p>
+<% end %>
 <p>
   <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"]), new_user_path) %><%= link_to ( t "user.add_new_user"), new_user_path %>
 </p>
@@ -25,7 +33,7 @@
       <% if permitted_to? :show, User.new  %>
           <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
       <% end %>
-      <% if permitted_to? :edit, User.new  %>
+      <% if current_user.roles_mask < user.roles_mask or current_user.id == @user.id %>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path(user) ) %>
       <% end %>
       <% if permitted_to? :destroy, User.new  %>
