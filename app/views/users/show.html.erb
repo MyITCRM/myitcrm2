@@ -1,23 +1,112 @@
-<p>
-  <b><%= t "user.username" %></b>
-  <%=h @user.email %>
-</p>
-
-<p>
-  <b><%= t "global.email" %></b>
-  <%=h @user.email %>
-</p>
-<p>
- <b><%= t "global.user_type" %>:</b>
-<%= h @user.role_symbols %>
-</p>
-<p>
- <b><%= t "global.active" %></b>
-<%= h @user.active  %>
-</p>
+<table>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "user.username" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.username %>
+    </td>
+</tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.email" %>:</strong>
+    </td>
+    <td align="left">
+     <%= auto_link_email_addresses( @user.email ) %>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "user.name" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.name %>
+    </td>
+</tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.role" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.role_symbols %>
+    </td>
+</tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.active" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.active %>
+    </td>
+</tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.address" %>:</strong>
+    </td>
+    <td align="left">
+      <%=h @user.address %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.city" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.city %>
+    </td>
+  </tr>
+ <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.state" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.state %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.zip" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.zip %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.phone" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.phone %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t"global.mobile" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.mobile %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t"global.fax" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.fax %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.notes" %>:</strong>
+    </td>
+    <td align="left" >
+     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @user.notes  %></textarea>
+    </td>
+  </tr>
+</table>
 
 <% if current_user.roles_mask < @user.roles_mask %>
-<%= link_to (t "global.edit"),user_path %> |
+<%= link_to (t "global.edit"), edit_user_path %> |
 <% end %>
 <% if permitted_to? :edit, @user %>
 <%= link_to (t "global.back"), users_path %>

@@ -68,6 +68,8 @@ en:
     roles_mask: "Role Mask"
     cancel: "Cancel"
     dashboard: "Dashboard"
+    mobile: "Mobile"
+    notes: "Notes"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -116,6 +118,8 @@ en:
      list_users: "List of Users"
      edit_profile: "Edit My Details"
      add_new_user: "Create New Client"
+     search: "Search Username"
+     name: "Full Name"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
