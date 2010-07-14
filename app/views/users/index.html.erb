@@ -1,7 +1,7 @@
 <h1><%= [t "user.t_title"] %></h1>
 
 <% form_tag users_path, :method => 'get' do %>
-   <p>
+   <p><%= t "user.search"  %>
      <%=  text_field_tag :search, params[:search]  %>
      <%= submit_tag "Apply", :name => nil %>
 
