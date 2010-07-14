@@ -30,6 +30,10 @@ a {
   border: solid 1px black;
   margin-top: 20px;
 }
+#field_readonly {
+  background-color: #FFF;
+
+}
 #menu {
   width: 75%;
   margin: 0 auto;
