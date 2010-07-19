@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   filter_resource_access
+  
+
 
   def new
     @title = t "user.t_new_user"
@@ -8,13 +10,12 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-    @user = User.search(params[:search])
-    
+    @user = User.search(params[:search], params[:page])
  end
 
    def show
     @title = t "user.t_view"
-    if @user.roles_mask <= 32
+    if current_user.roles_mask <= 32
     else
       if @user != current_user
         flash[:error] = t "global.restricted"

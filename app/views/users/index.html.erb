@@ -1,4 +1,5 @@
-<h1><%= [t "user.t_title"] %></h1>
+<h1><%= [t "user.t_title"] %> <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"]), new_user_path) %> </h1>
+
 
 <% form_tag users_path, :method => 'get' do %>
    <p><%= t "user.search"  %>
@@ -7,16 +8,18 @@
 
    </p>
 <% end %>
-<p>
-  <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"]), new_user_path) %><%= link_to ( t "user.add_new_user"), new_user_path %>
+ <p>
+  <%= will_paginate @user, :class => "digg_pagination" %>
 </p>
-<table border="1" cellpadding="0" cellspacing="0" >
+<table border="1" cellpadding="1" cellspacing="0" >
   <tr>
     <th width="100"><%= t "user.number" %></th>
+    <th width="100"><%= t "user.name" %></th>
     <th width="100"><%= t "user.username" %></th>
     <th width="100"><%= t "global.email" %></th>
     <th width="100"><%= t "global.role" %></th>
-    <th width="100"><%= t "global.roles_mask" %></th>
+    <th width="100"><%= t "global.phone" %></th>
+    <th width="100"><%= t "global.mobile" %></th>
     <th width="100"><%= t "global.active" %></th>
     <th width="100"><%= t "supplier.actions" %></th>
   </tr>
@@ -24,10 +27,12 @@
 <% @user.each do |user| %>
   <tr align="center">
     <td><%=h user.id %></td>
+    <td><%=h user.name %></td>
     <td><%=h user.username %></td>
-    <td><%=h user.email %></td>
+    <td><%= auto_link_email_addresses( user.email ) %></td>
     <td><%=h user.role_symbols %></td>
-    <td><%=h user.roles_mask %></td>
+    <td><%=h user.phone %></td>
+    <td><%=h user.mobile %></td>
     <td><%=h user.active %></td>
     <td>
       <% if permitted_to? :show, User.new  %>

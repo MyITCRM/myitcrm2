@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
+  #acts_as_authentic
+  acts_as_authentic do |c|
+      c.logged_in_timeout = 10.minutes # default is 10.minutes
+    end
 
 named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
@@ -31,14 +34,13 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
     self.active ||= "1"
     self.roles_mask ||= "32"
   end
+ 
+  def self.search(search, page)
 
-  def self.search(search)
-    if search
-      find(:all, :conditions => ['username LIKE  ?', "%#{search}%"])
-    else
-      # find(:all, :conditions => "roles_mask >= 32")
-      find(:all)
-    end
-    
+      #find(:all, :conditions => ['username LIKE  ?', "%#{search}%"])
+      paginate :per_page => 5, :page => page,
+                          :conditions => ['name LIKE  ?', "%#{search}%"],
+                          :order => 'id'
+        
    end
 end

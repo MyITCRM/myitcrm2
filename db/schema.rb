@@ -49,7 +49,8 @@ ActiveRecord::Schema.define(:version => 20100708022342) do
     t.integer  "roles_mask"
     t.integer  "login_count",        :default => 0,    :null => false
     t.integer  "failed_login_count", :default => 0,    :null => false
-    t.datetime "last_login"
+    t.datetime "last_request_at"
+    t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.string   "name"
@@ -62,6 +63,10 @@ ActiveRecord::Schema.define(:version => 20100708022342) do
     t.string   "fax"
     t.text     "notes"
     t.boolean  "active",             :default => true
+    t.datetime "edited_at"
+    t.string   "edited_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

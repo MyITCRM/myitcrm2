@@ -1,4 +1,13 @@
+<h1><%= t "user.t_view" %></h1>
 <table>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "user.name" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @user.name %>
+    </td>
+</tr>
 <tr>
     <td colspan="2" align="right">
       <strong><%= t "user.username" %>:</strong>
@@ -15,14 +24,6 @@
      <%= auto_link_email_addresses( @user.email ) %>
     </td>
   </tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.name" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.name %>
-    </td>
-</tr>
 <tr>
     <td colspan="2" align="right">
       <strong><%= t "global.role" %>:</strong>
@@ -44,7 +45,7 @@
       <strong><%= t "global.address" %>:</strong>
     </td>
     <td align="left">
-      <%=h @user.address %>
+      <textarea rows="6" cols="50" name="address" readonly="readonly" ><%=h @user.address  %></textarea>
     </td>
   </tr>
   <tr>
@@ -103,7 +104,48 @@
      <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @user.notes  %></textarea>
     </td>
   </tr>
-</table>
+
+  </table>
+<h1><%= t "user.t_log" %></h1>
+<table>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.created_at" %>:</strong>
+    </td>
+    <td align="left">
+      <%= time_ago_in_words(@user.created_at) %> <%= t "global.ago" %> (<%= localize @user.created_at, :format => :short  %>) <%= t "global.by" %> <%= @user.edited_by %>.
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.updated_at" %>:</strong>
+    </td>
+    <td align="left">
+      <%= time_ago_in_words(@user.edited_at) %> <%= t "global.ago" %> (<%= localize @user.edited_at, :format => :short  %>) <%= t "global.by" %> <%= @user.edited_by %>.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "user.account_accessed" %>:</strong>
+    </td>
+    <td align="left">
+      <% if @user.login_count == 0 %>
+          <%= "User has not logged in yet" %>
+          <% else %>
+          <% if @user.login_count == 1 %>
+              <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.current_login_ip %>
+           <% else %>
+              <% if @user.login_count > 1 %>
+      <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.last_login_ip %>
+          <% end %>
+          <% end %>
+          <% end %>
+
+
+          </td>
+  </tr>
+
+</table><br>
 
 <% if current_user.roles_mask < @user.roles_mask %>
 <%= link_to (t "global.edit"), edit_user_path %> |
