@@ -1,4 +1,11 @@
-<table>
+<!--todo add language headings-->
+<!-- todo adjust layout the same as users-->
+<table width="100%">
+  <tr>
+    <td colspan="4" align="right">
+        <%= link_to(image_tag('edit.png',:title => [t "global.edit"]), edit_supplier_path) %><%= link_to 'Edit', edit_supplier_path(@supplier) %> | <%= link_to 'Back', suppliers_path %>
+    </td>
+  </tr>
   <tr>
     <td colspan="2" align="right">
       <strong>Company name:</strong>
@@ -9,10 +16,18 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
+      <strong><%= t"supplier.active" %></strong>
+    </td>
+    <td align="left">
+     <%=h @supplier.active? %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
       <strong>Address:</strong>
     </td>
     <td align="left">
-      <%=h @supplier.address %>
+      <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.address  %></textarea>
     </td>
   </tr>
   <tr>
@@ -96,6 +111,14 @@
     </td>
   </tr>
   <tr>
+    <td colspan="2" align="right" >
+     <strong>Parts leadtime days:</strong>
+    </td>
+    <td>
+     <%=h @supplier.parts_leadtime_days %>
+    </td>
+  </tr>
+  <tr>
     <td colspan="2" align="right">
       <strong><%= t "supplier.notes" %>:</strong>
     </td>
@@ -103,57 +126,30 @@
      <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.notes  %></textarea>
     </td>
   </tr>
-<tr>
+  <tr>
     <td colspan="2" align="right">
-      <strong><%= t"supplier.active" %></strong>
-    </td>
-    <td align="left">
-     <%=h @supplier.active? %>
+       <h1><%= t "supplier.t_log" %></h1>
     </td>
   </tr>
+
 <tr>
     <td colspan="2" align="right">
-      <strong><%= t"supplier.date_created" %></strong>
+      <strong><%= t"supplier.date_created" %>:</strong>
     </td>
     <td align="left">
-     <%= distance_of_time_in_words_to_now( @supplier.date_created ) %>
-    </td>
-  </tr>
-<tr>                           
-    <td colspan="2" align="right">
-      <strong><%= t"supplier.active" %></strong>
-    </td>
-    <td align="left">
-     <%=h @supplier.active? %>
+      <%= time_ago_in_words(@supplier.created_at) %> <%= t "global.ago" %> (<%= localize @supplier.created_at, :format => :short %>) <%= t "global.by" %> <%= @supplier.created_by %>.
     </td>
   </tr>
 <tr>
     <td colspan="2" align="right">
-      <strong><%= t"supplier.active" %></strong>
+      <strong><%= t "global.last_updated_by" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.active? %>
-    </td>
+      <% if @supplier.edited_at == nil %>
+          <%= time_ago_in_words(@supplier.created_at) %> <%= t "global.ago" %> (<%= localize @supplier.created_at, :format => :short %>) <%= t "global.by" %> <%= @supplier.created_by %>.
+        <% else %>
+      <%= time_ago_in_words(@supplier.edited_at) %> <%= t "global.ago" %> (<%= localize @supplier.edited_at, :format => :short %>) <%= t "global.by" %> <%= @supplier.edited_by %>.
+          <% end %>
+          </td>
   </tr>
-
-
-
-
 </table>
-<p>
-  <strong>Date created:</strong>
-  <%=h @supplier.date_created.strftime('%b %d, %Y at %H:%M') %>
-</p>
-
-<p>
-  <strong><%= t "global.last_updated_by" %></strong>
-    <%=h @supplier.user_id  %> on <%=h @supplier.date_updated.strftime('%B %d, %Y at %H:%M') %>
-</p>
-
-<p>
-  <strong>Parts leadtime days:</strong>
-  <%=h @supplier.parts_leadtime_days %>
-</p>
-
-
-<%= button_to 'Edit', edit_supplier_path(@supplier) %><%= button_to 'Back', suppliers_path %>

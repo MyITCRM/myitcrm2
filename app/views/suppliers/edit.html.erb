@@ -61,7 +61,8 @@
     <%= f.text_field :parts_leadtime_days %>
   </p>
   <p>
-    <%= f.hidden_field :user_id, :value => current_user.username %>
+    <%= hidden_field_tag "supplier[edited_by]", current_user.username %>
+    <%= hidden_field_tag "supplier[edited_at]", Time.now %>
   </p>
   <p>
     <%= f.submit 'Update' %>

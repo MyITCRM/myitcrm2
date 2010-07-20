@@ -1,7 +1,7 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en_british:
+en_AU:
      
   global:
     program_name: "MyIT CRM"
@@ -29,7 +29,7 @@ en_british:
     user_type: "User Type"
     welcome: "Welcome"
     register: "Register"
-    last_updated_by: "Last updated by:"
+    last_updated_by: "Last updated by"
     status: "Status"
     roles_mask: "Role Mask"
     cancel: "Cancel"
@@ -68,6 +68,7 @@ en_british:
    actions: "Actions"
 
    credit_amount: "Credit Amount"
+   t_log: "Supplier Log"
   user:
      t_new_user: "New User Registration"
      username: "Username"
@@ -89,11 +90,14 @@ en_british:
      list_users: "List of Users"
      edit_profile: "Edit My Details"
      add_new_user: "Create New User"
-     search: "Search Username"
+     search: "Search Full Name"
      name: "Full Name"
      name_eg: "Full Name: eg John Smith"
      t_log: "User Log"
      account_accessed: "User last Logged in"
+     not_logged_in_yet: "User has not logged in yet."
+     login_failures: "Failed Login Attempts"
+     login_count: "Successful Logins"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
@@ -108,22 +112,13 @@ en_british:
     action: "Action?"
     t_name: "Role Type"
     id: "Role #"
-  number:
-    format:
-      precision: 3
-      separator: '|'
-      delimiter: '-'
-    currency:
-      format:
-        unit: '$'
-        precision: 2
-        format: '%u%n'
+    clerk: "Clerk"
   date:
     formats:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
-      default: "%Y-%m-%d"
+      default: "%d/%m/%Y"
       short: "%b %d"
       long: "%B %d, %Y"
 
@@ -133,8 +128,8 @@ en_british:
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    # Used in date_select and datime_select.
-    order: [ :year, :month, :day ]
+    # Used in date_select and datetime_select.
+    order: [:day, :month, :year ]
 
   time:
     formats:
@@ -152,7 +147,7 @@ en_british:
       # Delimets thousands (e.g. 1,000,000 is a million) (always in groups of three)
       delimiter: ","
       # Number of decimals, behind the separator (the number 1 with a precision of 2 gives: 1.00)
-      precision: 3
+      precision: 2
 
     # Used in number_to_currency()
     currency:

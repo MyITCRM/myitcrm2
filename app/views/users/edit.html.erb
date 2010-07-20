@@ -4,12 +4,12 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name %>   <%= f.label t "user.active" %><%= check_box "user", "active" %>
   </p>
   <p>
     <%= f.label t "user.username" %><br />
 
-    <%= f.text_field :username %>  <%= f.label t "user.active" %><%= check_box "user", "active" %>
+    <%= f.text_field :username %>
     <p>
     <%= f.label t "global.email" %><br />
     <%= f.text_field :email %>

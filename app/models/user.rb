@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
   #acts_as_authentic
   acts_as_authentic do |c|
       c.logged_in_timeout = 10.minutes # default is 10.minutes
-    end
+  end
+
+validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
+validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  
 
 named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
@@ -17,7 +21,7 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
   # Guest = 64
 
   ROLES = %w[administrator manager technician accounts clerk client guest]
-
+  
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end

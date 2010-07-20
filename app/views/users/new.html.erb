@@ -52,6 +52,13 @@
     <%= f.label :fax %><br />
     <%= f.text_field :fax %>
   </p>
+    <p>
+      <% if current_user == nil %>
+      <%= hidden_field_tag "user[created_by]", @user.username %>
+          <% else %>
+      <%= hidden_field_tag "user[created_by]", current_user.username %>
+          <% end %>
+    </p>
   <p>
      <% if permitted_to? :destroy, @user %>
 <%= f.label :roles %><br />
