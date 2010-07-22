@@ -1,0 +1,132 @@
+<h1>New part</h1>
+<% form_for(@part) do |f| %>
+  <%= f.error_messages %>
+<table width="80%">
+  <tr>
+    <td colspan="2" align="right">
+      <%= f.label :active %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.check_box :active %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <%= f.label :supplier_id %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.collection_select :supplier_id, Supplier.all, :id, :company_name, :include_blank => false %>
+    </td>
+    </tr>
+  <tr>
+  <td colspan="2" align="right">
+      <%= f.label :supplier_sku %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.text_field :supplier_sku, :size => 50 %>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <%= f.label :description %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.text_field :description, :size => 50 %>
+    </td>
+  </tr>
+  <tr>
+  <td colspan="2" align="right">
+      <%= f.label :model %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.text_field :model, :size => 50 %>
+    </td>
+  </tr>
+<tr>
+  <td>
+    <br>
+    <br>
+    <h3 align="right">Pricing:</h3>
+  </td>
+</tr>
+<tr>
+    <td colspan="2" align="right">
+      <%= f.label :taxable %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.check_box :taxable %> <%= f.label :tax_rate %> <%= number_to_percentage(f.text_field :tax_rate, :size => 5 )%>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <%= f.label :cost_price %>
+    </td>
+    <td colspan="2" align="left">
+      <%= number_to_currency(f.text_field :cost_price, :size => 10 )%>
+    </td>
+  </tr>
+  <tr>
+  <td colspan="2" align="right">
+        <%= f.label :sell_price %>
+    </td>
+    <td colspan="2" align="left">
+        <%= number_to_currency(f.text_field :sell_price, :size => 10) %>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <%= f.label :mark_up %>
+    </td>
+    <td colspan="2" align="left">
+      <%= number_to_percentage(f.text_field :mark_up, :size => 5) %>
+    </td>
+  </tr>
+  <tr>
+  <td colspan="2" align="right">
+        <%= f.label :weight %>
+    </td>
+    <td colspan="2" align="left">
+        <%= f.text_field :weight, :size => 10 %>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <%= f.label :discountable %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.check_box :discountable %>
+    </td>
+  </tr>
+  <tr>
+  <td colspan="2" align="right">
+        <%= f.label :disc_amount %>
+    </td>
+    <td colspan="2" align="left">
+        <%= number_to_currency(f.text_field :disc_amount, :size => 5) %> <%= t "global.or" %> <%= number_to_percentage(f.text_field :disc_percent, :size => 5) %>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <%= f.label :mark_up %>
+    </td>
+    <td colspan="2" align="left">
+      <%= f.text_field :mark_up, :size => 5 %>
+    </td>
+  </tr>
+  <tr>
+  <td colspan="2" align="right">
+        <%= f.label :weight %>
+    </td>
+    <td colspan="2" align="left">
+        <%= f.text_field :weight, :size => 10 %>
+    </td>
+  </tr>
+</table>
+    <%= hidden_field_tag "part[edited_by]", current_user.username %>
+    <%= hidden_field_tag "part[edited_at]", Time.now %>
+    <%= f.submit t "global.confirm" %>
+
+ <% end %>
+
+
+<%= link_to 'Back', parts_path %>
