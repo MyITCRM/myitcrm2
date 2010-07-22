@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(:version => 20100722015750) do
     t.integer  "parts_leadtime_days"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_id"
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.string   "user_id"
   end
 
   create_table "user_sessions", :force => true do |t|
