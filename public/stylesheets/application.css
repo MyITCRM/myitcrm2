@@ -1,4 +1,5 @@
 body {
+  width: 95%;  
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial,serif;
   font-size: 12px;
@@ -23,15 +24,19 @@ a {
 }
 
 #container {
-  width: 75%;
+  width: 90%;
+  float: left;  
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
 }
-#field_readonly {
+#yield {
+  margin: 0 auto;
   background-color: #FFF;
+  padding: 20px 40px;
+  margin-top: 20px;
 
 }
 #menu {
@@ -101,6 +106,21 @@ a {
     background-color:#ccccff;
     font-size:12px;
 
+}
+#right_bar {
+    width:15%;
+    height:100%;
+    float:right;
+    border: 1px solid #000000;
+    text-align: left;
+    background-color: #ccffcc;
+    font-size:10px;
+    padding:3px;
+
+}
+.round {
+   -moz-border-radius:10px;
+   -webkit-border-radius:10px;
 }
 
 #footer {
