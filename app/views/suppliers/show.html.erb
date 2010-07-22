@@ -1,14 +1,13 @@
-<!--todo add language headings-->
 <!-- todo adjust layout the same as users-->
 <table width="100%">
   <tr>
     <td colspan="4" align="right">
-        <%= link_to(image_tag('edit.png',:title => [t "global.edit"]), edit_supplier_path) %><%= link_to 'Edit', edit_supplier_path(@supplier) %> | <%= link_to 'Back', suppliers_path %>
+        <%= link_to(image_tag('edit.png',:title => [t "global.edit"]), edit_supplier_path) %><%= link_to [t "global.edit"], edit_supplier_path(@supplier) %> | <%= link_to [t "global.back"], suppliers_path %>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Company name:</strong>
+      <strong><%= t "supplier.company_name" %>:</strong>
     </td>
     <td align="left">
       <%=h @supplier.company_name %>
@@ -24,7 +23,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Address:</strong>
+      <strong><%= t "supplier.address" %>:</strong>
     </td>
     <td align="left">
       <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.address  %></textarea>
@@ -32,7 +31,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>City:</strong>
+      <strong><%= t "supplier.city" %>:</strong>
     </td>
     <td align="left">
      <%=h @supplier.city %>
@@ -40,7 +39,7 @@
   </tr>
  <tr>
     <td colspan="2" align="right">
-      <strong>State:</strong>
+      <strong><%= t "supplier.state" %>:</strong>
     </td>
     <td align="left">
      <%=h @supplier.state %>
@@ -48,7 +47,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Zip/Postcode:</strong>
+      <strong><%= t "supplier.zip" %>:</strong>
     </td>
     <td align="left">
      <%=h @supplier.zip %>
@@ -56,7 +55,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Phone:</strong>
+      <strong><%= t "global.phone" %>:</strong>
     </td>
     <td align="left">
      <%=h @supplier.phone %>
@@ -64,7 +63,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Fax:</strong>
+      <strong><%= t "global.fax" %>:</strong>
     </td>
     <td align="left">
      <%=h @supplier.fax %>
@@ -72,7 +71,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Email:</strong>
+      <strong><%= t "global.email" %>:</strong>
     </td>
     <td align="left">
      <%= auto_link_email_addresses( @supplier.email ) %>
@@ -80,7 +79,7 @@
   </tr>
     <tr>
     <td colspan="2" align="right">
-      <strong>Contact Name:</strong>
+      <strong><%= t "supplier.contact_name" %>:</strong>
     </td>
     <td align="left">
      <%=h @supplier.contact_name %>
@@ -96,7 +95,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Credit Terms:</strong>
+      <strong><%= t "supplier.credit_terms" %>:</strong>
     </td>
     <td align="left">
      <%=h @supplier.credit_terms %>
@@ -104,7 +103,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong>Credit Amount:</strong>
+      <strong><%= t "supplier.credit_amount" %>:</strong>
     </td>
     <td align="left">
      <%=h number_to_currency( @supplier.credit_amount ) %>
@@ -112,7 +111,7 @@
   </tr>
   <tr>
     <td colspan="2" align="right" >
-     <strong>Parts leadtime days:</strong>
+     <strong><%= t "supplier.leadtime" %>:</strong>
     </td>
     <td>
      <%=h @supplier.parts_leadtime_days %>
@@ -123,7 +122,7 @@
       <strong><%= t "supplier.notes" %>:</strong>
     </td>
     <td align="left" >
-     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.notes  %></textarea>
+     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.notes %></textarea>
     </td>
   </tr>
   <tr>
@@ -137,7 +136,7 @@
       <strong><%= t"supplier.date_created" %>:</strong>
     </td>
     <td align="left">
-      <%= time_ago_in_words(@supplier.created_at) %> <%= t "global.ago" %> (<%= localize @supplier.created_at, :format => :short %>) <%= t "global.by" %> <%= @supplier.created_by %>.
+      <%= time_ago_in_words(@supplier.created_at) %> <%= t "global.ago" %> (<%= localize @supplier.created_at, :format => :short  %>) <%= t "global.by" %> <%= @supplier.created_by %>.
     </td>
   </tr>
 <tr>
@@ -148,8 +147,8 @@
       <% if @supplier.edited_at == nil %>
           <%= time_ago_in_words(@supplier.created_at) %> <%= t "global.ago" %> (<%= localize @supplier.created_at, :format => :short %>) <%= t "global.by" %> <%= @supplier.created_by %>.
         <% else %>
-      <%= time_ago_in_words(@supplier.edited_at) %> <%= t "global.ago" %> (<%= localize @supplier.edited_at, :format => :short %>) <%= t "global.by" %> <%= @supplier.edited_by %>.
-          <% end %>
+          <%= time_ago_in_words(@supplier.edited_at) %> <%= t "global.ago" %> (<%= localize @supplier.edited_at, :format => :short %>) <%= t "global.by" %> <%= @supplier.edited_by %>.
+        <% end %>
           </td>
   </tr>
 </table>

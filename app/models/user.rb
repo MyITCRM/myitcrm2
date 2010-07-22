@@ -3,15 +3,14 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
       c.logged_in_timeout = 10.minutes # default is 10.minutes
   end
-
+# Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
 validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   
 
 named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
-
-  # Roles_Mask values
+# Roles_Mask values
   # Admin = 1
   # Manager = 2
   # Tech = 4
@@ -40,11 +39,8 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
   end
  
   def self.search(search, page)
-
-      #find(:all, :conditions => ['username LIKE  ?', "%#{search}%"])
       paginate :per_page => 5, :page => page,
                           :conditions => ['name LIKE  ?', "%#{search}%"],
                           :order => 'id'
-        
    end
 end
