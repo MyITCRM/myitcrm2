@@ -1,0 +1,57 @@
+1.0.0.beta2 (unreleased)
+
+* Added default escaping of html entities in labels and hints (#292, #299)
+* Added/Fixed that :value_method and :label_method were not being used for simple collections (like Arrays)
+* Added some more compatibility for Mongooid and other ORMs by checking for reflection information before calling it
+* Fixed deprecation warnings in Rails 2.3.6 and newer
+* Fixed a bug where :check_boxes and :radio were using method instead of :label option
+* Fixed a conflict where i18n lookups were failing when an attribute and model have the same name
+* Fixed some html that was not marked as safe
+
+1.0.0.beta
+
+* Fixed :radio and :check_boxes inputs so that the legend no longer includes a <label> with a `for` attribute pointing to an input that doesn't exist (#253)
+* Fixed that some inputs had invalid 'find_options' attribute (#262)
+* Fixed that we were calling html_safe! when it was not always available
+* Added the ability for :input_html to now accept an option of :size => nil, to exclude the :size attribute altogether (#267)
+
+0.9.10
+
+* Fixed i18n incompatibility with Rails 2.3.8 by reverting two i18n patches pulled in from the rails3 branch
+
+0.9.9
+
+* Changed date/time inputs to default to nil instead of Time.now when the object has no value (due to deprecation warning, #240)
+* Changed the behaviour of associations with a :class_name option to be more consistent with what Rails expects
+* Fixed issues relating to Rails 2.3.6 automatically escaping ERB
+* Fixed issues with Ruby 1.9.1 and Haml
+* Fixed use of deprecated {{key}} syntax in i18n interpolation (thanks to Hans Petter Wilhelmsen)
+* Added the :disabled option to check_boxes input
+* Added translation support for nested models (thanks to Toni Tuominen)
+
+0.9.8
+
+* Deprecated :selected/:checked options, see http://wiki.github.com/justinfrench/formtastic/deprecation-of-selected-option
+* Changed CSS rules for fieldset lists to be more specific
+* Changed that radio and checkbox inputs used to associate the legend label with the first choice's input (#101)
+* Changed the generators to use |f| rather than |form| (#151)
+* Changed the behaviour of :selected/:checked options to address several bugs and inconsistencies (#152)
+* Changed CSS for input width property to max-width, allowing a size attribute to still be set
+* Fixed an issue where label_str_method not honoured if the object is an ActiveRecord object
+* Fixed incorrect html class for namespaced objects ("/" replaced with "_")
+* Fixed compatibility issue with SearchLogic (#155)
+* Fixed an issue where label_str_method was not being overridden with i18n
+* Fixed a button text issue with Rails 2.x in which human_name on multi-word models returned one word (eg Ticketrequest) (#153)
+* Fixed the behaviour of select inputs when the belongs_to or has_many association has a special :class_name option
+* Fixed line numbers from eval'd code, to help when debugging
+* Fixed CSS issue that hidden fields were not always hidden (Chrome for example) (#209)
+* Fixed and improved CSS with nested fieldsets and legends
+* Fixed date/time inputs where :include_seconds => true
+* Fixed that inline hints were still being rendered on hidden inputs
+* Fixed broken CSS declaration missing a colon
+* Added configuration preferences for row and column attributes on textareas
+* Added semantic_errors helper and CSS (for all errors on an object)
+* Added :filename to the list of @@file_methods, to support carrierwave plugin (#156)
+* Added a Formtastic::LayoutHelper with formtastic_stylesheets helper method for linking to all Formtastic CSS files
+* Added labels option to date/time/datetime fields to customise the label of each part of the set (year, month, etc)
+* Added many improvements to the README and docs

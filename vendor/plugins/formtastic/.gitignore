@@ -1,0 +1,6 @@
+.DS_Store
+coverage
+pkg
+*~
+*watchr.rb
+log/*
