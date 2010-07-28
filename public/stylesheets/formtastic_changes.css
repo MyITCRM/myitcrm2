@@ -15,5 +15,6 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 form.formtastic fieldset > ol > li p.inline-hints {
     color:#333;
     font-style:italic;
+    font-size:8px;
 
 }
