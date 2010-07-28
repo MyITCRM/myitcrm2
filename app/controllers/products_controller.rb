@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
-  # GET /products
-  # GET /products.xml
+
   def index
-    @products = Products.all
+    @products = Product.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,72 +9,62 @@ class ProductsController < ApplicationController
     end
   end
 
-  # GET /products/1
-  # GET /products/1.xml
   def show
-    @products = Products.find(params[:id])
+    @product = Product.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @products }
+      format.xml  { render :xml => @product }
     end
   end
 
-  # GET /products/new
-  # GET /products/new.xml
   def new
-    @products = Products.new
+    @product = Product.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @products }
+      format.xml  { render :xml => @product }
     end
   end
 
-  # GET /products/1/edit
   def edit
-    @products = Products.find(params[:id])
+    @product = Product.find(params[:id])
+    
   end
 
-  # POST /products
-  # POST /products.xml
   def create
-    @products = Products.new(params[:products])
+    @product = Product.new(params[:product])
 
     respond_to do |format|
-      if @products.save
-        flash[:notice] = 'Products was successfully created.'
-        format.html { redirect_to(@products) }
-        format.xml  { render :xml => @products, :status => :created, :location => @products }
+      if @product.save
+        flash[:notice] = 'Item was successfully created.'
+        format.html { redirect_to(@product) }
+        format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @products.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /products/1
-  # PUT /products/1.xml
   def update
-    @products = Products.find(params[:id])
+    @product = Product.find(params[:id])
 
     respond_to do |format|
-      if @products.update_attributes(params[:products])
-        flash[:notice] = 'Products was successfully updated.'
-        format.html { redirect_to(@products) }
+      if @product.update_attributes(params[:product])
+        flash[:notice] = 'Item was successfully updated.'
+        format.html { redirect_to(@product) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @products.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.xml
   def destroy
-    @products = Products.find(params[:id])
-    @products.destroy
+    @product = Product.find(params[:id])
+    @product.destroy
 
     respond_to do |format|
       format.html { redirect_to(products_url) }
@@ -83,3 +72,4 @@ class ProductsController < ApplicationController
     end
   end
 end
+  

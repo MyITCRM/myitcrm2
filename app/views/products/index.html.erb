@@ -1,18 +1,36 @@
-<h1>Listing products</h1>
+<h1><%= [t "parts.t_title"] %></h1>
+<%= link_to(image_tag('add.png',:title => [t "parts.t_add_new_part"]), new_product_path) %><%= link_to [t "parts.t_add_new_part"], new_product_path %>
+<p></p>
 
-<table>
+<table border="1" cellpadding="0" cellspacing="0" >
   <tr>
+    <th width="200"><%= t "supplier.company_name" %></th>
+    <th width="200"><%= t "products.manufacturer" %></th>
+    <th width="200"><%= t "parts.description" %></th>
+    <th width="100"><%= t "parts.model" %></th>
+    <th width="100"><%= t "parts.cost" %></th>
+    <th width="100"><%= t "parts.sell_price" %></th>
+    <th width="100"><%= t "supplier.leadtime" %></th>
+    <th width="50"><%= t "global.active" %></th>
+    <th width="100"><%= t "global.actions" %></th>
   </tr>
 
-<% @products.each do |products| %>
-  <tr>
-    <td><%= link_to 'Show', products %></td>
-    <td><%= link_to 'Edit', edit_products_path(products) %></td>
-    <td><%= link_to 'Destroy', products, :confirm => 'Are you sure?', :method => :delete %></td>
+<% @products.each do |product| %>
+  <tr align="center">
+    <td><%=h product.supplier.company_name %></td>
+    <td><%=h product.manufacturer %></td>
+    <td><%=h product.description %></td>
+    <td><%=h product.model %></td>
+    <td><%=h number_to_currency(product.cost_price) %></td>
+    <td><%=h number_to_currency(product.sell_price) %></td>
+    <td><%=h product.supplier.parts_leadtime_days %></td>
+    <td><%=h product.active? %></td>
+    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), product )%>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_product_path(product)) %>
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), product, :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New products', new_products_path %>

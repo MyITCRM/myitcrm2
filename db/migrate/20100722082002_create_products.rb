@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration
   def self.up
     create_table :products do |t|
-       t.integer :supplier_id
+      t.integer :supplier_id
       t.string :supplier_sku
       t.string :our_sku
       t.string :manufacturer

@@ -1,12 +1,21 @@
 <h1>Editing products</h1>
 
-<% form_for(@products) do |f| %>
-  <%= f.error_messages %>
+<% semantic_form_for @product do |f| %>
+    <% f.inputs "Required", :id => "custom_css_id" do %>
 
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+        <%= f.input :supplier, :label_method => :company_name %> 
+        <%= f.input :description, :hint => (t "products.hint_desc") %>
+        <%= f.input :model %>
+        <%= f.input :manufacturer %>
+        <%= f.input :cost_price %>
+        <%= f.input :sell_price %>
+        <%= f.input :edited_by, :as => :hidden, :input_html => { :value =>  current_user.username } %>
+        <%= f.input :edited_at, :as => :hidden, :input_html => { :value =>  Time.now } %>
+        <%= f.input :active?, :as => :boolean  %>
 
-<%= link_to 'Show', @products %> |
-<%= link_to 'Back', products_path %>
+    <% end %>
+  <%= f.buttons %>
+<% end %>   
+
+<%= link_to 'Show', @product %> |
+<%= link_to 'Back', product_path %>

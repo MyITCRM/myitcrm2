@@ -3,7 +3,7 @@
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title> <%= t "global.program_name" %> | <%= @title %></title>
-  <%= stylesheet_link_tag 'application'  %>
+  <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', :cache => "base"  %>
 </head>
 <body>
 <table width="100%">
@@ -22,7 +22,7 @@
         <% if permitted_to? :show, Supplier.new %>
          <%= link_to ( t "user.t_title"), users_path %> |
          <%= link_to ( t "supplier.t_title"), suppliers_path %> |
-         <%= link_to ( t "parts.t_title"), parts_path %> |
+         <%= link_to ( t "products.t_title"), products_path %> |
             <% end %>
          <%= t "global.welcome" %> <% if permitted_to? :edit_profile, User.new %>
         <%= link_to current_user.username, profile_url(:id => current_user)%>! Not you?

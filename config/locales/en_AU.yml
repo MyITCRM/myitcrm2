@@ -284,3 +284,9 @@ en_AU:
     cost: "Purchase Price"
     sell_price: "Selling Price"
     supplier: "Supplier"
+  products:
+    hint_desc: "eg: SATA 500 GB Hard Drive"
+    hint_model: "WD5000S"
+    hint_manuf: "Western Digital"
+    manufacturer: "Manufacturer"
+    t_title: "Products"

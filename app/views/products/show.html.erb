@@ -1,3 +1,85 @@
+<!--todo add all fields-->
+<table width="100%">
+  <tr>
+    <td colspan="4" align="right">
+        <%= link_to(image_tag('edit.png',:title => [t "global.edit"]), edit_product_path) %><%= link_to [t "global.edit"], edit_product_path(@product) %> | <%= link_to [t "global.back"], product_path %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "parts.supplier" %>:</strong>
+    </td>
+    <td align="left">
+      <%=h @product.supplier.company_name %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.active" %></strong>
+    </td>
+    <td align="left">
+     <%=h @product.active? %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "parts.description" %>:</strong>
+    </td>
+    <td align="left">
+      <%=h @product.description %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "parts.model" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h @product.model %>
+    </td>
+  </tr>
+ <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "supplier.state" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h number_to_currency(@product.cost_price) %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "supplier.zip" %>:</strong>
+    </td>
+    <td align="left">
+     <%=h number_to_currency(@product.sell_price) %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+       <h1><%= t "supplier.t_log" %></h1>
+    </td>
+  </tr>
 
-<%= link_to 'Edit', edit_products_path(@products) %> |
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t"supplier.date_created" %>:</strong>
+    </td>
+    <td align="left">
+      <%= time_ago_in_words(@product.created_at) %> <%= t "global.ago" %> (<%= localize @product.created_at, :format => :short  %>) <%= t "global.by" %> <%= @product.created_by %>.
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.last_updated_by" %>:</strong>
+    </td>
+    <td align="left">
+      <% if @product.edited_at == nil %>
+          <%= time_ago_in_words(@product.created_at) %> <%= t "global.ago" %> (<%= localize @product.created_at, :format => :short %>) <%= t "global.by" %> <%= @product.created_by %>.
+        <% else %>
+          <%= time_ago_in_words(@product.edited_at) %> <%= t "global.ago" %> (<%= localize @product.edited_at, :format => :short %>) <%= t "global.by" %> <%= @product.edited_by %>.
+        <% end %>
+          </td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
