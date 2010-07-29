@@ -1,7 +1,9 @@
 class Product < ActiveRecord::Base
   belongs_to :supplier
   
-
-validates_presence_of :supplier, :description, :cost_price, :manufacturer, :model, :sell_price
+# Validations on inputs
+  validates_presence_of :supplier, :active, :description, :cost_price, :manufacturer, :model, :sell_price
+  validates_uniqueness_of :our_sku
+  
 
 end

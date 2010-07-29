@@ -1,17 +1,16 @@
 authorization do
   role :administrator do
-    has_permission_on [:suppliers, :users, :parts], :to => [:index, :show, :new, :create, :edit, :update, :destroy, :edit_profile, :update_profile,]
+    has_permission_on [:suppliers, :users, :products], :to => [:index, :show, :new, :create, :edit, :update, :destroy, :edit_profile, :update_profile,]
   
   end
   role :manager do
-
     includes :technician
-    has_permission_on [:suppliers, :users, :parts], :to => [:destroy]
+    has_permission_on [:suppliers, :users, :products], :to => [:destroy]
   end
   role :technician do
     includes :client
     has_permission_on :users, :to => [:index, :show, :edit, :update]
-    has_permission_on :suppliers, :to => [:index, :show, :new, :create, :edit, :update]
+    has_permission_on [:suppliers, :products], :to => [:index, :show, :new, :create, :edit, :update]
   end
   role :client do
     includes :guest

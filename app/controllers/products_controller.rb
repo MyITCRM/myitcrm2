@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  filter_resource_access
   def index
     @products = Product.all
 

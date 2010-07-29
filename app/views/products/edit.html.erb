@@ -1,21 +1,30 @@
 <h1>Editing products</h1>
+<table width="100%">
+  <tr>
+    <td colspan="4" align="right">
+        <%= link_to(image_tag('edit.png',:title => [t "global.edit"]), edit_product_path) %><%= link_to [t "global.edit"], edit_product_path(@product) %> | <%= link_to [t "global.back"], product_path %>
+    </td>
+  </tr>
+  </table>
 
-<% semantic_form_for @product do |f| %>
-    <% f.inputs "Required", :id => "custom_css_id" do %>
-
-        <%= f.input :supplier, :label_method => :company_name %> 
+      <% semantic_form_for @product do |f| %>
+        <% f.inputs "Basic" do %>
+        <%= f.input :supplier, :label_method => :company_name %>
+        <%= f.input :active?, :label => "Product Status", :required => true, :as => :select, :collection => { "Active" => true, "Inactive" => false }, :include_blank => false %>
         <%= f.input :description, :hint => (t "products.hint_desc") %>
         <%= f.input :model %>
         <%= f.input :manufacturer %>
-        <%= f.input :cost_price %>
-        <%= f.input :sell_price %>
+        <%= f.input :cost_price, :input_html => { :size => 10 } %>
+        <%= f.input :sell_price, :input_html => { :size => 10 } %>
         <%= f.input :edited_by, :as => :hidden, :input_html => { :value =>  current_user.username } %>
         <%= f.input :edited_at, :as => :hidden, :input_html => { :value =>  Time.now } %>
-        <%= f.input :active?, :as => :boolean  %>
+        <% end %>
 
-    <% end %>
+               <% f.inputs "Advanced" do %>
+        <%= f.input :supplier_sku, :input_html => { :size => 20 } %>
+        <%= f.input :our_sku, :input_html => { :size => 20 } %>
+        <% end %>
+
+
   <%= f.buttons %>
 <% end %>   
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', product_path %>

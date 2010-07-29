@@ -39,6 +39,12 @@ a {
   margin-top: 20px;
 
 }
+h6 {
+  width: 95%;
+  font-family: Verdana, Helvetica, Arial,fantasy;
+  font-size: 12px;
+
+}
 #menu {
   width: 75%;
   margin: 0 auto;

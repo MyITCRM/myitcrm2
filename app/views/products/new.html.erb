@@ -1,13 +1,15 @@
 <h1>New products</h1>
 
 <% semantic_form_for @product do |f| %>
-    <% f.inputs do %>
+    <% f.inputs "Basic" do %>
         <%= f.input :supplier, :label_method => :company_name  %>
         <%= f.input :description, :hint => (t "products.hint_desc") %>
         <%= f.input :model %>
         <%= f.input :manufacturer %>
-        <%= f.input :cost_price %>
-        <%= f.input :sell_price %>
+        <%= f.input :supplier_sku, :input_html => { :size => 20 } %>
+        <%= f.input :our_sku, :input_html => { :size => 20 } %>
+        <%= f.input :cost_price, :input_html => { :size => 10 } %>
+        <%= f.input :sell_price, :input_html => { :size => 10 } %>
 
     <% end %>
 
