@@ -8,23 +8,41 @@
   </table>
 
       <% semantic_form_for @product do |f| %>
-        <% f.inputs "Basic" do %>
-        <%= f.input :supplier, :label_method => :company_name %>
-        <%= f.input :active?, :label => "Product Status", :required => true, :as => :select, :collection => { "Active" => true, "Inactive" => false }, :include_blank => false %>
+    <% f.inputs "Basic Information"  do %>
+        <%= f.input :active %>
+        <%= f.input :our_sku, :input_html => { :size => 20 } %>
         <%= f.input :description, :hint => (t "products.hint_desc") %>
         <%= f.input :model %>
         <%= f.input :manufacturer %>
+        <%= f.input :product_category %>
+        <%= f.input :supplier, :label_method => :company_name  %>
+        <%= f.input :supplier_sku, :input_html => { :size => 20 } %>
         <%= f.input :cost_price, :input_html => { :size => 10 } %>
         <%= f.input :sell_price, :input_html => { :size => 10 } %>
         <%= f.input :edited_by, :as => :hidden, :input_html => { :value =>  current_user.username } %>
         <%= f.input :edited_at, :as => :hidden, :input_html => { :value =>  Time.now } %>
-        <% end %>
-
-               <% f.inputs "Advanced" do %>
-        <%= f.input :supplier_sku, :input_html => { :size => 20 } %>
-        <%= f.input :our_sku, :input_html => { :size => 20 } %>
-        <% end %>
+    <% end %>
+    <% f.inputs "Inventory"  do %>
+        <%= f.input :stocked_product, :hint => "Enable this if stock needs to be in stock" %>
+        <%= f.input :stocking_qty, :input_html => { :size => 20 } %>
+        <%= f.input :qty_on_hand, :input_html => { :size => 20 } %>
+        <%= f.input :qty_allocated, :input_html => { :size => 20 } %>
+        <%= f.input :qty_available, :input_html => { :size => 20 } %>
+        <%= f.input :qty_ordered, :input_html => { :size => 20 } %>
+    <% end %>
+    <% f.inputs "Selling Information"  do %>
+        <%= f.input :taxable %>
+        <%= f.input :tax_rate, :hint => (t "product.hint_tax_rate") %>
+        <%= f.input :discountable %>
+        <%= f.input :disc_amount, :input_html => { :size => 5 } %>
+        <%= f.input :disc_percent, :input_html => { :size => 5 } %>
+    <% end %>
+    <% f.inputs "Warranty Information"  do %>
+        <%= f.input :warranty_info, :as => :text, :input_html => {  :rows => 15 }  %>
+        <%= f.input :warranty_length,  :input_html => { :size => 20 } %>
+        <%= f.input :warranty_unit, :as => :select, :collection => ["Day(s)", "Month(s)", "Year(s)"] %>
+    <% end %>
 
 
   <%= f.buttons %>
-<% end %>   
+<% end %>

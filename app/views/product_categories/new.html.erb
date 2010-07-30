@@ -1,0 +1,9 @@
+<h1><%= t "product_cat.t_new_category" %></h1>
+
+<% semantic_form_for(@product_category) do |f| %>
+  <%= f.inputs :name %>
+  <%= f.buttons %>
+<% end %>
+
+
+<%= link_to 'Back', product_categories_path %>

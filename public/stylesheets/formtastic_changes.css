@@ -15,13 +15,29 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 form.formtastic fieldset > ol > li p.inline-hints {
     color:#333;
     font-style:italic;
-    font-size:8px;
+    font-size:10px;
     font-weight:bolder;
 }
+/*Section Boxes*/
+form.formtastic legend {
 
-form.formtastic fieldset > ol > li.required {
-    /*font-weight:bolder;*/
+    padding-bottom:10px;
+    color: #cc0000;
+    width:25%;
+    font-size:18px;
+    font-style:italic;
+    text-decoration:underline;
+    font-weight:bold;
+    text-align:right;
+    text-indent:10%;
+    outline: #cccccc;
+    
 }
+form.formtastic fieldset > ol > li fieldset ol {
+    float:right; 
+    width:74%;
+    margin:0;
+    padding:0 0 0 25%; }
 
 /*Fields required and Inline Errors CSS*/
 /*Required fields Label CSS*/
@@ -69,7 +85,9 @@ form.formtastic fieldset > ol > li.error {
 /*Buttons CSS*/
 form.formtastic fieldset.buttons {
     /*padding-left:25%;*/
-    
+
     padding-left:35%;
 }
 
+/*textarea boxes CSS*/
+form.formtastic fieldset > ol > li.text textarea { width:65%; }

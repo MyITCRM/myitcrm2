@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   filter_resource_access
   def index
-    @products = Product.all
-
+   
+    @products = Product.paginate :page => params[:page], :order => 'our_sku DESC', :per_page => 50
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }

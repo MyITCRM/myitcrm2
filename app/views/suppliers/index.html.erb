@@ -24,9 +24,9 @@
     <td><%=h supplier.contact_name %></td>
     <td><%=h supplier.contact_phone %></td>
     <td><%=h supplier.active %></td>    
-    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), supplier )%>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_supplier_path(supplier)) %>
-        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), supplier, :confirm => 'Are you sure?', :method => :delete ) %>
+    <td><% if permitted_to? :show, Supplier.new %><%= link_to(image_tag('view.png', :title => [t "global.view"]), supplier )%> <% end %>
+       <% if permitted_to? :edit, Supplier.new %> <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_supplier_path(supplier)) %>   <% end %>
+        <% if permitted_to? :destroy, Supplier.new %><%= link_to(image_tag('delete.png', :title => [t "global.delete"]), supplier, :confirm => 'Are you sure?', :method => :delete ) %> <% end %>
     </td>
   </tr>
 <% end %>

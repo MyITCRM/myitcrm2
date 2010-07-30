@@ -1,0 +1,20 @@
+<h1>Editing product_category</h1>
+
+<% form_for(@product_category) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :sub_category_id %><br />
+    <%= f.text_field :sub_category_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @product_category %> |
+<%= link_to 'Back', product_categories_path %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100722082002) do
+ActiveRecord::Schema.define(:version => 20100730030226) do
 
   create_table "parts", :force => true do |t|
     t.integer  "supplier_id"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20100722082002) do
     t.datetime "updated_at"
   end
 
+  create_table "product_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "sub_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", :force => true do |t|
     t.integer  "supplier_id"
     t.string   "supplier_sku"
@@ -53,21 +60,21 @@ ActiveRecord::Schema.define(:version => 20100722082002) do
     t.string   "manufacturer"
     t.string   "description"
     t.string   "model"
-    t.integer  "parent_category_id"
+    t.integer  "product_category_id"
     t.integer  "child_category_id"
     t.string   "warranty_info"
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.integer  "tax_rate",           :precision => 10, :scale => 0
-    t.integer  "cost_price",         :precision => 10, :scale => 0
-    t.integer  "sell_price",         :precision => 10, :scale => 0
-    t.integer  "mark_up",            :precision => 10, :scale => 0
+    t.integer  "tax_rate",            :precision => 10, :scale => 0
+    t.integer  "cost_price",          :precision => 10, :scale => 0
+    t.integer  "sell_price",          :precision => 10, :scale => 0
+    t.integer  "mark_up",             :precision => 10, :scale => 0
     t.boolean  "active"
-    t.integer  "weight",             :precision => 10, :scale => 0
+    t.integer  "weight",              :precision => 10, :scale => 0
     t.boolean  "discountable"
-    t.integer  "disc_percent",       :precision => 10, :scale => 0
-    t.integer  "disc_amount",        :precision => 10, :scale => 0
+    t.integer  "disc_percent",        :precision => 10, :scale => 0
+    t.integer  "disc_amount",         :precision => 10, :scale => 0
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"

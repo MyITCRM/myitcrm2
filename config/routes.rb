@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :product_categories
+
 
   map.resources :user_sessions
   map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put }

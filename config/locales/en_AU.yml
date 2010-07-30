@@ -72,6 +72,10 @@ en_AU:
 
    credit_amount: "Credit Amount"
    t_log: "Supplier Log"
+   supplier: "Supplier"
+   our_sku: "SKU"
+   _sku: "Supplier SKU"
+   supplier_sku: "Supplier SKU"
   user:
      t_new_user: "New User Registration"
      username: "Username"
@@ -281,8 +285,8 @@ en_AU:
     t_add_new_part: "Add New Part"
     description: "Description"
     model: "Model"
-    cost: "Purchase Price"
-    sell_price: "Selling Price"
+    cost: "Cost"
+    sell_price: "Sell"
     supplier: "Supplier"
   products:
     hint_desc: "eg: SATA 500 GB Hard Drive"
@@ -290,3 +294,10 @@ en_AU:
     hint_manuf: "Western Digital"
     manufacturer: "Manufacturer"
     t_title: "Products"
+    t_add_new: "New Product"
+    hint_tax_rate: "Tax %. eg 10 would be 10% tax"
+    cost: "Cost Price"
+    sell: "Sell Price"
+  product_cat:
+    t_new_category: "New Product Category"
+    t_create_new_category: "Create New Product Category"
