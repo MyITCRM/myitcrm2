@@ -24,7 +24,7 @@ en_AU:
     login: "Login"
     logout: "Logout"
     role: "Role"
-    restricted: "You don't have permission to view this section."
+    restricted: "You don't have permission to view this section or Your session has expired."
     active: "Active?"
     user_type: "User Type"
     welcome: "Welcome"
@@ -65,7 +65,7 @@ en_AU:
    active: "Active ?"
    date_created: "Date Created"
    date_updated: "Date Updated"
-   leadtime: "Parts Lead-time (Days)"
+   leadtime: "LT days"
    flash_create_good: "Supplier was successfully created."
    flash_update_good: "Supplier was successfully updated."
    actions: "Actions"
@@ -280,6 +280,10 @@ en_AU:
     select:
       # default value for :prompt => true in FormOptionsHelper
       prompt: "Please select"
+    array:
+      sentence_connector: "and"
+      two_words_connector: " and "
+      skip_last_comma: false
   parts:
     t_title: "Parts/Software List"
     t_add_new_part: "Add New Part"
@@ -298,6 +302,12 @@ en_AU:
     hint_tax_rate: "Tax %. eg 10 would be 10% tax"
     cost: "Cost Price"
     sell: "Sell Price"
+    qoh: "QOH"
+    allocated: "Allocated"
+    available: "Avail."
+    ordered: "Ordered"
+    search: "Search"
   product_cat:
     t_new_category: "New Product Category"
     t_create_new_category: "Create New Product Category"
+    t_list: "Category List"

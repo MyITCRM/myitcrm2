@@ -26,6 +26,8 @@ class ProductCategoriesController < ApplicationController
   # GET /product_categories/new.xml
   def new
     @product_category = ProductCategory.new
+    @product_categories = ProductCategory.all(:order => "name ASC")
+    @product_categories = ProductCategory.paginate :page => params[:page], :order => 'name ASC', :per_page => 15
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,7 +47,7 @@ class ProductCategoriesController < ApplicationController
 
     respond_to do |format|
       if @product_category.save
-        flash[:notice] = 'ProductCategory was successfully created.'
+        flash[:notice] = 'Product Category was successfully created.'
         format.html { redirect_to(@product_category) }
         format.xml  { render :xml => @product_category, :status => :created, :location => @product_category }
       else

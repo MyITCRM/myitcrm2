@@ -1,6 +1,11 @@
-<h1><%= [t "parts.t_title"] %></h1>
-<%= link_to(image_tag('add.png',:title => [t "parts.t_add_new_part"]), new_product_path) %><%= link_to [t "parts.t_add_new_part"], new_product_path %>
+<h1><%= [t "products.t_title"] %></h1><%= link_to(image_tag('add.png',:title => [t "products.t_add_new"]), new_product_path) %><%= link_to [t "products.t_add_new"], new_product_path %>
+  <% form_tag products_path, :method => 'get' do %>
+   <p><%= t "products.search"  %>
+     <%=  text_field_tag :search_products, params[:search_products]  %>
+     <%= submit_tag "Apply", :name => nil %>
 
+   </p>
+<% end %>
   <p>
   <%= will_paginate @products, :class => "digg_pagination" %>
 </p>
@@ -16,13 +21,16 @@
     <th width="100"><%= t "parts.model" %></th>
     <th width="100"><%= t "parts.cost" %></th>
     <th width="100"><%= t "parts.sell_price" %></th>
+    <th width="15"><%= t "products.qoh" %></th>
+    <th width="15"><%= t "products.allocated" %></th>
+    <th width="15"><%= t "products.available" %></th>
+    <th width="15"><%= t "products.ordered" %></th>
     <th width="100"><%= t "supplier.leadtime" %></th>
-    <th width="50"><%= t "global.active" %></th>
     <th width="100"><%= t "global.actions" %></th>
   </tr>
 
 <% @products.each do |product| %>
-  <tr align="center">
+  <tr align="center" class="<%= cycle :odd, :even %>">
     <td><%=h product.our_sku %></td>
     <td><%=h product.supplier.company_name %></td>
     <td><%=h product.supplier_sku %></td>
@@ -31,8 +39,11 @@
     <td><%=h product.model %></td>
     <td><%=h number_to_currency(product.cost_price) %></td>
     <td><%=h number_to_currency(product.sell_price) %></td>
+    <td><%=h product.qty_on_hand %></td>
+    <td><%=h product.qty_allocated %></td>
+    <td><%=h product.qty_available %></td>
+    <td><%=h product.qty_ordered %></td>
     <td><%=h product.supplier.parts_leadtime_days %></td>
-    <td><%=h product.active? %></td>
     <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), product )%>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_product_path(product)) %>
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), product, :confirm => 'Are you sure?', :method => :delete ) %>

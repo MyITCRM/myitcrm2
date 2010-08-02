@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
   filter_resource_access
   def index
-   
+
     @products = Product.paginate :page => params[:page], :order => 'our_sku DESC', :per_page => 50
+    @products = Product.search_products(params[:search_products], params[:page])
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -10,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+
 
     respond_to do |format|
       format.html # show.html.erb

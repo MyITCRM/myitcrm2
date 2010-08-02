@@ -4,6 +4,20 @@
   <%= f.inputs :name %>
   <%= f.buttons %>
 <% end %>
+<h1 align="center"><%= t "product_cat.t_list" %></h1>
+<p>
+  <%= will_paginate @product_categories, :class => "digg_pagination" %>
+  </p>
+<% @product_categories.each do |cat|%>
+         <table width="50%" align="center">
+           <tr >
+             <td  style="font-style:oblique; font-weight:bold;color:#ff0000;">
+               <%=h cat.name %>
+             </td>
+           </tr>
+         </table>
+   <% end %>
 
-
-<%= link_to 'Back', product_categories_path %>
+ <p>
+   <%= link_to 'Back', new_product_path %>
+ </p>
