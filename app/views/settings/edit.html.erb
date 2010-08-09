@@ -1,12 +1,16 @@
 <h1>Editing settings</h1>
+<div class="ckeditor">
+  <% semantic_form_for(@setting) do |f| %>
+    <%= f.error_messages %>
+      <% f.inputs  do %>
+      <%= f.input :privacy_policy, :input_html => { :class => "ckeditor"} %>
+      <% end %>
+      <%= f.buttons %>
 
-<% form_for(@settings) do |f| %>
-  <%= f.error_messages %>
+  <% end %>
+  
 
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+</div>
 
-<%= link_to 'Show', @settings %> |
+<%= link_to 'Show', @setting %> |
 <%= link_to 'Back', settings_path %>

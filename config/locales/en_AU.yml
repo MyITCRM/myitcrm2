@@ -311,3 +311,5 @@ en_AU:
     t_new_category: "New Product Category"
     t_create_new_category: "Create New Product Category"
     t_list: "Category List"
+  settings:
+    t_title: "Business Settings"
