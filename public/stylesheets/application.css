@@ -1,5 +1,5 @@
 body {
-  width: 95%;  
+  width: 95%;
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial,serif;
   font-size: 12px;
@@ -24,13 +24,13 @@ a {
 }
 
 #container {
-  width: 90%;
+  width: 97%;
   float: left;  
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
-  margin-top: 20px;
+  
 }
 #yield {
   margin: 0 auto;
@@ -46,26 +46,27 @@ h6 {
 
 }
 #menu {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
-  margin-top: 20px;
+  
 }
 #flash_notice, #flash_error {
-  padding: 5px 8px;
+  padding: 4px 4px 4px 30px;
   margin: 10px 0;
 }
 
 #flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
+  background: url(/images/tick.png) 8px 5px no-repeat #CFC;
+  border: solid 2px #6C6;
+  font-weight:bold;  
 }
 
 #flash_error {
   background-color: #FCC;
-  border: solid 1px #C66;
+  border: solid 2px #C66;
 }
 
 .fieldWithErrors {
@@ -107,9 +108,13 @@ h6 {
 }
 
 #user_nav {
-    text-align: center;
-    padding:inherit;
-    background-color:#ccccff;
+    width:100%;
+    padding-left:5px;
+    padding-bottom:3px;
+    padding-top:3px;
+    border:solid 2px #999999;
+    background-color: #cccccc;
+    text-align: left;
     font-size:14px;
     font-weight:bold;
 
@@ -131,12 +136,17 @@ h6 {
 }
 
 #footer {
-    width: 20%;
-    float: right;
+    width: 100%;
+    text-align:center;
     font-size: 10px;
-    font-style: italic;
     font-weight: bolder;
-    
+    color: #66ff00;
+    text-shadow:black;
+}
+#header {
+    width: 100%;
+    text-align:center;
+
 }
 .even td {
   background-color: #E3E6FF;

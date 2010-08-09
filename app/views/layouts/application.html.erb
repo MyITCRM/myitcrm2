@@ -14,15 +14,11 @@
             </script>
 </head>
 <body>
-<table width="100%">
-  <tr align="center">
-    <td>
-      <%= image_tag 'logo.png', :height => 60 %>
-    </td>
-  </tr>
-</table>
-<div id="container">
-<div id="user_nav">
+<div id="header">
+   <%= image_tag 'logo.png', :height => 60 %>
+</div>
+<div id="container" class="round">
+<div id="user_nav" class="round">
         <% if logged_in? %>
          <%= link_to ( t "global.dashboard"), root_url %> |
         <% if permitted_to? :show, Supplier.new %>
@@ -56,8 +52,10 @@
     </div>  
 
   </div>
-<div id="footer"  >
-<p > MyIT CRM Version 2.0.0</p>
+<div id="footer" class="round"  >
+<p>
+  Powered by MyIT CRM&copy; 2010. v2.0.0.0
+</p>
 </div>
 </body>
 </html>

@@ -16,7 +16,7 @@
   </tr>
 
 <% @supplier.each do |supplier| %>
-  <tr align="center">
+  <tr align="center" class="<%= cycle :odd, :even %>">
     <td><%=h supplier.company_name %></td>
     <td><%=h supplier.phone %></td>
     <td><%=h supplier.fax %></td>

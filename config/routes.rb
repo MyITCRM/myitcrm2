@@ -1,11 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :settings
+
   map.resources :product_categories
-
-
   map.resources :user_sessions
   map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put }
   map.resources :suppliers
-#  map.resources :parts
   map.resources :products
 
   map.login "login", :controller => "user_sessions", :action => "new"
