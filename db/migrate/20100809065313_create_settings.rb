@@ -1,4 +1,6 @@
 class CreateSettings < ActiveRecord::Migration
+# myTODO - Add setup data and remove the create function from model so users can only
+# edit and not add new records to this table
   def self.up
     create_table :settings do |t|
         t.string :business_name

@@ -155,6 +155,24 @@ h6 {
 .odd td {
   background-color: #ffffff;
 }
+#top_float_right {
+    float:right;
+    padding:inherit;
+    margin-top:-30px;
+    
+}
+#top_float_left {
+    float:left;
+    padding:inherit;
+    margin-top:30px;
+
+}
+.button {
+    padding:inherit;
+    margin-top:-30px;
+
+
+}
 .digg_pagination {
   background: white;
   /* self-clearing method: */ }

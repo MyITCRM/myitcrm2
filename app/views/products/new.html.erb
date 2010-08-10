@@ -1,16 +1,15 @@
 <!--myTODO - replace hardcoded text to I18n formats-->
 
-<h1><%= t "products.t_add_new" %></h1><%= link_to(image_tag('add.png',:title => [t "global.edit"]), new_product_category_path) %><%= link_to( [t "product_cat.t_create_new_category"], new_product_category_path) %>
-<table width="100%">
-  <tr>
-    <td colspan="4" align="right">
-        <%= link_to [t "global.back"], products_path %>
-    </td>
-  </tr>
-  </table>
+<h1><%= t "products.t_add_new" %></h1>
+
+<%= link_to(image_tag('add.png',:title => [t "global.edit"]), new_product_category_path) %><%= link_to( [t "product_cat.t_create_new_category"], new_product_category_path) %>
+
+  <div id="top_float_right">
+   <%= link_to(image_tag('close.png', :title => [t "global.close"]), products_path) %>&nbsp;<%= link_to([t "global.close"], products_path) %>
+</div>
 <% semantic_form_for @product do |f| %>
 <% tabs_for do |tab| %>
-	<% tab.create('tab_one', 'Basic (required)') do %>
+	<% tab.create('basic', 'Basic (required)') do %>
     <% f.inputs  do %>
         <%= f.input :our_sku, :input_html => { :size => 20 } %>
         <%= f.input :description, :hint => (t "products.hint_desc") %>
@@ -25,7 +24,7 @@
         <%= f.input :created_at, :as => :hidden, :input_html => { :value =>  Time.now } %>
         <% end %>
 	<% end %>
-	<% tab.create('tab_two', 'Inventory') do %>
+	<% tab.create('Inventory', 'Inventory') do %>
       <% f.inputs do %>
             <%= f.input :stocked_product, :hint => "Enable this if stock needs to be in stock" %>
             <%= f.input :stocking_qty, :input_html => { :size => 20 } %>
@@ -35,7 +34,7 @@
             <%= f.input :qty_ordered, :input_html => { :size => 20 } %>
         <% end %>
    <% end %>
-        <% tab.create('tab_three', 'Selling Information') do %>
+        <% tab.create('Selling_Information', 'Selling Information') do %>
           <% f.inputs  do %>
         <%= f.input :taxable %>
         <%= f.input :tax_rate, :hint => (t "products.hint_tax_rate") %>
@@ -44,7 +43,7 @@
         <%= f.input :disc_percent, :input_html => { :size => 5 } %>
     <% end %>
         <% end %>
-        <% tab.create('tab_four', 'Warranty Information') do %>
+        <% tab.create('Warranty_Information', 'Warranty Information') do %>
             <% f.inputs  do %>
                    <%= f.input :warranty_info, :as => :text, :input_html => {  :rows => 15 }  %>
                    <%= f.input :warranty_length,  :input_html => { :size => 20 } %>

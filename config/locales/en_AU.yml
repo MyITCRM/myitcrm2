@@ -44,6 +44,7 @@ en_AU:
     or: "or"
     confirm: "Confirm"
     actions: "Actions"
+    close: "Close"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
