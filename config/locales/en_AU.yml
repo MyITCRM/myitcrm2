@@ -45,6 +45,7 @@ en_AU:
     confirm: "Confirm"
     actions: "Actions"
     close: "Close"
+    my_details: "Edit My Profile"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
