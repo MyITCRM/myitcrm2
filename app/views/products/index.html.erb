@@ -11,26 +11,26 @@
 </p>
 
 
-<table border="1" cellpadding="0" cellspacing="0" >
+<table id="index_table" >
   <tr>
-    <th width="50"><%= t "supplier.our_sku" %></th>
-    <th width="150"><%= t "supplier.supplier" %></th>
-    <th width="50"><%= t "supplier.supplier_sku" %></th>
-    <th width="100"><%= t "products.manufacturer" %></th>
-    <th width="200"><%= t "parts.description" %></th>
-    <th width="100"><%= t "parts.model" %></th>
-    <th width="100"><%= t "parts.cost" %></th>
-    <th width="100"><%= t "parts.sell_price" %></th>
-    <th width="15"><%= t "products.qoh" %></th>
-    <th width="15"><%= t "products.allocated" %></th>
-    <th width="15"><%= t "products.available" %></th>
-    <th width="15"><%= t "products.ordered" %></th>
-    <th width="100"><%= t "supplier.leadtime" %></th>
-    <th width="100"><%= t "global.actions" %></th>
+    <th><%= t "supplier.our_sku" %></th>
+    <th><%= t "supplier.supplier" %></th>
+    <th><%= t "supplier.supplier_sku" %></th>
+    <th><%= t "products.manufacturer" %></th>
+    <th><%= t "parts.description" %></th>
+    <th><%= t "parts.model" %></th>
+    <th><%= t "parts.cost" %></th>
+    <th><%= t "parts.sell_price" %></th>
+    <th><%= t "products.qoh" %></th>
+    <th><%= t "products.allocated" %></th>
+    <th><%= t "products.available" %></th>
+    <th><%= t "products.ordered" %></th>
+    <th><%= t "supplier.leadtime" %></th>
+    <th><%= t "global.actions" %></th>
   </tr>
 
 <% @products.each do |product| %>
-  <tr align="center" class="<%= cycle :odd, :even %>">
+  <tr align="left" class="<%= cycle :odd, :even %>">
     <td><%=h product.our_sku %></td>
     <td><%=h product.supplier.company_name %></td>
     <td><%=h product.supplier_sku %></td>

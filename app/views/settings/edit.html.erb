@@ -1,9 +1,9 @@
 <h1>Editing settings</h1>
-<div class="ckeditor">
+<div >
   <% semantic_form_for(@setting) do |f| %>
     <%= f.error_messages %>
       <% f.inputs  do %>
-      <%= f.input :privacy_policy, :input_html => { :class => "ckeditor"} %>
+      <%= f.inputs %>
       <% end %>
       <%= f.buttons %>
 

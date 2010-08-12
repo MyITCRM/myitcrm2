@@ -14,7 +14,7 @@ body {
 }
 #index_table th {
   color: #ffffff;
-  background-color: #9999ff;
+  background-color: #4B7399;
     
 }
 #index_table td {
@@ -26,9 +26,10 @@ a img {
   border: none;
 }
 
-a {
+#conatiner a {
   color: #0000FF;
 }
+
 
 .clear {
   clear: both;
@@ -41,14 +42,17 @@ a {
   float:left;
   background-color: #FFF;
   padding: 20px 40px 20px 40px;
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   text-align:left;
   
 }
 #yield {
   margin: 0 auto;
-  background-color: #FFF;
-
+}
+#yield h1 {
+  font-size:16px;
+  text-decoration:underline;
+  color: #000099;  
 }
 h6 {
   width: 95%;
@@ -56,6 +60,7 @@ h6 {
   font-size: 12px;
 
 }
+
 #menu {
   width: 100%;
     float:left; 
@@ -145,8 +150,15 @@ h6 {
     color: #FFF;
     text-align: center;
     padding: 4px 0;
+
 }
-    
+.footer_link a {
+    color: #FFF;
+}
+.footer_version {
+    font-size:x-small;
+}
+
 #header {
     text-align:center;
     padding-bottom:25px;
@@ -395,8 +407,8 @@ h6 {
 }
 
 .ui-widget-header {
-    border: 1px solid #aed0ea;
-    background: #deedf7  50% 50% repeat-x;
+    /*border: 1px solid #4B7399;*/
+    /*background: #ffffff 50% 50% repeat-x;*/
     color: #222222;
     font-weight: bold;
 }
@@ -409,7 +421,7 @@ h6 {
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
     border: 1px solid #aed0ea;
-    background: #d7ebf9 50% 50% repeat-x;
+    background: #ccccff 50% 50% repeat-x;
     font-weight: bold;
     color: #2779aa;
 }
@@ -421,7 +433,7 @@ h6 {
 
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
     border: 1px solid #74b2e2;
-    background: #e4f1fb  50% 50% repeat-x;
+    background: #9999ff 50% 50% repeat-x;
     font-weight: bold;
     color: #0070a3;
 }
@@ -429,18 +441,20 @@ h6 {
 .ui-state-hover a, .ui-state-hover a:hover {
     color: #0070a3;
     text-decoration: none;
+    font-size:1.1em;
 }
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
-    border: 1px solid #2694e8;
-    background: #3baae3 50% 50% repeat-x;
+    /*border: 1px solid #2694e8;*/
+    background: #ccccff  50% 50% repeat-x;
     font-weight: bold;
     color: #ffffff;
 }
 
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
-    color: #ffffff;
+    color: #0070a3;
     text-decoration: none;
+    font-size:1.1em;
 }
 
 .ui-widget :active {
@@ -1362,52 +1376,59 @@ h6 {
     border: 1px dotted black
 }
 
-/*BOF Slide Menu*/
-.jqueryslidemenu{
+/*BOF Menu*/
+.menu{
 font: bold 12px Verdana;
 background: #414141;
 width: 100%;
 }
 
-.jqueryslidemenu ul{
+.menu ul{
 margin: 0;
 padding: 0;
 list-style-type: none;
 }
 
 /*Top level list items*/
-.jqueryslidemenu ul li{
+.menu ul li{
 position: relative;
 display: inline;
 float: left;
 }
 
 /*Top level menu link items style*/
-.jqueryslidemenu ul li a{
+.menu ul li a{
 display: block;
 background: #414141; /*background of tabs (default state)*/
 color: white;
 padding: 8px 10px;
 border-right: 1px solid #778;
-color: #2d2b2b;
 text-decoration: none;
 }
 
-* html .jqueryslidemenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+* html .menu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
 display: inline-block;
 }
-
-.jqueryslidemenu ul li a:link, .jqueryslidemenu ul li a:visited{
-color: white;
+.menu li a.selected, .menu li a.selected:hover {
+    background:#fff;
+    color:#555;
 }
 
-.jqueryslidemenu ul li a:hover{
+
+.menu ul li a:link, {
+color: white;
+}
+.menu ul li   {
+color:aquamarine;    
+}
+
+.menu ul li a:hover{
 background: black; /*tab link background during hover state*/
 color: white;
 }
 
 /*1st sub level menu*/
-.jqueryslidemenu ul li ul{
+.menu ul li ul{
 position: absolute;
 left: 0;
 display: block;
@@ -1415,18 +1436,18 @@ visibility: hidden;
 }
 
 /*Sub level menu list items (undo style from Top level List Items)*/
-.jqueryslidemenu ul li ul li{
+.menu ul li ul li{
 display: list-item;
 float: none;
 }
 
 /*All subsequent sub menu levels vertical offset after 1st level sub menu */
-.jqueryslidemenu ul li ul li ul{
+.menu ul li ul li ul{
 top: 0;
 }
 
 /* Sub level menu links style */
-.jqueryslidemenu ul li ul li a{
+.menu ul li ul li a{
 font: normal 13px Verdana;
 width: 160px; /*width of sub menus*/
 padding: 5px;
@@ -1435,22 +1456,10 @@ border-top-width: 0;
 border-bottom: 1px solid gray;
 }
 
-.jqueryslidemenuz ul li ul li a:hover{ /*sub menus hover style*/
+.menuz ul li ul li a:hover{ /*sub menus hover style*/
 background: #eff9ff;
 color: black;
 }
 
-/* ######### CSS classes applied to down and right arrow images  ######### */
-
-.downarrowclass{
-position: absolute;
-top: 12px;
-right: 7px;
-}
-
-.rightarrowclass{
-position: absolute;
-top: 6px;
-right: 5px;
 }
 /*EOF Slide Menu*/

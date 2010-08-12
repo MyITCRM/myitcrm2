@@ -3,16 +3,16 @@
 <%= link_to(image_tag('add.png',:title => [t "supplier.t_add_new_supplier"]), new_supplier_path) %><%= link_to [t "supplier.t_add_new_supplier"], new_supplier_path %>
 <p></p>
 
-<table border="1" cellpadding="0" cellspacing="0" >
+<table id="index_table" >
   <tr>
-    <th width="100"><%= t "supplier.company_name" %></th>
-    <th width="100"><%= t "supplier.phone" %></th>
-    <th width="100"><%= t "supplier.fax" %></th>
-    <th width="100"><%= t "supplier.email" %></th>
-    <th width="100"><%= t "supplier.contact_name" %></th>
-    <th width="100"><%= t "supplier.contact_phone" %></th>
-    <th width="100"><%= t "supplier.active" %></th>
-    <th width="100"><%= t "supplier.actions" %></th>
+    <th><%= t "supplier.company_name" %></th>
+    <th><%= t "supplier.phone" %></th>
+    <th><%= t "supplier.fax" %></th>
+    <th><%= t "supplier.email" %></th>
+    <th><%= t "supplier.contact_name" %></th>
+    <th><%= t "supplier.contact_phone" %></th>
+    <th><%= t "supplier.active" %></th>
+    <th><%= t "supplier.actions" %></th>
   </tr>
 
 <% @supplier.each do |supplier| %>

@@ -13,23 +13,23 @@ class CreateProducts < ActiveRecord::Migration
       t.string :warranty_length
       t.string :warranty_unit
       t.boolean :taxable
-      t.decimal :tax_rate
-      t.decimal :cost_price
-      t.decimal :sell_price
-      t.decimal :mark_up
+      t.decimal :tax_rate, :null => false, :default => 0
+      t.decimal :cost_price, :null => false, :default => 0
+      t.decimal :sell_price, :null => false, :default => 0
+      t.decimal :mark_up, :null => false, :default => 0
       t.boolean :active
-      t.decimal :weight
+      t.decimal :weight, :null => false, :default => 0
       t.boolean :discountable
-      t.decimal :disc_percent
-      t.decimal :disc_amount
+      t.decimal :disc_percent, :null => false, :default => 0
+      t.decimal :disc_amount, :null => false, :default => 0
       t.string :created_by
       t.string :edited_by
       t.datetime :edited_at
-      t.integer :qty_on_hand
-      t.integer :qty_allocated
-      t.integer :qty_available
-      t.integer :qty_ordered
-      t.integer :stocking_qty
+      t.integer :qty_on_hand, :null => false, :default => 0
+      t.integer :qty_allocated, :null => false, :default => 0
+      t.integer :qty_available, :null => false, :default => 0
+      t.integer :qty_ordered, :null => false, :default => 0
+      t.integer :stocking_qty, :null => false, :default => 0
       t.boolean :stocked_product
        
       t.timestamps

@@ -31,23 +31,23 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.integer  "tax_rate",            :precision => 10, :scale => 0
-    t.integer  "cost_price",          :precision => 10, :scale => 0
-    t.integer  "sell_price",          :precision => 10, :scale => 0
-    t.integer  "mark_up",             :precision => 10, :scale => 0
+    t.integer  "tax_rate",            :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "cost_price",          :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "sell_price",          :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "mark_up",             :precision => 10, :scale => 0, :default => 0, :null => false
     t.boolean  "active"
-    t.integer  "weight",              :precision => 10, :scale => 0
+    t.integer  "weight",              :precision => 10, :scale => 0, :default => 0, :null => false
     t.boolean  "discountable"
-    t.integer  "disc_percent",        :precision => 10, :scale => 0
-    t.integer  "disc_amount",         :precision => 10, :scale => 0
+    t.integer  "disc_percent",        :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "disc_amount",         :precision => 10, :scale => 0, :default => 0, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.integer  "qty_on_hand"
-    t.integer  "qty_allocated"
-    t.integer  "qty_available"
-    t.integer  "qty_ordered"
-    t.integer  "stocking_qty"
+    t.integer  "qty_on_hand",                                        :default => 0, :null => false
+    t.integer  "qty_allocated",                                      :default => 0, :null => false
+    t.integer  "qty_available",                                      :default => 0, :null => false
+    t.integer  "qty_ordered",                                        :default => 0, :null => false
+    t.integer  "stocking_qty",                                       :default => 0, :null => false
     t.boolean  "stocked_product"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.boolean  "enable_google_calendar"
     t.boolean  "enable_google_maps"
     t.boolean  "enable_paymate"
+    t.boolean  "enable_cash"
     t.boolean  "enable_voucher"
     t.integer  "default_voucher_valid_days"
     t.string   "paymate_username"

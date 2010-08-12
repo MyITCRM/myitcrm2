@@ -24,34 +24,10 @@
   <%= image_tag 'logo.png', :height => 60 %>
 </div>
 
-<div id="user_nav" class="jqueryslidemenu">
-  <ul>
-    <% if logged_in? %>
-        <li><%= link_to (t "global.dashboard"), root_url %></li>
-        <li>
-          <% if permitted_to? :show, Supplier.new %></li>
-              <li>
-                <% if permitted_to? :edit, Setting.new %></li>
-                    <li><%= link_to (t "settings.t_title"), settings_path %></li>
-                <% end %>
-                <li><%= link_to (t "user.t_title"), users_path %></li>
-                <li><%= link_to (t "supplier.t_title"), suppliers_path %></li>
-                <li><%= link_to (t "products.t_title"), products_path %></li>
-          <% end %>
-          <% if permitted_to? :edit_profile, User.new %>
-              <li><%= link_to ( t "global.my_details"), profile_url(:id => current_user) %></li>
-              <% end %>
-          <li><%= link_to (t "global.logout"), logout_path %></li>
-    <% else %>
-        <li><%= link_to (t "global.home"), root_url %></li>
-        <li><%= link_to (t "global.register"), signup_path %></li>
-        <li><%= link_to (t "global.login"), login_path %></li>
-    <% end %>
-  </ul>
-
-
+<div id="user_nav" class="menu">
+  <%= render_navigation %>
 </div>
-<div id="container" class="round">
+<div id="container" >
   <!--<div id="right_bar">
   </div>-->
   <div id="yield">
@@ -64,10 +40,14 @@
   </div>
 
 </div>
-<div id="footer" class="round">
+<div id="footer" class="footer_link" >
   <p>
-    Powered by MyIT CRM&copy; 2010. v2.0.0.0
+    Powered by <a href="http://team.myitcrm.com" >MyIT CRM</a>&copy; 2010
   </p>
+  <p class="footer_version">
+   Release - ALPHA 2.0.0.0
+  </p>
+  
 </div>
 </body>
 </html>

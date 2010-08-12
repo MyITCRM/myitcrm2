@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   end
 # Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
-validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+
+validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   
 
 named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }

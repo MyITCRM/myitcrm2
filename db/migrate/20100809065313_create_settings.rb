@@ -1,6 +1,4 @@
 class CreateSettings < ActiveRecord::Migration
-# myTODO - Add setup data and remove the create function from model so users can only
-# edit and not add new records to this table
   def self.up
     create_table :settings do |t|
         t.string :business_name
@@ -34,6 +32,7 @@ class CreateSettings < ActiveRecord::Migration
         t.boolean :enable_google_calendar
         t.boolean :enable_google_maps
         t.boolean :enable_paymate
+        t.boolean :enable_cash
         t.boolean :enable_voucher
         t.integer :default_voucher_valid_days
         t.string :paymate_username
@@ -85,6 +84,23 @@ class CreateSettings < ActiveRecord::Migration
 
       t.timestamps
     end
+    # create default settings
+     @setting = Setting.create :business_name => "MyIT CRM",
+                        :business_slogan => "Free and Open Source Repair Shop CRM Software!",
+                        :address => "45 Smith Street",
+                        :city => "Sydney",
+                        :state => "NSW",
+                        :zip => "2000",
+                        :phone => "02 9888 9888",
+                        :email => "support@example.com",
+                        :default_from_email => "no-reply@example.com",
+                        :default_no_reply_email => "no-reply@example.com",
+                        :default_tax => "0",
+                        :default_tax_name => "GST",
+                        :invoice_message => "Thankyou for your business",
+                        :enable_cash => true
+
+
   end
 
   def self.down

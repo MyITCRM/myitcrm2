@@ -26,7 +26,7 @@
 	<% end %>
 	<% tab.create('Inventory', 'Inventory') do %>
       <% f.inputs do %>
-            <%= f.input :stocked_product, :hint => "Enable this if stock needs to be in stock" %>
+            <%= f.input :stocked_product, :hint => "Enable this if stock needs to be in controlled" %>
             <%= f.input :stocking_qty, :input_html => { :size => 20 } %>
             <%= f.input :qty_on_hand, :input_html => { :size => 20 } %>
             <%= f.input :qty_allocated, :input_html => { :size => 20 } %>
