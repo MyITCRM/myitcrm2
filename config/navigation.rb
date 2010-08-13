@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
     if logged_in?
     if permitted_to? :show, Supplier.new
       if permitted_to? :edit, Setting.new
-        primary.item :settings, 'Settings', settings_path
+        primary.item :admin, 'Administration', admin_path
         primary.item :users, 'Users', users_path
         primary.item :suppliers, 'Suppliers', suppliers_path
         primary.item :products, 'Products', products_path

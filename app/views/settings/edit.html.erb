@@ -1,16 +1,36 @@
+<!--myTODO I18N labels and formats and add full field sets-->
+
 <h1>Editing settings</h1>
-<div >
-  <% semantic_form_for(@setting) do |f| %>
-    <%= f.error_messages %>
-      <% f.inputs  do %>
-      <%= f.inputs %>
-      <% end %>
-      <%= f.buttons %>
 
-  <% end %>
-  
-
+<div id="top_float_right">
+  <%= link_to(image_tag('close.png', :title => [t "global.close"]), root_url) %>&nbsp;<%= link_to([t "global.close"], root_url) %>
 </div>
-
-<%= link_to 'Show', @setting %> |
-<%= link_to 'Back', settings_path %>
+<div>
+  <% semantic_form_for(@setting) do |f| %>
+      <% tabs_for do |tab| %>
+          <% tab.create((t "products.tab_menu_basic_name"), (t "products.tab_menu_basic")) do %>
+              <% f.inputs do %>
+                  <%= f.input :business_name %>
+                  <%= f.input :business_slogan, :input_html => {:size => 100} %>
+                  <%= f.input :business_number, :hint => "ABN, ACN, etc",:input_html => {:size => 30}%>
+                  <%= f.input :address, :input_html => {:rows => 5} %>
+                  <%= f.inputs :city, :input_html => {:size => 30} %>
+                  <%= f.input :state, :input_html => {:size => 10} %>
+                  <%= f.input :zip,  :input_html => {:size => 10} %>
+                  <%= f.buttons %>
+              <% end %>
+          <% end %>
+          <% tab.create("Billing_Information", "Billing Information") do %>
+              <% f.inputs do %>
+                  <%= f.input :billing_address, :input_html => {:rows => 5} %>
+                  <%= f.input :billing_city, :input_html => {:size => 30} %>
+                  <%= f.input :billing_zip, :input_html => {:size => 10} %>
+                  <%= f.input :billing_state, :input_html => {:size => 10} %>
+                  <%= f.input :billing_phone, :input_html => {:size => 30} %>
+                  <%= f.input :billing_fax, :input_html => {:size => 30} %>
+                  <%= f.buttons %>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% end %>
+</div>

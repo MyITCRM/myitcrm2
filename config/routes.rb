@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.admin "admin", :controller => "settings", :action => "edit", :id => 1
   map.resources :settings
-
   map.resources :product_categories
   map.resources :user_sessions
   map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put }

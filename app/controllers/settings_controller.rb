@@ -24,6 +24,7 @@ class SettingsController < ApplicationController
 
   # GET /settings/1/edit
   def edit
+    @title = "Admin"
     @setting = Setting.find(params[:id])
   end
 
