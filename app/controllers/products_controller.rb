@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   filter_resource_access
   def index
-
+    @title = t "products.t_title"
     @products = Product.paginate :page => params[:page], :order => 'our_sku DESC', :per_page => 50
     @products = Product.search_products(params[:search_products], params[:page])
     
@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-
+    @title = t "products.t_title"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @title = t "products.t_title"
     @product = Product.new
 
     respond_to do |format|
@@ -30,11 +31,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @title = t "products.t_title"
     @product = Product.find(params[:id])
     
   end
 
   def create
+    @title = t "products.t_title"
     @product = Product.new(params[:product])
 
     respond_to do |format|
@@ -50,6 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @title = t "products.t_title"
     @product = Product.find(params[:id])
 
     respond_to do |format|
@@ -65,6 +69,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @title = t "products.t_title"
     @product = Product.find(params[:id])
     @product.destroy
 
