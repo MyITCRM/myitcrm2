@@ -49,6 +49,7 @@ en_AU:
     days: "Day(s)"
     months: "Month(s)"
     years: "Year(s)"
+    administration: "Administration"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -326,3 +327,14 @@ en_AU:
     t_list: "Category List"
   settings:
     t_title: "Business Settings"
+    bank_number: "eg: BSB number"
+    tab:
+      payment_options_url: "Payment_Options"
+      payment_options: "Payment Options"
+      billing_information: "Billing Information"
+      billing_information_url: "Billing_Information"
+    hint:
+      business_number: "eg: ACN, ABN, etc"
+      transaction_fee: "eg: 3% of total invoice amount"
+      tax_format: "eg:To include 10% on your invoices, enter 10"
+      tax_type: "eg: GST, VAT, Sales, etc"

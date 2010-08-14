@@ -6,7 +6,7 @@ authorization do
   role :manager do
     includes :technician
     has_permission_on [:suppliers, :users, :products, :product_categories], :to => [:destroy]
-    has_permission_on :settings, :to => [:show, :index]
+    
   end
   role :technician do
     includes :client

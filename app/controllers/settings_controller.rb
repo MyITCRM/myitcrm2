@@ -1,7 +1,6 @@
 class SettingsController < ApplicationController
   filter_resource_access
-  # GET /settings
-  # GET /settings.xml
+
   def index
     @settings = Setting.all
 
@@ -11,8 +10,6 @@ class SettingsController < ApplicationController
     end
   end
 
-  # GET /settings/1
-  # GET /settings/1.xml
   def show
     @setting = Setting.find(params[:id])
 
@@ -22,21 +19,18 @@ class SettingsController < ApplicationController
     end
   end
 
-  # GET /settings/1/edit
   def edit
-    @title = "Admin"
+    @title = t "global.administration"
     @setting = Setting.find(params[:id])
   end
 
-  # PUT /settings/1
-  # PUT /settings/1.xml
   def update
     @setting = Setting.find(params[:id])
 
     respond_to do |format|
       if @setting.update_attributes(params[:setting])
         flash[:notice] = 'Settings was successfully updated.'
-        format.html { redirect_to(@setting) }
+        format.html { render :action => "edit" }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -45,15 +39,4 @@ class SettingsController < ApplicationController
     end
   end
 
-  # DELETE /settings/1
-  # DELETE /settings/1.xml
-  def destroy
-    @setting = Setting.find(params[:id])
-    @setting.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(settings_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

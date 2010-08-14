@@ -1,6 +1,6 @@
 <!--myTODO I18N labels and formats and add full field sets-->
 
-<h1>Editing settings</h1>
+<h1><%= t "settings.t_title" %></h1>
 
 <div id="top_float_right">
   <%= link_to(image_tag('close.png', :title => [t "global.close"]), root_url) %>&nbsp;<%= link_to([t "global.close"], root_url) %>
@@ -11,23 +11,57 @@
           <% tab.create((t "products.tab_menu_basic_name"), (t "products.tab_menu_basic")) do %>
               <% f.inputs do %>
                   <%= f.input :business_name %>
-                  <%= f.input :business_slogan, :input_html => {:size => 100} %>
-                  <%= f.input :business_number, :hint => "ABN, ACN, etc",:input_html => {:size => 30}%>
+                  <%= f.input :business_slogan, :input_html => {:size => 50} %>
+                  <%= f.input :business_number, :hint => (t "settings.hint.business_number"),:input_html => {:size => 30}%>
+                  <%= f.input :email, :input_html => {:size => 30}%>
+                  <%= f.input :phone, :input_html => {:size => 30}%>
+                  <%= f.input :fax, :input_html => {:size => 30}%>
                   <%= f.input :address, :input_html => {:rows => 5} %>
                   <%= f.input :city, :input_html => {:size => 30} %>
                   <%= f.input :state, :input_html => {:size => 10} %>
                   <%= f.input :zip,  :input_html => {:size => 10} %>
+                  <%= f.input :enable_tax %>
+                  <%= f.input :default_tax, :hint => (t "settings.hint.tax_format"),  :input_html => {:size => 10} %>
+                  <%= f.input :default_tax_name, :hint => (t "settings.hint.tax_type"),  :input_html => {:size => 10} %>
                   <%= f.buttons %>
               <% end %>
           <% end %>
-          <% tab.create("Billing_Information", "Billing Information") do %>
+          <% tab.create((t "settings.tab.billing_information_url"), (t "settings.tab.billing_information")) do %>
               <% f.inputs do %>
+                  <%= f.input :business_contact_name, :input_html => {:size => 40} %>
+                  <%= f.input :business_contact_phone, :input_html => {:size => 20} %>
+                  <%= f.input :business_contact_email, :input_html => {:size => 40} %>
                   <%= f.input :billing_address, :input_html => {:rows => 5} %>
                   <%= f.input :billing_city, :input_html => {:size => 30} %>
                   <%= f.input :billing_zip, :input_html => {:size => 10} %>
                   <%= f.input :billing_state, :input_html => {:size => 10} %>
                   <%= f.input :billing_phone, :input_html => {:size => 30} %>
                   <%= f.input :billing_fax, :input_html => {:size => 30} %>
+                  <%= f.buttons %>
+              <% end %>
+          <% end %>
+      <% tab.create((t "settings.tab.payment_options_url"), (t "settings.tab.payment_options")) do %>
+              <% f.inputs do %>
+                  <%= f.input :invoice_message, :input_html => {:rows => 5 }  %>
+                  <%= f.input :enable_cash %>
+                  <%= f.input :enable_credit_card %>
+                  <%= f.input :enable_cheque %>
+                  <%= f.input :cheque_payable_to, :input_html => {:size => 20} %>
+                  <%= f.input :enable_direct_deposit %>
+                  <%= f.input :direct_deposit_bank_name %>
+                  <%= f.input :direct_deposit_bank_account_name %>
+                  <%= f.input :direct_deposit_bank_number, :hint => (t "settings.bank_number"),  :input_html => {:size => 20} %>
+                  <%= f.input :direct_deposit_bank_account,  :input_html => {:size => 20} %>
+                  <%= f.input :direct_deposit_instructions %>
+                  <%= f.input :enable_paymate %>
+                  <%= f.input :paymate_username %>
+                  <%= f.input :paymate_password, :type => :password, :input_html => {:size => 20} %>
+                  <%= f.input :paymate_transaction_fee, :hint => (t "settings.hint.transaction_fee"), :input_html => {:size => 5} %>
+                  <%= f.input :enable_paypal %>
+                  <%= f.input :paypal_username %>
+                  <%= f.input :paypal_transaction_fee, :hint => (t "settings.hint.transaction_fee"), :input_html => {:size => 5} %>
+
+
                   <%= f.buttons %>
               <% end %>
           <% end %>

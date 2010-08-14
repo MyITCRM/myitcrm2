@@ -31,23 +31,23 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.integer  "tax_rate",            :precision => 10, :scale => 0, :default => 0, :null => false
-    t.integer  "cost_price",          :precision => 10, :scale => 0, :default => 0, :null => false
-    t.integer  "sell_price",          :precision => 10, :scale => 0, :default => 0, :null => false
-    t.integer  "mark_up",             :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "tax_rate",            :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "cost_price",          :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "sell_price",          :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "mark_up",             :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
     t.boolean  "active"
-    t.integer  "weight",              :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "weight",              :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
     t.boolean  "discountable"
-    t.integer  "disc_percent",        :precision => 10, :scale => 0, :default => 0, :null => false
-    t.integer  "disc_amount",         :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "disc_percent",        :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "disc_amount",         :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.integer  "qty_on_hand",                                        :default => 0, :null => false
-    t.integer  "qty_allocated",                                      :default => 0, :null => false
-    t.integer  "qty_available",                                      :default => 0, :null => false
-    t.integer  "qty_ordered",                                        :default => 0, :null => false
-    t.integer  "stocking_qty",                                       :default => 0, :null => false
+    t.integer  "qty_on_hand",                                                      :default => 0, :null => false
+    t.integer  "qty_allocated",                                                    :default => 0, :null => false
+    t.integer  "qty_available",                                                    :default => 0, :null => false
+    t.integer  "qty_ordered",                                                      :default => 0, :null => false
+    t.integer  "stocking_qty",                                                     :default => 0, :null => false
     t.boolean  "stocked_product"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.integer  "default_voucher_valid_days"
     t.string   "paymate_username"
     t.string   "paymate_password"
-    t.integer  "paymate_transaction_fee"
+    t.integer  "paymate_transaction_fee",          :default => 0, :null => false
     t.boolean  "enable_paypal"
     t.string   "paypal_username"
-    t.integer  "paypal_transaction_fee"
+    t.integer  "paypal_transaction_fee",           :default => 0, :null => false
     t.boolean  "enable_credit_card"
     t.boolean  "enable_direct_deposit"
     t.string   "direct_deposit_bank_number"
@@ -103,8 +103,9 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.string   "direct_deposit_instructions"
     t.boolean  "enable_cheque"
     t.string   "cheque_payable_to"
-    t.integer  "default_tax"
-    t.integer  "default_tax_name"
+    t.boolean  "enable_tax"
+    t.integer  "default_tax",                      :default => 0, :null => false
+    t.string   "default_tax_name"
     t.boolean  "business_open_sunday"
     t.boolean  "business_open_monday"
     t.boolean  "business_open_tuesday"

@@ -3,7 +3,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
   navigation.items do |primary|
     navigation.auto_highlight = true
-    primary.item :home, 'Home', root_url
+    primary.item :home, 'Home', root_path
     if logged_in?
     if permitted_to? :show, Supplier.new
       if permitted_to? :edit, Setting.new

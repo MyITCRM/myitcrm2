@@ -240,12 +240,15 @@ h6 {
     position: relative;
     padding: .2em;
     zoom: 1;
+    
 }
 
 /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 .ui-tabs .ui-tabs-nav {
     margin: 0;
     padding: .2em .2em 0;
+    color:aliceblue;
+
 }
 
 .ui-tabs .ui-tabs-nav li {
@@ -407,8 +410,8 @@ h6 {
 }
 
 .ui-widget-header {
-    /*border: 1px solid #4B7399;*/
-    /*background: #ffffff 50% 50% repeat-x;*/
+    border-bottom: 1px solid #4B7399;
+    background: transparent 50% 50% repeat-x;
     color: #222222;
     font-weight: bold;
 }
@@ -421,32 +424,34 @@ h6 {
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
     border: 1px solid #aed0ea;
-    background: #ccccff 50% 50% repeat-x;
+    background: #4B7399 50% 50% repeat-x;
     font-weight: bold;
     color: #2779aa;
 }
 
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
-    color: #2779aa;
+    color: #F2F5F7;
     text-decoration: none;
+
+
 }
 
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
     border: 1px solid #74b2e2;
-    background: #9999ff 50% 50% repeat-x;
+    background: transparent 50% 50% repeat-x;
     font-weight: bold;
     color: #0070a3;
 }
 
 .ui-state-hover a, .ui-state-hover a:hover {
     color: #0070a3;
-    text-decoration: none;
-    font-size:1.1em;
+    text-decoration: underline;
+    /*font-size:1.1em;*/
 }
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
     /*border: 1px solid #2694e8;*/
-    background: #ccccff  50% 50% repeat-x;
+    background: transparent  50% 50% repeat-x;
     font-weight: bold;
     color: #ffffff;
 }
@@ -454,7 +459,7 @@ h6 {
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
     color: #0070a3;
     text-decoration: none;
-    font-size:1.1em;
+    /*font-size:1.1em;*/
 }
 
 .ui-widget :active {
