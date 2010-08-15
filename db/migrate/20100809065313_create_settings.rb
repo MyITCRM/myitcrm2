@@ -1,4 +1,5 @@
 class CreateSettings < ActiveRecord::Migration
+  class Setting < ActiveRecord::Base; end
   def self.up
     create_table :settings do |t|
         t.string :business_name
@@ -25,6 +26,7 @@ class CreateSettings < ActiveRecord::Migration
         t.string :business_contact_email
         t.string :default_from_email
         t.string :default_no_reply_email
+        t.string :language
         t.text :terms_and_conditions
         t.text :privacy_policy
         t.text :invoice_message
@@ -85,7 +87,6 @@ class CreateSettings < ActiveRecord::Migration
 
       t.timestamps
     end
-    # create default settings
      @setting = Setting.create :business_name => "MyIT CRM",
                         :business_slogan => "Free and Open Source Repair Shop CRM Software!",
                         :address => "45 Smith Street",
@@ -99,6 +100,8 @@ class CreateSettings < ActiveRecord::Migration
                         :default_tax => "0",
                         :default_tax_name => "GST",
                         :invoice_message => "Thankyou for your business",
+                        :paymate_transaction_fee => "0",
+                        :paypal_transaction_fee => "0",
                         :enable_cash => true
 
 

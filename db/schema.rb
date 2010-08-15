@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.string   "business_contact_email"
     t.string   "default_from_email"
     t.string   "default_no_reply_email"
+    t.string   "language"
     t.text     "terms_and_conditions"
     t.text     "privacy_policy"
     t.text     "invoice_message"
