@@ -6,11 +6,11 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :home, 'Home', root_path
     if logged_in?
       if permitted_to? :show, Supplier.new
+        primary.item :users, 'Users', users_path
+        primary.item :suppliers, 'Suppliers', suppliers_path
+        primary.item :products, 'Products', products_path
         if permitted_to? :edit, Setting.new
           primary.item :admin, 'Administration', admin_path
-          primary.item :users, 'Users', users_path
-          primary.item :suppliers, 'Suppliers', suppliers_path
-          primary.item :products, 'Products', products_path
         end
       end
       if permitted_to? :edit_profile, User.new

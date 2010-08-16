@@ -1,190 +1,38 @@
 <% if current_user.roles_mask < @user.roles_mask or current_user.id == @user.id %>
     <h1><%= (t "user_t_edit_user") %></h1>
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>   <%= f.label t "user.active" %><%= check_box "user", "active" %>
-  </p>
-  <p>
-    <%= f.label t "user.username" %><br />
+    <%= render :partial => 'actions' %>
+<% semantic_form_for(@user) do |f| %>
+    <% f.inputs do %>
+    <%= f.input :username , :label => (t "user.username") %>
+    <%= f.input :name , :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
+    <%= f.input :password, :required => true %>
+   <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
+   <%= f.input :email, :label => (t "global.email") %>
+   <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
+   <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
+   <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
+   <%= f.input :zip, :input_html => {:size => 30}, :label => (t "global.zip") %>
+   <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
+   <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
+   <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
+   <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
+        <% if permitted_to? :destroy, @user %>
+   <%= f.input :roles,:label => (t "global.role") , :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %>
+         <% end %>
 
-    <%= f.text_field :username %>
-    <p>
-    <%= f.label t "global.email" %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label t "user.password" %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label t "user.password_confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_area :address, :rows => 5 %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :state %><br />
-    <%= f.text_field :state, :size => 6 %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip, :size => 6 %>
-  </p>
-  <p>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </p>
-  <p>
-    <%= f.label :mobile %><br />
-    <%= f.text_field :mobile %>
-  </p>
-  <p>
-    <%= f.label :fax %><br />
-    <%= f.text_field :fax %>
-  </p>
-    <p>
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes, :rows => 6 %>
-  </p>
-  <p>
-    <%= hidden_field_tag "user[edited_at]", Time.now %>
-    <%= hidden_field_tag "user[edited_by]", current_user.username %>
-  </p>
+     <%= f.buttons %>
 
+
+<p>
+      <% if current_user == nil %>
+      <%= hidden_field_tag "user[created_by]", @user.username %>
+          <% else %>
+      <%= hidden_field_tag "user[created_by]", current_user.username %>
+          <% end %>
+    </p>
   <p>
-     <% if permitted_to? :destroy, @user %>
-<%= f.label :roles %><br />
-    <% for role in User::ROLES %>
-      <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
-      <%=h role.humanize %><br />
-    <% end %>
-    <%= hidden_field_tag "user[roles][]", "" %>
-        <% end %>
-  </p>
-  <p>
-    <%= f.submit t "global.submit" %>
+
   </p>
 <% end %>
-
-        <% else %>
-    <h1><%= (t "user.t_view") %></h1>
-    <table>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.username" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.username %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.email" %>:</strong>
-    </td>
-    <td align="left">
-     <%= auto_link_email_addresses( @user.email ) %>
-    </td>
-  </tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.name" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.name %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.role" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.role_symbols %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.active" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.active %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.address" %>:</strong>
-    </td>
-    <td align="left">
-      <%=h @user.address %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.city" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.city %>
-    </td>
-  </tr>
- <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.state" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.state %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.zip" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.zip %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.phone" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.phone %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t"global.mobile" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.mobile %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t"global.fax" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.fax %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.notes" %>:</strong>
-    </td>
-    <td align="left" >
-     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @user.notes  %></textarea>
-    </td>
-  </tr>
-</table>
-
-  <% end %>
-
- <% if permitted_to? :edit, @user %>
-<%= link_to (t "global.cancel"), users_path %>
+<% end %>
 <% end %>

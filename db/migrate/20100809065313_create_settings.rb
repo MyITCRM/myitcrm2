@@ -99,6 +99,7 @@ class CreateSettings < ActiveRecord::Migration
                         :default_no_reply_email => "no-reply@example.com",
                         :default_tax => "0",
                         :default_tax_name => "GST",
+                        :language => "en_AU",
                         :invoice_message => "Thankyou for your business",
                         :paymate_transaction_fee => "0",
                         :paypal_transaction_fee => "0",

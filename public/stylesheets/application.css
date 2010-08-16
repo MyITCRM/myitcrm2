@@ -29,7 +29,15 @@ a img {
 #conatiner a {
   color: #0000FF;
 }
+#show_view table {
+    width:100%;
+    padding-left:1%;
 
+
+}
+#show_view  {
+
+}
 
 .clear {
   clear: both;
@@ -172,8 +180,10 @@ h6 {
   background-color: #ffffff;
 }
 #top_float_right {
+    text-transform:uppercase;
+    padding: 0 0 0 0;
+    font-size:11px;
     float:right;
-    padding:inherit;
     margin-top:-30px;
     
 }
@@ -1468,3 +1478,14 @@ color: black;
 
 }
 /*EOF Slide Menu*/
+
+/*Filter section*/
+fieldset.collapsible { border-width: 1px 0 0 0; font-size: 0.9em; }
+fieldset.collapsible legend { padding-left: 1px;  cursor:pointer; }
+fieldset.collapsible.collapsed legend {  }
+
+fieldset#date-range p { margin: 2px 0 2px 0; }
+fieldset#filters table { border-collapse: collapse; }
+fieldset#filters table td { padding: 0; vertical-align: middle; }
+fieldset#filters tr.filter { height: 2em; }
+fieldset#filters td.add-filter { text-align: right; vertical-align: top; }

@@ -14,7 +14,7 @@ en_AU:
     address: "Address"
     state: "State"
     city: "City"
-    zip: "Postcode/Zip"
+    zip: "Postcode"
     phone: "Phone"
     fax: "Fax"
     email: "Email"
@@ -105,12 +105,14 @@ en_AU:
      add_new_user: "Create New User"
      search: "Search Full Name"
      name: "Full Name"
-     name_eg: "Full Name: eg John Smith"
+     name_eg: "eg: John Smith"
      t_log: "User Log"
      account_accessed: "User last Logged in"
      not_logged_in_yet: "User has not logged in yet."
      login_failures: "Failed Login Attempts"
      login_count: "Successful Logins"
+     email: "Email"
+     address: "Address"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
@@ -287,9 +289,11 @@ en_AU:
       # default value for :prompt => true in FormOptionsHelper
       prompt: "Please select"
     array:
-      sentence_connector: "and"
+      sentence_connector: ","
       two_words_connector: " and "
       skip_last_comma: false
+      words_connector: " and "
+      last_word_connector: " and "
   parts:
     t_title: "Parts/Software List"
     t_add_new_part: "Add New Part"
@@ -364,3 +368,4 @@ en_AU:
       billing_fax: "Head Office Fax"
       paymate: "Paymate"
       direct_deposit: "Direct Deposit"
+  user_t_edit_profile: "Edit My Profile"

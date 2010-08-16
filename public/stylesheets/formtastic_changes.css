@@ -91,3 +91,12 @@ form.formtastic fieldset.buttons {
 
 /*textarea boxes CSS*/
 form.formtastic fieldset > ol > li.text textarea { width:65%; }
+
+
+/* CHECK BOXES (COLLECTION) OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li.check_boxes { }
+form.formtastic fieldset > ol > li.check_boxes fieldset ol { margin-bottom:-0.6em; }
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li {float:none; margin:0.1em 0 0.5em 0; }
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li label {text-align:left; width:25%; }
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li label input {float:left; margin-right:0.2em; }

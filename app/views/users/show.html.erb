@@ -1,172 +1,180 @@
 <h1><%= t "user.t_view" %></h1>
-<table>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.name" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.name %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.username" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.username %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.email" %>:</strong>
-    </td>
-    <td align="left">
-     <%= auto_link_email_addresses( @user.email ) %>
-    </td>
-  </tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.role" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.role_symbols %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.active" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.active %>
-    </td>
-</tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.address" %>:</strong>
-    </td>
-    <td align="left">
-      <textarea rows="6" cols="50" name="address" readonly="readonly" ><%=h @user.address  %></textarea>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.city" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.city %>
-    </td>
-  </tr>
- <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.state" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.state %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.zip" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.zip %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.phone" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.phone %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t"global.mobile" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.mobile %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t"global.fax" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @user.fax %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.notes" %>:</strong>
-    </td>
-    <td align="left" >
-     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @user.notes  %></textarea>
-    </td>
-  </tr>
-
-  </table>
-<h1><%= t "user.t_log" %></h1>
-<table>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.created_at" %>:</strong>
-    </td>
-    <td align="left">
-      <%= time_ago_in_words(@user.created_at) %> <%= t "global.ago" %> (<%= localize @user.created_at, :format => :short  %>) <%= t "global.by" %> <%= @user.created_by %>.
-    </td>
-  </tr>
-  <% if @user.edited_at == nil %>
-      <% else %>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.updated_at" %>:</strong>
-    </td>
-    <td align="left">
-      <%= time_ago_in_words(@user.edited_at) %> <%= t "global.ago" %> (<%= localize @user.edited_at, :format => :short  %>) <%= t "global.by" %> <%= @user.edited_by %>.
-    </td>
-  </tr>
-      <% end %>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.account_accessed" %>:</strong>
-    </td>
-    <td align="left">
-      <% if @user.login_count == 0 %>
-          <%= t "user.not_logged_in_yet" %>
-          <% else %>
-          <% if @user.login_count == 1 %>
-              <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.current_login_ip %>
-           <% else %>
-              <% if @user.login_count > 1 %>
-      <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.last_login_ip %>
-          <% end %>
-          <% end %>
-          <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.login_failures" %>:</strong>
-    </td>
-    <td align="left">
-      <%= @user.failed_login_count %>
-    </td>
-  </tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "user.login_count" %>:</strong>
-    </td>
-    <td align="left">
-      <%= @user.login_count %>
-    </td>
-  </tr>
-
-</table><br>
-
-<% if current_user.roles_mask < @user.roles_mask %>
-<%= link_to (t "global.edit"), edit_user_path %> |
+<div id="top_float_right">
+<% if permitted_to? :destroy, User.new %>
+<%= link_to(image_tag("delete.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
 <% end %>
-<% if permitted_to? :edit, @user %>
-<%= link_to (t "global.back"), users_path %>
- <% end %>
+<% if current_user.roles_mask < @user.roles_mask %>
+<%= link_to(image_tag("edit.png", :title=> (t "global.edit"),:align => "bottom", :hspace => "2"), edit_user_path)%><%= link_to (t "global.edit"), edit_user_path %>&nbsp;&nbsp;
+<% end %>
+  <%= link_to(image_tag("close.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), users_path)%><%= link_to (t "global.close"), users_path %>
+</div>
+<div id="show_view">
+  <table>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "user.name" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.name %>
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "user.username" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.username %>
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.email" %>:</strong>
+      </td>
+      <td align="left">
+       <%= auto_link_email_addresses( @user.email ) %>
+      </td>
+    </tr>
+  <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.role" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.role_symbols %>
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.active" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.active %>
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.address" %>:</strong>
+      </td>
+      <td align="left">
+        <textarea rows="6" cols="50" name="address" readonly="readonly" ><%=h @user.address  %></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.city" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.city %>
+      </td>
+    </tr>
+   <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.state" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.state %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.zip" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.zip %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.phone" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.phone %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t"global.mobile" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.mobile %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t"global.fax" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @user.fax %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.notes" %>:</strong>
+      </td>
+      <td align="left" >
+       <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @user.notes  %></textarea>
+      </td>
+    </tr>
+
+    </table>
+  <fieldset id="collapsable">
+    <h1 align="center"><%= t "user.t_log" %></h1>
+  <table >
+    <tr>
+      <td align="right" >
+        <strong><%= t "global.created_at" %>:</strong>
+      </td>
+      <td >
+        <%= time_ago_in_words(@user.created_at) %> <%= t "global.ago" %> (<%= localize @user.created_at, :format => :short  %>) <%= t "global.by" %> <%= @user.created_by %>.
+      </td>
+    </tr>
+    <% if @user.edited_at == nil %>
+        <% else %>
+    <tr>
+      <td align="right">
+        <strong><%= t "global.updated_at" %>:</strong>
+      </td>
+      <td >
+        <%= time_ago_in_words(@user.edited_at) %> <%= t "global.ago" %> (<%= localize @user.edited_at, :format => :short  %>) <%= t "global.by" %> <%= @user.edited_by %>.
+      </td>
+    </tr>
+        <% end %>
+    <tr>
+      <td align="right">
+        <strong><%= t "user.account_accessed" %>:</strong>
+      </td>
+      <td >
+        <% if @user.login_count == 0 %>
+            <%= t "user.not_logged_in_yet" %>
+            <% else %>
+            <% if @user.login_count == 1 %>
+                <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.current_login_ip %>
+             <% else %>
+                <% if @user.login_count > 1 %>
+        <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.last_login_ip %>
+            <% end %>
+            <% end %>
+            <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        <strong><%= t "user.login_failures" %>:</strong>
+      </td>
+      <td >
+        <%= @user.failed_login_count %>
+      </td>
+    </tr>
+  <tr>
+      <td align="right">
+        <strong><%= t "user.login_count" %>:</strong>
+      </td>
+      <td >
+        <%= @user.login_count %>
+      </td>
+    </tr>
+
+  </table><br>
+  </fieldset>
+
+
+</div>

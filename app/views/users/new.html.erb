@@ -1,57 +1,30 @@
 <h1><%= t "user.t_new_user" %></h1>
 <!--mytodo fix form to formtastic format-->
-
+<div id="top_float_right">
+  <%= link_to(image_tag("close.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), users_path)%><%= link_to (t "global.close"), users_path %>
+</div>
 <% semantic_form_for(@user) do |f| %>
-  <%= f.error_messages %>
-    <%= f.inputs :username , :label => [t "user.username"] %>
-    <%= f.inputs :name , :label =>[t "user.name_eg"] %>
+    <% f.inputs do %>
+    <%= f.input :username , :label => (t "user.username") %>
+    <%= f.input :name , :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
+    <%= f.input :password, :required => true %>
+   <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
+   <%= f.input :email, :label => (t "global.email") %>
+   <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
+   <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
+   <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
+   <%= f.input :zip, :input_html => {:size => 30}, :label =>( t"global.zip") %>
+   <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
+   <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
+   <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
+        <% if permitted_to? :destroy, @user %>
+   <%= f.input :roles, :as => :check_boxes, :collection => User::ROLES,:label => (t "global.role")  %>
+         <% end %>
 
-   <%= f.inputs :password %>
-   <%= f.inputs :password_confirmation, :label => [t "user.password_confirmation"] %>
-   <%= f.buttons %>
+     <%= f.buttons %>
 
-  
-  <p>
-    <%= f.label t "global.email" %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label t "user.password" %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label t "user.password_confirmation" %> <br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_area :address, :rows => 5 %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :state %><br />
-    <%= f.text_field :state, :size => 6 %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip, :size => 6 %>
-  </p>
-  <p>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </p>
-  <p>
-    <%= f.label :mobile %><br />
-    <%= f.text_field :mobile %>
-  </p>
-  <p>
-    <%= f.label :fax %><br />
-    <%= f.text_field :fax %>
-  </p>
-    <p>
+
+<p>
       <% if current_user == nil %>
       <%= hidden_field_tag "user[created_by]", @user.username %>
           <% else %>
@@ -59,17 +32,7 @@
           <% end %>
     </p>
   <p>
-     <% if permitted_to? :destroy, @user %>
-<%= f.label :roles %><br />
-    <% for role in User::ROLES %>
-      <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
-      <%=h role.humanize %><br />
-    <% end %>
-    <%= hidden_field_tag "user[roles][]", "" %>
-        <% end %>
-  </p>
 
-  <p>
-    <%= f.submit t "global.submit" %>
   </p>
+<% end %>
 <% end %>
