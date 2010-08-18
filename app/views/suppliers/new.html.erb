@@ -1,138 +1,30 @@
 <h1><%= t ('supplier.t_new') %></h1>
 
-<% form_for(@supplier) do |f| %>
-    <%= f.error_messages %>
-    <table>
-      <tr>
-        <td align="right">
-          <%= t "supplier.company_name" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :company_name %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right" valign="top">
-          <%= t "supplier.address" %>
-          <br/>
-        </td>
-        <td colspan="2">
-          <%= f.text_area :address, :rows => 5 %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.city" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :city %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.state" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :state, :size => 5  %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.zip" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :zip %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.phone" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :phone %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.fax" %>
+<div id="top_float_right">
+   <%= link_to(image_tag('close.png', :title => [t "global.close"]), suppliers_path) %>&nbsp;<%= link_to([t "global.close"], suppliers_path) %>
+</div>
 
-        </td>
-        <td colspan="2">
-          <%= f.text_field :fax %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.email" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :email %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.credit_terms" %>
+<% semantic_form_for @supplier do |f| %>
+    <% tabs_for do |tab| %>
+        <% tab.create((t "products.tab_menu_basic_name"), (t "products.tab_menu_basic")) do %>
+            <% f.inputs do %>
+                <%= f.input :company_name, :label =>(t "supplier.company_name"), :input_html => {:size => 50} %>
+                <%= f.input :contact_name, :label => (t "supplier.contact_name"), :input_html => {:size => 50} %>
+                <%= f.input :contact_phone, :label => (t "supplier.contact_phone"), :input_html => {:size => 25} %>
+                <%= f.input :address, :label => (t "global.address"), :input_html => {:rows => 5} %>
+                <%= f.input :city, :label => (t "global.city"), :input_html => {:size => 25} %>
+                <%= f.input :state, :label => (t "global.state"), :input_html => {:size => 25} %>
+                <%= f.input :zip, :label => (t "global.zip"), :input_html => {:size => 10} %>
+                <%= f.input :phone, :label => (t "global.phone"), :input_html => {:size => 25} %>
+                <%= f.input :fax, :label => (t "global.fax"), :input_html => {:size => 25} %>
+                <%= f.input :email, :label => (t "global.email"), :input_html => {:size => 50} %>
+                <%= f.input :credit_terms, :label => (t "supplier.credit_terms"), :input_html => {:size => 30} %>
+                <%= f.input :credit_amount, :label => (t "supplier.credit_amount"), :input_html => {:size => 30} %>
+                <%= f.input :notes, :label => (t "global.notes"), :input_html => {:rows => 10} %>
+                <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+                <%= f.input :created_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+            <% end %> <%= f.buttons %>
+        <% end %>
 
-        </td>
-        <td colspan="2">
-          <%= f.text_field :credit_terms %>
-        </td>
-      </tr><tr>
-        <td  align="right">
-          <%= t "supplier.credit_amount" %>
-
-        </td>
-        <td colspan="2">
-          <%= f.text_field :credit_amount %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.contact_name" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :contact_name %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= t "supplier.contact_phone" %>
-
-        </td>
-        <td colspan="2">
-          <%= f.text_field :contact_phone %>
-        </td>
-      </tr>
-      <tr>
-        <td  align="right" valign="top">
-          <%= t "supplier.notes" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_area :notes, :rows => 5 %>
-        </td>
-      </tr>      
-      <tr>
-        <td  align="right">
-          <%= t "supplier.leadtime" %>
-        </td>
-        <td colspan="2">
-          <%= f.text_field :parts_leadtime_days %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= hidden_field_tag "supplier[created_by]", current_user.username %>
-          <%= hidden_field_tag "supplier[created_at]", Time.now %>
-
-        </td>
-      </tr>
-      <tr>
-        <td  align="right">
-          <%= f.submit t "global.create" %>
-        </td>
-      </tr>
-    </table>
-
+    <% end %>
 <% end %>
-
-<%= link_to t('global.back'), suppliers_path %>

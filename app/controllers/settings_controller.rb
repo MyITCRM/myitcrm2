@@ -45,7 +45,7 @@ class SettingsController < ApplicationController
     respond_to do |format|
       if @setting.update_attributes(params[:setting])
         flash[:notice] = 'Settings was successfully updated.'
-        format.html { redirect_to(@setting) }
+        format.html { redirect_to(:action => "edit") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
