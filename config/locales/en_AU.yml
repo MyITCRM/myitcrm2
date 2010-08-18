@@ -50,6 +50,7 @@ en_AU:
     months: "Month(s)"
     years: "Year(s)"
     administration: "Administration"
+    error: "Please re-check your information before proceeding"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"

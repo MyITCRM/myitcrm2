@@ -20,11 +20,12 @@
                 <%= f.input :email, :label => (t "global.email"), :input_html => {:size => 50} %>
                 <%= f.input :credit_terms, :label => (t "supplier.credit_terms"), :input_html => {:size => 30} %>
                 <%= f.input :credit_amount, :label => (t "supplier.credit_amount"), :input_html => {:size => 30} %>
+                <%= f.input :parts_leadtime_days, :label => (t "supplier.leadtime"), :input_html => {:size => 5} %>
                 <%= f.input :notes, :label => (t "global.notes"), :input_html => {:rows => 10} %>
                 <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :created_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-            <% end %> <%= f.buttons %>
+            <% end %>
         <% end %>
 
-    <% end %>
+    <% end %><%= f.buttons %>
 <% end %>

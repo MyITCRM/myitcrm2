@@ -54,6 +54,7 @@ class SuppliersController < ApplicationController
         format.html { redirect_to(@supplier) }
         format.xml  { render :xml => @supplier, :status => :created, :location => @supplier }
       else
+        flash[:error] = t "global.error"
         format.html { render :action => "new" }
         format.xml  { render :xml => @supplier.errors, :status => :unprocessable_entity }
       end
@@ -72,6 +73,7 @@ class SuppliersController < ApplicationController
         format.html { redirect_to(@supplier) }
         format.xml  { head :ok }
       else
+        flash[:error] = t "global.error"
         format.html { render :action => "edit" }
         format.xml  { render :xml => @supplier.errors, :status => :unprocessable_entity }
       end

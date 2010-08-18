@@ -1,7 +1,7 @@
 class Supplier < ActiveRecord::Base
   has_many :products
 # Validations for Suppliers
-  validates_presence_of :company_name, :address, :city, :contact_name, :contact_phone, :email, :fax, :phone, :parts_leadtime_days, :state, :zip
+  validates_presence_of :company_name, :address, :city, :contact_name, :contact_phone, :email, :fax, :phone, :state, :zip
   validates_uniqueness_of :company_name
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
