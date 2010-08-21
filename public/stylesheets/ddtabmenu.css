@@ -1,0 +1,43 @@
+.basictab ul{
+margin: 0 0 0 0;
+padding: 3px 0;
+font-weight:bold;
+list-style-type: none;
+text-align: left; /*set to left, center, or right to align the menu as desired*/
+}
+
+.basictab li{
+display: inline;
+margin: -1.5px;
+}
+
+.basictab li a{
+text-decoration: none;
+padding: 3px 7px;
+border-bottom: none;
+background-color: #4B7399;
+color: #ffffff;
+}
+
+.basictab li a:visited{
+
+}
+
+.basictab li a:hover, .basictab li a.current{
+background-color: #edf2f6;
+color: black;
+}
+
+.basictab li a:active{
+color: black;
+}
+
+.tabcontainer{
+background-color: #edf2f6;
+/*border: 1px solid #0066cc;*/
+}
+
+.tabcontent{
+    padding-top:10px;
+display:none;
+}

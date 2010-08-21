@@ -4,20 +4,12 @@
 <head>
   <title> <%= t "global.program_name" %> | <%= @title %></title>
 
-  <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', :cache => "base" %>
-  <%= javascript_include_tag 'application', 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js' %>
+  <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', :cache => "base" %>
+  <%= javascript_include_tag 'application' %>
+
   <script type="text/javascript">
-      $(function() {
-          // Tabs
-          $('#tabs').tabs();
-      });
+    ddtabmenu.definemenu("ddtabs1", 0) //initialize Tab Menu #1 with 1st tab selected
   </script>
-  <!--[if lte IE 7]>
-  <style type="text/css">
-  html .jqueryslidemenu{height: 1%;} /*Holly Hack for IE7 and below*/
-  </style>
-  <![endif]-->
-  
 </head>
 <body>
 <div id="header">
