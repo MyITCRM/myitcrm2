@@ -4,10 +4,17 @@
    <%= link_to(image_tag('close.png', :title => [t "global.close"]), suppliers_path) %>&nbsp;<%= link_to([t "global.close"], suppliers_path) %>
 </div>
 
+<div id="ddtabs1" class="basictab">
+<ul>
+<li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
+</ul>
+</div>
+
+<div class="tabcontainer">
+
+<div id="sc1" class="tabcontent">
 <% semantic_form_for @supplier do |f| %>
-    <% tabs_for do |tab| %>
-        <% tab.create((t "products.tab_menu_basic_name"), (t "products.tab_menu_basic")) do %>
-            <% f.inputs do %>
+              <% f.inputs do %>
                 <%= f.input :company_name, :label =>(t "supplier.company_name"), :input_html => {:size => 50} %>
                 <%= f.input :contact_name, :label => (t "supplier.contact_name"), :input_html => {:size => 50} %>
                 <%= f.input :contact_phone, :label => (t "supplier.contact_phone"), :input_html => {:size => 25} %>
@@ -25,7 +32,7 @@
                 <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :created_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
             <% end %>
-        <% end %>
-
-    <% end %><%= f.buttons %>
-<% end %>
+        <%= f.buttons %>
+  <% end %>
+    </div>
+    </div>

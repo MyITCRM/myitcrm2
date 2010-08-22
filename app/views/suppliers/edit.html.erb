@@ -1,70 +1,39 @@
 <h1><%= t "supplier.t_title" %></h1>
 
-<% sementic_form_for(@supplier) do |f| %>
-  <%= f.error_messages %>
+<div id="top_float_right">
+   <%= link_to(image_tag('close.png', :title => [t "global.close"]), suppliers_path) %>&nbsp;<%= link_to([t "global.close"], suppliers_path) %>
+</div>
 
-  <p>
-    <%= f.label :company_name %><br />
-    <%= f.text_field :company_name %>
-    <%= f.label :active %><%= f.check_box :active %><br />
-  </p>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_area :address, :rows => 5 %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :state %><br />
-    <%= f.text_field :state, :size => 6 %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip, :size => 6 %>
-  </p>
-  <p>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </p>
-  <p>
-    <%= f.label :fax %><br />
-    <%= f.text_field :fax %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :credit_terms %><br />
-    <%= f.text_field :credit_terms %>
-  </p>
-    <p>
-    <%= f.label :credit_amount %><br />
-    <%= f.text_field :credit_amount %>
-  </p>
-  <p>
-    <%= f.label :contact_name %><br />
-    <%= f.text_field :contact_name %>
-  </p>
-  <p>
-    <%= f.label :contact_phone %><br />
-    <%= f.text_field :contact_phone %>
-  </p>
-  <p>
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes, :rows => 6 %>
-  </p>
-  <p>
-    <%= f.label :parts_leadtime_days %><br />
-    <%= f.text_field :parts_leadtime_days %>
-  </p>
-  <p>
-    <%= hidden_field_tag "supplier[edited_by]", current_user.username %>
-    <%= hidden_field_tag "supplier[edited_at]", Time.now %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<div id="ddtabs1" class="basictab">
+<ul>
+<li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
+</ul>
+</div>
+
+<div class="tabcontainer">
+
+<div id="sc1" class="tabcontent">
+<% semantic_form_for @supplier do |f| %>
+              <% f.inputs do %>
+                <%= f.input :active, :label =>(t "global.active") %>
+                <%= f.input :company_name, :label =>(t "supplier.company_name"), :input_html => {:size => 50} %>
+                <%= f.input :contact_name, :label => (t "supplier.contact_name"), :input_html => {:size => 50} %>
+                <%= f.input :contact_phone, :label => (t "supplier.contact_phone"), :input_html => {:size => 25} %>
+                <%= f.input :address, :label => (t "global.address"), :input_html => {:rows => 5} %>
+                <%= f.input :city, :label => (t "global.city"), :input_html => {:size => 25} %>
+                <%= f.input :state, :label => (t "global.state"), :input_html => {:size => 25} %>
+                <%= f.input :zip, :label => (t "global.zip"), :input_html => {:size => 10} %>
+                <%= f.input :phone, :label => (t "global.phone"), :input_html => {:size => 25} %>
+                <%= f.input :fax, :label => (t "global.fax"), :input_html => {:size => 25} %>
+                <%= f.input :email, :label => (t "global.email"), :input_html => {:size => 50} %>
+                <%= f.input :credit_terms, :label => (t "supplier.credit_terms"), :input_html => {:size => 30} %>
+                <%= f.input :credit_amount, :label => (t "supplier.credit_amount"), :input_html => {:size => 30} %>
+                <%= f.input :parts_leadtime_days, :label => (t "supplier.leadtime"), :input_html => {:size => 5} %>
+                <%= f.input :notes, :label => (t "global.notes"), :input_html => {:rows => 10} %>
+                <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+                <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+            <% end %>
+        <%= f.buttons %>
+  <% end %>
+    </div>
+    </div>
