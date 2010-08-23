@@ -9,13 +9,17 @@ class ApplicationController < ActionController::Base
   before_filter { |c| Authorization.current_user = c.current_user }
 
   # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
+  filter_parameter_logging :password, :password_confirmation
 
 
   protected
 
 def permission_denied
     flash[:error] = t "global.restricted"
+    redirect_to root_url
+  end
+def session_expired
+    flash[:error] = t "global.expired_session"
     redirect_to root_url
   end
 

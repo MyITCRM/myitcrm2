@@ -3,13 +3,10 @@ class ProductCategoriesController < ApplicationController
   # GET /product_categories
   # GET /product_categories.xml
   def index
-    @product_categories = ProductCategory.all
+    @product_categories = ProductCategory.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @product_categories }
-    end
   end
+=begin
 
   # GET /product_categories/1
   # GET /product_categories/1.xml
@@ -85,4 +82,5 @@ class ProductCategoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
 end

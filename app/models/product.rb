@@ -22,10 +22,11 @@ class Product < ActiveRecord::Base
                           :order => 'id'
   end
 
-# Define some variables
-  def qty_available2
-    qty_on_hand - qty_allocated
+  def category_name
+    product_category.name if product_category
+  end
+  def category_name=(name)
+    self.product_category_id = ProductCategory.find_or_create_by_name(name) unless name.blank?
 
   end
-
 end

@@ -1,6 +1,5 @@
 <h1><%= t "products.t_add_new" %></h1>
 
-<%= link_to(image_tag('add.png', :title => [t "global.edit"]), new_product_category_path) %><%= link_to([t "product_cat.t_create_new_category"], new_product_category_path) %>
 
 <div id="top_float_right">
   <%= link_to(image_tag('close.png', :title => [t "global.close"]), products_path) %>&nbsp;<%= link_to([t "global.close"], products_path) %>
@@ -24,7 +23,11 @@
                 <%= f.input :description, :hint => (t "products.hint_desc") %>
                 <%= f.input :model %>
                 <%= f.input :manufacturer %>
-                <%= f.input :product_category %>
+          <li class="string required">
+            <%= f.label :product_category_id%>
+            <%= text_field_with_auto_complete :product, :category_name, { :size => 15}, { :url => formatted_product_categories_path(:js), :method => :get, :with => "'search=' + element.value"} %>
+
+          </li>
                 <%= f.input :supplier, :label_method => :company_name %>
                 <%= f.input :supplier_sku, :input_html => {:size => 20} %>
                 <%= f.input :cost_price, :input_html => {:size => 10} %>

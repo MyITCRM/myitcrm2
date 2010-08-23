@@ -1,22 +1,30 @@
 .basictab ul{
 margin: 0 0 0 0;
-padding: 3px 0;
+padding: 10px 0;
 font-weight:bold;
 list-style-type: none;
 text-align: left; /*set to left, center, or right to align the menu as desired*/
+
+
 }
 
 .basictab li{
 display: inline;
-margin: -1.5px;
+    padding-top:1px;
+
+
 }
 
 .basictab li a{
 text-decoration: none;
-padding: 3px 7px;
+padding: 11px 7px;
 border-bottom: none;
 background-color: #4B7399;
 color: #ffffff;
+    border-left:1px solid #999999;
+    border-right:1px solid #999999;
+    border-top:1px solid #999999;
+    border-bottom:#edf2f6;
 }
 
 .basictab li a:visited{
@@ -30,6 +38,7 @@ color: black;
 
 .basictab li a:active{
 color: black;
+    
 }
 
 .tabcontainer{
@@ -39,5 +48,6 @@ background-color: #edf2f6;
 
 .tabcontent{
     padding-top:10px;
+    border:1px solid #999999;
 display:none;
 }

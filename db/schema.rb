@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100809065313) do
+ActiveRecord::Schema.define(:version => 20100823033800) do
 
   create_table "product_categories", :force => true do |t|
     t.string   "name"
@@ -25,29 +25,29 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.string   "manufacturer"
     t.string   "description"
     t.string   "model"
-    t.integer  "product_category_id"
+    t.string   "product_category_id"
     t.integer  "child_category_id"
     t.string   "warranty_info"
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.integer  "tax_rate",            :precision => 10, :scale => 0
-    t.integer  "cost_price",          :precision => 10, :scale => 0
-    t.integer  "sell_price",          :precision => 10, :scale => 0
-    t.integer  "mark_up",             :precision => 10, :scale => 0
+    t.integer  "tax_rate",            :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "cost_price",          :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "sell_price",          :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "mark_up",             :precision => 10, :scale => 0, :default => 0, :null => false
     t.boolean  "active"
-    t.integer  "weight",              :precision => 10, :scale => 0
+    t.integer  "weight",              :precision => 10, :scale => 0, :default => 0, :null => false
     t.boolean  "discountable"
-    t.integer  "disc_percent",        :precision => 10, :scale => 0
-    t.integer  "disc_amount",         :precision => 10, :scale => 0
+    t.integer  "disc_percent",        :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "disc_amount",         :precision => 10, :scale => 0, :default => 0, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.integer  "qty_on_hand"
-    t.integer  "qty_allocated"
-    t.integer  "qty_available"
-    t.integer  "qty_ordered"
-    t.integer  "stocking_qty"
+    t.integer  "qty_on_hand",                                        :default => 0, :null => false
+    t.integer  "qty_allocated",                                      :default => 0, :null => false
+    t.integer  "qty_available",                                      :default => 0, :null => false
+    t.integer  "qty_ordered",                                        :default => 0, :null => false
+    t.integer  "stocking_qty",                                       :default => 0, :null => false
     t.boolean  "stocked_product"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.string   "business_contact_email"
     t.string   "default_from_email"
     t.string   "default_no_reply_email"
+    t.string   "language"
     t.text     "terms_and_conditions"
     t.text     "privacy_policy"
     t.text     "invoice_message"
@@ -85,14 +86,15 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.boolean  "enable_google_calendar"
     t.boolean  "enable_google_maps"
     t.boolean  "enable_paymate"
+    t.boolean  "enable_cash"
     t.boolean  "enable_voucher"
     t.integer  "default_voucher_valid_days"
     t.string   "paymate_username"
     t.string   "paymate_password"
-    t.integer  "paymate_transaction_fee"
+    t.integer  "paymate_transaction_fee",          :default => 0, :null => false
     t.boolean  "enable_paypal"
     t.string   "paypal_username"
-    t.integer  "paypal_transaction_fee"
+    t.integer  "paypal_transaction_fee",           :default => 0, :null => false
     t.boolean  "enable_credit_card"
     t.boolean  "enable_direct_deposit"
     t.string   "direct_deposit_bank_number"
@@ -102,8 +104,9 @@ ActiveRecord::Schema.define(:version => 20100809065313) do
     t.string   "direct_deposit_instructions"
     t.boolean  "enable_cheque"
     t.string   "cheque_payable_to"
-    t.integer  "default_tax"
-    t.integer  "default_tax_name"
+    t.boolean  "enable_tax"
+    t.integer  "default_tax",                      :default => 0, :null => false
+    t.string   "default_tax_name"
     t.boolean  "business_open_sunday"
     t.boolean  "business_open_monday"
     t.boolean  "business_open_tuesday"

@@ -23,7 +23,11 @@
                 <%= f.input :description, :hint => (t "products.hint_desc"), :label => (t "global.description") %>
                 <%= f.input :model, :label => (t "producst.model") %>
                 <%= f.input :manufacturer, :label => (t "products.manufacturer") %>
-                <%= f.input :product_category, :label => (t "products.category") %>
+                <li class="string required">
+                    <%= f.label :product_category_id%>
+                    <%= text_field_with_auto_complete :product, :category_name, { :size => 15}, { :url => formatted_product_categories_path(:js), :method => :get, :with => "'search=' + element.value"} %>
+                    <p class="inline-hints"><%= t "products.hint.category" %></p>
+                </li>
                 <%= f.input :supplier, :label_method => :company_name, :label => (t "products.supplier") %>
                 <%= f.input :supplier_sku, :input_html => {:size => 20}, :label => (t "products.supplier_sku")%>
                 <%= f.input :cost_price, :input_html => {:size => 10}, :label => (t "products.cost_price") %>

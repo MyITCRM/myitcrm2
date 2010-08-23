@@ -6,8 +6,8 @@ module Formtastic #:nodoc:
 
   class SemanticFormBuilder < ActionView::Helpers::FormBuilder
 
-    @@default_text_field_size = 50
-    @@default_text_area_height = 20
+    @@default_text_field_size = 30
+    @@default_text_area_height = 10
     @@all_fields_required_by_default = true
     @@include_blank_for_select_by_default = true
     @@required_string = proc { ::Formtastic::Util.html_safe(%{<abbr title="#{::Formtastic::I18n.t(:required)}">*</abbr>}) }

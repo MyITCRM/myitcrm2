@@ -5,7 +5,7 @@
     <% f.inputs do %>
     <%= f.input :username , :label => (t "user.username") %>
     <%= f.input :name , :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
-    <%= f.input :password, :required => true %>
+    <%= f.input :password, :required => true , :label => (t "user.password") %>
    <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
    <%= f.input :email, :label => (t "global.email") %>
    <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
@@ -24,11 +24,10 @@
 
 
 <p>
-      <% if current_user == nil %>
-      <%= hidden_field_tag "user[created_by]", @user.username %>
-          <% else %>
-      <%= hidden_field_tag "user[created_by]", current_user.username %>
-          <% end %>
+
+      <%= hidden_field_tag "user[edited_at]", Time.now %>
+      <%= hidden_field_tag "user[edited_by]", current_user.username %>
+
     </p>
   <p>
 

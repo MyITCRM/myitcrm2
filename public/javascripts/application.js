@@ -18,8 +18,8 @@ var ddtabmenu={
 	currentpageurl: window.location.href.replace("http://"+window.location.hostname, "").replace(/^\//, ""), //get current page url (minus hostname, ie: http://www.dynamicdrive.com/)
 
 definemenu:function(tabid, dselected){
-	this[tabid+"-menuitems"]=null
-	this[tabid+"-dselected"]=-1
+	this[tabid+"-menuitems"]=null;
+	this[tabid+"-dselected"]=-1;
 	this.addEvent(window, function(){ddtabmenu.init(tabid, dselected)}, "load")
 },
 
@@ -65,7 +65,7 @@ clearrevert2default:function(tabid){
 },
 
 addEvent:function(target, functionref, tasktype){ //assign a function to execute to an event handler (ie: onunload)
-	var tasktype=(window.addEventListener)? tasktype : "on"+tasktype
+	var tasktype=(window.addEventListener)? tasktype : "on"+tasktype;
 	if (target.addEventListener)
 		target.addEventListener(tasktype, functionref, false)
 	else if (target.attachEvent)
@@ -73,13 +73,13 @@ addEvent:function(target, functionref, tasktype){ //assign a function to execute
 },
 
 init:function(tabid, dselected){
-	var menuitems=document.getElementById(tabid).getElementsByTagName("a")
-	this[tabid+"-menuitems"]=menuitems
+var menuitems=document.getElementById(tabid).getElementsByTagName("a");
+	this[tabid+"-menuitems"]=menuitems;
 	for (var x=0; x<menuitems.length; x++){
 		if (menuitems[x].getAttribute("rel")){
-			this[tabid+"-menuitems"][x].hasSubContent=true
+			this[tabid+"-menuitems"][x].hasSubContent=true;
 			if (ddtabmenu.disabletablinks)
-				menuitems[x].onclick=function(){return false}
+				menuitems[x].onclick=function(){return false};
 			if (ddtabmenu.snap2original[0]==true){
 				var submenu=document.getElementById(menuitems[x].getAttribute("rel"))
 				menuitems[x].onclick=function(e){ddtabmenu.revert2default(submenu, tabid, e)}

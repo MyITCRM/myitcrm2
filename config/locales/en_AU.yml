@@ -52,6 +52,7 @@ en_AU:
     administration: "Administration"
     error: "Please re-check your information before proceeding"
     description: "Description"
+    expired_session: "Your session has expired. Please log back in."
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -333,6 +334,8 @@ en_AU:
     supplier_sku: "Supplier SKU#"
     cost_price: "Cost Price"
     sell_price: "Selling Price"
+    hint:
+      category: "Simply start typing to select from an existing Category, if no category exists it will automatically create a new one for you."
   product_cat:
     t_new_category: "New Product Category"
     t_create_new_category: "Create New Product Category"
@@ -379,3 +382,7 @@ en_AU:
   user_t_edit_profile: "Edit My Profile"
   producst:
     model: "Model#"
+  users:
+    tab:
+      user_type: "User Role"
+      user_type_url: "Users_Role"
