@@ -1,11 +1,12 @@
 <h1><%= t "products.t_add_new" %></h1>
-
-
+<script type="text/javascript">
+ddtabmenu.definemenu("ddtabs1", 0) //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
+</script>
 <div id="top_float_right">
   <%= link_to(image_tag('close.png', :title => [t "global.close"]), products_path) %>&nbsp;<%= link_to([t "global.close"], products_path) %>
 </div>
 
-<div id="ddtabs1" class="basictab">
+<div id="ddtabs1" class="basictab" >
 <ul>
 <li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
 <li><a href="#<%= t "products.tab_menu_inventory_name" %>" rel="sc2"><%= t "products.tab_menu_inventory_name" %></a></li>
