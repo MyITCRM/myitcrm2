@@ -73,6 +73,7 @@ addEvent:function(target, functionref, tasktype){ //assign a function to execute
 },
 
 init:function(tabid, dselected){
+    if (!document.getElementById(tabid)) { return false; } //Added by Glen :: If the tabs are not required, then don't initialize
 var menuitems=document.getElementById(tabid).getElementsByTagName("a");
 	this[tabid+"-menuitems"]=menuitems;
 	for (var x=0; x<menuitems.length; x++){

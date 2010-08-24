@@ -85,6 +85,9 @@ en_AU:
    our_sku: "SKU"
    _sku: "Supplier SKU"
    supplier_sku: "Supplier SKU"
+   tab:
+     other: "Other"
+     basic: "Basic"
   user:
      t_new_user: "New User Registration"
      username: "Username"
@@ -297,21 +300,14 @@ en_AU:
       skip_last_comma: false
       words_connector: " and "
       last_word_connector: " and "
-  parts:
-    t_title: "Parts/Software List"
-    t_add_new_part: "Add New Part"
-    description: "Description"
-    model: "Model"
-    cost: "Cost"
-    sell_price: "Sell"
-    supplier: "Supplier"
+
   products:
     hint_desc: "eg: SATA 500 GB Hard Drive"
-    hint_model: "WD5000S"
-    hint_manuf: "Western Digital"
+    hint_model: "eg: WD5000S"
+    hint_manuf: "eg: Western Digital"
     manufacturer: "Manufacturer"
     t_title: "Products"
-    t_add_new: "New Product"
+    t_add_new: "Add New Product"
     hint_tax_rate: "Tax %. eg 10 would be 10% tax"
     cost: "Cost Price"
     sell: "Sell Price"
@@ -332,10 +328,21 @@ en_AU:
     category: "Product Category"
     supplier: "Supplier Name"
     supplier_sku: "Supplier SKU#"
-    cost_price: "Cost Price"
+    cost_price: "Purchase/Cost Price"
     sell_price: "Selling Price"
     hint:
       category: "Simply start typing to select from an existing Category, if no category exists it will automatically create a new one for you."
+      our_sku: "aka : Product Number, Part Number, Item Number, etc"
+      stocking_qty: "Stock Qty to keep."
+    model: "Model #"
+    stocking_qty: "Stocking Qty"
+    tax_rate: "Tax Rate"
+    discountable: "Is Discountable?"
+    disc_amount: "Discount Amount"
+    disc_percent: "Discount Percentage"
+    warranty_info: "Warranty Information"
+    warranty_length: "Warranty Cover Length"
+    warranty_units: "Warranty Length Units"
   product_cat:
     t_new_category: "New Product Category"
     t_create_new_category: "Create New Product Category"
@@ -380,9 +387,10 @@ en_AU:
       paymate: "Paymate"
       direct_deposit: "Direct Deposit"
   user_t_edit_profile: "Edit My Profile"
-  producst:
-    model: "Model#"
+  
   users:
     tab:
       user_type: "User Role"
       user_type_url: "Users_Role"
+  product:
+    taxable: "Is Taxable?"
