@@ -31,23 +31,23 @@ ActiveRecord::Schema.define(:version => 20100823033800) do
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.integer  "tax_rate",            :precision => 10, :scale => 0
-    t.integer  "cost_price",          :precision => 10, :scale => 0
-    t.integer  "sell_price",          :precision => 10, :scale => 0
-    t.integer  "mark_up",             :precision => 10, :scale => 0
+    t.decimal  "tax_rate",            :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "cost_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sell_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "mark_up",             :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "active"
-    t.integer  "weight",              :precision => 10, :scale => 0
+    t.decimal  "weight",              :precision => 10, :scale => 3, :default => 0.0, :null => false
     t.boolean  "discountable"
-    t.integer  "disc_percent",        :precision => 10, :scale => 0
-    t.integer  "disc_amount",         :precision => 10, :scale => 0
+    t.decimal  "disc_percent",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "disc_amount",         :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.integer  "qty_on_hand"
-    t.integer  "qty_allocated"
-    t.integer  "qty_available"
-    t.integer  "qty_ordered"
-    t.integer  "stocking_qty"
+    t.decimal  "qty_on_hand",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_allocated",       :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_available",       :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_ordered",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "stocking_qty",        :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "stocked_product"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20100823033800) do
     t.string   "business_contact_email"
     t.string   "default_from_email"
     t.string   "default_no_reply_email"
+    t.string   "language"
     t.text     "terms_and_conditions"
     t.text     "privacy_policy"
     t.text     "invoice_message"
@@ -85,14 +86,15 @@ ActiveRecord::Schema.define(:version => 20100823033800) do
     t.boolean  "enable_google_calendar"
     t.boolean  "enable_google_maps"
     t.boolean  "enable_paymate"
+    t.boolean  "enable_cash"
     t.boolean  "enable_voucher"
     t.integer  "default_voucher_valid_days"
     t.string   "paymate_username"
     t.string   "paymate_password"
-    t.integer  "paymate_transaction_fee"
+    t.decimal  "paymate_transaction_fee",          :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "enable_paypal"
     t.string   "paypal_username"
-    t.integer  "paypal_transaction_fee"
+    t.decimal  "paypal_transaction_fee",           :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "enable_credit_card"
     t.boolean  "enable_direct_deposit"
     t.string   "direct_deposit_bank_number"
@@ -102,8 +104,9 @@ ActiveRecord::Schema.define(:version => 20100823033800) do
     t.string   "direct_deposit_instructions"
     t.boolean  "enable_cheque"
     t.string   "cheque_payable_to"
-    t.integer  "default_tax"
-    t.integer  "default_tax_name"
+    t.boolean  "enable_tax"
+    t.decimal  "default_tax",                      :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.string   "default_tax_name"
     t.boolean  "business_open_sunday"
     t.boolean  "business_open_monday"
     t.boolean  "business_open_tuesday"
