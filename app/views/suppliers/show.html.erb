@@ -1,10 +1,18 @@
-<!-- todo adjust layout the same as users-->
+<!-- mytodo adjust layout the same as users-->
+<!-- mytodo Add Pagination-->
+<h1><%= t "supplier.t_view" %></h1>
+
+<div id="top_float_right">
+<% if permitted_to? :destroy, Supplier.new %>
+<%= link_to(image_tag("delete.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), @supplier, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
+<% end %>
+<% if permitted_to? :edit, Supplier %>
+<%= link_to(image_tag("edit.png", :title=> (t "global.edit"),:align => "bottom", :hspace => "2"), edit_supplier_path)%><%= link_to (t "global.edit"), edit_supplier_path %>&nbsp;&nbsp;
+<% end %>
+  <%= link_to(image_tag("close.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), suppliers_path)%><%= link_to (t "global.close"), suppliers_path %>
+</div>
+<div id="show_view">
 <table width="100%">
-  <tr>
-    <td colspan="4" align="right">
-        <%= link_to(image_tag('edit.png',:title => [t "global.edit"]), edit_supplier_path) %><%= link_to [t "global.edit"], edit_supplier_path(@supplier) %> | <%= link_to [t "global.back"], suppliers_path %>
-    </td>
-  </tr>
   <tr>
     <td colspan="2" align="right">
       <strong><%= t "supplier.company_name" %>:</strong>
@@ -125,6 +133,9 @@
      <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.notes %></textarea>
     </td>
   </tr>
+  </table>
+  <fieldset id="collapsable">
+  <table>
   <tr>
     <td colspan="2" align="right">
        <h1><%= t "supplier.t_log" %></h1>
@@ -151,4 +162,8 @@
         <% end %>
           </td>
   </tr>
+
 </table>
+    <br>
+  </fieldset>
+    </div>

@@ -1,5 +1,9 @@
-<h1><%= [t "products.t_title"] %></h1><%= link_to(image_tag('add.png',:title => [t "products.t_add_new"]), new_product_path) %><%= link_to [t "products.t_add_new"], new_product_path %>
-  <% form_tag products_path, :method => 'get' do %>
+<h1><%= [t "products.t_title"] %></h1>
+
+<div id="top_float_right">
+  <%= link_to(image_tag('add.png',:title => [t "products.t_add_new"]), new_product_path) %><%= link_to [t "products.t_add_new"], new_product_path %>
+  </div>
+<% form_tag products_path, :method => 'get' do %>
    <p><%= t "products.search"  %>
      <%=  text_field_tag :search_products, params[:search_products]  %>
      <%= submit_tag "Apply", :name => nil %>
@@ -17,10 +21,10 @@
     <th><%= t "supplier.supplier" %></th>
     <th><%= t "supplier.supplier_sku" %></th>
     <th><%= t "products.manufacturer" %></th>
-    <th><%= t "parts.description" %></th>
-    <th><%= t "parts.model" %></th>
-    <th><%= t "parts.cost" %></th>
-    <th><%= t "parts.sell_price" %></th>
+    <th><%= t "global.description" %></th>
+    <th><%= t "products.model" %></th>
+    <th><%= t "products.cost" %></th>
+    <th><%= t "products.sell_price" %></th>
     <th><%= t "products.qoh" %></th>
     <th><%= t "products.allocated" %></th>
     <th><%= t "products.available" %></th>

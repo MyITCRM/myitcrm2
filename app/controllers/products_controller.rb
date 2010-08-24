@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @title = t "products.t_title"
+    @title = t "products.t_add_new"
     @product = Product.new
 
     respond_to do |format|
