@@ -343,6 +343,7 @@ en_AU:
     warranty_info: "Warranty Information"
     warranty_length: "Warranty Cover Length"
     warranty_units: "Warranty Length Units"
+    t_log: "Product Log"
   product_cat:
     t_new_category: "New Product Category"
     t_create_new_category: "Create New Product Category"

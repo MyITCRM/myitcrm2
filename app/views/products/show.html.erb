@@ -1,82 +1,108 @@
-<!--todo add all fields-->
-<table width="100%">
-  <tr>
-    <td colspan="4" align="right">
-        <%= link_to(image_tag('edit.png',:title => [t "global.edit"]), edit_product_path) %><%= link_to [t "global.edit"], edit_product_path(@product) %> | <%= link_to [t "global.back"], products_path %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "parts.supplier" %>:</strong>
-    </td>
-    <td align="left">
-      <%=h @product.supplier.company_name %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.active" %></strong>
-    </td>
-    <td align="left">
-     <%=h @product.active? %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "parts.description" %>:</strong>
-    </td>
-    <td align="left">
-      <%=h @product.description %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "parts.model" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h @product.model %>
-    </td>
-  </tr>
- <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "products.cost" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h number_to_currency(@product.cost_price) %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "products.sell" %>:</strong>
-    </td>
-    <td align="left">
-     <%=h number_to_currency(@product.sell_price) %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-       <h1><%= t "supplier.t_log" %></h1>
-    </td>
-  </tr>
+<!--mytodo -add all fields, -add tabs-->
+<h1><%= t "products.t_title" %></h1>
+<div id="top_float_right">
+  <% if permitted_to? :destroy, Product.new %>
+      <%= link_to(image_tag("delete.png", :title=> (t "global.delete"), :align => "bottom", :hspace => "2"), :confirm => 'Are you sure?', :action => :destroy) %><%= link_to (t "global.delete"), @product, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
+  <% end %>
+  <% if permitted_to? :edit, Product %>
+      <%= link_to(image_tag("edit.png", :title=> (t "global.edit"), :align => "bottom", :hspace => "2"), edit_product_path) %><%= link_to (t "global.edit"), edit_product_path %>&nbsp;&nbsp;
+  <% end %>
+  <%= link_to(image_tag("close.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), products_path) %><%= link_to (t "global.close"), products_path %>
+</div>
 
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t"supplier.date_created" %>:</strong>
-    </td>
-    <td align="left">
-      <%= time_ago_in_words(@product.created_at) %> <%= t "global.ago" %> (<%= localize @product.created_at, :format => :short  %>) <%= t "global.by" %> <%= @product.created_by %>.
-    </td>
-  </tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.last_updated_by" %>:</strong>
-    </td>
-    <td align="left">
-      <% if @product.edited_at == nil %>
-          <%= time_ago_in_words(@product.created_at) %> <%= t "global.ago" %> (<%= localize @product.created_at, :format => :short %>) <%= t "global.by" %> <%= @product.created_by %>.
-        <% else %>
-          <%= time_ago_in_words(@product.edited_at) %> <%= t "global.ago" %> (<%= localize @product.edited_at, :format => :short %>) <%= t "global.by" %> <%= @product.edited_by %>.
-        <% end %>
-          </td>
-  </tr>
-</table>
+
+<div class="tabcontainer">
+<div class="tabcontent">
+  <table width="100%">
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "products.supplier" %>:</strong>
+      </td>
+      <td align="left">
+        <%= h @product.supplier.company_name %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.active" %></strong>
+      </td>
+      <td align="left">
+        <%= h @product.active? %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "global.description" %>:</strong>
+      </td>
+      <td align="left">
+        <%= h @product.description %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "products.model" %>:</strong>
+      </td>
+      <td align="left">
+        <%= h @product.model %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "products.cost" %>:</strong>
+      </td>
+      <td align="left">
+        <%= h number_to_currency(@product.cost_price) %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "products.sell" %>:</strong>
+      </td>
+      <td align="left">
+        <%= h number_to_currency(@product.sell_price) %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "products.sell" %>:</strong>
+      </td>
+      <td align="left">
+        <%= h number_to_currency(@product.sell_price) %>
+      </td>
+    </tr>
+    <tr>
+  </table>
+  <fieldset id="collapsable">
+    <table>
+      <tr>
+        <td colspan="2" align="right">
+          <h1><%= t "products.t_log" %></h1>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">
+          <strong><%= t "supplier.date_created" %>:</strong>
+        </td>
+        <td align="left">
+          <%= time_ago_in_words(@product.created_at) %> <%= t "global.ago" %>
+          (<%= localize @product.created_at, :format => :short %>) <%= t "global.by" %> <%= @product.created_by %>.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">
+          <strong><%= t "global.last_updated_by" %>:</strong>
+        </td>
+        <td align="left">
+          <% if @product.edited_at == nil %>
+              <%= time_ago_in_words(@product.created_at) %> <%= t "global.ago" %>
+              (<%= localize @product.created_at, :format => :short %>) <%= t "global.by" %> <%= @product.created_by %>.
+          <% else %>
+              <%= time_ago_in_words(@product.edited_at) %> <%= t "global.ago" %>
+              (<%= localize @product.edited_at, :format => :short %>) <%= t "global.by" %> <%= @product.edited_by %>.
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+</div>
+</div>

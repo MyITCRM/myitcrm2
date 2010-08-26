@@ -1,12 +1,13 @@
 <h1><%= (t "user_t_edit_profile") %></h1>
 <%= render :partial => 'actions' %>
+<div id="show_view">
 <% semantic_form_for(@user) do |f| %>
     <% f.inputs do %>
     <%= f.input :active , :label => (t "global.active") %>
-    <%= f.input :username , :label => (t "user.username") %>
+    <%= f.input :username ,:input_html => {:autocomplete => 'off'}, :label => (t "user.username") %>
     <%= f.input :name , :label =>(t "user.name_eg") %>
-    <%= f.input :password, :required => true %>
-   <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
+    <%= f.input :password,:input_html => {:autocomplete => 'off'}, :required => true %>
+   <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation"), :required => true %>
    <%= f.input :email, :label => (t "global.email") %>
    <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
    <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
@@ -35,3 +36,4 @@
   </p>
 <% end %>
 <% end %>
+</div>
