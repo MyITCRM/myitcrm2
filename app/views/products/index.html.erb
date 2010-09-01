@@ -36,7 +36,7 @@
 <% @products.each do |product| %>
   <tr align="left" class="<%= cycle :odd, :even %>">
     <td><%=h product.our_sku %></td>
-    <td><%=h product.supplier.company_name %></td>
+    <td><%= link_to(product.supplier.company_name, supplier_path(product.supplier)) %></td>
     <td><%=h product.supplier_sku %></td>
     <td><%=h product.manufacturer %></td>
     <td><%=h product.description %></td>
@@ -46,9 +46,9 @@
     <td><%=h product.qty_on_hand %></td>
     <td><%=h product.qty_allocated %></td>
     <td><%=h product.qty_available %></td>
-    <td><%=h product.qty_ordered %></td>
+    <td><%=link_to(product.qty_ordered, products_path) %></td>
     <td><%=h product.supplier.parts_leadtime_days %></td>
-    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), product )%>
+    <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), product )%>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_product_path(product)) %>
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), product, :confirm => 'Are you sure?', :method => :delete ) %>
     </td>

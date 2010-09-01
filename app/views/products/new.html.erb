@@ -14,7 +14,7 @@
 </div>
 
 <div class="tabcontainer">
-
+  
 <div id="sc1" class="tabcontent">
 <% semantic_form_for @product do |f| %>
   <% f.inputs do %>
@@ -23,11 +23,11 @@
                 <%= f.input :model, :label => (t "products.model"), :hint => (t "products.hint_model") %>
                 <%= f.input :manufacturer, :label => (t "products.manufacturer"), :hint => (t "products.hint_manuf") %>
           <li class="string required">
-            <%= f.label (t "products.category")%>
-            <%= text_field_with_auto_complete :product, :category_name, { :size => 15}, { :url => formatted_product_categories_path(:js), :method => :get, :with => "'search=' + element.value"} %>
+            <%= f.label(t "products.category")%>
+            <%= text_field_with_auto_complete :product, :category_name, { :size => 15}, { :url => product_categories_path(:js), :method => :get, :with => "'search=' + element.value"} %>
             <p class="inline-hints"><%= (t "products.hint.category")  %></p>
           </li>
-                <%= f.input :supplier, :label_method => :company_name, :label => (t "products.supplier")%>
+                <%= f.input :supplier, :label_method => :company_name, :label => (t "products.supplier") %>
                 <%= f.input :supplier_sku,:hint => (t "products.hint.our_sku"), :input_html => {:size => 20} %>
                 <%= f.input :cost_price, :label =>(t "products.cost_price"), :input_html => {:size => 10} %>
                 <%= f.input :sell_price, :label =>(t "products.sell_price"),:input_html => {:size => 10} %>

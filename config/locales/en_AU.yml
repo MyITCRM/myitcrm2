@@ -74,7 +74,7 @@ en_AU:
    active: "Active ?"
    date_created: "Date Created"
    date_updated: "Date Updated"
-   leadtime: "LT days"
+   leadtime: "Delivery Lead-time (Days)"
    flash_create_good: "Supplier was successfully created."
    flash_update_good: "Supplier was successfully updated."
    actions: "Actions"
@@ -395,3 +395,4 @@ en_AU:
       user_type_url: "Users_Role"
   product:
     taxable: "Is Taxable?"
+    new: "Create New Product"

@@ -8,3 +8,34 @@ I was very satisfied after the first use of it. Thinking how this will speed up 
 
 Anyways more to come but in the meantime check out http://team.myitcrm.com for more details
 and the current version of MyIT CRM.
+
+
+Setup database.yml file for development
+<pre>
+# SQLite3 setup - requires gem install
+development:
+  adapter: jdbcsqlite3
+  database: db/dev.db
+
+production:
+  adapter: jdbcsqlite3
+  database: db/pro.db
+  
+# MySQL setup - Fill in your own username and password to access your local database
+production:
+  adapter: jdbcmysql
+  database: test_pro
+  host: localhost
+  username:
+  password:
+  encoding: utf8
+
+development:
+  adapter: jdbcmysql
+  database: test_dev
+  host: localhost
+  username:
+  password:
+  encoding: utf8
+
+</pre>
