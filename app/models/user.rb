@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   #acts_as_authentic
   acts_as_authentic do |c|
       c.logged_in_timeout = 10.minutes # default is 10.minutes
+
   end
 # Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip

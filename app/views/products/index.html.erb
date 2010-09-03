@@ -6,7 +6,7 @@
 <% form_tag products_path, :method => 'get' do %>
    <p><%= t "products.search"  %>
      <%=  text_field_tag :search_products, params[:search_products]  %>
-     <%= submit_tag "Apply", :name => nil %>
+     <%= submit_tag (t "global.submit"), :name => nil %>
 
    </p>
 <% end %>
@@ -25,8 +25,6 @@
     <th><%= t "products.model" %></th>
     <th><%= t "products.cost" %></th>
     <th><%= t "products.sell_price" %></th>
-    <th><%= t "products.qoh" %></th>
-    <th><%= t "products.allocated" %></th>
     <th><%= t "products.available" %></th>
     <th><%= t "products.ordered" %></th>
     <th><%= t "supplier.leadtime" %></th>
@@ -35,7 +33,7 @@
 
 <% @products.each do |product| %>
   <tr align="left" class="<%= cycle :odd, :even %>">
-    <td><%=h product.our_sku %></td>
+    <td><%= link_to(product.our_sku, product) %></td>
     <td><%= link_to(product.supplier.company_name, supplier_path(product.supplier)) %></td>
     <td><%=h product.supplier_sku %></td>
     <td><%=h product.manufacturer %></td>
@@ -43,14 +41,12 @@
     <td><%=h product.model %></td>
     <td><%=h number_to_currency(product.cost_price) %></td>
     <td><%=h number_to_currency(product.sell_price) %></td>
-    <td><%=h product.qty_on_hand %></td>
-    <td><%=h product.qty_allocated %></td>
     <td><%=h product.qty_available %></td>
     <td><%=link_to(product.qty_ordered, products_path) %></td>
     <td><%=h product.supplier.parts_leadtime_days %></td>
     <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), product )%>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_product_path(product)) %>
-        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), product, :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), product, :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>
 <% end %>

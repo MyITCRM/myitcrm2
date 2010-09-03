@@ -12,7 +12,7 @@
     <td><%=h role.name %></td>
     <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), role )%>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_role_path(role) ) %>
-        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), role, :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), role, :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   
   </tr>

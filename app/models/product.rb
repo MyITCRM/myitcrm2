@@ -12,8 +12,6 @@ class Product < ActiveRecord::Base
   def before_create
     self.active ||= "1"
   end
-# Attachments
-#  has_attachment :storage => :file_system, :path_prefix => 'attachments/private'
 
 # Search by 
   def self.search_products(search_products, page)

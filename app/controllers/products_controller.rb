@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 
   def show
     @title = t "products.t_title"
+    @product = Product.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -23,6 +24,7 @@ class ProductsController < ApplicationController
   def new
     @title = t "products.t_add_new"
     @product = Product.new
+
 
     respond_to do |format|
       format.html # new.html.erb
