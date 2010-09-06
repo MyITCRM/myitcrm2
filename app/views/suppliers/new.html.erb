@@ -17,6 +17,7 @@
 <% semantic_form_for @supplier do |f| %>
               <% f.inputs do %>
                 <%= f.input :company_name, :label =>(t "supplier.company_name"), :input_html => {:size => 50} %>
+                <%= f.input :website, :label =>(t "supplier.website"), :input_html => {:size => 50} %>
                 <%= f.input :contact_name, :label => (t "supplier.contact_name"), :input_html => {:size => 50} %>
                 <%= f.input :contact_phone, :label => (t "supplier.contact_phone"), :input_html => {:size => 25} %>
                 <%= f.input :address, :label => (t "global.address"), :input_html => {:rows => 5} %>

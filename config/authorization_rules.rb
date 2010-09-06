@@ -1,4 +1,5 @@
 authorization do
+# myTODO - check to ensure all modules and controllers have filter_accesable on
   role :administrator do
     has_permission_on [:suppliers, :users, :products, :product_categories, :settings], :to => [:index, :show, :new, :create, :edit, :update, :destroy, :edit_profile, :update_profile,]
   
@@ -15,6 +16,10 @@ authorization do
   end
   role :client do
     includes :guest
+    has_permission_on :workorders, :to => :create
+    has_permission_on :workorders, :to => [:edit, :index, :update, :show] do
+     if_attribute  :user => is { user }
+    end
     has_permission_on :users, :to => [:edit_profile, :update_profile, :show]
     has_permission_on :users, :to => [:edit_profile, :update_profile]  do
       if_attribute  :user => is { user }

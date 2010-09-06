@@ -1,0 +1,19 @@
+<h1>New priority_list</h1>
+
+<% form_for(@priority_list) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :priority_id %><br />
+    <%= f.text_field :priority_id %>
+  </p>
+  <p>
+    <%= f.label :priority_name %><br />
+    <%= f.text_field :priority_name %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', priority_lists_path %>

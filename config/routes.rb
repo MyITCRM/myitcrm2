@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :statuses
+
+  map.resources :priority_lists
+
+  map.resources :work_orders
+
   map.admin "admin", :controller => "settings", :action => "edit", :id => 1
   map.resources :settings
   map.resources :product_categories

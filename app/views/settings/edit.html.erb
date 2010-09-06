@@ -10,9 +10,9 @@
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
     <li><a href="#<%= t "settings.tab.billing_information_url" %>" rel="sc2"><%= t "settings.tab.billing_information" %></a></li>
-    <li><a href="#<%= t "settings.tab.payment_options_url" %>" rel="sc3"><%= t "settings.tab.payment_options" %></a>
-    </li>
-    <li><a href="#<%= t "settings.tab.localisation_url" %>" rel="sc4"><%= t "settings.tab.localisation_url" %></a></li>
+    <li><a href="#<%= t "settings.tab.payment_options_url" %>" rel="sc3"><%= t "settings.tab.payment_options" %></a></li>
+    <li><a href="#<%= t "settings.tab.priority_fields_url" %>" rel="sc4"><%= t "settings.tab.priority_fields_options" %></a></li>
+    <li><a href="#<%= t "settings.tab.localisation_url" %>" rel="sc5"><%= t "settings.tab.localisation_url" %></a></li>
   </ul>
 </div>
 
@@ -93,6 +93,19 @@
   </div>
 
   <div id="sc4" class="tabcontent">
+    <% fields_for(@priority_list) do |f| %>
+
+  <p>
+    <%= f.label :priority_name %><br />
+    <%= f.text_field :priority_name %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+  </div>
+<div id="sc5" class="tabcontent">
     <% semantic_form_for(@setting) do |f| %>
         <% f.inputs do %>
             <%= f.input :language, :as => :select, :collection => ["en_AU", "en_US"] %>

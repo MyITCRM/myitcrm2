@@ -2,6 +2,8 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en_AU:
+  formtastic:
+    submit: "Submit"
      
   global:
     program_name: "MyIT CRM"
@@ -89,6 +91,7 @@ en_AU:
    tab:
      other: "Other"
      basic: "Basic"
+   website: "Website"
   user:
      t_new_user: "New User Registration"
      username: "Username"
@@ -358,6 +361,8 @@ en_AU:
       billing_information: "Billing Information"
       billing_information_url: "Billing_Information"
       localisation_url: "Localisation"
+      priority_fields_url: "Priority_Values"
+      priority_fields_options: "Priority Values"
     hint:
       business_number: "eg: ACN, ABN, etc"
       transaction_fee: "eg: 3% of total invoice amount"
@@ -397,3 +402,5 @@ en_AU:
   product:
     taxable: "Is Taxable?"
     new: "Create New Product"
+  status:
+    new: "New"

@@ -1,0 +1,13 @@
+<p>
+  <b>Priority:</b>
+  <%=h @priority_list.priority_id %>
+</p>
+
+<p>
+  <b>Priority name:</b>
+  <%=h @priority_list.priority_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_priority_list_path(@priority_list) %> |
+<%= link_to 'Back', priority_lists_path %>

@@ -1,0 +1,22 @@
+<h1>Listing priority_lists</h1>
+
+<table>
+  <tr>
+    <th>Priority</th>
+    <th>Priority name</th>
+  </tr>
+
+<% @priority_lists.each do |priority_list| %>
+  <tr>
+    <td><%=h priority_list.priority_id %></td>
+    <td><%=h priority_list.priority_name %></td>
+    <td><%= link_to 'Show', priority_list %></td>
+    <td><%= link_to 'Edit', edit_priority_list_path(priority_list) %></td>
+    <td><%= link_to 'Destroy', priority_list, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New priority_list', new_priority_list_path %>
