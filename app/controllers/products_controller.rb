@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
   filter_resource_access
+  helper_method :sort_column, :sort_direction
+
   def index
     @title = t "products.t_title"
-    @products = Product.paginate :page => params[:page], :order => 'our_sku DESC', :per_page => 50
-    @products = Product.search_products(params[:search_products], params[:page])
+    @products = Product.paginate :page => params[:page], :order => sort_column+ " " +sort_direction, :per_page => 50
+    @products = Product.search_products(params[:search_products], params[:page], sort_column, sort_direction )
+
     
     respond_to do |format|
       format.html # index.html.erb
@@ -79,6 +82,16 @@ class ProductsController < ApplicationController
       format.html { redirect_to(products_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def sort_column
+   Product.column_names.include?(params[:sort]) ? params[:sort] : "our_sku"
+  end
+
+  def sort_direction
+   %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "ASC"
   end
 end
   

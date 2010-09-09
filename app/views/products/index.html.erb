@@ -17,16 +17,16 @@
 
 <table id="index_table" >
   <tr>
-    <th><%= t "supplier.our_sku" %></th>
-    <th><%= t "supplier.supplier" %></th>
-    <th><%= t "supplier.supplier_sku" %></th>
+    <th><%= sortable "our_sku", [t "supplier.our_sku"] %></th>
+    <th><%= sortable "supplier_id", [t "supplier.supplier"] %></th>
+    <th><%= sortable "supplier_sku", [t "supplier.supplier_sku"] %></th>
     <th><%= t "products.manufacturer" %></th>
     <th><%= t "global.description" %></th>
     <th><%= t "products.model" %></th>
-    <th><%= t "products.cost" %></th>
-    <th><%= t "products.sell_price" %></th>
-    <th><%= t "products.available" %></th>
-    <th><%= t "products.ordered" %></th>
+    <th><%= sortable "cost_price", [t "products.cost"] %></th>
+    <th><%= sortable "sell_price", [t "products.sell_price"] %></th>
+    <th><%= sortable "qty_available", [t "products.available"] %></th>
+    <th><%= sortable "qty_ordered",  [t "products.ordered"] %></th>
     <th><%= t "supplier.leadtime" %></th>
     <th><%= t "global.actions" %></th>
   </tr>

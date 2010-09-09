@@ -1,8 +1,14 @@
 class WorkOrdersController < ApplicationController
+  filter_resource_access
   # GET /work_orders
   # GET /work_orders.xml
   def index
     @work_orders = WorkOrder.all
+    @new_work_orders = WorkOrder.find(:all, :conditions => "status_id = 1")
+    @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
+    @on_hold_work_orders = WorkOrder.find(:all, :conditions => "status_id = 3")
+    @pending_work_orders = WorkOrder.find(:all, :conditions => "status_id = 4")
+    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")
 
     respond_to do |format|
       format.html # index.html.erb

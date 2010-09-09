@@ -19,8 +19,24 @@ body {
 }
 #index_table td {
   color: #000000;
-
 }
+#index_table th a {
+  color:#ccccff;
+}
+#index_table th .current {
+    padding-right:14px;
+  background-repeat:no-repeat;
+  background-position: right center;
+}
+
+#index_table th .ASC {
+  background-image:url("/images/arrow_up.png");
+}
+
+#index_table th .DESC {
+  background-image:url("/images/arrow_down.png");
+}
+
 
 a img {
   border: none;
@@ -181,6 +197,16 @@ h6 {
 .odd td {
   background-color: #ffffff;
 }
+#priority_low td {
+  background-color: #ffffff;
+}
+.priority_high td {
+  background-color: #ff9999;
+}
+.priority_critical td {
+  background-color: #cc0033;
+}
+
 #top_float_right {
     text-transform:uppercase;
     padding: 0 0 0 0;

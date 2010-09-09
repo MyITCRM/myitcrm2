@@ -1,20 +1,35 @@
-<h1>Listing work_orders</h1>
+<!-- mytodo - add I18n labels and names-->
 
-<table>
+<h1>Listing work_orders</h1>
+<table id="index_table" >
   <tr>
-    <th>Workorder</th>
+    <th><%= "WO #" %></th>
+    <th><%= "Subject" %></th>
+    <th><%= "Description" %></th>
+    <th><%= "Priority" %></th>
+    <th><%= "Created at" %></th>
+    <th><%= "Created by" %></th>
+    <th><%= "Last Updated" %></th>
+    <th><%= "Actions" %></th>
   </tr>
 
-<% @work_orders.each do |work_order| %>
-  <tr>
-    <td><%=h work_order.workorder_id %></td>
-    <td><%= link_to 'Show', work_order %></td>
-    <td><%= link_to 'Edit', edit_work_order_path(work_order) %></td>
-    <td><%= link_to 'Destroy', work_order, :confirm => 'Are you sure?', :method => :delete %></td>
+
+<% @new_work_orders.each do |new_wo| %>
+      <!--mytodo - add row color shading by css and based on priority-->
+  <tr align="left" class="<%= :css_class %>">
+    <td><%= link_to(new_wo.id, new_wo) %></td>
+    <td><%=h new_wo.subject %></td>
+    <td><%=h new_wo.description %></td>
+    <td><%=h new_wo.priority_list.name %></td>
+    <td><%=h new_wo.created_at %></td>
+    <td><%=h new_wo.created_by %></td>
+    <td><%=h new_wo.updated_at %></td>
+    <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(new_wo.id)) %>
+        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), work_order_path(new_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New work_order', new_work_order_path %>
