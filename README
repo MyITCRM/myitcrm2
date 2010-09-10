@@ -11,7 +11,7 @@ and the current version of MyIT CRM.
 
 
 Setup database.yml file for development
-<pre>
+
 # SQLite3 setup - requires gem install
 development:
   adapter: jdbcsqlite3
@@ -38,4 +38,3 @@ development:
   password:
   encoding: utf8
 
-</pre>
