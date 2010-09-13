@@ -77,6 +77,20 @@ class WorkOrdersController < ApplicationController
       end
     end
   end
+def close
+    @work_order = WorkOrder.find(params[:id])
+
+    respond_to do |format|
+      if @work_order.update_attributes(params[:work_order])
+        flash[:notice] = 'WorkOrder was successfully Closed.'
+        format.html { redirect_to(@work_orders) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "index" }
+        format.xml  { render :xml => @work_order.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /work_orders/1
   # DELETE /work_orders/1.xml

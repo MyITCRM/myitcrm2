@@ -197,10 +197,16 @@ h6 {
 .odd td {
   background-color: #ffffff;
 }
-#priority_low td {
-  background-color: #ffffff;
+.priority_low td {
+  background-color: #ccffcc;
+}
+.priority_normal td {
+  background-color: #ffff99;
 }
 .priority_high td {
+  background-color: #ffcc00;
+}
+.priority_urgent td {
   background-color: #ff9999;
 }
 .priority_critical td {

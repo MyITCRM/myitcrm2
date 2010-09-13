@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :priority_lists
 
-  map.resources :work_orders
+  map.resources :work_orders, :collection => { :close => :put }
 
   map.admin "admin", :controller => "settings", :action => "edit", :id => 1
   map.resources :settings
@@ -17,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   map.signup "signup", :controller => "users", :action => "new"
   map.profile "profile/:id", :controller => "users", :action => "edit_profile"
+  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
 
   # The priority is based upon order of creation: first created -> highest priority.
 

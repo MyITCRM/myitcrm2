@@ -143,8 +143,41 @@ en_AU:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
+#      Format meaning:
+#
+#        %a - The abbreviated weekday name (``Sun'')
+#        %A - The  full  weekday  name (``Sunday'')
+#        %b - The abbreviated month name (``Jan'')
+#        %B - The  full  month  name (``January'')
+#        %c - The preferred local date and time representation
+#        %d - Day of the month (01..31)
+#        %H - Hour of the day, 24-hour clock (00..23)
+#        %I - Hour of the day, 12-hour clock (01..12)
+#        %j - Day of the year (001..366)
+#        %m - Month of the year (01..12)
+#        %M - Minute of the hour (00..59)
+#        %p - Meridian indicator (``AM''  or  ``PM'')
+#        %S - Second of the minute (00..60)
+#        %U - Week  number  of the current year,
+#                starting with the first Sunday as the first
+#                day of the first week (00..53)
+#        %W - Week  number  of the current year,
+#                starting with the first Monday as the first
+#                day of the first week (00..53)
+#        %w - Day of the week (Sunday is 0, 0..6)
+#        %x - Preferred representation for the date alone, no time
+#        %X - Preferred representation for the time alone, no date
+#        %y - Year without a century (00..99)
+#        %Y - Year with century
+#        %Z - Time zone name
+#        %% - Literal ``%'' character
+#
+#         t = Time.now
+#         t.strftime("Printed on %m/%d/%Y")   #=> "Printed on 04/09/2003"
+#         t.strftime("at %I:%M%p")            #=> "at 08:56AM"
+
       default: "%d/%m/%Y"
-      short: "%b %d"
+      short: "%d %m %y"
       long: "%B %d, %Y"
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
@@ -158,11 +191,12 @@ en_AU:
 
   time:
     formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
-      short: "%d/%m/%Y %H:%M "
+      default: "%a, %d %b %Y %H:%M:%S"
+      short: "%d/%m/%Y"
+      medium: "%d/%m/%Y @ %I:%M %p"
       long: "%B %d, %Y %H:%M"
-    am: "am"
-    pm: "pm"
+    am: "AM"
+    pm: "PM"
   number:
     # Used in number_with_delimiter()
     # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
@@ -404,3 +438,11 @@ en_AU:
     new: "Create New Product"
   status:
     new: "New"
+  workorder:
+    tab_menu_basic_name: "Work_Order_Information"
+    tab_menu_basic: "Work Order Information"
+    subject: "Brief Description"
+    details: "Details"
+    priority: "Priority"
+    tab_menu_resolution: "Resolution"
+    resolution: "Resolution Details"

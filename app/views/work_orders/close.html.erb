@@ -1,0 +1,27 @@
+<h1>Close Work Order</h1>
+
+<div id="top_float_right">
+   <%= link_to(image_tag('close.png', :title => [t "global.close"]), work_orders_path) %>&nbsp;<%= link_to([t "global.close"], work_orders_path) %><%= link_to(image_tag('close.png', :title => [t "global.close"]), close_workorder_path) %>&nbsp;<%= link_to([t "global.close"], close_workorder_path) %>
+</div>
+
+<div id="ddtabs1" class="basictab">
+<ul>
+<li><a href="#<%= t "workorder.tab_menu_resolution"  %>" rel="sc2"><%= (t "workorder.tab_menu_resolution") %></a></li>
+</ul>
+</div>
+
+<div class="tabcontainer">
+
+<div id="sc2" class="tabcontent">
+
+<% semantic_form_for(@work_order) do |f| %>
+      <% f.inputs do %>
+        <%= f.input :resolution, :label => (t "workorder.resolution") %>
+        <%= f.input :closed, :label => (t "workorder.details") %>
+        <%= f.input :closed_by, :as => :hidden, :input_html => {:value =>  current_user.user_id} %>
+        <%= f.input :closed_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+      <% end %>
+<%= f.buttons %>
+<% end %>
+</div>
+</div>
