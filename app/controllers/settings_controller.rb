@@ -35,6 +35,7 @@ class SettingsController < ApplicationController
   def edit
     @title = "Admin"
     @setting = Setting.find(params[:id])
+    @priority_list = PriorityList.all
   end
 
   # PUT /settings/1

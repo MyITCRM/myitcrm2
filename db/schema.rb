@@ -208,7 +208,6 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
   end
 
   create_table "work_orders", :force => true do |t|
-    t.integer  "workorder_id"
     t.string   "subject"
     t.text     "description"
     t.integer  "note_id"

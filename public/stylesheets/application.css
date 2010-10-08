@@ -15,7 +15,7 @@ body {
 #index_table th {
   color: #ffffff;
   background-color: #4B7399;
-    
+
 }
 #index_table td {
   color: #000000;
@@ -48,7 +48,7 @@ a img {
 #show_view {
   border: 1px solid #999999;
   background-color: #edf2f6;
-  padding:10px 10px 10px 10px; 
+  padding:10px 10px 10px 10px;
 }
 
 #show_view table {
@@ -70,7 +70,7 @@ a img {
   padding: 20px 40px 20px 40px;
   /*border: solid 1px black;*/
   text-align:left;
-  
+
 }
 #yield {
   margin: 0 auto;
@@ -78,7 +78,7 @@ a img {
 #yield h1 {
   font-size:16px;
   text-decoration:underline;
-  color: #000099;  
+  color: #000099;
 }
 h6 {
   width: 95%;
@@ -89,12 +89,12 @@ h6 {
 
 #menu {
   width: 100%;
-    float:left; 
+    float:left;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
-  
+
 }
 #flash_notice, #flash_error {
   padding: 4px 30px 4px 30px;
@@ -104,7 +104,7 @@ h6 {
 #flash_notice {
   background: url(/images/tick.png) 8px 5px no-repeat #CFC;
   border: solid 2px #6C6;
-  font-weight:bold;  
+  font-weight:bold;
 }
 
 #flash_error {
@@ -172,7 +172,7 @@ h6 {
 
 #footer {
     width:100%;
-    float:left; 
+    float:left;
     color: #FFF;
     text-align: center;
     padding: 4px 0;
@@ -219,7 +219,7 @@ h6 {
     font-size:11px;
     float:right;
     margin-top:-30px;
-    
+
 }
 #top_float_left {
     float:left;
@@ -323,7 +323,7 @@ display: inline-block;
 color: white;
 }
 .menu ul li   {
-color:aquamarine;    
+color:aquamarine;
 }
 
 .menu ul li a:hover{
@@ -377,3 +377,4 @@ fieldset#filters table { border-collapse: collapse; }
 fieldset#filters table td { padding: 0; vertical-align: middle; }
 fieldset#filters tr.filter { height: 2em; }
 fieldset#filters td.add-filter { text-align: right; vertical-align: top; }
+

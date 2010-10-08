@@ -1,8 +1,63 @@
-<p>
-  <b>Workorder:</b>
-  <%=h @work_order.workorder_id %>
-</p>
+<h1>Work Order</h1>
 
+<div id="top_float_right">
+<% if permitted_to? :destroy, WorkOrder.new %>
+<%= link_to(image_tag("trash.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
+<% end %>
+<% if permitted_to? :edit, WorkOrder %>
+<%= link_to(image_tag("edit.png", :title=> (t "global.edit"),:align => "bottom", :hspace => "2"), edit_work_order_path)%><%= link_to (t "global.edit"), edit_work_order_path %>&nbsp;&nbsp;
+<% end %>
+  <%= link_to(image_tag("close.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), work_orders_path)%><%= link_to (t "global.close"), work_orders_path %>
+</div>
+<div id="show_view">
+<table width="100%">
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "supplier.company_name" %>:</strong>
+    </td>
+    <td align="left">
+      <%=h @work_order.description%>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "supplier.company_name" %>:</strong>
+    </td>
+    <td align="left">
+      <%=h @work_order.status%>
+    </td>
+  </tr>
+  </table>
+    <fieldset id="collapsable">
+  <table>
+  <tr>
+    <td colspan="2" align="right">
+       <h1>Log</h1>
+    </td>
+  </tr>
 
-<%= link_to 'Edit', edit_work_order_path(@work_order) %> |
-<%= link_to 'Back', work_orders_path %>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t"supplier.date_created" %>:</strong>
+    </td>
+    <td align="left">
+      <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.created_by %>.
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" align="right">
+      <strong><%= t "global.last_updated_by" %>:</strong>
+    </td>
+    <td align="left">
+      <% if @work_order.updated_at == nil %>
+          <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short %>) <%= t "global.by" %> <%= @work_order.created_by %>.
+        <% else %>
+          <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short %>) <%= t "global.by" %> <%= @work_order.created_by %>.
+        <% end %>
+          </td>
+  </tr>
+
+</table>
+    <br>
+  </fieldset>
+    </div>

@@ -18,18 +18,21 @@
 <% semantic_form_for(@work_order) do |f| %>
       <% f.inputs do %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
-        <%= f.input :description, :label => (t "workorder.details") %>
+        <%= f.input :status, :label => (t "workorder.subject") %>
+        <%= f.input :description, :label => (t "workorder.details")%>
         <%= f.input :priority_list, :label => (t "workorder.priority") %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.id} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
       <% end %>
 <%= f.buttons %>
+
 <% end %>
 </div>
 <div id="sc2" class="tabcontent">
 
 <% semantic_form_for(@work_order) do |f| %>
       <% f.inputs do %>
+        <%= f.input :resolution, :label => (t "workorder.resolution")%>
         <%= f.input :resolution, :label => (t "workorder.resolution") %>
         <%= f.input :closed, :label => (t "workorder.details") %>
         <%= f.input :priority_list, :label => (t "workorder.priority") %>

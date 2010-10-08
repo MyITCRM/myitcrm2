@@ -1,9 +1,10 @@
 class WorkOrdersController < ApplicationController
-  filter_resource_access
+filter_resource_access
   # GET /work_orders
   # GET /work_orders.xml
   def index
     @work_orders = WorkOrder.all
+    @created_by_name = User.find(:all, :conditions => "id = #{:created_by}")
     @new_work_orders = WorkOrder.find(:all, :conditions => "status_id = 1")
     @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
     @on_hold_work_orders = WorkOrder.find(:all, :conditions => "status_id = 3")
@@ -21,10 +22,7 @@ class WorkOrdersController < ApplicationController
   def show
     @work_order = WorkOrder.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @work_order }
-    end
+
   end
 
   # GET /work_orders/new

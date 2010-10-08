@@ -1,16 +1,29 @@
 <h1>New work_order</h1>
 <!--mytodo - heaps to fix up here....add tabs and all fields required. Also i18n labels and headings-->
 
-<% semantic_form_for @work_order do |f| %>
-   <% f.inputs do %>
-        <%= f.input :subject %>
-        <%= f.input :description %>
-        <%= f.input :resolution %>
-        <%= f.input :priority_list, :include_blank => false  %>
-        <%= f.input :status, :include_blank => false %>
-        <%= f.input :closed %>
-   <% end %>
-   <%= f.buttons %>
-<% end %>
+<div id="ddtabs1" class="basictab">
+<ul>
+<li><a href="#<%= t "workorder.tab_menu_basic_name"  %>" rel="sc1"><%= (t "workorder.tab_menu_basic") %></a></li>
+</ul>
+</div>
 
-<%= link_to 'Back', work_orders_path %>
+<div class="tabcontainer">
+
+<div id="sc1" class="tabcontent">
+
+<% semantic_form_for(@work_order) do |f| %>
+      <% f.inputs do %>
+        <%= f.input :subject, :label => (t "workorder.subject") %>
+        <%= f.input :description, :label => (t "workorder.details")%>
+        <%= f.input :priority_list, :label => (t "workorder.priority") %>
+        <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.id} %>
+        <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.id} %>
+        <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+      <% end %>
+<%= f.buttons %>
+
+<% end %>
+</div>
+
+
+</div>
