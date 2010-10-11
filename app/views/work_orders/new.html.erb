@@ -1,4 +1,4 @@
-<h1>New work_order</h1>
+<h1>New work_order for <%= @user_id.username %></h1>
 <!--mytodo - heaps to fix up here....add tabs and all fields required. Also i18n labels and headings-->
 
 <div id="ddtabs1" class="basictab">
@@ -13,11 +13,12 @@
 
 <% semantic_form_for(@work_order) do |f| %>
       <% f.inputs do %>
+        <%= f.input :user_id, :as => :hidden ,:input_html => {:value => @user_id.id } %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.input :description, :label => (t "workorder.details")%>
         <%= f.input :priority_list, :label => (t "workorder.priority") %>
-        <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.id} %>
-        <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.id} %>
+        <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+        <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
       <% end %>
 <%= f.buttons %>

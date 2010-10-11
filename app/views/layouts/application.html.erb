@@ -23,11 +23,17 @@ ddtabmenu.definemenu("ddtabs1", 0) //initialize Tab Menu with ID "ddtabs1" and s
   <!--<div id="right_bar">
   </div>-->
   <div id="yield">
-    <p>
-      <%- flash.each do |name, msg| -%>
+
+     <%- flash.each do |name, msg| -%>
+        <p>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%- end -%>
-    </p>
+      </p>
+    <%- end -%>
+
+    <div id="top_float_right">
+     <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
+    </div>
+
     <%= yield %>
   </div>
 

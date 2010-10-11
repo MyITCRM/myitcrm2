@@ -52,7 +52,7 @@
       <% if @work_order.updated_at == nil %>
           <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short %>) <%= t "global.by" %> <%= @work_order.created_by %>.
         <% else %>
-          <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short %>) <%= t "global.by" %> <%= @work_order.created_by %>.
+          <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short %>) <%= t "global.by" %> <%= @work_order.edited_by %>.
         <% end %>
           </td>
   </tr>

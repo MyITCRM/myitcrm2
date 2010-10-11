@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
       c.logged_in_timeout = 10.minutes # default is 10.minutes
 
   end
+
+  has_many :work_orders
+  belongs_to :setting
 # Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
 
@@ -21,7 +24,7 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
   # Client = 32
   # Guest = 64
 
-  ROLES = %w[administrator manager technician accounts clerk client guest]
+  ROLES = %w[Administrator Manager Technician Accounts Clerk Client Guest]
   
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
@@ -41,7 +44,7 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
   end
  
   def self.search(search, page)
-      paginate :per_page => 5, :page => page,
+      paginate :per_page => 20, :page => page,
                           :conditions => ['name LIKE  ?', "%#{search}%"],
                           :order => 'id'
    end

@@ -32,23 +32,26 @@
     <td><%=h user.name %></td>
     <td><%=h user.username %></td>
     <td><%= auto_link_email_addresses( user.email ) %></td>
-    <td><%=h user.role_symbols %></td>
+    <td><%=h  user.role_symbols %></td>
     <td><%=h user.phone %></td>
     <td><%=h user.mobile %></td>
     <td><%=h user.active %></td>
     <td>
       <% if permitted_to? :show, User.new  %>
-          <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
-      <% end %>
+          <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%> &nbsp;|&nbsp;
+          <%= link_to(image_tag('brick_add.png', :title => [t "global.workorder"]), new_work_order_url(:clients_id => user.id, :clients_name => user.username) )%>
+      <% end %> &nbsp;|&nbsp;
       <% if current_user.roles_mask < user.roles_mask or current_user.id == @user.id %>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path(user) ) %>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path(user) ) %>&nbsp;|&nbsp;
       <% end %>
+
       <% if permitted_to? :destroy, User.new  %>
-        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
       <% end %>
           </td>
   </tr>
 <% end %>
 </table>
-
-<br />
+<!--
+ per_page => 5
+<br />Per Page :<%= link_to("1",  :controller => "users", :action => "index",:page =>"1", :per_page => "1") %>-->

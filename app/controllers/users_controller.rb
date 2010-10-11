@@ -3,11 +3,12 @@ class UsersController < ApplicationController
  def new
     @title = t "user.t_new_user"
     @user = User.new
-  end
+     end
 
   def index
     @title = t "user.t_title"
     @user = User.search(params[:search], params[:page])
+    @setting = Setting.find(:all)
  end
 
    def show
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
     @title = t "user.t_new_user"
     if @user.save
       flash[:notice] = t "user.flash_new_success"
-      redirect_to root_url
+      redirect_to users_path
     else
       render :action => "new"
     end

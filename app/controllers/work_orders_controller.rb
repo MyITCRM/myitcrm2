@@ -4,12 +4,12 @@ filter_resource_access
   # GET /work_orders.xml
   def index
     @work_orders = WorkOrder.all
-    @created_by_name = User.find(:all, :conditions => "id = #{:created_by}")
     @new_work_orders = WorkOrder.find(:all, :conditions => "status_id = 1")
     @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
     @on_hold_work_orders = WorkOrder.find(:all, :conditions => "status_id = 3")
     @pending_work_orders = WorkOrder.find(:all, :conditions => "status_id = 4")
     @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,6 +29,7 @@ filter_resource_access
   # GET /work_orders/new.xml
   def new
     @work_order = WorkOrder.new
+    @user_id = User.find(params[:clients_id])
 
 
     respond_to do |format|

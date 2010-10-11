@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
   end
 
   create_table "work_orders", :force => true do |t|
+    t.integer  "workorder_id"
     t.string   "subject"
     t.text     "description"
     t.integer  "note_id"
@@ -215,15 +216,15 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.integer  "attachment_id"
     t.integer  "schedule_id"
     t.boolean  "closed"
-    t.integer  "closed_by"
+    t.string   "closed_by"
     t.datetime "closed_date"
     t.text     "resolution"
     t.integer  "user_id"
     t.integer  "assigned_to"
     t.integer  "priority_list_id"
     t.integer  "status_id"
-    t.integer  "created_by"
-    t.integer  "edited_by"
+    t.string   "created_by"
+    t.string   "edited_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

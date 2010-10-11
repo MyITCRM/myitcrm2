@@ -56,6 +56,7 @@ en_AU:
     description: "Description"
     expired_session: "Your session has expired. Please log back in."
     apply: "Apply"
+    workorder: "Create Work Order"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -447,3 +448,4 @@ en_AU:
     tab_menu_resolution: "Resolution"
     resolution: "Resolution Details"
     t_add_new: "Add New"
+    status: "Status"

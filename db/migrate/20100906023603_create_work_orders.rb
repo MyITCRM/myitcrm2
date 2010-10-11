@@ -9,15 +9,15 @@ class CreateWorkOrders < ActiveRecord::Migration
       t.integer :attachment_id
       t.integer :schedule_id
       t.boolean :closed
-      t.integer :closed_by
+      t.string :closed_by
       t.datetime :closed_date
       t.text :resolution
       t.integer :user_id
-      t.integer :assigned_to
+      t.string :assigned_to
       t.integer :priority_list_id
       t.integer :status_id
-      t.integer :created_by
-      t.integer :edited_by
+      t.string :created_by
+      t.string :edited_by
 
       t.timestamps
     end

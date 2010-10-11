@@ -3,6 +3,7 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :status
   belongs_to :user
 
+
   def before_create
     self.created_at ||= Time.now
     self.status_id ||= 1
