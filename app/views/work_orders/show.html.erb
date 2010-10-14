@@ -13,18 +13,26 @@
 <table width="100%">
   <tr>
     <td colspan="2" align="right">
-      <strong><%= t "supplier.company_name" %>:</strong>
+      <strong><%= t "workorder.subject" %>:</strong>
     </td>
     <td align="left">
-      <%=h @work_order.description%>
+      <%= @work_order.subject%>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="right">
-      <strong><%= t "supplier.company_name" %>:</strong>
+      <strong><%= t "workorder.details" %>:</strong>
     </td>
     <td align="left">
-      <%=h @work_order.status%>
+      <%= @work_order.description%>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <strong><%= t "workorder.status" %>:</strong>
+    </td>
+    <td align="left">
+      <%=h @work_order.status.name%>
     </td>
   </tr>
   </table>

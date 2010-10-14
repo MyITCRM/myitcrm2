@@ -33,9 +33,9 @@
             <%= f.text_field :supplier, :value => params[:supplier_name], :disabled => true  %>
             <%= f.input :supplier_id, :as => :hidden, :input_html => {:value =>  params[:supplier_id]}   %>
             </li>
-              
               <% else %>
-          <%= f.input :supplier, :label_method => :company_name, :label => (t "products.supplier") %>
+              <li><%= f.label(t "supplier.t_add_new_supplier")%><%= link_to(image_tag('add.png', :title => [t "global.new"]), new_supplier_path) %></li>
+               <%= f.input :supplier, :label_method => :company_name, :label => (t "products.supplier") %>
              <% end %>
                 <%= f.input :supplier_sku, :label =>(t "products.supplier_sku"),:hint => (t "products.hint.our_sku"), :input_html => {:size => 20} %>
                 <%= f.input :cost_price, :label =>(t "products.cost_price"), :input_html => {:size => 10} %>

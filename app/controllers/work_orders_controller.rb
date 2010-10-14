@@ -1,7 +1,8 @@
 class WorkOrdersController < ApplicationController
 filter_resource_access
-  # GET /work_orders
-  # GET /work_orders.xml
+# Only load tinyMCE for the defined methods list
+#uses_tiny_mce :only => [:new, :create, :edit, :update]
+
   def index
     @work_orders = WorkOrder.all
     @new_work_orders = WorkOrder.find(:all, :conditions => "status_id = 1")
