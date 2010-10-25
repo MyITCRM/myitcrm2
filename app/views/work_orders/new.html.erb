@@ -17,7 +17,7 @@
         <%= f.input :user_id, :as => :hidden ,:input_html => {:value => @user_id.id } %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.input :description, :label => (t "workorder.details"), :input_html => {:class => "mceEditor", :width => "150"}%>
-        <%= f.input :priority_list, :label => (t "workorder.priority") %>
+        <%= f.input :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
