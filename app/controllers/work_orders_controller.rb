@@ -9,7 +9,7 @@ filter_resource_access
     @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
     @on_hold_work_orders = WorkOrder.find(:all, :conditions => "status_id = 3")
     @pending_work_orders = WorkOrder.find(:all, :conditions => "status_id = 4")
-    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")
+    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")     
     
 
     respond_to do |format|
