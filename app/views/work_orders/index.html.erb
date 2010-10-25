@@ -6,7 +6,7 @@
   <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"]), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
 </div>
 <div id=index_table>
-<table>
+<table width="100%">
   <tr>
     <th><%= "WO #" %></th>
     <th><%= "Client" %></th>
@@ -45,13 +45,13 @@
       <% end %>
       <% end %>
        >
-    <td><%= link_to(new_wo.id, new_wo) %></td>
-    <td><%= link_to(new_wo.user.username, user_path(new_wo.user_id)) %></td>
+    <td align="center"><%= link_to(new_wo.id, new_wo) %></td>
+    <td align="center"><%= link_to(new_wo.user.username, user_path(new_wo.user_id)) %></td>
     <td><%=h new_wo.subject %></td>
     <td><%=h new_wo.description %></td>
-    <td><%=h new_wo.priority_list.name %></td>
+    <td align="center"><%=h new_wo.priority_list.name %></td>
     <td><%=h l new_wo.created_at, :format => :medium %></td>
-    <td><%=h new_wo.created_by %></td>
+    <td align="center"><%=h new_wo.created_by %></td>
     <td><%=h l new_wo.updated_at, :format => :medium %></td>
 
     <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>
@@ -65,7 +65,7 @@
 <br>
 <br>
 <h1>Assigned Work Orders</h1>
-<table >
+<table width="100%" >
   <tr>
     <th><%= "WO #" %></th>
     <th><%= "Client" %></th>
@@ -108,7 +108,7 @@
       <% end %>
        >
     <td><%= link_to(assigned_wo.id, assigned_wo) %></td>
-    <td><%= link_to(assigned_wo.user_id, assigned_wo) %></td>
+    <td><%= link_to(assigned_wo.user.username, user_path(assigned_wo.user_id)) %></td>
     <td><%=h assigned_wo.subject %></td>
     <td><%=h assigned_wo.description %></td>
     <td><%=h assigned_wo.priority_list.name %></td>
