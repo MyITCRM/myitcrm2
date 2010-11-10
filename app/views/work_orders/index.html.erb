@@ -1,11 +1,11 @@
 <!-- mytodo - add I18n labels and names-->
- <h1>Work Orders</h1>
+ <h1><%= t "workorder.t_workorders" %></h1>
 <div id="top_float_right">
   <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"]), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
 </div>
 <div id="ddtabs1" class="basictab" >
 <ul>
-<li><a href="#new" rel="sc1">New</a></li>
+<li><a href="#new" rel="sc1"><%= t "workorder.tab_menu_new" %></a></li>
 <li><a href="#assigned" rel="sc2">Assigned</a></li>
 <li><a href="#on_hold" rel="sc3">On Hold</a></li>
 <li><a href="#closed" rel="sc4">Closed</a></li>
@@ -15,7 +15,6 @@
 <div class="tabcontainer">
 
 <div id="sc1" class="tabcontent"  style="padding:10px 10px 10px 10px">
-<h1>New Work Orders</h1>
 <table>
   <tr>
     <th><%= "WO #" %></th>
@@ -57,8 +56,8 @@
        >
     <td align="center"><%= link_to(new_wo.id, new_wo) %></td>
     <td align="center"><%= link_to(new_wo.user.username, user_path(new_wo.user_id)) %></td>
-    <td><%=h new_wo.subject %></td>
-    <td><%=h new_wo.description %></td>
+    <td><%=h truncate(new_wo.subject, :length => 30) %></td>
+    <td><%=h truncate(new_wo.description, :length => 90) %></td>
     <td align="center"><%=h new_wo.priority_list.name %></td>
     <td><%=h l new_wo.created_at, :format => :medium %></td>
     <td align="center"><%=h new_wo.created_by %></td>
@@ -74,7 +73,6 @@
 
 </div>
 <div id="sc2" class="tabcontent"  style="padding:10px 10px 10px 10px">
-<h1>Assigned Work Orders</h1>
 <table width="100%" >
   <tr>
     <th><%= "WO #" %></th>
@@ -135,7 +133,6 @@
 </table>
 </div>
 <div id="sc3" class="tabcontent"  style="padding:10px 10px 10px 10px">
-<h1>Work Orders on HOLD</h1>
 <table width="100%" >
   <tr>
     <th><%= "WO #" %></th>
@@ -196,7 +193,6 @@
 </table>
 </div>
 <div id="sc4" class="tabcontent"  style="padding:10px 10px 10px 10px">
-<h1>Assigned Work Orders</h1>
 <table width="95%" >
   <tr>
     <th><%= "WO #" %></th>

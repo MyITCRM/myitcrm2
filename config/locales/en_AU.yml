@@ -449,3 +449,6 @@ en_AU:
     resolution: "Resolution Details"
     t_add_new: "Add New"
     status: "Status"
+    t_closed: "Closed Work Orders"
+    t_workorders: "Work Orders"
+    tab_menu_new: "New"

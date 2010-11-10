@@ -2,14 +2,13 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title> <%= t "global.program_name" %> <% if @title.blank? %><% else %>| <%= @title %><% end %></title>
+  <title> <%= t "global.program_name" %></title>
 
   <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', :cache => "base" %>
   <%= javascript_include_tag :all %>
   <script type="text/javascript">
-ddtabmenu.definemenu("ddtabs1", 0) //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
-
-</script>
+    ddtabmenu.definemenu("ddtabs1", 0 ) //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
+  </script>
 </head>
 <body >
 <div id="header">
@@ -23,20 +22,16 @@ ddtabmenu.definemenu("ddtabs1", 0) //initialize Tab Menu with ID "ddtabs1" and s
   <!--<div id="right_bar">
   </div>-->
   <div id="yield">
-
      <%- flash.each do |name, msg| -%>
         <p>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
       </p>
     <%- end -%>
-
     <div id="top_float_right">
      <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
     </div>
-
-    <%= yield %>
-  </div>
-
+        <%= yield %>
+    </div>
 </div>
 <div id="footer" class="footer_link" >
   <p>
