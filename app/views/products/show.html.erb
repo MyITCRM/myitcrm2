@@ -1,5 +1,4 @@
 <!--mytodo -add all fields, -add tabs-->
-<h1><%= t "products.t_title" %></h1>
 <div id="top_float_right">
   <% if permitted_to? :destroy, Product.new %>
       <%= link_to(image_tag("trash.png", :title=> (t "global.delete"), :align => "bottom", :hspace => "2"), :confirm => 'Are you sure?', :action => :destroy) %><%= link_to (t "global.delete"), @product, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;

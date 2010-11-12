@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title> <%= t "global.program_name" %></title>
+  <title><%= Setting::business_name %>-<%= @title || "" %></title>
 
   <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', :cache => "base" %>
   <%= javascript_include_tag :all %>
@@ -11,6 +11,7 @@
   </script>
 </head>
 <body >
+
 <div id="header">
   <%= image_tag 'logo.png', :height => 60 %>
 </div>
@@ -30,6 +31,7 @@
     <div id="top_float_right">
      <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
     </div>
+    <h1><%= @title || "" %></h1>
         <%= yield %>
     </div>
 </div>

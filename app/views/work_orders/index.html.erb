@@ -1,5 +1,4 @@
 <!-- mytodo - add I18n labels and names-->
- <h1><%= t "workorder.t_workorders" %></h1>
 <div id="top_float_right">
   <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"]), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
 </div>
@@ -123,7 +122,7 @@
     <td><%=h l assigned_wo.created_at, :format => :medium %></td>
     <td><%=h assigned_wo.created_by %></td>
     <td><%=h l assigned_wo.updated_at, :format => :medium %></td>
-    <td><%= assigned_wo.assigned_to %></td>
+    <td><%= @assignee %></td>
     <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(assigned_wo.id) )%>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(assigned_wo.id)) %>
         <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), work_order_path(assigned_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>

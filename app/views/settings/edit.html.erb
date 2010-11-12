@@ -19,90 +19,33 @@
 <div class="tabcontainer">
 
   <div id="sc1" class="tabcontent">
-    <% semantic_form_for(@setting) do |f| %>
-
-        <% f.inputs do %>
-            <%= f.input :business_name, :label => (t "settings.field_title.business_name") %>
-            <%= f.input :business_slogan, :label => (t "settings.field_title.business_slogan"), :input_html => {:size => 80} %>
-            <%= f.input :business_number, :label => (t "settings.field_title.business_number"), :hint => (t "settings.hint.business_number"), :input_html => {:size => 30} %>
-            <%= f.input :email, :label => (t "settings.field_title.primary_email"), :input_html => {:size => 30} %>
-            <%= f.input :phone, :label => (t "settings.field_title.phone"), :input_html => {:size => 30} %>
-            <%= f.input :fax, :label => (t "settings.field_title.fax"), :input_html => {:size => 30} %>
-            <%= f.input :address, :label => (t "settings.field_title.primary_address"), :input_html => {:rows => 5} %>
-            <%= f.input :city, :label => (t "settings.field_title.primary_city"), :input_html => {:size => 30} %>
-            <%= f.input :state, :label => (t "settings.field_title.primary_state"), :input_html => {:size => 10} %>
-            <%= f.input :zip, :label => (t "settings.field_title.primary_zip"), :input_html => {:size => 10} %>
-            <%= f.input :enable_tax, :label => (t "settings.field_title.enable_tax") %>
-            <%= f.input :default_tax, :label => (t "settings.field_title.tax_rate"), :hint => (t "settings.hint.tax_format"), :input_html => {:size => 10} %>
-            <%= f.input :default_tax_name, :label => (t "settings.field_title.tax_type"), :hint => (t "settings.hint.tax_type"), :input_html => {:size => 10} %>
-            <%= f.buttons %>
-        <% end %>
+    <div class="box tabular settings">
+    <% form_tag({:action => 'edit'}) do %>
+        <p><%= setting_text_field(:business_name, :size => 40)%></p>
+        <p><%= setting_text_field(:business_slogan, :size => 80)%></p>
+        <p><%= setting_text_field(:business_phone, :size => 20)%></p>
+        <p><%= setting_text_field(:business_toll_free, :size => 20)%></p>
+        <p><%= setting_text_field(:business_fax, :size => 20)%></p>
+        <p><%= setting_text_field(:business_mobile, :size => 20)%></p>
+        <p><%= setting_text_field(:business_email, :size => 50)%></p>
+        <p><%= setting_text_area(:business_address, :cols => 10 , :rows => 5 )%></p>
+        <%= submit_tag "Save" %>
     <% end %>
+    </div>
   </div>
 
   <div id="sc2" class="tabcontent">
-    <% semantic_form_for(@setting) do |f| %>
 
-        <% f.inputs do %>
-            <%= f.input :business_contact_name, :label => (t "settings.field_title.business_contact_name"), :input_html => {:size => 40} %>
-            <%= f.input :business_contact_phone, :label => (t "settings.field_title.business_contact_phone"), :input_html => {:size => 20} %>
-            <%= f.input :business_contact_email, :label => (t "settings.field_title.business_contact_email"), :input_html => {:size => 40} %>
-            <%= f.input :billing_address, :label => (t "settings.field_title.billing_address"), :input_html => {:rows => 5} %>
-            <%= f.input :billing_city, :label => (t "settings.field_title.billing_city"), :input_html => {:size => 30} %>
-            <%= f.input :billing_zip, :label => (t "settings.field_title.billing_zip"), :input_html => {:size => 10} %>
-            <%= f.input :billing_state, :label => (t "settings.field_title.billing_state"), :input_html => {:size => 10} %>
-            <%= f.input :billing_phone, :label => (t "settings.field_title.billing_phone"), :input_html => {:size => 30} %>
-            <%= f.input :billing_fax, :label => (t "settings.field_title.billing_fax"), :input_html => {:size => 30} %>
-            <%= f.buttons %>
-        <% end %>
-    <% end %>
   </div>
 
   <div id="sc3" class="tabcontent">
-    <% semantic_form_for(@setting) do |f| %>
-        <% f.inputs do %>
-            <%= f.input :invoice_message, :input_html => {:rows => 5} %>
-            <%= f.input :enable_cash %>
-            <%= f.input :enable_credit_card %>
-        <% end %>
-        <% f.inputs image_tag("cheque.jpg", :align => 'middle', :height => "50") do %>
-            <%= f.input :enable_cheque %>
-            <%= f.input :cheque_payable_to, :input_html => {:size => 20} %>
-        <% end %>
-        <% f.inputs image_tag("direct_deposit.gif", :align => 'middle') do %>
-            <%= f.input :enable_direct_deposit %>
-            <%= f.input :direct_deposit_bank_name %>
-            <%= f.input :direct_deposit_bank_account_name %>
-            <%= f.input :direct_deposit_bank_number, :hint => (t "settings.bank_number"), :input_html => {:size => 20} %>
-            <%= f.input :direct_deposit_bank_account, :input_html => {:size => 20} %>
-            <%= f.input :direct_deposit_instructions %>
-        <% end %>
-        <% f.inputs image_tag("paymate_accepted.gif", :align => 'middle') do %>
-            <%= f.input :enable_paymate %>
-            <%= f.input :paymate_username, :input_html => {:size => 20} %>
-            <%= f.input :paymate_password, :type => :password, :input_html => {:size => 20} %>
-            <%= f.input :paymate_transaction_fee, :hint => (t "settings.hint.transaction_fee"), :input_html => {:size => 5} %>
-        <% end %>
-        <% f.inputs image_tag("paypal_icon.png", :align => 'middle') do %>
-            <%= f.input :enable_paypal %>
-            <%= f.input :paypal_username, :input_html => {:size => 20} %>
-            <%= f.input :paypal_transaction_fee, :hint => (t "settings.hint.transaction_fee"), :input_html => {:size => 5} %>
-            <%= f.buttons %>
-        <% end %>
-    <% end %>
+
   </div>
 
   <div id="sc4" class="tabcontent">
 
   </div>
 <div id="sc5" class="tabcontent">
-    <% semantic_form_for(@setting) do |f| %>
-        <% f.inputs do %>
-            <%= f.input :language, :as => :select, :collection => ["en_AU", "en_US"] %>
-            <%= f.buttons %>
-        <% end %>
-    <% end %>
-
 
   </div>
 </div>

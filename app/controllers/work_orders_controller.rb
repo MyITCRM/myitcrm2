@@ -4,6 +4,7 @@ filter_resource_access
 #uses_tiny_mce :only => [:new, :create, :edit, :update]
 
   def index
+    @title = t "workorder.t_workorders"
     @work_orders = WorkOrder.all
     @new_work_orders = WorkOrder.find(:all, :conditions => "status_id = 1")
     @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
@@ -21,6 +22,7 @@ filter_resource_access
   # GET /work_orders/1
   # GET /work_orders/1.xml
   def show
+    @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
 
 
@@ -29,6 +31,7 @@ filter_resource_access
   # GET /work_orders/new
   # GET /work_orders/new.xml
   def new
+    @title = t "workorder.t_workorders"
     @work_order = WorkOrder.new
     @user_id = User.find(params[:clients_id])
 
@@ -41,12 +44,14 @@ filter_resource_access
 
   # GET /work_orders/1/edit
   def edit
+    @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
   end
 
   # POST /work_orders
   # POST /work_orders.xml
   def create
+    @title = t "workorder.t_workorders"
     @work_order = WorkOrder.new(params[:work_order])
 
     respond_to do |format|
@@ -64,6 +69,7 @@ filter_resource_access
   # PUT /work_orders/1
   # PUT /work_orders/1.xml
   def update
+    @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
 
     respond_to do |format|
@@ -78,6 +84,7 @@ filter_resource_access
     end
   end
 def close
+  @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
 
     respond_to do |format|
@@ -95,6 +102,7 @@ def close
   # DELETE /work_orders/1
   # DELETE /work_orders/1.xml
   def destroy
+    @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
     @work_order.destroy
 

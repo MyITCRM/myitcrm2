@@ -1,0 +1,16 @@
+business_name: MyIT CRM Stuffs
+business_slogan:
+  default: Test
+business_phone:
+  default: Test
+business_toll_free:
+  default: Test
+business_fax:
+  default: Test
+business_mobile:
+  default: Test
+business_email:
+  default: Test
+business_address:
+  default: Test
+

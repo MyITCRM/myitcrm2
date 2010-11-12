@@ -1,5 +1,4 @@
 <% if current_user.roles_mask < @user.roles_mask or current_user.id == @user.id %>
-    <h1><%= (t "user_t_edit_user") %></h1>
     <%= render :partial => 'actions' %>
  <div id="show_view">
 <% semantic_form_for(@user) do |f| %>

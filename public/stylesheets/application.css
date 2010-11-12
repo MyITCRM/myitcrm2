@@ -215,12 +215,11 @@ h6 {
 
 #top_float_right {
     text-transform:uppercase;
-    padding: 0 0 0 0;
+    padding: 0 0 0 20px;
     font-size:11px;
     float:right;
-    margin-top:-30px;
-
-}
+    /*margin-top:-30px;*/
+ }
 #top_float_left {
     float:left;
     padding:inherit;
@@ -377,4 +376,59 @@ fieldset#filters table { border-collapse: collapse; }
 fieldset#filters table td { padding: 0; vertical-align: middle; }
 fieldset#filters tr.filter { height: 2em; }
 fieldset#filters td.add-filter { text-align: right; vertical-align: top; }
+
+
+/*Used in Settings for label and text box layouts*/
+.box{
+padding:6px;
+margin-bottom: 10px;
+line-height:1.5em;
+
+}
+/***** Tabular forms ******/
+.tabular p{
+margin: 0;
+padding: 5px 0 8px 0;
+padding-left: 180px; /*width of left column containing the label elements*/
+height: 1%;
+clear:left;
+}
+
+html>body .tabular p {overflow:hidden;}
+
+.tabular label{
+font-weight: bold;
+float: left;
+text-align: right;
+margin-left: -180px; /*width of left column*/
+width: 175px; /*width of labels. Should be smaller than left column to create some right
+margin*/
+}
+
+.tabular label.floating{
+font-weight: normal;
+margin-left: 0px;
+text-align: left;
+width: 270px;
+}
+
+.tabular label.block{
+font-weight: normal;
+margin-left: 0px !important;
+text-align: left;
+float: none;
+display: block;
+width: auto;
+}
+
+input#time_entry_comments { width: 90%;}
+
+/*#preview fieldset {margin-top: 1em; background: url(../images/draft.png)}*/
+
+.tabular.settings p{ padding-left: 300px; }
+.tabular.settings label{ margin-left: -300px; width: 295px; }
+.tabular.settings textarea { width: 99%; }
+
+fieldset.settings label { display: block; }
+
 

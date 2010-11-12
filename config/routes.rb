@@ -5,8 +5,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :work_orders, :collection => { :close => :put }
 
-  map.admin "admin", :controller => "settings", :action => "edit", :id => 1
-  map.resources :settings
+#  map.admin "admin", :controller => "settings", :collection => { :edit => :get}
+  map.resources :settings, :collection => {:index => :get, :edit => :put}
   map.resources :product_categories
   map.resources :user_sessions
   map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put }

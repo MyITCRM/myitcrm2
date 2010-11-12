@@ -1,5 +1,3 @@
-<h1>Editing products</h1>
-
 <div id="top_float_right">
   <%= link_to(image_tag('close.png', :title => [t "global.close"]), products_path) %>&nbsp;<%= link_to([t "global.close"], products_path) %>
 </div>
@@ -63,7 +61,7 @@
                 <%= f.input :discountable %>
                 <%= f.input :disc_amount, :input_html => {:size => 5} %>
                 <%= f.input :disc_percent, :input_html => {:size => 5} %>
-          <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+                <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
             <% end %>
       <%= f.buttons %>

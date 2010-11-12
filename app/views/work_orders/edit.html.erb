@@ -1,5 +1,3 @@
-<h1>Editing work_order</h1>
-
 <div id="top_float_right">
    <%= link_to(image_tag('close.png', :title => [t "global.close"]), work_orders_path) %>&nbsp;<%= link_to([t "global.close"], work_orders_path) %><%= link_to(image_tag('close.png', :title => [t "global.close"]), close_workorder_path) %>&nbsp;<%= link_to([t "global.close"], close_workorder_path) %>
 </div>
@@ -19,6 +17,7 @@
       <% f.inputs do %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.input :status, :label => (t "workorder.status") %>
+          <!--myTODO : Add lookup to return name and not ID-->
         <%= f.input :assigned_to, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5" )  %>
         <%= f.input :description, :label => (t "workorder.details")%>
         <%= f.input :priority_list, :label => (t "workorder.priority") %>
