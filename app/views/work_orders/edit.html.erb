@@ -18,7 +18,7 @@
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.input :status, :label => (t "workorder.status") %>
           <!--myTODO : Add lookup to return name and not ID-->
-        <%= f.input :assigned_to, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5" )  %>
+        <%= f.input :assigned_to, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5 " )  %>
         <%= f.input :description, :label => (t "workorder.details")%>
         <%= f.input :priority_list, :label => (t "workorder.priority") %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>

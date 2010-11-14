@@ -6,7 +6,7 @@ class CreatePriorityLists < ActiveRecord::Migration
 
       t.timestamps
     end
-    # create default administrator account
+    # create default list items
      @priority_list = PriorityList.create :name => "Low"
      PriorityList.create :name => "Normal"
      PriorityList.create :name => "High"

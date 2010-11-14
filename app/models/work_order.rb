@@ -11,4 +11,5 @@ class WorkOrder < ActiveRecord::Base
   def before_update
     self.updated_at ||= Time.now
   end
+
 end

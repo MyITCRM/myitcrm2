@@ -10,7 +10,7 @@ filter_resource_access
     @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
     @on_hold_work_orders = WorkOrder.find(:all, :conditions => "status_id = 3")
     @pending_work_orders = WorkOrder.find(:all, :conditions => "status_id = 4")
-    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")     
+    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")
     
 
     respond_to do |format|
@@ -24,6 +24,8 @@ filter_resource_access
   def show
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
+    
+#    @assignee = @assigned_user.username
 
 
   end
@@ -45,6 +47,8 @@ filter_resource_access
   # GET /work_orders/1/edit
   def edit
     @title = t "workorder.t_workorders"
+#    @assigned_user = User.find(:all, :conditions => "roles_mask < 5 " )
+#    @assignee = @assigned_user.username
     @work_order = WorkOrder.find(params[:id])
   end
 

@@ -31,29 +31,29 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.string   "manufacturer"
     t.string   "description"
     t.string   "model"
-    t.string   "product_category_id", :limit => 0
+    t.string   "product_category_id"
     t.integer  "child_category_id"
     t.string   "warranty_info"
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.decimal  "tax_rate",                         :default => 0.0, :null => false
-    t.decimal  "cost_price",                       :default => 0.0, :null => false
-    t.decimal  "sell_price",                       :default => 0.0, :null => false
-    t.decimal  "mark_up",                          :default => 0.0, :null => false
+    t.decimal  "tax_rate",            :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "cost_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sell_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "mark_up",             :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "active"
-    t.decimal  "weight",                           :default => 0.0, :null => false
+    t.decimal  "weight",              :precision => 10, :scale => 3, :default => 0.0, :null => false
     t.boolean  "discountable"
-    t.decimal  "disc_percent",                     :default => 0.0, :null => false
-    t.decimal  "disc_amount",                      :default => 0.0, :null => false
+    t.decimal  "disc_percent",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "disc_amount",         :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.decimal  "qty_on_hand",                      :default => 0.0, :null => false
-    t.decimal  "qty_allocated",                    :default => 0.0, :null => false
-    t.decimal  "qty_available",                    :default => 0.0, :null => false
-    t.decimal  "qty_ordered",                      :default => 0.0, :null => false
-    t.decimal  "stocking_qty",                     :default => 0.0, :null => false
+    t.decimal  "qty_on_hand",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_allocated",       :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_available",       :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_ordered",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "stocking_qty",        :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "stocked_product"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.datetime "closed_date"
     t.text     "resolution"
     t.integer  "user_id"
-    t.string   "assigned_to"
+    t.integer  "assigned_to"
     t.integer  "priority_list_id"
     t.integer  "status_id"
     t.string   "created_by"

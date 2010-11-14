@@ -13,7 +13,7 @@ class CreateWorkOrders < ActiveRecord::Migration
       t.datetime :closed_date
       t.text :resolution
       t.integer :user_id
-      t.string :assigned_to
+      t.integer :assigned_to
       t.integer :priority_list_id
       t.integer :status_id
       t.string :created_by
