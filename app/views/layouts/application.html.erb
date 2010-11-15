@@ -3,6 +3,7 @@
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
+  <meta name="keywords" content="<%= Setting::meta_tags %>" />
 
   <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', :cache => "base" %>
   <%= javascript_include_tag :all %>

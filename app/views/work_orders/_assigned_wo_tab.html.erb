@@ -48,7 +48,9 @@
     <td><%=h l assigned_wo.created_at, :format => :medium %></td>
     <td><%=h assigned_wo.created_by %></td>
     <td><%=h l assigned_wo.updated_at, :format => :medium %></td>
-    <td><%= @assignee %></td>
+        <!--mytodo : possible database peformance issues as it hist the DB for every record. maybe just add username instead. or create a join model-->
+        <% @assigned = User.find(:first, :select => "username", :conditions => ["id = ?", assigned_wo.assigned_to]) %>
+    <td><%= @assigned.username %></td>
     <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(assigned_wo.id) )%>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(assigned_wo.id)) %>
         <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), work_order_path(assigned_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>

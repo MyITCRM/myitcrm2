@@ -1,7 +1,5 @@
 class WorkOrdersController < ApplicationController
 filter_resource_access
-# Only load tinyMCE for the defined methods list
-#uses_tiny_mce :only => [:new, :create, :edit, :update]
 
   def index
     @title = t "workorder.t_workorders"
@@ -24,8 +22,6 @@ filter_resource_access
   def show
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
-
-
   end
 
   # GET /work_orders/new
@@ -34,8 +30,6 @@ filter_resource_access
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.new
     @user_id = User.find(params[:clients_id])
-
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @work_order }
