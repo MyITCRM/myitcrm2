@@ -1,0 +1,55 @@
+<table>
+  <tr>
+    <th><%= "WO #" %></th>
+    <th><%= "Client" %></th>
+    <th><%= "Subject" %></th>
+    <th><%= "Description" %></th>
+    <th><%= "Priority" %></th>
+    <th><%= "Created at" %></th>
+    <th><%= "Created by" %></th>
+    <th><%= "Last Updated" %></th>
+    <th><%= "Actions" %></th>
+  </tr>
+
+<% @new_work_orders.each do |new_wo| %>
+  <tr align="left"
+      <% if new_wo.priority_list_id == 1 %>
+          class="priority_low"
+        <% else %>
+    <% if new_wo.priority_list_id == 2 %>
+          class="priority_normal"
+       <% else %>
+      <% if new_wo.priority_list_id == 3 %>
+          class="priority_high"
+      <% else %>
+  <% if new_wo.priority_list_id == 4 %>
+          class="priority_urgent"
+      <% else %>
+ <% if new_wo.priority_list_id == 5 %>
+          class="priority_critical"
+      <% else %>
+  <% if new_wo.priority_list_id > 5 %>
+      class=""
+      <% end %>
+      <% end %>
+      <% end %>
+      <% end %>
+      <% end %>
+      <% end %>
+       >
+    <td align="center"><%= link_to(new_wo.id, new_wo) %></td>
+    <td align="center"><%= link_to(new_wo.user.username, user_path(new_wo.user_id)) %></td>
+    <td><%=h truncate(new_wo.subject, :length => 30) %></td>
+    <td><%=h truncate(new_wo.description, :length => 90) %></td>
+    <td align="center"><%=h new_wo.priority_list.name %></td>
+    <td><%=h l new_wo.created_at, :format => :medium %></td>
+    <td align="center"><%=h new_wo.created_by %></td>
+    <td><%=h l new_wo.updated_at, :format => :medium %></td>
+
+    <td width="70"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>&nbsp;
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(new_wo.id)) %>&nbsp;
+        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), work_order_path(new_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
+  </tr>
+<% end %>
+</table>

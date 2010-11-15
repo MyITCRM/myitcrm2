@@ -430,6 +430,9 @@ en_AU:
     tab_menu_new: "New"
 
 
+    tab_menu_assigned: "Assigned"
+    tab_menu_on_hold: "On Hold"
+    tab_menu_closed: "Closed"
   setting_business_name: Business Name
   setting_business_slogan: "Business Slogan"
   setting_business_number: "Business Number"

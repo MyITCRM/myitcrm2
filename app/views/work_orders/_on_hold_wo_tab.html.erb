@@ -1,0 +1,58 @@
+<table width="100%" >
+  <tr>
+    <th><%= "WO #" %></th>
+    <th><%= "Client" %></th>
+    <th><%= "Subject" %></th>
+    <th><%= "Description" %></th>
+    <th><%= "Priority" %></th>
+    <th><%= "Created at" %></th>
+    <th><%= "Created by" %></th>
+    <th><%= "Last Updated" %></th>
+    <th><%= "Assigned To" %></th>
+    <th><%= "Actions" %></th>
+  </tr>
+
+
+<% @on_hold_work_orders.each do |on_hold| %>
+      <!--mytodo - add row color shading by css and based on priority-->
+  <tr align="left"
+      <% if on_hold.priority_list_id == 1 %>
+          class="priority_low"
+        <% else %>
+    <% if on_hold.priority_list_id == 2 %>
+          class="priority_normal"
+       <% else %>
+      <% if on_hold.priority_list_id == 3 %>
+          class="priority_high"
+      <% else %>
+  <% if on_hold.priority_list_id == 4 %>
+          class="priority_urgent"
+      <% else %>
+ <% if on_hold.priority_list_id == 5 %>
+          class="priority_critical"
+      <% else %>
+  <% if on_hold.priority_list_id > 5 %>
+      class=""
+      <% end %>
+      <% end %>
+      <% end %>
+      <% end %>
+      <% end %>
+      <% end %>
+       >
+    <td><%= link_to(on_hold.id, on_hold) %></td>
+    <td><%= link_to(on_hold.user.username, user_path(on_hold.user_id)) %></td>
+    <td><%=h on_hold.subject %></td>
+    <td><%=h on_hold.description %></td>
+    <td><%=h on_hold.priority_list.name %></td>
+    <td><%=h l on_hold.created_at, :format => :medium %></td>
+    <td><%=h on_hold.created_by %></td>
+    <td><%=h l on_hold.updated_at, :format => :medium %></td>
+    <td><%= on_hold.assigned_to %></td>
+    <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(on_hold.id) )%>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(on_hold.id)) %>
+        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), work_order_path(on_hold.id), :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
+  </tr>
+<% end %>
+</table>
