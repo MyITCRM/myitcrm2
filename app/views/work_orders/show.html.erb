@@ -74,7 +74,7 @@
         <strong><%= t "global.updated_at" %>:</strong>
       </td>
       <td >
-        <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.updated_at %>.
+        <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.edited_by %>.
       </td>
     </tr>
         <% end %>

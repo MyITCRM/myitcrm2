@@ -440,7 +440,7 @@ en_AU:
     t_edit: "Editing Work Order"
     closed: "Is Closed?"
     hint:
-      re_open: "Use this to re-open Work Order"
+      re_open: "Use this to re-open the Works Order"
     message_close_confirmation: "Are you sure you want to close this Work Order?"
     joins:
       closed: "Closed by"

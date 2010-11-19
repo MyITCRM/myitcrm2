@@ -12,7 +12,7 @@ class WorkOrder < ActiveRecord::Base
     self.created_at ||= Time.now
     self.status_id ||= 1
     self.assigned_to ||= 0
-    self.closed = false
+    self.closed ||= 0
   end
   def before_update
     self.updated_at ||= Time.now
