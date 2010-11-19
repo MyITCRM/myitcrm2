@@ -1,12 +1,30 @@
+# MyIT CRM - Repair's Business CRM Software
+# Copyright (C) 2009-2010  Glen Vanderhel
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
 class User < ActiveRecord::Base
   #acts_as_authentic
   acts_as_authentic do |c|
-      c.logged_in_timeout = 10.minutes # default is 10.minutes
+      c.logged_in_timeout = 10.minutes # default is 10 minutes
 
   end
 
   has_many :work_orders
-  belongs_to :setting
+
 # Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
 
@@ -41,6 +59,9 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
   def before_create
     self.active ||= "1"
     self.roles_mask ||= "32"
+    if self.created_by == nil
+      self.created_by ||= "0"
+    end
   end
  
   def self.search(search, page)

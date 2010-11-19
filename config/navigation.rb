@@ -20,7 +20,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
       primary.item :logout, 'Logout', logout_path
     else
-      primary.item :home, 'Register', signup_path
+      primary.item :home, 'Register', register_path
       primary.item :home, 'Login', login_path
     end
   end

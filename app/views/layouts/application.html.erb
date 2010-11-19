@@ -3,6 +3,7 @@
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
+  <meta name="keywords" content="<%= Setting::meta_tags %>" />
 
   <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', :cache => "base" %>
   <%= javascript_include_tag :all %>
@@ -27,6 +28,7 @@
         <p>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
       </p>
+      <br>
     <%- end -%>
     <div id="top_float_right">
      <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>

@@ -1,7 +1,5 @@
 class WorkOrdersController < ApplicationController
 filter_resource_access
-# Only load tinyMCE for the defined methods list
-#uses_tiny_mce :only => [:new, :create, :edit, :update]
 
   def index
     @title = t "workorder.t_workorders"
@@ -10,7 +8,7 @@ filter_resource_access
     @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
     @on_hold_work_orders = WorkOrder.find(:all, :conditions => "status_id = 3")
     @pending_work_orders = WorkOrder.find(:all, :conditions => "status_id = 4")
-    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")
+    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6")     
     
 
     respond_to do |format|
@@ -22,12 +20,8 @@ filter_resource_access
   # GET /work_orders/1
   # GET /work_orders/1.xml
   def show
-    @title = t "workorder.t_workorders"
+    @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
-    
-#    @assignee = @assigned_user.username
-
-
   end
 
   # GET /work_orders/new
@@ -35,8 +29,6 @@ filter_resource_access
   def new
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.new
-    @user_id = User.find(params[:clients_id])
-
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,9 +38,7 @@ filter_resource_access
 
   # GET /work_orders/1/edit
   def edit
-    @title = t "workorder.t_workorders"
-#    @assigned_user = User.find(:all, :conditions => "roles_mask < 5 " )
-#    @assignee = @assigned_user.username
+    @title = t "workorder.t_edit"
     @work_order = WorkOrder.find(params[:id])
   end
 
@@ -90,11 +80,16 @@ filter_resource_access
 def close
   @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
+#    @closed = [:status_id, "6", :closed, true]
+
 
     respond_to do |format|
-      if @work_order.update_attributes(params[:work_order])
+      if @work_order.update_attribute(:status_id, "6")
+        @work_order.update_attribute(:closed, true)
+        @work_order.update_attribute(:closed_date, Time.now)
+        @work_order.update_attribute(:closed_by, current_user.username)
         flash[:notice] = 'WorkOrder was successfully Closed.'
-        format.html { redirect_to(@work_orders) }
+        format.html { redirect_to(work_orders_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "index" }

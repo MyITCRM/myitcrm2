@@ -3,10 +3,16 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :status
   belongs_to :user
 
+# Validate Input information
+#  validates_presence_of :subject, :description,  :on => :create
+
+
 
   def before_create
     self.created_at ||= Time.now
     self.status_id ||= 1
+    self.assigned_to ||= 0
+    self.closed = false
   end
   def before_update
     self.updated_at ||= Time.now
