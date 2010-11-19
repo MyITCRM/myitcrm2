@@ -8,7 +8,7 @@ class Supplier < ActiveRecord::Base
 
 # Create New Suppliers as Active = true
 def before_create
-  self.active ||= "1"
+  self.active ||= "1"  
 end
 
 end

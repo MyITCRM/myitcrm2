@@ -1,4 +1,4 @@
-<table>
+<table width="100%">
   <tr>
     <th><%= "WO #" %></th>
     <th><%= "Client" %></th>
@@ -48,7 +48,7 @@
 
     <td width="70"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(new_wo.id)) %>&nbsp;
-        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), work_order_path(new_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(new_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>
 <% end %>

@@ -1,69 +1,84 @@
 <div id="top_float_right">
 <% if permitted_to? :destroy, WorkOrder.new %>
-<%= link_to(image_tag("trash.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
+<%= link_to(image_tag("delete.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
 <% end %>
-<% if permitted_to? :edit, WorkOrder %>
+<% if permitted_to? :edit, WorkOrder.new %>
 <%= link_to(image_tag("edit.png", :title=> (t "global.edit"),:align => "bottom", :hspace => "2"), edit_work_order_path)%><%= link_to (t "global.edit"), edit_work_order_path %>&nbsp;&nbsp;
 <% end %>
   <%= link_to(image_tag("close.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), work_orders_path)%><%= link_to (t "global.close"), work_orders_path %>
 </div>
+<br>
+<br>
 <div id="show_view">
-<table width="100%">
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "workorder.subject" %>:</strong>
-    </td>
-    <td align="left">
-      <%= @work_order.subject%>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "workorder.details" %>:</strong>
-    </td>
-    <td align="left">
-      <%= @work_order.description%>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right">
-      <strong><%= t "workorder.status" %>:</strong>
-    </td>
-    <td align="left">
-      <%=h @work_order.status.name%>
-    </td>
-  </tr>
-  </table>
-    <fieldset id="collapsable">
   <table>
-  <tr>
-    <td colspan="2" align="right">
-       <h1>Log</h1>
-    </td>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "workorder.subject" %>:</strong>
+      </td>
+      <td align="left">
+       <%=h @work_order.subject %>
+      </td>
   </tr>
-
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t"supplier.date_created" %>:</strong>
-    </td>
-    <td align="left">
-      <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.created_by %>.
-    </td>
-  </tr>
-<tr>
-    <td colspan="2" align="right">
-      <strong><%= t "global.last_updated_by" %>:</strong>
-    </td>
-    <td align="left">
-      <% if @work_order.updated_at == nil %>
-          <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short %>) <%= t "global.by" %> <%= @work_order.created_by %>.
-        <% else %>
-          <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short %>) <%= t "global.by" %> <%= @work_order.edited_by %>.
-        <% end %>
+    <tr>
+          <td colspan="2" align="right">
+            <strong><%= t "workorder.priority" %>:</strong>
           </td>
+          <td align="left">
+           <%=h @work_order.priority_list.name %>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="2" align="right">
+            <strong><%= t "workorder.status" %>:</strong>
+          </td>
+          <td align="left">
+           <%=h @work_order.status.name %>
+          </td>
+      </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "workorder.details" %>:</strong>
+      </td>
+      <td align="left">
+        <textarea rows="6" cols="50" name="description" readonly="readonly" ><%=h @work_order.description %></textarea>
+      </td>
   </tr>
-
-</table>
+  <tr>
+      <td colspan="2" align="right">
+        <strong><%= t "workorder.assigned_to" %>:</strong>
+      </td>
+      <td align="left">
+        <% if @work_order.assigned_to ||= nil %>
+           <%= link_to (t "workorder.not_assigned_message"), edit_work_order_path %>
+        <% else %>
+            <%=h @work_order.assigned_to %>
+        <% end %>
+      </td>
+  </tr>
+      </table>
+  <fieldset id="collapsable">
+    <h1 align="center"><%= t "workorder.t_log" %></h1>
+  <table >
+    <tr>
+      <td align="right" >
+        <strong><%= t "global.created_at" %>:</strong>
+      </td>
+      <td >
+        <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.created_by %>.
+      </td>
+    </tr>
+    <% if @work_order.updated_at == nil %>
+        <% else %>
+    <tr>
+      <td align="right">
+        <strong><%= t "global.updated_at" %>:</strong>
+      </td>
+      <td >
+        <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.updated_at %>.
+      </td>
+    </tr>
+        <% end %>
+  </table>
     <br>
   </fieldset>
-    </div>
+</div>

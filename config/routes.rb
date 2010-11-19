@@ -1,21 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :statuses
-
   map.resources :priority_lists
-
   map.resources :work_orders, :collection => { :close => :put }
-
-#  map.admin "admin", :controller => "settings", :collection => { :edit => :get}
   map.resources :settings, :collection => {:index => :get, :edit => :put}
   map.resources :product_categories
   map.resources :user_sessions
   map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put }
+  map.resources :users
   map.resources :suppliers
   map.resources :products
 
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  map.signup "signup", :controller => "users", :action => "new"
+  map.register "register", :controller => "users", :action => "new"
   map.profile "profile/:id", :controller => "users", :action => "edit_profile"
   map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
 

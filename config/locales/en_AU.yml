@@ -433,6 +433,18 @@ en_AU:
     tab_menu_assigned: "Assigned"
     tab_menu_on_hold: "On Hold"
     tab_menu_closed: "Closed"
+    assigned_to: "Assigned to"
+    not_assigned_message: "Has not been assigned yet."
+    t_log: "Work Order Log"
+    t_viewing_workorder_details: "Viewing Work Order Details"
+    t_edit: "Editing Work Order"
+    closed: "Is Closed?"
+    hint:
+      re_open: "Use this to re-open Work Order"
+    message_close_confirmation: "Are you sure you want to close this Work Order?"
+    joins:
+      closed: "Closed by"
+      at: "on the"
   setting_business_name: Business Name
   setting_business_slogan: "Business Slogan"
   setting_business_number: "Business Number"

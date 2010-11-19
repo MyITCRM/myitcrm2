@@ -51,7 +51,7 @@
     <td><%= on_hold.assigned_to %></td>
     <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(on_hold.id) )%>
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(on_hold.id)) %>
-        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), work_order_path(on_hold.id), :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(on_hold.id), :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>
 <% end %>

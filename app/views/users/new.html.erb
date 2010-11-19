@@ -32,7 +32,7 @@
             <%= f.buttons %>
 
             <% if current_user == nil %>
-                <%= hidden_field_tag "user[created_by]", @user.username %>
+                <%= hidden_field_tag "user[created_by]", "SELF" %>
             <% else %>
                 <%= hidden_field_tag "user[created_by]", current_user.username %>
             <% end %>

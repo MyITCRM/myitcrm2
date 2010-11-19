@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  filter_resource_access
+# filter_resource_access
+
  def new
-    @title = t "user.t_new_user"
+#    @title = t "user.t_new_user"
     @user = User.new
-     end
+ end
 
   def index
     @title = t "user.t_title"
     @user = User.search(params[:search], params[:page])
-    @setting = Setting.find(:all)
  end
 
    def show
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def edit_profile
     @title = t "user.t_edit_user"
     @user = current_user
-    
+
   end
 
   def update_profile
