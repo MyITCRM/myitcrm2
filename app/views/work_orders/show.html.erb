@@ -48,10 +48,11 @@
         <strong><%= t "workorder.assigned_to" %>:</strong>
       </td>
       <td align="left">
-        <% if @work_order.assigned_to ||= nil %>
+        <% if @work_order.assigned_to == nil %>
            <%= link_to (t "workorder.not_assigned_message"), edit_work_order_path %>
         <% else %>
-            <%=h @work_order.assigned_to %>
+            <% @assigned = User.find(:first, :select => "username", :conditions => ["id = ?", @work_order.assigned_to]) %>
+            <%=h @assigned.username %>
         <% end %>
       </td>
   </tr>
