@@ -14,6 +14,8 @@ business_email:
   default: admin@exmaple.com
 business_address:
   default: '49 Fake Road'
+business_number:
+  default: 
 meta_tags:
   default: 'CRM, FREE, Opensource, Repair, Business, Computer, IT, Shop'
 

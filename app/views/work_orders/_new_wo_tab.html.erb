@@ -46,8 +46,9 @@
     <td align="center"><%=h new_wo.created_by %></td>
     <td><%=h l new_wo.updated_at, :format => :medium %></td>
 
-    <td width="70"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>&nbsp;
+    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(new_wo.id)) %>&nbsp;
+        <%= link_to(image_tag('printer.png', :title => [t "global.print"]), work_order_path(new_wo.id,:format => 'pdf'))%>&nbsp;
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(new_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>

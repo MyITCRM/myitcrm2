@@ -1,6 +1,6 @@
 class WorkOrdersController < ApplicationController
 filter_resource_access
-prawnto :prawn => { :top_margin => 20 }
+prawnto :prawn => { :top_margin => 20}
 
   def index
     @title = t "workorder.t_workorders"
@@ -23,6 +23,8 @@ prawnto :prawn => { :top_margin => 20 }
   def show
     @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
+
+    
   end
 
   # GET /work_orders/new
