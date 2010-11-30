@@ -1,4 +1,4 @@
- pdf.image "/public/images/logo.png", :at => [10, 720], :height => 40
+ pdf.image "public/images/logo.png", :at => [10, 720], :height => 40
  pdf.move_down(70)
  pdf.text "#{t "global.workorder"} # #{@work_order.id}"
  pdf.text "Client : #{@work_order.user.name}"
