@@ -57,6 +57,7 @@ en_AU:
     expired_session: "Your session has expired. Please log back in."
     apply: "Apply"
     workorder: "Create Work Order"
+    print: "Print"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -445,6 +446,9 @@ en_AU:
     joins:
       closed: "Closed by"
       at: "on the"
+    t_printing_workorder_details: "Work Order Print"
+    print:
+      title: "Work Order"
   setting_business_name: Business Name
   setting_business_slogan: "Business Slogan"
   setting_business_number: "Business Number"

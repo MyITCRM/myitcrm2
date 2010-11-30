@@ -1,5 +1,6 @@
 class WorkOrdersController < ApplicationController
 filter_resource_access
+prawnto :prawn => { :top_margin => 20 }
 
   def index
     @title = t "workorder.t_workorders"
@@ -110,4 +111,4 @@ def close
       format.xml  { head :ok }
     end
   end
-end
+  end

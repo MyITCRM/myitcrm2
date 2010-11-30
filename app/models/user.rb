@@ -42,7 +42,7 @@ named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES
   # Client = 32
   # Guest = 64
 
-  ROLES = %w[Administrator Manager Technician Accounts Clerk Client Guest]
+  ROLES = %w[Administrator Manager Technician Accounts Clerk Client guest]
   
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
