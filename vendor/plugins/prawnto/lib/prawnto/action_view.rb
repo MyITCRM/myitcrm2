@@ -1,5 +1,5 @@
 module Prawnto
-  module ActionViewMixin
+  module ActionView
 
   private
     def _prawnto_compile_setup(dsl_setup = false)

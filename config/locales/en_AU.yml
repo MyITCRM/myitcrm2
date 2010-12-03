@@ -449,6 +449,10 @@ en_AU:
     t_printing_workorder_details: "Work Order Print"
     print:
       title: "Work Order"
+    pdf:
+      t_workorder: "Work Order"
+      client: "Name :"
+      t_customer_details: "Customer Details"
   setting_business_name: Business Name
   setting_business_slogan: "Business Slogan"
   setting_business_number: "Business Number"
