@@ -5,7 +5,7 @@
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
   <meta name="keywords" content="<%= Setting::meta_tags %>" />
 
-  <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', :cache => "base" %>
+  <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', 'jstoolbar', :cache => "base" %>
   <%= javascript_include_tag :all %>
   <script type="text/javascript">
     ddtabmenu.definemenu("ddtabs1", 0 ) //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default

@@ -17,10 +17,7 @@ Rails::Initializer.run do |config|
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
-  # config.gem "bj"
-  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
-  # config.gem "sqlite3-ruby", :lib => "sqlite3"
-   config.gem "prawn", :lib => "prawn", :version => '0.8.4'
+    config.gem "prawn", :lib => "prawn"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

@@ -10,14 +10,16 @@
       <% f.inputs do %>
         <%= f.input :user_id, :as=> :hidden, :value => params[:client_id] %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
-        <%= f.input :description, :label => (t "workorder.details"), :input_html => {:width => "150"}%>
+        <%= f.input :description, :label => "test" %>
         <%= f.input :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
         <%= f.input :assigned_to, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5 " )  %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+
       <% end %>
 <%= f.buttons %>
+ <%= textiletoolbar_for('work_order_description') %>
 <% end %>
 </div>
 </div>

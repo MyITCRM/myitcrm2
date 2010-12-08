@@ -58,6 +58,7 @@ en_AU:
     apply: "Apply"
     workorder: "Create Work Order"
     print: "Print"
+    activity_log: "Activity Log"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"

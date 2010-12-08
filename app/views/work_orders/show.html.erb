@@ -12,42 +12,42 @@
 <div id="show_view">
   <table>
     <tr>
-      <td colspan="2" align="right">
+      <td class="tbl_labels" >
         <strong><%= t "workorder.subject" %>:</strong>
       </td>
-      <td align="left">
-       <%=h @work_order.subject %>
+      <td class="tbl_fields">
+       <%= @work_order.subject %>
       </td>
   </tr>
     <tr>
-          <td colspan="2" align="right">
+          <td class="tbl_labels" >
             <strong><%= t "workorder.priority" %>:</strong>
           </td>
-          <td align="left">
+          <td class="tbl_fields">
            <%=h @work_order.priority_list.name %>
           </td>
       </tr>
       <tr>
-          <td colspan="2" align="right">
+          <td class="tbl_labels" >
             <strong><%= t "workorder.status" %>:</strong>
           </td>
-          <td align="left">
+          <td class="tbl_fields">
            <%=h @work_order.status.name %>
           </td>
       </tr>
     <tr>
-      <td colspan="2" align="right">
+      <td class="tbl_labels" align="right">
         <strong><%= t "workorder.details" %>:</strong>
       </td>
-      <td align="left">
-        <textarea rows="6" cols="50" name="description" readonly="readonly" ><%=h @work_order.description %></textarea>
+      <td class="tbl_fields">
+        <%= RedCloth.new("test").to_html %>
       </td>
   </tr>
   <tr>
-      <td colspan="2" align="right">
+      <td class="tbl_labels" >
         <strong><%= t "workorder.assigned_to" %>:</strong>
       </td>
-      <td align="left">
+      <td class="tbl_fields">
         <% if @work_order.assigned_to == nil %>
            <%= link_to (t "workorder.not_assigned_message"), edit_work_order_path %>
         <% else %>
@@ -56,25 +56,25 @@
         <% end %>
       </td>
   </tr>
-      </table>
-  <fieldset id="collapsable">
-    <h1 align="center"><%= t "workorder.t_log" %></h1>
+  </table>
+  <fieldset>
+    <legend class="label"><label><%= t "global.activity_log" %></label></legend>
   <table >
     <tr>
-      <td align="right" >
+      <td class="tbl_labels" >
         <strong><%= t "global.created_at" %>:</strong>
       </td>
-      <td >
+      <td class="tbl_fields" >
         <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.created_by %>.
       </td>
     </tr>
     <% if @work_order.updated_at == nil %>
         <% else %>
     <tr>
-      <td align="right">
+      <td class="tbl_labels">
         <strong><%= t "global.updated_at" %>:</strong>
       </td>
-      <td >
+      <td class="tbl_fields" >
         <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.edited_by %>.
       </td>
     </tr>
