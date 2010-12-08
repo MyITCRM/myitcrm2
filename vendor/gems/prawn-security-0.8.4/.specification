@@ -1,6 +1,12 @@
 --- !ruby/object:Gem::Specification 
 name: prawn-security
 version: !ruby/object:Gem::Version 
+  hash: 55
+  prerelease: false
+  segments: 
+  - 0
+  - 8
+  - 4
   version: 0.8.4
 platform: ruby
 authors: 
@@ -48,21 +54,27 @@ rdoc_options:
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
       version: "0"
-  version: 
 required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
       version: "0"
-  version: 
 requirements: []
 
 rubyforge_project: prawn-security
-rubygems_version: 1.3.5
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
 summary: Popular Password Protection & Permissions for Prawn PDFs

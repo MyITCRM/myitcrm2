@@ -1,10 +1,16 @@
 --- !ruby/object:Gem::Specification 
 name: prawn
 version: !ruby/object:Gem::Version 
+  hash: 55
+  prerelease: false
+  segments: 
+  - 0
+  - 8
+  - 4
   version: 0.8.4
 platform: ruby
 authors: 
-  - Gregory Brown
+- Gregory Brown
 autorequire: 
 bindir: bin
 cert_chain: []
@@ -12,45 +18,75 @@ cert_chain: []
 date: 2010-02-24 00:00:00 +11:00
 default_executable: 
 dependencies: 
-  - !ruby/object:Gem::Dependency 
-    name: prawn-core
-    type: :runtime
-    version_requirement: 
-    version_requirements: !ruby/object:Gem::Requirement 
-      requirements: 
-        - - ">="
-          - !ruby/object:Gem::Version 
-            version: 0.8.4
-        - - <
-          - !ruby/object:Gem::Version 
-            version: "0.9"
-      version: 
-  - !ruby/object:Gem::Dependency 
-    name: prawn-layout
-    type: :runtime
-    version_requirement: 
-    version_requirements: !ruby/object:Gem::Requirement 
-      requirements: 
-        - - ">="
-          - !ruby/object:Gem::Version 
-            version: 0.8.4
-        - - <
-          - !ruby/object:Gem::Version 
-            version: "0.9"
-      version: 
-  - !ruby/object:Gem::Dependency 
-    name: prawn-security
-    type: :runtime
-    version_requirement: 
-    version_requirements: !ruby/object:Gem::Requirement 
-      requirements: 
-        - - ">="
-          - !ruby/object:Gem::Version 
-            version: 0.8.4
-        - - <
-          - !ruby/object:Gem::Version 
-            version: "0.9"
-      version: 
+- !ruby/object:Gem::Dependency 
+  name: prawn-core
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 55
+        segments: 
+        - 0
+        - 8
+        - 4
+        version: 0.8.4
+    - - <
+      - !ruby/object:Gem::Version 
+        hash: 25
+        segments: 
+        - 0
+        - 9
+        version: "0.9"
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: prawn-layout
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 55
+        segments: 
+        - 0
+        - 8
+        - 4
+        version: 0.8.4
+    - - <
+      - !ruby/object:Gem::Version 
+        hash: 25
+        segments: 
+        - 0
+        - 9
+        version: "0.9"
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: prawn-security
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 55
+        segments: 
+        - 0
+        - 8
+        - 4
+        version: 0.8.4
+    - - <
+      - !ruby/object:Gem::Version 
+        hash: 25
+        segments: 
+        - 0
+        - 9
+        version: "0.9"
+  type: :runtime
+  version_requirements: *id003
 description: Prawn is a fast, tiny, and nimble PDF generator for Ruby
 email: "  gregory.t.brown@gmail.com"
 executables: []
@@ -60,7 +96,7 @@ extensions: []
 extra_rdoc_files: []
 
 files: 
-  - lib/prawn.rb
+- lib/prawn.rb
 has_rdoc: true
 homepage: http://wiki.github.com/sandal/prawn
 licenses: []
@@ -69,23 +105,29 @@ post_install_message: "\n  Welcome to Prawn, the best pure-Ruby PDF solution eve
 rdoc_options: []
 
 require_paths: 
-  - lib
+- lib
 required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
-    - - ">="
-      - !ruby/object:Gem::Version 
-        version: "0"
-  version: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
-    - - ">="
-      - !ruby/object:Gem::Version 
-        version: "0"
-  version: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
 requirements: []
 
 rubyforge_project: prawn
-rubygems_version: 1.3.5
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
 summary: A fast and nimble PDF generator for Ruby
