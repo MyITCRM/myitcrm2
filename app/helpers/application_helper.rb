@@ -1,4 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
+require "redcloth3"
+
 module ApplicationHelper
   def sortable(column, title = nil)
     title ||= column.titleize                       
@@ -14,4 +16,8 @@ module ApplicationHelper
             javascript_include_tag("jstoolbar/lang/jstoolbar-en") +
           javascript_tag("var textileToolbar = new jsToolBar($('#{field_id}'));  textileToolbar.draw();")
         end
-        end
+end
+# Used to strip HTML Tags from RedCloth Output.
+def plaintext_for(field_id)
+  RedCloth3.new("#{field_id}").to_html.gsub(/(<[^>]+>)/, '')
+end

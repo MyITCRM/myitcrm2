@@ -1,52 +1,26 @@
 <table width="100%">
   <tr>
     <th><%= "WO #" %></th>
+    <th><%= "Priority" %></th>
     <th><%= "Client" %></th>
     <th><%= "Subject" %></th>
-    <th><%= "Description" %></th>
-    <th><%= "Priority" %></th>
-    <th><%= "Created at" %></th>
-    <th><%= "Created by" %></th>
-    <th><%= "Last Updated" %></th>
+    <!--<th><%= "Description" %></th>-->
+    <th><%= "Created" %></th>
+    <th><%= "Updated" %></th>
     <th><%= "Actions" %></th>
   </tr>
 
 <% @new_work_orders.each do |new_wo| %>
-  <tr align="left"
-      <% if new_wo.priority_list_id == 1 %>
-          class="priority_low"
-        <% else %>
-    <% if new_wo.priority_list_id == 2 %>
-          class="priority_normal"
-       <% else %>
-      <% if new_wo.priority_list_id == 3 %>
-          class="priority_high"
-      <% else %>
-  <% if new_wo.priority_list_id == 4 %>
-          class="priority_urgent"
-      <% else %>
- <% if new_wo.priority_list_id == 5 %>
-          class="priority_critical"
-      <% else %>
-  <% if new_wo.priority_list_id > 5 %>
-      class=""
-      <% end %>
-      <% end %>
-      <% end %>
-      <% end %>
-      <% end %>
-      <% end %>
-       >
+  <tr align="left" valign="top" class="priority_main_<%= new_wo.priority_list.id %>">
     <td align="center"><%= link_to(new_wo.id, new_wo) %></td>
-    <td align="center"><%= link_to(new_wo.user.username, user_path(new_wo.user_id)) %></td>
-    <td><%=h truncate(new_wo.subject, :length => 30) %></td>
-    <td><%=h truncate(new_wo.description, :length => 90) %></td>
     <td align="center"><%=h new_wo.priority_list.name %></td>
-    <td><%=h l new_wo.created_at, :format => :medium %></td>
-    <td align="center"><%=h new_wo.created_by %></td>
-    <td><%=h l new_wo.updated_at, :format => :medium %></td>
+    <td align="center"><%= link_to(new_wo.user.username, user_path(new_wo.user_id)) %></td>
+    <td><%=h truncate(new_wo.subject, :length => 75) %></td>
+   <!-- <td><%= truncate(RedCloth3.new(new_wo.description).to_html, :length => 90) %></td> -->
+    <td><%=h l new_wo.created_at, :format => :medium %> by <%=h new_wo.created_by %></td>
+    <td><%=h l new_wo.updated_at, :format => :medium %> by <%=h new_wo.created_by %></td>
 
-    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>&nbsp;
+    <td width="120"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(new_wo.id)) %>&nbsp;
         <%= link_to(image_tag('printer.png', :title => [t "global.print"]), work_order_path(new_wo.id,:format => 'pdf'))%>&nbsp;
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(new_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>

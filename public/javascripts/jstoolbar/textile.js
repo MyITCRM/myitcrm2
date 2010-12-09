@@ -185,16 +185,16 @@ jsToolBar.prototype.elements.space4 = {type: 'space'}
 /*// wiki page
 jsToolBar.prototype.elements.link = {
 	type: 'button',
-	title: 'Wiki link',
+	title: 'Help',
 	fn: {
-		wiki: function() { this.encloseSelection("[[", "]]") }
+		wiki: <a href="http://127.0.0.1" target="_blank">Syntax Help</a>
 	}
 }*/
-/*// image
+// image
 jsToolBar.prototype.elements.img = {
 	type: 'button',
 	title: 'Image',
 	fn: {
 		wiki: function() { this.encloseSelection("!", "!") }
 	}
-}*/
+}

@@ -197,21 +197,11 @@ h6 {
 .odd td {
   background-color: #ffffff;
 }
-.priority_low td {
-  background-color: #ccffcc;
-}
-.priority_normal td {
-  background-color: #ffff99;
-}
-.priority_high td {
-  background-color: #ffcc00;
-}
-.priority_urgent td {
-  background-color: #ff9999;
-}
-.priority_critical td {
-  background-color: #cc0033;
-}
+.priority_main_1 td {background-color: #ccffcc;}
+.priority_main_2 td {background-color: #ffff99;}
+.priority_main_3 td {background-color: #ffcc00;}
+.priority_main_4 td {background-color: #ff9999; font-weight:bold;}
+.priority_main_5 td {background-color: #cc0033; font-weight:bolder;}
 
 #top_float_right {
     text-transform:uppercase;
@@ -402,5 +392,10 @@ fieldset.settings label { display: block; }
 
 /*Display Nice Table Labels and Fields and Fieldsets Headers*/
 .tbl_labels { width:25%; text-align:right; vertical-align:top;}
-.tbl_fields { text-align:left;vertical-align:top;}
-.tbl_fieldsets_headers { text-align:left;vertical-align:top;color:#af2a2a;}
+.tbl_fields { text-align:left; vertical-align:top; text-decoration:underline; width:60%}
+.tbl_textarea { text-align:left; background-color:white; border:black solid thin}
+.priority_1 { /*background-color: #ccffcc;*/ font-weight:bold; text-transform:uppercase;}
+.priority_2 { /*background-color: #ffff99;*/ font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_3 { /*background-color: #ffcc00;*/ font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_4 { /*background-color: #ff9999;*/ font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_4 { /*background-color: #cc0033;*/ font-weight:bold; text-transform:uppercase; border-collapse:collapse;}

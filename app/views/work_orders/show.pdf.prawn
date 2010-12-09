@@ -30,7 +30,7 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
       pdf.text Setting::business_email, :size => 8
     end
   end
-# Business information
+# Customer information
  pdf.bounding_box([10,720], :width => 200, :align => :right ) do
     pdf.text t "workorder.pdf.t_customer_details"
     pdf.text "#{@work_order.user.name}", :size => 8
@@ -41,53 +41,91 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
 
   end
 
-# Let move down the pdf 10 points before next object
+# Lets move down the pdf 10 points before next object
  pdf.move_down(15)
 
 # Work Order details start
+
 pdf.text "#{t "workorder.pdf.t_workorder"} # #{@work_order.id}", :size => 20, :align => :center
-
-info = [
-        ["#{t "workorder.subject"}", "#{@work_order.subject}"],
-        ["#{t "workorder.details"}", "#{@work_order.description}"],
-        ["#{t "workorder.assigned_to"}","#{@work_order.priority_list.name}"]
-       ]
-#pdf.move_down 30
-
-pdf.table info,
-:borders => [:top, :bottom],
-:font_size => 12,
-:position => :center,
-:column_widths => { 0 => 150, 1 => 400},
-:align => { 0 => :right, 1 => :left, 2 => :right, 3 => :left}
-#:row_colors => ["d2e3ed", "FFFFFF"]
-
-
-# pdf.cell [10,600],
-#        :width => 200,
-#        :font_size => 11,
-#        :border_width => 0,
-#        :text  => "The rain in Spain falls mainly on the plains",
-#        :padding => 3
-# pdf.cell [10,600],
-#        :width => 525,
-#        :height => 550
-##        :font_size => 11,
-##        :position => :center,
-##        :text  => "",
-##        :padding => 3
-#pdf.text "#{t "workorder.pdf.t_workorder"} # #{@work_order.id}", :size => 20, :align => :center
-# pdf.move_down(1)
-#
-#
-##invoiceinfo = [["Item Name", "#{@work_order.user.name}"], ["Item Price", "#{@work_order.user.name}"],["Item Quantity", "#{@work_order.user.name}"]]
-##
-##pdf.move_down 30
-##
-##pdf.table invoiceinfo,
-##:border_style => :grid,
-##:font_size => 11,
-##:position => :center,
-##:column_widths => { 0 => 150, 1 => 250},
-##:align => { 0 => :right, 1 => :left, 2 => :right, 3 => :left},
-##:row_colors => ["d2e3ed", "FFFFFF"]
+# Subject Block >>BOF
+pdf.cell [10,630],
+        :width => 100,
+        # Height needs to be a min. of 2 times the padding plus font_size
+        :height => 17,
+        :font_size => 11,
+        :border_style => :none,
+        :text  => "#{t "global.subject"}:",
+        :align => :right,
+        :padding => 3
+pdf.cell [110,630],
+        :width => 420,
+        :height => 17,
+        :font_size => 11,
+        :border_style => :all,
+        :text  => "#{@work_order.subject}",
+        :align => :left,
+        :padding => 3
+pdf.move_down(5)
+# Subject Block <<EOF
+# Assigned To Block BOF
+pdf.cell [10,608],
+        :width => 100,
+        :height => 17,
+        :font_size => 11,
+        :border_style => :none,
+        :text  => "#{t "workorder.assigned_to"}:",
+        :align => :right,
+        :padding => 3
+# Check if there is a user assigned and display it if there is, otherwise display "not assigned message"
+# myTODO - Remove this when the new migration happens and chnages the lookup as the name will be included into the database along with user id.
+if @work_order.assigned_to ||= nil
+  text = User.find(:all, :select => "username", :conditions => ["id = ?", @work_order.assigned_to])
+  else
+    text = t "workorder.not_assigned_message"
+end
+pdf.cell [110,608],
+        :width => 420,
+        :height => 17,
+        :font_size => 11,
+        :border_style => :all,
+        :text  => "#{text}",
+        :align => :left,
+        :padding => 3
+pdf.move_down(5)
+# Status Block BOF
+pdf.cell [10,586],
+        :width => 100,
+        :height => 17,
+        :font_size => 11,
+        :border_style => :none,
+        :text  => "#{t "workorder.status"}:",
+        :align => :right,
+        :padding => 3
+pdf.cell [110,586],
+        :width => 420,
+        :height => 17,
+        :font_size => 11,
+        :border_style => :all,
+        :text  => "#{@work_order.status.name}",
+        :align => :left,
+        :padding => 3
+pdf.move_down(5)
+# Status Block EOF
+pdf.cell [10,564],
+        :width => 100,
+        :height => 17,
+        :font_size => 11,
+        :border_style => :none,
+        :text  => "#{t "global.description"}:",
+        :align => :right,
+        :padding => 3
+text = plaintext_for(@work_order.description)
+pdf.cell [110,564],
+        :width => 420,
+        :height => 200,
+        :font_size => 11,
+        :border_style => :all,
+        :text  => "#{text}",
+        :align => :left,
+        :padding => 3
+# myTODO - Add more cells, eg Resolution, Notes, Scheduled Time(s), Actual Times, Travel, Signatures, logging info....printed at, etc

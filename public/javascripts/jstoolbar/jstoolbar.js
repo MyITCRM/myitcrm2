@@ -210,7 +210,7 @@ jsToolBar.prototype = {
 		var h = document.createElement('div');
 		h.className = 'help'
 		h.innerHTML = this.help_link;
-		'<a href="/help/wiki_syntax.html" onclick="window.open(\'/help/wiki_syntax.html\', \'\', \'resizable=yes, location=no, width=300, height=640, menubar=no, status=no, scrollbars=yes\'); return false;">Aide</a>';
+		'<a href="#" onclick="alert("Test Alert"); return false;">Aide</a>';
 		this.toolbar.appendChild(h);
 
 		// Draw toolbar elements
