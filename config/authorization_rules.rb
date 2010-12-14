@@ -1,7 +1,7 @@
 authorization do
 # myTODO - check to ensure all modules and controllers have filter_accessible on
   role :Administrator do
-    has_permission_on [:suppliers, :users, :products, :product_categories, :settings, :work_orders], :to => [:index, :show, :new, :create, :edit, :update, :destroy, :edit_profile, :update_profile, :close, :print]
+    has_permission_on [:suppliers, :users, :products, :product_categories, :settings, :work_orders], :to => [:index, :show, :new, :create, :edit, :update, :destroy, :edit_profile, :update_profile, :close, :print, :assign]
   end
 
   role :Manager do
@@ -12,7 +12,7 @@ authorization do
   role :Technician do
     includes :Client
     has_permission_on :users, :to => [:index, :show, :edit, :update]
-    has_permission_on :workorders, :to => [:close, :print]
+    has_permission_on :workorders, :to => [:close, :print, :assign]
     has_permission_on [:suppliers, :products, :product_categories], :to => [:index, :show, :new, :create, :edit, :update]
   end
 

@@ -1,5 +1,5 @@
 <table width="100%" >
-  <tr>
+  <tr><!--mytodo: add translation-->
     <th><%= "WO #" %></th>
     <th><%= "Client" %></th>
     <th><%= "Subject" %></th>
@@ -12,31 +12,7 @@
 
 
 <% @closed_work_orders.each do |closed_wo| %>
-  <tr align="left"
-      <% if closed_wo.priority_list_id == 1 %>
-          class="priority_low"
-        <% else %>
-    <% if closed_wo.priority_list_id == 2 %>
-          class="priority_normal"
-       <% else %>
-      <% if closed_wo.priority_list_id == 3 %>
-          class="priority_high"
-      <% else %>
-  <% if closed_wo.priority_list_id == 4 %>
-          class="priority_urgent"
-      <% else %>
- <% if closed_wo.priority_list_id == 5 %>
-          class="priority_critical"
-      <% else %>
-  <% if closed_wo.priority_list_id > 5 %>
-      class=""
-      <% end %>
-      <% end %>
-      <% end %>
-      <% end %>
-      <% end %>
-      <% end %>
-       >
+  <tr align="left" class="priority_main_<%= closed_wo.priority_list.id %>">
     <td><%= link_to(closed_wo.id, closed_wo) %></td>
     <td><%= link_to(closed_wo.user.username, user_path(closed_wo.user_id)) %></td>
     <td><%=h closed_wo.subject %></td>

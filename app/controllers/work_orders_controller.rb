@@ -100,6 +100,24 @@ def close
       end
     end
   end
+def assign
+  @title = t "workorder.t_workorders"
+    @work_order = WorkOrder.find(params[:id])
+#    @closed = [:status_id, "6", :closed, true]
+
+# Only change status if the status is either NEW or Assigned
+ @status = @work_order.status_id = 2 if @work_order.status_id < 3
+  respond_to do |format|
+      if @work_order.update_attributes(params[:work_order])
+        flash[:notice] = t "workorder.message_assigned_success"
+        format.html { redirect_to(work_orders_url) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "assign" }
+        format.xml  { render :xml => @work_order.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /work_orders/1
   # DELETE /work_orders/1.xml

@@ -6,7 +6,7 @@ class CreateStatuses < ActiveRecord::Migration
 
       t.timestamps
     end
-    # create default statuses
+    # create default statuses (MyTODO :Translation required for values)
      @status = Status.create :name => "New"
      Status.create :name => "Assigned"
      Status.create :name => "On Hold"

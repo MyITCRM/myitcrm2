@@ -25,12 +25,8 @@
         <strong><%= t "workorder.assigned_to" %>:</strong>
       </td>
       <td class="tbl_fields">
-        <% if @work_order.assigned_to == nil %>
-           <%= link_to (t "workorder.not_assigned_message"), edit_work_order_path %>
-        <% else %>
-            <% @assigned = User.find(:first, :select => "username", :conditions => ["id = ?", @work_order.assigned_to]) %>
-            <%=h @assigned.username %>
-        <% end %>
+        <%= render(:partial => "work_orders/assign") %>
+
       </td>
   </tr>  
     <tr>
