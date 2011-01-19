@@ -3,18 +3,18 @@ This is a relatively new project which I have been coding for over 16 months
 in php and mysql but there was a bunch of code to be written. Then I looked into Ruby and
 I was very satisfied after the first use of it. Thinking how this will speed up process cycles.
 
-Anyways more to come but in the meantime check out http://team.myitcrm.com for more details
+Anyways more to come but in the meantime check out http://myitcrm.com for more details
 and the current version of MyIT CRM.
 
 Setup database.yml file for development
 
 # SQLite3 setup - requires gem install
 development:
-  adapter: jdbcsqlite3
+  adapter: sqlite3
   database: db/dev.db
 
 production:
-  adapter: jdbcsqlite3
+  adapter: sqlite3
   database: db/pro.db
   
 # MySQL setup - Fill in your own username and password to access your local database
