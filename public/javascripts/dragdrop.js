@@ -1,6 +1,5 @@
-// script.aculo.us dragdrop.js v1.8.3, Thu Oct 08 11:23:33 +0200 2009
-
-// Copyright (c) 2005-2009 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
+// Copyright (c) 2005-2008 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
+//           (c) 2005-2008 Sammi Williams (http://www.oriontransfer.co.nz, sammi@oriontransfer.co.nz)
 //
 // script.aculo.us is freely distributable under the terms of an MIT-style license.
 // For details, see the script.aculo.us web site: http://script.aculo.us/
@@ -312,7 +311,7 @@ var Draggable = Class.create({
         tag_name=='TEXTAREA')) return;
 
       var pointer = [Event.pointerX(event), Event.pointerY(event)];
-      var pos     = this.element.cumulativeOffset();
+      var pos     = Position.cumulativeOffset(this.element);
       this.offset = [0,1].map( function(i) { return (pointer[i] - pos[i]) });
 
       Draggables.activate(this);
@@ -455,7 +454,7 @@ var Draggable = Class.create({
   },
 
   draw: function(point) {
-    var pos = this.element.cumulativeOffset();
+    var pos = Position.cumulativeOffset(this.element);
     if(this.options.ghosting) {
       var r   = Position.realOffset(this.element);
       pos[0] += r[0] - Position.deltaX; pos[1] += r[1] - Position.deltaY;
@@ -731,7 +730,7 @@ var Sortable = {
     }
 
     // keep reference
-    this.sortables[element.identify()] = options;
+    this.sortables[element.id] = options;
 
     // for onupdate
     Draggables.addObserver(new SortableObserver(element, options.onUpdate));
@@ -826,7 +825,7 @@ var Sortable = {
           hide().addClassName('dropmarker').setStyle({position:'absolute'});
       document.getElementsByTagName("body").item(0).appendChild(Sortable._marker);
     }
-    var offsets = dropon.cumulativeOffset();
+    var offsets = Position.cumulativeOffset(dropon);
     Sortable._marker.setStyle({left: offsets[0]+'px', top: offsets[1] + 'px'});
 
     if(position=='after')

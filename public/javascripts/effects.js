@@ -1,6 +1,4 @@
-// script.aculo.us effects.js v1.8.3, Thu Oct 08 11:23:33 +0200 2009
-
-// Copyright (c) 2005-2009 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
+// Copyright (c) 2005-2008 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 // Contributors:
 //  Justin Palmer (http://encytemedia.com/)
 //  Mark Pilgrim (http://diveintomark.org/)
@@ -147,13 +145,14 @@ var Effect = {
     'blind':  ['BlindDown','BlindUp'],
     'appear': ['Appear','Fade']
   },
-  toggle: function(element, effect, options) {
+  toggle: function(element, effect) {
     element = $(element);
-    effect  = (effect || 'appear').toLowerCase();
-
-    return Effect[ Effect.PAIRS[ effect ][ element.visible() ? 1 : 0 ] ](element, Object.extend({
+    effect = (effect || 'appear').toLowerCase();
+    var options = Object.extend({
       queue: { position:'end', scope:(element.id || 'global'), limit: 1 }
-    }, options || {}));
+    }, arguments[2] || { });
+    Effect[element.visible() ?
+      Effect.PAIRS[effect][1] : Effect.PAIRS[effect][0]](element, options);
   }
 };
 
@@ -229,6 +228,12 @@ Effect.Queue = Effect.Queues.get('global');
 Effect.Base = Class.create({
   position: null,
   start: function(options) {
+    function codeForEvent(options,eventName){
+      return (
+        (options[eventName+'Internal'] ? 'this.options.'+eventName+'Internal(this);' : '') +
+        (options[eventName] ? 'this.options.'+eventName+'(this);' : '')
+      );
+    }
     if (options && options.transition === false) options.transition = Effect.Transitions.linear;
     this.options      = Object.extend(Object.extend({ },Effect.DefaultOptions), options || { });
     this.currentFrame = 0;
