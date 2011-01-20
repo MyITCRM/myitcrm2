@@ -1,62 +1,102 @@
-ActionController::Routing::Routes.draw do |map|
-  
-  map.resources :statuses
-  map.resources :priority_lists
-  map.resources :work_orders, :collection => { :close => :put, :assign => :put }
-  map.resources :settings, :collection => {:index => :get, :edit => :put}
-  map.resources :product_categories
-  map.resources :user_sessions
-  map.resources :users, :collection => { :edit_profile => :put, :update_profile => :put }
-  map.resources :users
-  map.resources :suppliers
-  map.resources :products
+Development::Application.routes.draw do
+  resources :statuses
+  resources :priority_lists
+  resources :work_orders do
+    collection do
+      put :close
+      put :assign
+    end
+  end
+  resources :settings do
+    collection do
+      get :index
+      put :edit
+    end
+  end
+  resources :product_categories
+  resources :user_sessions
+  resources :users do
+    collection do
+      put :edit_profile
+      put :update_profile
+    end
+  end
+  resources :users
+  resources :suppliers
+  resources :products
 
-  map.login "login", :controller => "user_sessions", :action => "new"
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  map.register "register", :controller => "users", :action => "new"
-  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
-  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
-  map.assign_workorder "work_order/:id/assign", :controller => "work_orders", :action => "assign"
+#  map.login "login", :controller => "user_sessions", :action => "new"
+  match '/login' => 'user_sessions#new', :as => :login
+#  map.logout "logout", :controller => "user_sessions", :action => "destroy"
+  match '/logout' => 'user_sessions#destroy', :as => :logout
+#  map.register "register", :controller => "users", :action => "new"
+  match '/register' =>'users#new', :as => :register
+#  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
+  match 'profile/:id' => 'users#edit_profile', :as => :my_account
+#  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
+  match 'work_order/:id/close' => 'work_order#close', :as => :close
+#  map.assign_workorder "work_order/:id/assign", :controller => "work_orders", :action => "assign"
+  match 'work_order/:id/assign' => 'work_orders#assign', :as => :workorder_close
 
-  # The priority is based upon order of creation: first created -> highest priority.
+
+#  map.root :register
+  root :to => 'user_sessions#new'
+
+
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
 
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
+  #   resources :products
 
   # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
 
   # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
   # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', :on => :collection
+  #     end
   #   end
 
   # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
   #   end
 
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.old.
-  map.root :login
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  # root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id(.:format)))'
 end

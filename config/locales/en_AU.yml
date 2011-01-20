@@ -125,7 +125,7 @@ en_AU:
      account_accessed: "User last Logged in"
      not_logged_in_yet: "User has not logged in yet."
      login_failures: "Failed Login Attempts"
-     login_count: "Successful Logins"
+     login_count: "Successful Login"
      email: "Email"
      address: "Address"
   user_t_edit_user: "Edit User"

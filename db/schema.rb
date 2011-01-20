@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116054909) do
+ActiveRecord::Schema.define(:version => 20100906074944) do
 
   create_table "priority_lists", :force => true do |t|
     t.string   "name"
@@ -37,23 +38,23 @@ ActiveRecord::Schema.define(:version => 20101116054909) do
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.decimal  "tax_rate",            :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "cost_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "sell_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "mark_up",             :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax_rate",            :default => 0.0, :null => false
+    t.decimal  "cost_price",          :default => 0.0, :null => false
+    t.decimal  "sell_price",          :default => 0.0, :null => false
+    t.decimal  "mark_up",             :default => 0.0, :null => false
     t.boolean  "active"
-    t.decimal  "weight",              :precision => 10, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "weight",              :default => 0.0, :null => false
     t.boolean  "discountable"
-    t.decimal  "disc_percent",        :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "disc_amount",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "disc_percent",        :default => 0.0, :null => false
+    t.decimal  "disc_amount",         :default => 0.0, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.decimal  "qty_on_hand",         :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "qty_allocated",       :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "qty_available",       :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "qty_ordered",         :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "stocking_qty",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_on_hand",         :default => 0.0, :null => false
+    t.decimal  "qty_allocated",       :default => 0.0, :null => false
+    t.decimal  "qty_available",       :default => 0.0, :null => false
+    t.decimal  "qty_ordered",         :default => 0.0, :null => false
+    t.decimal  "stocking_qty",        :default => 0.0, :null => false
     t.boolean  "stocked_product"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -133,27 +134,20 @@ ActiveRecord::Schema.define(:version => 20101116054909) do
     t.string   "created_by"
   end
 
-  create_table "wo_assignments", :force => true do |t|
-    t.integer  "wo_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "work_orders", :force => true do |t|
-    t.integer  "workorder_id"
     t.string   "subject"
     t.text     "description"
     t.integer  "note_id"
     t.integer  "comment_id"
-    t.integer  "attachment_id"
-    t.integer  "schedule_id"
+    t.integer  "attachments_id"
+    t.integer  "schedules_id"
     t.boolean  "closed"
     t.string   "closed_by"
     t.datetime "closed_date"
     t.text     "resolution"
     t.integer  "user_id"
-    t.integer  "assigned_to"
+    t.integer  "assigned_to_id"
+    t.text     "assigned_to_username"
     t.integer  "priority_list_id"
     t.integer  "status_id"
     t.string   "created_by"

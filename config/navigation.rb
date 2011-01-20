@@ -15,7 +15,7 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
       if permitted_to? :edit_profile, User.new
-        primary.item :profile, 'My Details', profile_url(:id => current_user)
+        primary.item :profile, 'My Details', my_account_url(:id => current_user)
       end
 
       primary.item :logout, 'Logout', logout_path
