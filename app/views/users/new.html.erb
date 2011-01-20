@@ -15,8 +15,8 @@
 <div class="tabcontainer">
 
   <div id="sc1" class="tabcontent">
-    <% semantic_form_for(@user) do |f| %>
-        <% f.inputs do %>
+    <%= semantic_form_for(@user) do |f| %>
+        <%= f.inputs do %>
             <%= f.input :username, :label => (t "user.username") %>
             <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
             <%= f.input :password, :required => true %>
@@ -42,8 +42,8 @@
     </div>
     <% if permitted_to? :destroy, @user %>
         <div id="sc2" class="tabcontent">
-          <% semantic_form_for(@user) do |f| %>
-              <% f.inputs do %>
+          <%= semantic_form_for(@user) do |f| %>
+              <%= f.inputs do %>
                   <%= f.input :roles, :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %>
               <% end %>
 

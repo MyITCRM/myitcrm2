@@ -1,5 +1,11 @@
-<% form_for(@user_session) do |f| %>
-  <%= f.error_messages %>
+<% form_for(@user_session, :url => { :action => "create" }) do |f| %>
+  <% if @user_session.errors.any? %>
+        <ul>
+        <% @user_session.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+           <% end %>
+          </ul>
+  <% end %>
 <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
