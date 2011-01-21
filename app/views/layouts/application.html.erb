@@ -4,6 +4,7 @@
 <head>
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
   <meta name="keywords" content="<%= Setting::meta_tags %>" />
+  <%= csrf_meta_tag %>
 
   <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'ddtabmenu', 'jstoolbar', :cache => "base" %>
   <%= javascript_include_tag :all %>
@@ -24,6 +25,7 @@
   <!--<div id="right_bar">
   </div>-->
   <div id="yield">
+    <!--mytodo - Need to fix up flash notices and CSS styles-->
      <%- flash.each do |name, msg| -%>
         <p>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>

@@ -1,38 +1,72 @@
 <%= render :partial => 'actions' %>
-<div id="show_view">
-<% semantic_form_for(@user) do |f| %>
-    <% f.inputs do %>
-    <%= f.input :active , :label => (t "global.active") %>
-    <%= f.input :username ,:input_html => {:autocomplete => 'off'}, :label => (t "user.username") %>
-    <%= f.input :name , :label =>(t "user.name_eg") %>
-    <%= f.input :password,:input_html => {:autocomplete => 'off'}, :required => true %>
-   <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation"), :required => true %>
-   <%= f.input :email, :label => (t "global.email") %>
-   <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
-   <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
-   <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
-   <%= f.input :zip, :input_html => {:size => 30}, :label => (t "global.zip") %>
-   <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
-   <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
-   <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
-   <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
-        <% if permitted_to? :destroy, @user %>
-   <%= f.input :roles, :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %>
-         <% end %>
 
-     <%= f.buttons %>
+<div id="ddtabs1" class="basictab">
+  <ul>
+    <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="tab1"><%= (t "products.tab_menu_basic") %></a></li>
+    <li><a href="#<%= t "users.tab.user_type" %>" rel="tab2"><%= t "users.tab.user_type" %></a></li>
+  </ul>
+</div>
+
+<div class="tabcontainer">
+
+  <div id="tab1" class="tabcontent">
+
+      <% semantic_form_for(@user) do |f| %>
+          <% f.inputs do %>
+              <%= f.input :active , :label => (t "global.active") %>
+              <%= f.input :username ,:input_html => {:autocomplete => 'off'}, :label => (t "user.username") %>
+              <%= f.input :name , :label =>(t "user.name_eg") %>
+              <%= f.input :password,:input_html => {:autocomplete => 'off'}, :required => true %>
+              <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation"), :required => true %>
+              <%= f.input :email, :label => (t "global.email") %>
+
+              <%= f.buttons %>
 
 
-<p>
-      <% if current_user == nil %>
-      <%= hidden_field_tag "user[created_by]", @user.username %>
-          <% else %>
-      <%= hidden_field_tag "user[created_by]", current_user.username %>
+              <p>
+                <% if current_user == nil %>
+                    <%= hidden_field_tag "user[created_by]", @user.username %>
+                <% else %>
+                    <%= hidden_field_tag "user[created_by]", current_user.username %>
+                <% end %>
+              </p>
+              <p>
+
+              </p>
           <% end %>
-    </p>
-  <p>
+      <% end %>
+    
+  </div>
+  <div id="tab2" class="tabcontent">
+     <% semantic_form_for(@user) do |f| %>
+          <% f.inputs do %>
+              <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
+              <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
+              <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
+              <%= f.input :zip, :input_html => {:size => 30}, :label => (t "global.zip") %>
+              <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
+              <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
+              <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
+              <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
+              <% if permitted_to? :destroy, @user %>
+                  <%= f.input :roles, :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %>
+              <% end %>
 
-  </p>
-<% end %>
-<% end %>
+              <%= f.buttons %>
+
+
+              <p>
+                <% if current_user == nil %>
+                    <%= hidden_field_tag "user[created_by]", @user.username %>
+                <% else %>
+                    <%= hidden_field_tag "user[created_by]", current_user.username %>
+                <% end %>
+              </p>
+              <p>
+
+              </p>
+          <% end %>
+      <% end %>
+
+  </div>
 </div>

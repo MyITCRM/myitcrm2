@@ -2,7 +2,7 @@
   <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"]), new_user_path) %><%= link_to("Add New", new_user_path) %>
 </div>
 
-<% form_tag users_path, :method => 'get' do %>
+<%= form_tag users_path, :method => 'get' do %>
    <p><%= t "user.search"  %>
      <%=  text_field_tag :search, params[:search]  %>
      <%= submit_tag (t "global.submit"), :name => nil %>
@@ -30,7 +30,7 @@
     <td><%=h user.id %></td>
     <td><%=h user.name %></td>
     <td><%=h user.username %></td>
-    <td><%=h user.email %></td>
+    <td><%=raw user.email %></td>
     <td><%=h  user.role_symbols %></td>
     <td><%=h user.phone %></td>
     <td><%=h user.mobile %></td>

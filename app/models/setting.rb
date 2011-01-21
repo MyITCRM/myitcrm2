@@ -60,7 +60,8 @@ class Setting < ActiveRecord::Base
                   TIS-620)
 
   cattr_accessor :available_settings
-  @@available_settings = YAML::load(File.open("#{RAILS_ROOT}/config/config.yml"))
+#  @@available_settings = YAML::load(File.open("#{RAILS_ROOT}/config/config.yml"))
+  @@available_settings = YAML::load(File.open("#{Rails.root}/config/config.yml"))
 
 
   validates_uniqueness_of :name

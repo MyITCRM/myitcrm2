@@ -96,7 +96,7 @@ h6 {
   border: solid 1px black;
 
 }
-#flash_notice, #flash_error {
+#flash_notice, #flash_alert {
   padding: 4px 30px 4px 30px;
   margin: 10px 0;
 }
@@ -107,7 +107,7 @@ h6 {
   font-weight:bold;
 }
 
-#flash_error {
+#flash_alert {
   background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;
   border: solid 2px #C66;
 }

@@ -16,13 +16,15 @@ class ApplicationController < ActionController::Base
      Authorization.current_user = current_user
    end
 
-def permission_denied
-    flash[:error] = t "global.restricted"
-    redirect_to root
-  end
-def session_expired
-    flash[:error] = t "global.expired_session"
-    redirect_to root_url
-  end
+  def permission_denied
+  #    notice[:error] = t "global.restricted"
+  #    redirect_to root_url
+      redirect_to(root_path, :alert => [t "global.restricted"])
+    end
+  def session_expired
+    redirect_to(root_path, :alert => [t "global.expired_session"])
+  #    notice[:error] = t "global.expired_session"
+  #    redirect_to root_url
+    end
 
 end

@@ -17,8 +17,8 @@ filter_resource_access
     if current_user.roles_mask <= 32
     else
       if @user != current_user
-        flash[:error] = t "global.restricted"
-        redirect_to root_path
+        redirect_to(root, :notice => [t "global.restricted"])
+
       end
     end
   end

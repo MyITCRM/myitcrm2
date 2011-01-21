@@ -1,4 +1,4 @@
-<% form_for(@user_session, :url => { :action => "create" }) do |f| %>
+<%= form_for(@user_session, :url => { :action => "create" }) do |f| %>
   <% if @user_session.errors.any? %>
         <ul>
         <% @user_session.errors.full_messages.each do |msg| %>
