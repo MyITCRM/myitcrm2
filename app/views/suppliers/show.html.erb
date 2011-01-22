@@ -87,7 +87,7 @@
       <strong><%= t "global.email" %>:</strong>
     </td>
     <td align="left">
-     <%= auto_link_email_addresses( @supplier.email ) %>
+     <%= auto_link_email_addresses( @supplier.email ).html_safe %>
     </td>
   </tr>
     <tr>
