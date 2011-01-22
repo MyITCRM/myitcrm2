@@ -13,7 +13,9 @@ config.action_view.cache_template_loading            = true
 # config.log_level = :debug
 
 # Use a different logger for distributed setups
-# config.logger = SyslogLogger.new
+# config.logger = SyslogLogger.new    -200
+config.logger = Logger.new(config.log_path, 10, 1048576)
+config.logger.level = Logger::INFO
 
 # Use a different cache store in production
 # config.cache_store = :mem_cache_store

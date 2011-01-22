@@ -32,7 +32,7 @@
         <strong><%= t "global.email" %>:</strong>
       </td>
       <td align="left">
-       <%= auto_link_email_addresses( @user.email ) %>
+       <%= auto_link_email_addresses( @user.email ).html_safe %>
       </td>
     </tr>
   <tr>
