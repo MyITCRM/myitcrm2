@@ -131,7 +131,7 @@ margin:0;
 padding:3px;
 }
 div.auto_complete ul li.selected {
-background-color: #ffb;
+background-color: #99ccff;
 }
 div.auto_complete ul strong.highlight {
 color: #800;
