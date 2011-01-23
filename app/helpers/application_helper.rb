@@ -17,3 +17,8 @@ module ApplicationHelper
           javascript_tag("var textileToolbar = new jsToolBar($('#{field_id}'));  textileToolbar.draw();")
         end
 end
+# Used to strip HTML Tags from RedCloth Output.
+def plaintext_for(field_id)
+  RedCloth3.new("#{field_id}").to_html.gsub(/(<[^>]+>)/, '')
+end
+

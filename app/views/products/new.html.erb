@@ -22,7 +22,7 @@
                 <%= f.input :manufacturer, :label => (t "products.manufacturer"), :hint => (t "products.hint_manuf") %>
           <li class="string required">
             <%= f.label(t "products.category")%>
-            <%= text_field_with_auto_complete :product, :category_name, { :size => 50}, { :url => product_categories_path(:js), :method => :get, :with => "'search=' + element.value"} %>
+            <%= text_field_with_auto_complete :product, :category_name, { :size => 50}, { :url => product_categories_path(:js), :method => :get, :param_name => 'search'} %>
             <p class="inline-hints"><%= (t "products.hint.category")  %></p>
           </li>
           <% if params[:supplier_id] ||= nil %>

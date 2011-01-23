@@ -1,6 +1,0 @@
-config/database.yml
-log/development.log
-log/test.log
-log/production.log
-.idea
-test
