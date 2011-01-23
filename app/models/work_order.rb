@@ -11,7 +11,7 @@ class WorkOrder < ActiveRecord::Base
   def before_create
     self.created_at ||= Time.now
     self.status_id ||= 1
-    self.assigned_to ||= 0
+    self.assigned_to_username ||= nil
     self.closed ||= 0
   end
   def before_update

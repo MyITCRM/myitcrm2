@@ -1,4 +1,4 @@
-<table width="100%" >
+<table width="100%" cellspacing="0" >
   <tr> <!--mytodo: add translation-->
     <th><%= "WO #" %></th>
     <th><%= "Client" %></th>
@@ -14,7 +14,6 @@
 
 
 <% @assigned_work_orders.each do |assigned_wo| %>
-      <!--mytodo - add row color shading by css and based on priority-->
   <tr align="left" class="priority_main_<%= assigned_wo.priority_list.id %>">
     <td><%= link_to(assigned_wo.id, assigned_wo) %></td>
     <td><%= link_to(assigned_wo.user.username, user_path(assigned_wo.user_id)) %></td>
@@ -25,8 +24,8 @@
     <td><%=h assigned_wo.created_by %></td>
     <td><%=h l assigned_wo.updated_at, :format => :medium %></td>
         <!--mytodo : possible database performance issues as it hist the DB for every record. maybe just add username instead. or create a join model-->
-        <% if assigned_wo.assigned_to ||= nil %>
-            <% @assigned = User.find(:first, :select => "username", :conditions => ["id = ?", assigned_wo.assigned_to]) %>
+        <% if assigned_wo.assigned_to_username ||= nil %>
+            <% @assigned = User.find(:first, :select => "username", :conditions => ["id = ?", assigned_wo.assigned_to_username]) %>
             <td><%= @assigned.username %></td>
         <% else %>
     <td></td>

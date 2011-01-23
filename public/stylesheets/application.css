@@ -7,7 +7,7 @@ body {
 #index_table {
      border-collapse:collapse;
 }
-#index_table th, #index_table td {
+#index_table td {
     border: 1px solid #000066;
     padding:3px 7px 2px 7px;
 
@@ -15,6 +15,8 @@ body {
 #index_table th {
   color: #ffffff;
   background-color: #4B7399;
+  border: 1px solid #000066;
+  padding:3px 7px 2px 7px;
 
 }
 #index_table td {
@@ -151,7 +153,6 @@ h6 {
 }
 
 #user_nav {
-    height:100%;
     margin: 0 auto;
 }
 #right_bar {
