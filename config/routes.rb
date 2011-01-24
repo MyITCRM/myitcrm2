@@ -1,4 +1,4 @@
-Development::Application.routes.draw do
+MyITCRM2::Application.routes.draw do
   resources :statuses
   resources :priority_lists
   resources :work_orders do

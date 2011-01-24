@@ -77,9 +77,8 @@ pdf.cell [10,608],
         :align => :right,
         :padding => 3
 # Check if there is a user assigned and display it if there is, otherwise display "not assigned message"
-# myTODO - Remove this when the new migration happens and chnages the lookup as the name will be included into the database along with user id.
-if @work_order.assigned_to ||= nil
-  text = User.find(:all, :select => "username", :conditions => ["id = ?", @work_order.assigned_to])
+if @work_order.assigned_to_username ||= nil
+  text = User.find(:all, :select => "username", :conditions => ["id = ?", @work_order.assigned_to_username])
   else
     text = t "workorder.not_assigned_message"
 end
