@@ -16,7 +16,7 @@ production:
   
 # MySQL setup - Fill in your own username and password to access your local database
 production:
-  adapter: jdbcmysql
+  adapter: mysql
   database: test_pro
   host: localhost
   username:
@@ -24,7 +24,7 @@ production:
   encoding: utf8
 
 development:
-  adapter: jdbcmysql
+  adapter: mysql
   database: test_dev
   host: localhost
   username:
