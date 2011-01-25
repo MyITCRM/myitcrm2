@@ -82,7 +82,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  declarative_authorization
+  declarative_authorization (= 0.5.2)
   i18n (= 0.4.2)
   prawn
   rails (= 3.0.3)

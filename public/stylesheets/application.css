@@ -78,6 +78,8 @@ a img {
   margin: 0 auto;
 }
 #yield h1 {
+  display:inline-block;
+  padding-right: 5px;  
   font-size:16px;
   text-decoration:underline;
   color: #000099;
@@ -155,49 +157,15 @@ h6 {
 #user_nav {
     margin: 0 auto;
 }
-#right_bar {
-    width:15%;
-    height:100%;
-    float:right;
-    border: 1px solid #000000;
-    text-align: left;
-    background-color: #ccffcc;
-    font-size:10px;
-    padding:3px;
+#right_bar { width:15%; height:100%; float:right; border: 1px solid #000000; text-align: left; background-color: #ccffcc; font-size:10px; padding:3px;}
+.round { -moz-border-radius:10px; -webkit-border-radius:10px;}
 
-}
-.round {
-   -moz-border-radius:10px;
-   -webkit-border-radius:10px;
-}
-
-#footer {
-    width:100%;
-    float:left;
-    color: #FFF;
-    text-align: center;
-    padding: 4px 0;
-
-}
-.footer_link a {
-    color: #FFF;
-}
-.footer_version {
-    font-size:x-small;
-}
-
-#header {
-    text-align:center;
-    padding-bottom:25px;
-
-}
-.even td {
-  background-color: #E3E6FF;
-}
-
-.odd td {
-  background-color: #ffffff;
-}
+#footer { width:100%; float:left; color: #FFF; text-align: center; padding: 4px 0;}
+.footer_link a {color: #FFF;}
+.footer_version {font-size:x-small;}
+#header {text-align:center; padding-bottom:25px;}
+.even td {background-color: #E3E6FF;}
+.odd td {background-color: #ffffff;}
 .priority_main_1 td {background-color: #ccffcc;}
 .priority_main_2 td {background-color: #ffff99;}
 .priority_main_3 td {background-color: #ffcc00;}
@@ -206,24 +174,16 @@ h6 {
 
 #top_float_right {
     text-transform:uppercase;
+    font-weight:bold;
     padding: 0 0 0 20px;
-    font-size:11px;
+    font-size:9px;
     float:right;
+    vertical-align:middle;
     /*margin-top:-30px;*/
  }
-#top_float_left {
-    float:left;
-    padding:inherit;
-    margin-top:30px;
-
-}
-.button {
-    padding:inherit;
-    margin-top:-30px;
-
-
-}
-
+#top_float_left {float:left; padding:inherit; margin-top:30px;}
+#toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
+.button {padding:inherit; margin-top:-30px;}
 .digg_pagination {
   background: white;
   /* self-clearing method: */ }

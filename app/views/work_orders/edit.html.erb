@@ -1,5 +1,5 @@
 <div id="top_float_right">
-   <%= link_to(image_tag('close.png', :title => [t "global.cancel"]), work_orders_path) %>&nbsp;&nbsp;<%= link_to([t "global.cancel"], work_orders_path) %>&nbsp;&nbsp;<%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_workorder_path, :confirm => 'Are you sure?', :method => :put) %>&nbsp;<%= link_to([t "global.close"], close_workorder_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put) %>
+   <%= link_to(image_tag('close.png', :title => [t "global.cancel"]), work_orders_path) %>&nbsp;&nbsp;<%= link_to([t "global.cancel"], work_orders_path) %>&nbsp;&nbsp;<%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_path, :confirm => 'Are you sure?', :method => :put) %>&nbsp;<%= link_to([t "global.close"], close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put) %>
 </div>
 
 <div id="ddtabs1" class="basictab">
@@ -18,7 +18,7 @@
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.input :status, :label => (t "workorder.status") %>
         <%= f.input :priority_list, :label => (t "workorder.priority") %>
-        <%= f.input :assigned_to, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5 " )  %>
+        <%= f.input :assigned_to_username, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5 " )  %>
         <%= f.input :description, :label => (t "workorder.details"), :input_html => {:rows => 30, :style => "margin-left:26%" }%>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
       <% end %>

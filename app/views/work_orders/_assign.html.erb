@@ -1,4 +1,4 @@
- <% form_for @work_order, :url =>{:action => "assign"} do |f| %>
+ <%= form_for @work_order, :url =>{:action => "assign"} do |f| %>
      <%= f.collection_select(:assigned_to_username, User.find(:all, :conditions => "roles_mask < 5 " ),:id, :name)%>
      <%= hidden_field_tag(:id, @work_order.id ) %>
      <%= button_to "Assign" %>

@@ -32,6 +32,6 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 
 gem "prawn", :require => "prawn"
-gem "declarative_authorization", :require => "declarative_authorization"
+gem "declarative_authorization", '0.5.2', :require => "declarative_authorization"
 gem "will_paginate", ">= 3.0pre2", :require => "will_paginate"
 gem 'i18n', '0.4.2', :require => 'i18n'

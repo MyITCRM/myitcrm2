@@ -30,16 +30,13 @@
       </p>
       <br>
     <%- end -%>
-    <div id="top_float_right">
-     <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
-    </div>
     <h1><%= @title || "" %></h1>
         <%= yield %>
     </div>
 </div>
 <div id="footer" class="footer_link" >
   <p>
-    Powered by <a href="http://myitcrm.com" >MyIT CRM</a>&copy; 2010,2011
+    Powered by <a href="http://myitcrm.com" >MyIT CRM</a>&copy; 2010 - 2011
   </p>
   <p class="footer_version">
    Release - ALPHA 2.0.0.0
