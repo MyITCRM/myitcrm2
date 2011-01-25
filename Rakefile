@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Development::Application.load_tasks
+MyITCRM2::Application.load_tasks

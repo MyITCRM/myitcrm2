@@ -23,9 +23,9 @@
     <td><%=h l on_hold.created_at, :format => :medium %></td>
     <td><%=h on_hold.created_by %></td>
     <td><%=h l on_hold.updated_at, :format => :medium %></td>
-    <td><%= on_hold.assigned_to %></td>
-    <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(on_hold.id) )%>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(on_hold.id)) %>
+    <td><%= on_hold.assigned_to_username %></td>
+    <td align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(on_hold.id) )%>&nbsp;
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(on_hold.id)) %>&nbsp;
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(on_hold.id), :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>
