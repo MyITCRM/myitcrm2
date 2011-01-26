@@ -1,4 +1,4 @@
-== Welcome to MyIT CRM Ruby On  Rails Addition ==
+h1. Welcome to MyIT CRM2
 
 Check out http://myitcrm.com for more details
 and the current version of MyIT CRM.
