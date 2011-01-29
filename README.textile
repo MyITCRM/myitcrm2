@@ -3,7 +3,7 @@ h1. Welcome to MyIT CRM2
 Check out http://myitcrm.com for more details
 and the current version of MyIT CRM.
 
-Setup database.yml file for development
+h2. Setup database.yml file for development
 
 # SQLite3 setup - requires gem install
 development:
