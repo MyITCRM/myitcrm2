@@ -6,6 +6,7 @@ and the current version of MyIT CRM.
 h2. Setup database.yml file for development
 
 
+
 # SQLite3 setup - requires gem install
 development:
   adapter: sqlite3
