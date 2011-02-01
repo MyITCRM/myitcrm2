@@ -8,13 +8,13 @@ SimpleForm.setup do |config|
   # config.hint_tag = :span
 
   # CSS class to add to all hint tags.
-  # config.hint_class = :hint
+  config.hint_class = :hint
 
   # Default tag used on errors.
-  # config.error_class = :error
+  config.error_class = :error
 
   # Default tag used on errors.
-  # config.error_tag = :span
+  config.error_tag = :span
 
   # Method used to tidy up errors.
   # config.error_method = :first
@@ -29,7 +29,7 @@ SimpleForm.setup do |config|
   # config.error_notification_id = nil
 
   # You can wrap all inputs in a pre-defined tag.
-  # config.wrapper_tag = :div
+  config.wrapper_tag = :div
 
   # CSS class to add to all wrapper tags.
   # config.wrapper_class = :input
@@ -73,5 +73,5 @@ SimpleForm.setup do |config|
   # config.default_input_size = 50
 
   # When false, do not use translations for labels, hints or placeholders.
-  # config.translate = true
+  config.translate = true
 end
