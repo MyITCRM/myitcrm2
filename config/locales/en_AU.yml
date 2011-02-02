@@ -45,7 +45,7 @@ en_AU:
     submit: "Submit"
     login: "Login"
     logout: "Logout"
-    role: "Role"
+    role: "Roles"
     restricted: "You don't have permission to view this section or Your session has expired."
     active: "Active?"
     user_type: "User Type"

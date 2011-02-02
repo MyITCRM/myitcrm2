@@ -43,7 +43,7 @@
     <% if permitted_to? :destroy, @user %>
         <div id="sc2" class="tabcontent">
             <%= simple_form_for(@user) do |f| %>
-                  <%= f.input :roles, :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %>
+                  <%= f.input :roles, :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %><br>
              <%= f.button :submit %>
               <% if current_user == nil %>
                   <%= hidden_field_tag "user[created_by]", @user.username %>

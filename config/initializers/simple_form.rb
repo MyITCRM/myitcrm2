@@ -8,13 +8,13 @@ SimpleForm.setup do |config|
   # config.hint_tag = :span
 
   # CSS class to add to all hint tags.
-  config.hint_class = :hint
+#  config.hint_class = :hint
 
   # Default tag used on errors.
-  config.error_class = :error
+#  config.error_class = :error
 
   # Default tag used on errors.
-  config.error_tag = :span
+#  config.error_tag = :span
 
   # Method used to tidy up errors.
   # config.error_method = :first
@@ -29,7 +29,7 @@ SimpleForm.setup do |config|
   # config.error_notification_id = nil
 
   # You can wrap all inputs in a pre-defined tag.
-  config.wrapper_tag = :div
+#  config.wrapper_tag = :div
 
   # CSS class to add to all wrapper tags.
   # config.wrapper_class = :input
@@ -38,10 +38,10 @@ SimpleForm.setup do |config|
   # config.wrapper_error_class = :field_with_errors
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
-  # config.collection_wrapper_tag = nil
+#  config.collection_wrapper_tag = :ul
 
   # You can wrap each item in a collection of radio/check boxes with a tag, defaulting to none.
-  # config.item_wrapper_tag = nil
+#  config.item_wrapper_tag = :li
 
   # Series of attemps to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
@@ -70,8 +70,8 @@ SimpleForm.setup do |config|
   # config.country_priority = nil
 
   # Default size for text inputs.
-  # config.default_input_size = 50
+  config.default_input_size = 30
 
   # When false, do not use translations for labels, hints or placeholders.
-  config.translate = true
+#  config.translate = true
 end
