@@ -1,7 +1,7 @@
-<div id="top_float_right">
-   <%= link_to(image_tag('close.png', :title => [t "global.close"]), work_orders_path) %>&nbsp;<%= link_to([t "global.close"], work_orders_path) %><%= link_to(image_tag('close.png', :title => [t "global.close"]), close_workorder_path) %>&nbsp;<%= link_to([t "global.close"], close_workorder_path) %>
+<div id="top_float_left">
+   <%= link_to(image_tag('exit.png', :title => [t "global.close"],:align => "bottom", :hspace => "2"), work_orders_path) %>&nbsp;<%= link_to([t "global.close"], work_orders_path) %><%= link_to(image_tag('exit.png', :title => [t "global.close"],:align => "bottom", :hspace => "2"), close_workorder_path) %>&nbsp;<%= link_to([t "global.close"], close_workorder_path) %>
 </div>
-
+<br>
 <div id="ddtabs1" class="basictab">
 <ul>
 <li><a href="#<%= t "workorder.tab_menu_resolution"  %>" rel="sc2"><%= (t "workorder.tab_menu_resolution") %></a></li>

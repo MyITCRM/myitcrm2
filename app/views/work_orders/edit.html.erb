@@ -1,7 +1,7 @@
-<div id="top_float_right">
-   <%= link_to(image_tag('close.png', :title => [t "global.cancel"]), work_orders_path) %>&nbsp;&nbsp;<%= link_to([t "global.cancel"], work_orders_path) %>&nbsp;&nbsp;<%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_path, :confirm => 'Are you sure?', :method => :put) %>&nbsp;<%= link_to([t "global.close"], close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put) %>
+<div id="top_float_left">
+   <%= link_to(image_tag('exit.png', :title => [t "global.cancel"],:align => "bottom", :hspace => "2"), work_orders_path) %>&nbsp;&nbsp;<%= link_to([t "global.cancel"], work_orders_path) %>&nbsp;&nbsp;<%= link_to(image_tag('tick.png', :title => [t "global.close"],:align => "bottom", :hspace => "2"), close_path, :confirm => 'Are you sure?', :method => :put) %>&nbsp;<%= link_to([t "global.close"], close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put) %>
 </div>
-
+<br>
 <div id="ddtabs1" class="basictab">
 <ul>
 <li><a href="#<%= t "workorder.tab_menu_basic_name"  %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>

@@ -1,7 +1,7 @@
 <% if current_user.roles_mask < @user.roles_mask or current_user.id == @user.id %>
     <%= render :partial => 'actions' %>
  <div id="show_view">
-<% semantic_form_for(@user) do |f| %>
+<% simple_form_for(@user) do |f| %>
     <% f.inputs do %>
     <%= f.input :username , :label => (t "user.username") %>
     <%= f.input :name , :hint =>(t "user.name_eg"), :label =>(t "user.name") %>

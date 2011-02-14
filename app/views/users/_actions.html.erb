@@ -1,9 +1,10 @@
-<div id="top_float_right">
+<div id="top_float_left">
 <% if permitted_to? :destroy, User.new %>
 <%= link_to(image_tag("trash.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
 <% end %>
 <% if current_user.roles_mask < @user.roles_mask %>
 <%= link_to(image_tag("edit.png", :title=> (t "global.edit"),:align => "bottom", :hspace => "2"), edit_user_path)%><%= link_to (t "global.edit"), edit_user_path %>&nbsp;&nbsp;
 <% end %>
-  <%= link_to(image_tag("close.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), users_path)%><%= link_to (t "global.close"), users_path %>
+  <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), users_path)%><%= link_to (t "global.exit"), users_path %>
 </div>
+<br>

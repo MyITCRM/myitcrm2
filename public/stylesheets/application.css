@@ -1,165 +1,36 @@
-body {
-  width: 95%;
-  background-color: #4B7399;
-  font-family: Verdana, Helvetica, Arial,serif;
-  font-size: 12px;
-}
-#index_table {
-     border-collapse:collapse;
-}
-#index_table td {
-    border: 1px solid #000066;
-    padding:3px 7px 2px 7px;
-
-}
-#index_table th {
-  color: #ffffff;
-  background-color: #4B7399;
-  border: 1px solid #000066;
-  padding:3px 7px 2px 7px;
-
-}
-#index_table td {
-  color: #000000;
-}
-#index_table th a {
-  color:#ccccff;
-}
-#index_table th .current {
-    padding-right:14px;
-  background-repeat:no-repeat;
-  background-position: right center;
-}
-
-#index_table th .ASC {
-  background-image:url("/images/arrow_up.png");
-}
-
-#index_table th .DESC {
-  background-image:url("/images/arrow_down.png");
-}
-
-
-a img {
-  border: none;
-}
-
-#conatiner a {
-  color: #0000FF;
-}
-#show_view {
-  border: 1px solid #999999;
-  background-color: #edf2f6;
-  padding:10px 10px 10px 10px;
-}
-
-#show_view table {
-    width:100%;
-    padding-left:1%;
-    border:none;
-
-}
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
-}
-
-#container {
-  width: 97%;
-  float:left;
-  background-color: #FFF;
-  padding: 20px 40px 20px 40px;
-  /*border: solid 1px black;*/
-  text-align:left;
-
-}
-#yield {
-  margin: 0 auto;
-}
-#yield h1 {
-  display:inline-block;
-  padding-right: 5px;  
-  font-size:16px;
-  text-decoration:underline;
-  color: #000099;
-}
-h6 {
-  width: 95%;
-  font-family: Verdana, Helvetica, Arial,fantasy;
-  font-size: 12px;
-
-}
-
-#menu {
-  width: 100%;
-  float:left;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-
-}
-#flash_notice, #flash_alert {
-  padding: 4px 30px 4px 30px;
-  margin: 10px 0;
-}
-
-#flash_notice {
-  background: url(/images/tick.png) 8px 5px no-repeat #CFC;
-  border: solid 2px #6C6;
-  font-weight:bold;
-}
-
-#flash_alert {
-  background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;
-  border: solid 2px #C66;
-}
-
-.fieldWithErrors {
-  display: inline;
-}
-
-#errorExplanation {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
-}
-
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 8px;
-}
-
-#errorExplanation ul {
-  margin: 2px 24px;
-}
-
-#errorExplanation ul li {
-  font-size: 12px;
-  list-style: disc;
-}
-
-#user_nav {
-    margin: 0 auto;
-}
+body {width: 95%;background-color: #4B7399;font-family: Verdana, Helvetica, Arial,serif;font-size: 12px;}
+a img {border: none;}
+h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
+#index_table {border-collapse:collapse;}
+#index_table td {border: 1px solid #000066;padding:3px 7px 2px 7px;}
+#index_table th {color: #ffffff;background-color: #4B7399;border: 1px solid #000066;padding:3px 7px 2px 7px;}
+#index_table td {color: #000000;}
+#index_table th a {color:#ccccff;}
+#index_table th .current {padding-right:14px;background: right center no-repeat;}
+#index_table th .ASC {background-image:url("/images/arrow_up.png");}
+#index_table th .DESC {background-image:url("/images/arrow_down.png");}
+#conatiner a {color: #0000FF;}
+#show_view {border: 1px solid #999999;background-color: #edf2f6;padding:10px 10px 10px 10px;}
+#show_view table {width:100%;padding-left:1%;border:none;}
+.clear {clear: both;height: 0;overflow: hidden;}
+#container {width: 97%;float:left;background-color: #FFF;padding: 20px 40px 20px 40px;text-align:left;}
+#yield {margin: 0 auto;}
+#yield h1 {display:inline-block;padding-right: 5px;font-size:16px;text-decoration:underline;color: #999999;}
+#menu {width: 100%;float:left;margin: 0 auto;background-color: #FFF;padding: 20px 40px;border: solid 1px black;}
+/*FLASH NOTICES >>>*/
+#flash_notice, #flash_alert {padding: 4px 30px 4px 30px;margin: 10px 0;}
+#flash_notice {background: url(/images/tick.png) 8px 5px no-repeat #CFC;border: solid 2px #6C6;font-weight:bold;}
+#flash_alert {background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
+/*FLASH NOTICES <<<*/
+.fieldWithErrors {display: inline;}
+#errorExplanation {width: 400px;border: 2px solid #CF0000;padding: 0 0 0 12px;margin-bottom: 20px;background-color: #f0f0f0;}
+#errorExplanation h2 {text-align: left;font-weight: bold;padding: 5px 5px 5px 15px;font-size: 12px;margin: 0;background-color: #c00;color: #fff;}
+#errorExplanation p { color: #333; margin-bottom: 0; padding: 8px;}
+#errorExplanation ul { margin: 2px 24px;}
+#errorExplanation ul li { font-size: 12px; list-style: disc; }
+#user_nav { margin: 0 auto;}
 #right_bar { width:15%; height:100%; float:right; border: 1px solid #000000; text-align: left; background-color: #ccffcc; font-size:10px; padding:3px;}
 .round { -moz-border-radius:10px; -webkit-border-radius:10px;}
-
 #footer { width:100%; float:left; color: #FFF; text-align: center; padding: 4px 0;}
 .footer_link a {color: #FFF;}
 .footer_version {font-size:x-small;}
@@ -172,16 +43,8 @@ h6 {
 .priority_main_4 td {background-color: #ff9999; font-weight:bold;}
 .priority_main_5 td {background-color: #cc0033; font-weight:bolder;}
 
-#top_float_right {
-    text-transform:uppercase;
-    font-weight:bold;
-    padding: 0 0 0 20px;
-    font-size:9px;
-    float:right;
-    vertical-align:middle;
-    /*margin-top:-30px;*/
- }
-#top_float_left {float:left; padding:inherit; margin-top:30px;}
+#top_float_right { text-transform:uppercase; font-weight:bold; padding: 0 0 0 20px; margin-bottom:20px; font-size:9px; float:left; vertical-align:middle; }
+#top_float_left {padding-top:0;}
 #toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
 .button {padding:inherit; margin-top:-30px;}
 .digg_pagination {
@@ -230,7 +93,7 @@ h6 {
     overflow: hidden; }
 
 
-/*BOF Menu*/
+/*Menu >>>*/
 .menu{
 font: bold 12px Verdana;
 background: #414141;
@@ -315,7 +178,7 @@ background: #eff9ff;
 color: black;
 }
 
-}/*EOF Slide Menu*/
+}/*Menu <<<*/
 
 /*Filter section*/
 fieldset.collapsible { border-width: 1px 0 0 0; font-size: 0.9em; }

@@ -1,4 +1,4 @@
-<div id="top_float_right">
+<div id="top_float_left">
 <% if permitted_to? :destroy, WorkOrder.new %>
 <%= link_to(image_tag("delete.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
 <% end %>
@@ -6,9 +6,8 @@
 <%= link_to(image_tag("edit.png", :title=> (t "global.edit"),:align => "bottom", :hspace => "2"), edit_work_order_path)%><%= link_to (t "global.edit"), edit_work_order_path %>&nbsp;&nbsp;
 <% end %>
   <%= link_to(image_tag('printer.png', :title => (t "global.print"),:align => "bottom", :hspace => "2"), work_order_path(@work_order.id,:format => 'pdf'))%><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %>&nbsp;&nbsp;
-  <%= link_to(image_tag("close.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), work_orders_path)%><%= link_to (t "global.exit"), work_orders_path %>
+  <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), work_orders_path)%><%= link_to (t "global.exit"), work_orders_path %>
 </div>
-<br>
 <br>
 <div id="show_view">
   <table>

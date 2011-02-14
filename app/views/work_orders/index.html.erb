@@ -1,7 +1,8 @@
-<div id="top_float_right">
-  <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"]), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
+<div id="top_float_left">
+  <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"],:align => "bottom", :hspace => "2"), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
   <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
 </div>
+<br>
 <div id="ddtabs1" class="basictab" >
 <ul>
 <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if @new_work_orders.count > 0 %><font color="red"><%= @new_work_orders.count%></font><% else %><%= @new_work_orders.count %><% end %>)</a></li>
