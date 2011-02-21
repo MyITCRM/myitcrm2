@@ -11,8 +11,7 @@
 </div>
 <div class="tabcontainer">
 <div id="sc1" class="tabcontent">
-<% semantic_form_for(@work_order) do |f| %>
-      <% f.inputs do %>
+<% simple_form_for(@work_order) do |f| %>
         <%= f.input :user_id, :as=> :hidden, :value => params[:client_id] %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.input :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
@@ -22,8 +21,7 @@
         <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
 
-      <% end %>
-<%= f.buttons %>
+<%= f.submit t "global.create"  %>
  <%= textiletoolbar_for('work_order_description') %>
 <% end %>
 </div>

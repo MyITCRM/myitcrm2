@@ -14,7 +14,7 @@
 <div class="tabcontainer">
   
 <div id="sc1" class="tabcontent">
-<% semantic_form_for @product do |f| %>
+<% simple_form_for @product do |f| %>
   <% f.inputs do %>
                 <%= f.input :our_sku, :label => (t "products.our_sku"), :hint => (t "products.hint.our_sku"), :input_html => {:size => 20} %>
                 <%= f.input :description, :label => (t "global.description"), :hint => (t "products.hint_desc") %>
@@ -46,7 +46,7 @@
 </div>
 
 <div id="sc2" class="tabcontent">
-<% semantic_form_for @product do |f| %>
+<% simple_form_for @product do |f| %>
             <% f.inputs do %>
                 <%= f.input :stocked_product,:label =>(t "products.stocked")%>
                 <%= f.input :stocking_qty, :label =>(t "products.stocking_qty"), :hint => (t "products.hint.stocking_qty"),:input_html => {:size => 20} %>
@@ -60,7 +60,7 @@
 </div>
 
 <div id="sc3" class="tabcontent">
-<% semantic_form_for @product do |f| %>
+<% simple_form_for @product do |f| %>
             <% f.inputs do %>
                 <%= f.input :taxable, :label =>(t "product.taxable") %>
                 <%= f.input :tax_rate, :label =>(t "products.tax_rate"), :hint => (t "products.hint_tax_rate") %>
@@ -72,7 +72,7 @@
         <% end %>
 </div>
 <div id="sc4" class="tabcontent">
-<% semantic_form_for @product do |f| %>
+<% simple_form_for @product do |f| %>
             <% f.inputs do %>
                 <%= f.input :warranty_info, :as => :text, :input_html => {:rows => 15},:label =>(t "products.warranty_info") %>
                 <%= f.input :warranty_length, :input_html => {:size => 20}, :label =>(t "products.warranty_length") %>

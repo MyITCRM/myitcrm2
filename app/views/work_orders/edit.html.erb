@@ -13,7 +13,7 @@
 
 <div id="tab1" class="tabcontent">
 
-<% semantic_form_for(@work_order) do |f| %>
+<% simple_form_for(@work_order) do |f| %>
       <% f.inputs do %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.input :status, :label => (t "workorder.status") %>
@@ -27,7 +27,7 @@
 <% end %>
 </div>
 <div id="tab2" class="tabcontent">
-<% semantic_form_for(@work_order) do |f| %>
+<% simple_form_for(@work_order) do |f| %>
       <% f.inputs do %>
         <%= f.input :resolution, :label => (t "workorder.resolution"), :input_html => { :rows => 20 }%>
         <%= f.input :closed, :as => :select, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>

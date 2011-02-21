@@ -11,7 +11,7 @@
 
   <div id="tab1" class="tabcontent">
 
-      <% semantic_form_for(@user) do |f| %>
+      <% simple_form_for(@user) do |f| %>
           <% f.inputs do %>
               <%= f.input :active , :label => (t "global.active") %>
               <%= f.input :username ,:input_html => {:autocomplete => 'off'}, :label => (t "user.username") %>
@@ -38,7 +38,7 @@
     
   </div>
   <div id="tab2" class="tabcontent">
-     <% semantic_form_for(@user) do |f| %>
+     <% simple_form_for(@user) do |f| %>
           <% f.inputs do %>
               <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
               <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>

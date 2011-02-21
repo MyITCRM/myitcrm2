@@ -11,7 +11,7 @@
 <div class="tabcontainer">
 
 <div id="sc1" class="tabcontent">
-<% semantic_form_for @supplier do |f| %>
+<% simple_form_for @supplier do |f| %>
               <% f.inputs do %>
                 <%= f.input :active, :label =>(t "global.active") %>
                 <%= f.input :company_name, :label =>(t "supplier.company_name"), :input_html => {:size => 50} %>
