@@ -1,4 +1,4 @@
-h1. Welcome to MyIT CRM2
+h1. Welcome to MyIT CRM2 - The Next Stage!
 
 Check out http://myitcrm.com for more details
 and the current version of MyIT CRM.
