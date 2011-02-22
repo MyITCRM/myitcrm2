@@ -1,20 +1,27 @@
-<%= simple_form_for(@user_session, :url => { :action => "create" }) do |f| %>
-  <% if @user_session.errors.any? %>
-        <ul>
+<% if @user_session.errors.any? %>
+    <div id="errorExplanation">
+       <ul>
         <% @user_session.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
-           <% end %>
-          </ul>
-  <% end %>
-<p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
+        <% end %>
+       </ul>
+    </div>
+<% end %>
+<div class="inputs">
+  <%= simple_form_for(@user_session, :url => { :action => "create" }) do |f| %>
+    <p>
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+        <%= f.error :username, :id => 'username_error' %>
+    </p>
+    <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+    </p>
+
+  </div>
+
+  <div class="actions">
     <%= f.submit t "global.login" %>
-  </p>
+  </div>
 <% end %>

@@ -8,7 +8,7 @@ SimpleForm.setup do |config|
   # config.hint_tag = :span
 
   # CSS class to add to all hint tags.
-#  config.hint_class = :hint
+  # config.hint_class = :hint
 
   # Default tag used on errors.
 #  config.error_class = :error
@@ -17,31 +17,31 @@ SimpleForm.setup do |config|
 #  config.error_tag = :span
 
   # Method used to tidy up errors.
-  # config.error_method = :first
+  config.error_method = :inline
 
   # Default tag used for error notification helper.
-  # config.error_notification_tag = :p
+#  config.error_notification_tag = :p
 
   # CSS class to add for error notification helper.
-  # config.error_notification_class = :error_notification
+#  config.error_notification_class = :errorExplanation
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil
 
   # You can wrap all inputs in a pre-defined tag.
-#  config.wrapper_tag = :div
+  # config.wrapper_tag = :div
 
   # CSS class to add to all wrapper tags.
   # config.wrapper_class = :input
 
   # CSS class to add to the wrapper if the field has errors.
-  # config.wrapper_error_class = :field_with_errors
+  config.wrapper_error_class = :field_with_errors
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
-#  config.collection_wrapper_tag = :ul
+  # config.collection_wrapper_tag = nil
 
   # You can wrap each item in a collection of radio/check boxes with a tag, defaulting to none.
-#  config.item_wrapper_tag = :li
+  # config.item_wrapper_tag = nil
 
   # Series of attemps to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
@@ -73,5 +73,5 @@ SimpleForm.setup do |config|
   config.default_input_size = 30
 
   # When false, do not use translations for labels, hints or placeholders.
-#  config.translate = true
+  # config.translate = true
 end

@@ -14,8 +14,7 @@
 <div class="tabcontainer">
 
 <div id="sc1" class="tabcontent">
-<% simple_form_for @product do |f| %>
-  <% f.inputs do %>
+<% form_for @product do |f| %>
                 <%= f.input :active, :label => (t "global.active")%>
                 <%= f.input :our_sku, :input_html => {:size => 20}, :label => (t "products.our_sku") %>
                 <%= f.input :description, :hint => (t "products.hint_desc"), :label => (t "global.description") %>
@@ -32,8 +31,8 @@
                 <%= f.input :sell_price, :input_html => {:size => 10}, :label => (t "products.sell_price") %>
                 <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-            <% end %>
-       <%= f.buttons %>
+
+       <%= f.button t "global.create" %>
         <% end %>
 </div>
 
