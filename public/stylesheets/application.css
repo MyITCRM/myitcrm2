@@ -227,12 +227,12 @@ fieldset.settings label { display: block; }
 /* ----- SimpleForm Styles ----- */
 
 .simple_form div.input {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .simple_form label {
   float: left;
-  width: 100px;
+  width: 200px;
   text-align: right;
   margin: 2px 10px;
 }
@@ -250,23 +250,31 @@ label.collection_radio {
   margin-right: 10px;
   vertical-align: -2px;
   margin-left:   2px;
+  display:table-row;
+  height:25px;
+  text-align:left;
 }
 
 .field_with_errors {
-  background-color: #ff3333;
+  /*background-color: #ff3333;*/
 }
+.error_notification {padding: 4px 30px 4px 30px;margin: 10px 0; background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
+
 
 .simple_form .error {
   clear:   left;
-  color:   black;
+  color: #ff3333;
   display: block;
-  margin-left: 120px;
+  margin-left: 220px;
   font-size:    12px;
+  font-style:italic;
+  font-weight:bold;
+    text-transform:capitalize;
 }
 
 .simple_form .hint {
   clear: left;
-  margin-left: 120px;
+  margin-left: 220px;
   font-size:    12px;
   color: #555;
   display: block;
