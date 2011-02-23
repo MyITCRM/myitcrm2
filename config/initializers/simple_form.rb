@@ -17,7 +17,7 @@ SimpleForm.setup do |config|
 #  config.error_tag = :span
 
   # Method used to tidy up errors.
-  config.error_method = :inline
+#  config.error_method = :inline
 
   # Default tag used for error notification helper.
 #  config.error_notification_tag = :p
@@ -35,7 +35,7 @@ SimpleForm.setup do |config|
   # config.wrapper_class = :input
 
   # CSS class to add to the wrapper if the field has errors.
-  config.wrapper_error_class = :field_with_errors
+#  config.wrapper_error_class = :field_with_errors
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
   # config.collection_wrapper_tag = nil
