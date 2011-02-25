@@ -5,6 +5,12 @@ gem 'rails', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'prawn'
+gem 'declarative_authorization', '0.5.2'
+gem 'will_paginate', ">= 3.0pre2", :require => 'will_paginate'
+gem 'i18n', '0.4.2'
+gem 'simple_form', '1.3.0'
+gem 'authlogic'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
@@ -31,9 +37,3 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # end
 
 
-gem "prawn", :require => "prawn"
-gem "declarative_authorization", '0.5.2', :require => "declarative_authorization"
-gem "will_paginate", ">= 3.0pre2", :require => "will_paginate"
-gem 'i18n', '0.4.2', :require => 'i18n'
-gem 'simple_form', '1.3.0', :require => 'simple_form'
-gem 'authlogic'

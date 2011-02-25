@@ -10,7 +10,7 @@
    </p>
 <% end %>
   <p>
-  <%= will_paginate @user, :class => "digg_pagination" %>
+  <% will_paginate @user, :class => "digg_pagination" %>
 </p>
 <table id="index_table" >
   <tr>
@@ -25,7 +25,7 @@
     <th align="center" ><%= t "supplier.actions" %></th>
   </tr>
 
-<% @user.each do |user| %>
+<%= @user.each do |user| %>
   <tr class="<%= cycle :odd, :even %>">
     <td><%=h user.id %></td>
     <td><%=h user.name %></td>
@@ -38,10 +38,10 @@
     <td>
       <% if permitted_to? :show, User.new  %>
           <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%> &nbsp;|&nbsp;
-          <%= link_to(image_tag('brick_add.png', :title => [t "global.workorder"]), new_work_order_url(:client_id => user.id, :clients_name => user.username) )%>
+          <%= link_to(image_tag('brick_add.png', :title => [t "global.workorder"]), new_work_order_url, :client_id => user.id, :clients_name => user.username )%>
       <% end %> &nbsp;|&nbsp;
-      <% if current_user.roles_mask < user.roles_mask or current_user.id == @user.id %>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path(user) ) %>&nbsp;|&nbsp;
+      <% if current_user.roles_mask < user.roles_mask %>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path, :id => @user.id ) %>&nbsp;|&nbsp;
       <% end %>
 
       <% if permitted_to? :destroy, User.new  %>

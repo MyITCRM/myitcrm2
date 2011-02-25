@@ -17,20 +17,20 @@
 
   <div id="sc1" class="tabcontent">
     <%= simple_form_for(@user) do |f| %>
-
-            <%= f.input :username, :label => (t "user.username") %>
-            <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
-            <%= f.input :password, :required => true %>
-            <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
-            <%= f.input :email, :label => (t "global.email") %>
-            <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
-            <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
-            <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
-            <%= f.input :zip, :input_html => {:size => 30}, :label =>(t "global.zip") %>
-            <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
-            <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
-            <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
-            <%= f.button :submit %>
+      <%= f.error_notification %>
+      <%= f.input :username, :label => (t "user.username") %>
+      <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
+      <%= f.input :password, :required => true %>
+      <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
+      <%= f.input :email, :label => (t "global.email") %>
+      <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
+      <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
+      <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
+      <%= f.input :zip, :input_html => {:size => 30}, :label =>(t "global.zip") %>
+      <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
+      <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
+      <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
+      <%= f.button :submit %>
 
             <% if current_user == nil %>
                 <%= hidden_field_tag "user[created_by]", "SELF" %>

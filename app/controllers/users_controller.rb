@@ -26,6 +26,8 @@ filter_resource_access
   def index
     @title = t "user.t_title"
     @user = User.search(params[:search], params[:page])
+    @users = User.pa:page => params[:page], :per_page => 50
+
  end
 
    def show
