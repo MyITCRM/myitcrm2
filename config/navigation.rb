@@ -14,7 +14,8 @@ SimpleNavigation::Configuration.run do |navigation|
           primary.item :settings, 'Settings', settings_path, :highlights_on => /\/settings/
         end
       end
-      if permitted_to? :edit_profile, User.new
+      if permitted_to? :show, User.create
+        primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/
         primary.item :profile, 'My Details', my_account_url(:id => current_user)
       end
 

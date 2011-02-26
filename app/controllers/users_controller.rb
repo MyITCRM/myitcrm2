@@ -26,7 +26,7 @@ filter_resource_access
   def index
     @title = t "user.t_title"
     @user = User.search(params[:search], params[:page])
-    @users = User.pa:page => params[:page], :per_page => 50
+#    @user = User.paginate:page => params[:page], :per_page => 50
 
  end
 
@@ -44,23 +44,6 @@ filter_resource_access
 
   def edit
     @title = t "user.t_edit_user"
-  end
-
-  def edit_profile
-    @title = t "user.t_edit_user"
-    @user = current_user
-
-  end
-
-  def update_profile
-    @title = t "user.t_update_user"
-    if @user.update_attributes(params[:user])
-      flash[:notice] = t "user.flash_update_user"
-      redirect_to user_path
-    else
-      render :action => "edit_profile"
-    end
-
   end
 
  def create
@@ -93,5 +76,22 @@ filter_resource_access
       format.html { redirect_to(users_url) }
 
     end
+  end
+
+   def edit_profile
+    @title = t "user.t_edit_user"
+    @user = current_user
+
+  end
+
+  def update_profile
+    @title = t "user.t_update_user"
+    if @user.update_attributes(params[:user])
+      flash[:notice] = t "user.flash_update_user"
+      redirect_to user_path
+    else
+      render :action => "edit_profile"
+    end
+
   end
 end

@@ -7,7 +7,7 @@ gem 'rails', '3.0.3'
 
 gem 'prawn'
 gem 'declarative_authorization', '0.5.2'
-gem 'will_paginate', ">= 3.0pre2", :require => 'will_paginate'
+gem 'will_paginate', '>= 3.0.pre2', :require => 'will_paginate'
 gem 'i18n', '0.4.2'
 gem 'simple_form', '1.3.0'
 gem 'authlogic'

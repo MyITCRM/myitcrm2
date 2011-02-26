@@ -2,15 +2,9 @@
   <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"], :align => "bottom", :hspace => "2"), new_user_path) %><%= link_to([t "global.new"], new_user_path) %>
 </div>
 <br>
-<%= form_tag users_path, :method => 'get' do %>
-   <p><%= t "user.search"  %>
-     <%= text_field_tag :search, params[:search] %>
-     <%= submit_tag (t "global.submit"), :name => nil %>
 
-   </p>
-<% end %>
   <p>
-  <% will_paginate @user, :class => "digg_pagination" %>
+  <%= will_paginate @user, :class => "digg_pagination" %>
 </p>
 <table id="index_table" >
   <tr>
@@ -40,10 +34,9 @@
           <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%> &nbsp;|&nbsp;
           <%= link_to(image_tag('brick_add.png', :title => [t "global.workorder"]), new_work_order_url, :client_id => user.id, :clients_name => user.username )%>
       <% end %> &nbsp;|&nbsp;
-      <% if current_user.roles_mask < user.roles_mask %>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_user_path, :id => @user.id ) %>&nbsp;|&nbsp;
+      <% if current_user.roles_mask < user.roles_mask or current_user.id == user.id %>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id  ) %>&nbsp;|&nbsp;
       <% end %>
-
       <% if permitted_to? :destroy, User.new  %>
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
       <% end %>

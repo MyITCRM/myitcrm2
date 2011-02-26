@@ -12,18 +12,17 @@ authorization do
   role :Technician do
     includes :Client
     has_permission_on :users, :to => [:index, :show, :edit, :update]
-    has_permission_on :workorders, :to => [:close, :print, :assign]
+    has_permission_on :work_orders, :to => [:close, :print, :assign]
     has_permission_on [:suppliers, :products, :product_categories], :to => [:index, :show, :new, :create, :edit, :update]
   end
 
   role :Client do
     includes :guest
-    has_permission_on :workorders, :to => :create
-    has_permission_on :workorders, :to => [:edit, :index, :update, :show] do
-     if_attribute  :user_id => is { user }
+    has_permission_on :work_orders, :to => [:create, :edit, :index, :update, :show] do
+     if_attribute :user_id => is { user.id }
     end
-    has_permission_on :users, :to => [:edit_profile, :update_profile, :show]  do
-      if_attribute  :user => is { user }
+    has_permission_on :users, :to => [:edit, :index, :update, :show, :edit_profile, :update_profile]  do
+      if_attribute :id => is { user.id }
     end
   end
 

@@ -15,13 +15,13 @@ MyITCRM2::Application.routes.draw do
   end
   resources :product_categories
   resources :user_sessions
+  resources :users
   resources :users do
     collection do
       put :edit_profile
       put :update_profile
     end
   end
-  resources :users
   resources :suppliers
   resources :products
 

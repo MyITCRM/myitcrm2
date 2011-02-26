@@ -1,8 +1,9 @@
 <% if current_user.roles_mask < @user.roles_mask or current_user.id == @user.id %>
     <%= render :partial => 'actions' %>
+    <% end %>
+
  <div id="show_view">
-<% simple_form_for(@user) do |f| %>
-    <% f.inputs do %>
+<%= simple_form_for(@user) do |f| %>
     <%= f.input :username , :label => (t "user.username") %>
     <%= f.input :name , :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
     <%= f.input :password,:input_html => {:autocomplete => 'off'}, :required => true , :label => (t "user.password") %>
@@ -20,7 +21,7 @@
             <%= f.input :roles,:label => (t "global.role") , :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %>
          <% end %>
 
-   <%= f.buttons %>
+   <%= f.submit %>
 <p>
    <%= hidden_field_tag "user[edited_at]", Time.now %>
    <%= hidden_field_tag "user[edited_by]", current_user.username %>
@@ -28,7 +29,5 @@
 </p>
 <p>
   </p>
-<% end %>
-<% end %>
 <% end %>
 </div>
