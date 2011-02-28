@@ -4,7 +4,7 @@
 <br>
 
   <p>
-  <%= will_paginate @user, :class => "digg_pagination" %>
+  <%= paginate @users %>
 </p>
 <table id="index_table" >
   <tr>
@@ -19,7 +19,7 @@
     <th align="center" ><%= t "supplier.actions" %></th>
   </tr>
 
-<%= @user.each do |user| %>
+<%= @users.each do |user| %>
   <tr class="<%= cycle :odd, :even %>">
     <td><%=h user.id %></td>
     <td><%=h user.name %></td>

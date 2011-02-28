@@ -25,8 +25,8 @@ filter_resource_access
 
   def index
     @title = t "user.t_title"
-    @user = User.search(params[:search], params[:page])
-#    @user = User.paginate:page => params[:page], :per_page => 50
+#    @user = User.search(params[:search], params[:page])
+    @users = User.order("id").page(params[:page])
 
  end
 
