@@ -15,7 +15,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class UsersController < ApplicationController
-filter_resource_access
 
  def new
     @title = t "user.t_new_user"
@@ -26,7 +25,7 @@ filter_resource_access
   def index
     @title = t "user.t_title"
 #    @user = User.search(params[:search], params[:page])
-    @users = User.order("id").page(params[:page])
+    @users = User.order("id").page(params[:page]).per(1)
 
  end
 

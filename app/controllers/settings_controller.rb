@@ -1,5 +1,4 @@
 class SettingsController < ApplicationController
-filter_access_to :edit
   def index
         edit
         render :action => 'edit'

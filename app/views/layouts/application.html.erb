@@ -2,16 +2,15 @@
 <html>
 <head>
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
-  <meta name="keywords" content="<%= Setting::meta_tags %>" />
-  <%= csrf_meta_tag %>
-
+  <meta name="keywords" content="<%= Setting::meta_tags %>"/>
   <%= stylesheet_link_tag 'application', 'ddtabmenu', 'jstoolbar' %>
-  <%= javascript_include_tag 'jquery-1.5.1.min', 'jstoolbar/jstoolbar' ,'rails', 'application' %>
+  <%= javascript_include_tag 'jquery-1.5.1.min', 'jstoolbar/jstoolbar', 'rails', 'application' %>
+  <%= csrf_meta_tag %>
   <script type="text/javascript">
-    ddtabmenu.definemenu("ddtabs1", 0 ) //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
+      ddtabmenu.definemenu("ddtabs1", 0) //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
   </script>
 </head>
-<body >
+<body>
 
 <div id="header">
   <%= image_tag 'logo.png', :height => 60 %>
@@ -20,28 +19,27 @@
 <div id="user_nav" class="menu">
   <%= render_navigation %>
 </div>
-<div id="container" >
-  <!--<div id="right_bar">
-  </div>-->
+<div id="container">
   <div id="yield">
-     <%- flash.each do |name, msg| -%>
+    <%- flash.each do |name, msg| -%>
         <p>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      </p>
-      <br>
+        </p>
+        <br>
     <%- end -%>
     <h1><%= @title || "" %></h1>
-        <%= yield %>
-    </div>
+    <%= yield %>
+  </div>
 </div>
-<div id="footer" class="footer_link" >
+<div id="footer" class="footer_link">
   <p>
-    Powered by <a href="http://myitcrm.com" >MyIT CRM</a>&copy; 2010 - 2011
+    Powered by <a href="http://myitcrm.com">MyIT CRM</a>&copy; 2010 - 2011
   </p>
+
   <p class="footer_version">
-   Release - ALPHA 2.0.0.0
+    Release - ALPHA 2.0.0.0
   </p>
-  
+
 </div>
 </body>
 </html>

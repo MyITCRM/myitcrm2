@@ -47,50 +47,42 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #top_float_left {padding-top:0;}
 #toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
 .button {padding:inherit; margin-top:-30px;}
-.digg_pagination {
-  background: white;
-  /* self-clearing method: */ }
-  .digg_pagination a, .digg_pagination span {
-    padding: .2em .5em;
+
+.pagination {
+  margin: 20px 0;
+
+}
+ .pagination a, .pagination span {
     display: block;
     float: left;
     margin-right: 1px; }
-  .digg_pagination span.disabled {
+  .pagination span.disabled {
     color: #999;
     border: 1px solid #DDD; }
-  .digg_pagination span.current {
+  .pagination span.current {
     font-weight: bold;
-    background: #2E6AB1;
+    background: #4B7399;
     color: white;
     border: 1px solid #2E6AB1; }
-  .digg_pagination a {
+  .pagination a {
     text-decoration: none;
     color: #105CB6;
-    border: 1px solid #9AAFE5; }
-    .digg_pagination a:hover, .digg_pagination a:focus {
+    border: 1px solid #9AAFE5;
+  background: #ccccff;}
+    .pagination a:hover, .pagination a:focus {
       color: #003;
       border-color: #003; }
-  .digg_pagination .page_info {
-    background: #2E6AB1;
-    color: white;
-    padding: .4em .6em;
-    width: 22em;
-    margin-bottom: .3em;
-    text-align: center; }
-    .digg_pagination .page_info b {
-      color: #003;
-      background: #6aa6ed;
-      padding: .1em .25em; }
-  .digg_pagination:after {
+
+  .pagination:after {
     content: ".";
     display: block;
     height: 0;
     clear: both;
     visibility: hidden; }
-  * html .digg_pagination {
-    height: 1%; }
-  *:first-child+html .digg_pagination {
-    overflow: hidden; }
+  /** html .pagination {*/
+    /*height: 1%; }*/
+  /**:first-child+html .pagination {*/
+    /*overflow: hidden; }*/
 
 
 /*Menu >>>*/

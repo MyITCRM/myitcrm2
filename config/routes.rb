@@ -1,4 +1,8 @@
 MyITCRM2::Application.routes.draw do
+  resources :permissions
+
+  resources :roles
+
   resources :statuses
   resources :priority_lists
   resources :work_orders do

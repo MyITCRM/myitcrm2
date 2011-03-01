@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100906074944) do
+ActiveRecord::Schema.define(:version => 20110301055509) do
+
+  create_table "permissions", :force => true do |t|
+    t.string   "action"
+    t.string   "subject_class"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "priority_lists", :force => true do |t|
     t.string   "name"
@@ -56,6 +64,13 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.decimal  "qty_ordered",         :default => 0.0, :null => false
     t.decimal  "stocking_qty",        :default => 0.0, :null => false
     t.boolean  "stocked_product"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,8 +124,7 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "role"
-    t.integer  "roles_mask"
+    t.integer  "role_id"
     t.integer  "login_count",        :default => 0,    :null => false
     t.integer  "failed_login_count", :default => 0,    :null => false
     t.datetime "last_request_at"

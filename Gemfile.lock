@@ -32,7 +32,7 @@ GEM
     authlogic (2.1.6)
       activesupport
     builder (2.1.2)
-    declarative_authorization (0.5.2)
+    cancan (1.5.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.4.2)
@@ -88,7 +88,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
-  declarative_authorization (= 0.5.2)
+  cancan
   i18n (= 0.4.2)
   kaminari
   prawn

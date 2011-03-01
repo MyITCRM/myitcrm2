@@ -6,10 +6,8 @@
 <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
-
-    <% if permitted_to? :destroy, @user %>
     <li><a href="#<%= t "users.tab.user_type_url" %>" rel="sc2"><%= (t "users.tab.user_type") %></a></li>
-        <% end %>
+
   </ul>
 </div>
 
@@ -41,10 +39,9 @@
 
     <% end %>
     </div>
-    <% if permitted_to? :destroy, @user %>
         <div id="sc2" class="tabcontent">
             <%= simple_form_for(@user) do |f| %>
-                  <%= f.input :roles, :as => :radio, :collection => User::ROLES, :label => (t "global.role") %><br>
+             <%= f.association :roles, :as => :radio, :label => (t "global.role") %><br>
              <%= f.button :submit %>
               <% if current_user == nil %>
                   <%= hidden_field_tag "user[created_by]", @user.username %>
@@ -53,5 +50,4 @@
               <% end %>
             <% end %>
         </div>
-    <% end %>
   </div>

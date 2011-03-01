@@ -1,2 +1,15 @@
-<h1>Roles#show</h1>
-<p>Find me in app/views/roles/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @role.title %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @role.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_role_path(@role) %> |
+<%= link_to 'Back', roles_path %>

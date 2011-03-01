@@ -1,5 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 require "redcloth3"
+#require "kaminari"
 
 module ApplicationHelper
   def sortable(column, title = nil)

@@ -1,5 +1,4 @@
 class ProductCategoriesController < ApplicationController
-  filter_resource_access
   # GET /product_categories
   # GET /product_categories.xml
   def index

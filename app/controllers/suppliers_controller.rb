@@ -1,5 +1,4 @@
 class SuppliersController < ApplicationController
-  filter_resource_access 
 
   def index
     @title = t "supplier.t_title"

@@ -1,22 +1,25 @@
-<h1><%= [t "user.t_title"] %></h1>
-<table border="1" cellpadding="0" cellspacing="0" >
+<h1>Listing roles</h1>
+
+<table>
   <tr>
-    <th width="100"><%= t "role.id" %></th>
-    <th width="100"><%= t "role.t_name" %></th>
-    <th width="100"><%= t "role.action" %></th>
+    <th>Title</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @roles.each do |role| %>
-  <tr align="center">
-    <td><%=h role.id %></td>
-    <td><%=h role.name %></td>
-    <td><%= link_to(image_tag('view.png', :title => [t "global.view"]), role )%>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_role_path(role) ) %>
-        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), role, :confirm => 'Are you sure?', :method => :delete ) %>
-    </td>
-  
+  <tr>
+    <td><%= role.title %></td>
+    <td><%= role.user_id %></td>
+    <td><%= link_to 'Show', role %></td>
+    <td><%= link_to 'Edit', edit_role_path(role) %></td>
+    <td><%= link_to 'Destroy', role, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
+
+<%= link_to 'New Role', new_role_path %>

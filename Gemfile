@@ -6,7 +6,7 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'prawn'
-gem 'declarative_authorization', '0.5.2'
+gem 'cancan'
 gem 'i18n', '0.4.2'
 gem 'simple_form', '1.3.0'
 gem 'authlogic'

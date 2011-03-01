@@ -1,11 +1,10 @@
 <div id="top_float_left">
   <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"], :align => "bottom", :hspace => "2"), new_user_path) %><%= link_to([t "global.new"], new_user_path) %>
 </div>
-<br>
+<br/>
 
-  <p>
-  <%= paginate @users %>
-</p>
+<%= paginate @users  %>
+
 <table id="index_table" >
   <tr>
     <th ><%= t "user.number" %></th>
@@ -19,27 +18,24 @@
     <th align="center" ><%= t "supplier.actions" %></th>
   </tr>
 
-<%= @users.each do |user| %>
+<% for user in @users do  %>
   <tr class="<%= cycle :odd, :even %>">
-    <td><%=h user.id %></td>
-    <td><%=h user.name %></td>
-    <td><%=h user.username %></td>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.username %></td>
     <td><%= auto_link_email_addresses( user.email ).html_safe %></td>
-    <td><%=h  user.role_symbols %></td>
-    <td><%=h user.phone %></td>
-    <td><%=h user.mobile %></td>
-    <td><%=h user.active %></td>
+    <td><%= user.role_id %></td>
+    <td><%= user.phone %></td>
+    <td><%= user.mobile %></td>
+    <td><%= user.active %></td>
     <td>
-      <% if permitted_to? :show, User.new  %>
           <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%> &nbsp;|&nbsp;
           <%= link_to(image_tag('brick_add.png', :title => [t "global.workorder"]), new_work_order_url, :client_id => user.id, :clients_name => user.username )%>
-      <% end %> &nbsp;|&nbsp;
-      <% if current_user.roles_mask < user.roles_mask or current_user.id == user.id %>
+       &nbsp;|&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id  ) %>&nbsp;|&nbsp;
-      <% end %>
-      <% if permitted_to? :destroy, User.new  %>
+
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
-      <% end %>
+
           </td>
   </tr>
 <% end %>

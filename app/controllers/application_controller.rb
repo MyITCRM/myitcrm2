@@ -3,13 +3,11 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  before_filter { |c| Authorization.current_user = c.current_user }
-  before_filter :set_current_user
+#  before_filter { |c| Authorization.current_user = c.current_user }
+#  before_filter :set_current_user
 
   protected
-   def set_current_user
-     Authorization.current_user = current_user
-   end
+
 
   def permission_denied
   #    notice[:error] = t "global.restricted"
