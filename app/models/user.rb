@@ -23,7 +23,8 @@ acts_as_authentic do |c|
 end
 
 has_many :work_orders
-has_many :permissions, :through => :roles
+has_one :position
+has_many :roles, :through => :position
 
 # Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip

@@ -1,4 +1,3 @@
 class Role < ActiveRecord::Base
-  belongs_to :user
-  has_many :permissions
+  belongs_to :position
 end

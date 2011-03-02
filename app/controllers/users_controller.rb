@@ -43,26 +43,37 @@ class UsersController < ApplicationController
 
   def edit
     @title = t "user.t_edit_user"
+    @user = User.find(params[:id])
   end
 
  def create
     @title = t "user.t_new_user"
-    if @user.save
-      flash[:notice] = t "user.flash_new_success"
-      redirect_to users_path
-    else
-      render :action => "new"
+     @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to(@user, :notice => [ t "user.flash_new_success"]) }
+        format.xml  { render :xml => @user, :status => :created, :location => @user }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
     end
+
   end
 
   def update
     @title = t "user.t_update_user"
-    if @user.update_attributes(params[:user])
-      flash[:notice] = t "user.flash_update_user"
-      redirect_to user_path
+    @user = User.find(params[:id])
 
-    else
-      render :action => "edit"
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to(@user, :notice =>[t "user.flash_update_user"])}
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
     end
   end
 
