@@ -1,4 +1,7 @@
 class UserSessionsController < ApplicationController
+  skip_authorization_check
+
+
     def new
        @title = t "global.login"
     @user_session = UserSession.new

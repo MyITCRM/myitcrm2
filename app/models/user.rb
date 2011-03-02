@@ -23,8 +23,8 @@ acts_as_authentic do |c|
 end
 
 has_many :work_orders
-has_one :position
-has_many :roles, :through => :position
+belongs_to :role
+
 
 # Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
@@ -44,5 +44,10 @@ before_create :new_user
       User.paginate :per_page => 25, :page => page,
                           :conditions => ['name LIKE  ?', "%#{search}%"],
                           :order => 'id'
-   end
+  end
+
+def has_role?(role_sym)
+  roles.any? { |r| r.name.underscore.to_sym == role_sym }
+end
+
 end

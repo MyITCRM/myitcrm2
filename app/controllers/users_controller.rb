@@ -31,13 +31,12 @@ class UsersController < ApplicationController
 
    def show
     @title = t "user.t_view"
-    if current_user.roles_mask <= 32
-    else
+     @user = User.find(params[:id])
       if @user != current_user
-        redirect_to(root, :notice => [t "global.restricted"])
+        redirect_to(root_path, :error => [t "global.restricted"])
 
       end
-    end
+
   end
 
 

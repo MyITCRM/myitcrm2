@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+#  check_authorization
+
   include Authentication
 
   helper :all # include all helpers, all the time
