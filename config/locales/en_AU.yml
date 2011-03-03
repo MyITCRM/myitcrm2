@@ -440,6 +440,7 @@ en_AU:
     tab:
       user_type: "User Role"
       user_type_url: "Users_Role"
+      contact_info: "Contact Information"
   product:
     taxable: "Is Taxable?"
     new: "Create New Product"

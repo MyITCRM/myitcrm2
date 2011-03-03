@@ -15,6 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class UsersController < ApplicationController
+  load_and_authorize_resource
 
  def new
     @title = t "user.t_new_user"
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   def index
     @title = t "user.t_title"
 #    @user = User.search(params[:search], params[:page])
-    @users = User.order("id").page(params[:page]).per(1)
+    @users = User.order("id").page(params[:page]).per(25)
 
  end
 
@@ -55,6 +56,21 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+
+  end
+def register
+    @title = t "user.t_new_user"
+     @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to(@user, :notice => [ t "user.flash_new_success"]) }
+        format.xml  { render :xml => @user, :status => :created, :location => @user }
+      else
+        format.html { render :action => "register" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end

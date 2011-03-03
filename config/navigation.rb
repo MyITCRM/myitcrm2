@@ -13,8 +13,8 @@ SimpleNavigation::Configuration.run do |navigation|
         primary.item :profile, 'My Details', my_account_url(:id => current_user)
         primary.item :logout, 'Logout', logout_path
     else
-      primary.item :home, 'Register', register_path
-      primary.item :home, 'Login', login_path
+      primary.item :home, 'Register', register_path, :highlights_on => /\/register/
+      primary.item :home, 'Login', login_path, :highlights_on => /\/login/
     end
   end
 

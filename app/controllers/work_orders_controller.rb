@@ -1,5 +1,5 @@
 class WorkOrdersController < ApplicationController
-filter_resource_access
+  load_and_authorize_resource
 prawnto :prawn => { :top_margin => 20}
 
   def index

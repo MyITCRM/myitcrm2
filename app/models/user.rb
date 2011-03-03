@@ -1,5 +1,5 @@
 # MyIT CRM - Repair's Business CRM Software
-# Copyright (C) 2009-2010  Glen Vanderhel
+# Copyright (C) 2009-2011  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@ acts_as_authentic do |c|
 end
 
 has_many :work_orders
-belongs_to :role
+
 
 
 # Validations for Users
@@ -46,8 +46,16 @@ before_create :new_user
                           :order => 'id'
   end
 
-def has_role?(role_sym)
-  roles.any? { |r| r.name.underscore.to_sym == role_sym }
-end
+ROLES = %w[administrator manager technician accountant assistant client guest]
+
+  def role?(base_role)
+    ROLES.index(base_role.to_s) <= ROLES.index(role)
+  end
+
+
+  def roles
+    User::ROLES.to_a
+  end
+
 
 end

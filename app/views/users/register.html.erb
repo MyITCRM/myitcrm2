@@ -30,15 +30,11 @@
         <% if current_user == nil %>
             <%= hidden_field_tag "user[created_by]", "SELF" %>
             <%= hidden_field_tag "user[client]", 1 %>
+            <%= hidden_field_tag "user[role]", "client" %>
             <% else %>
       <%= hidden_field_tag "user[created_by]", current_user.username %>
             <% end %>
-        <% if can? :manage, :all %>
-   <div class="input">
-     <label class="string optional" for="user_role">Role</label>
-     <%= f.collection_select :role,  User::ROLES, :to_s, :humanize %>
-   </div>
-   <% end %>
+
 
 
           <%= f.button :submit %>

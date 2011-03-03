@@ -1,8 +1,4 @@
 MyITCRM2::Application.routes.draw do
-  resources :permissions
-
-  resources :roles
-
   resources :statuses
   resources :priority_lists
   resources :work_orders do
@@ -24,6 +20,7 @@ MyITCRM2::Application.routes.draw do
     collection do
       put :edit_profile
       put :update_profile
+      put :register
     end
   end
   resources :suppliers
@@ -34,7 +31,7 @@ MyITCRM2::Application.routes.draw do
 #  map.logout "logout", :controller => "user_sessions", :action => "destroy"
   match '/logout' => 'user_sessions#destroy', :as => :logout
 #  map.register "register", :controller => "users", :action => "new"
-  match '/register' =>'users#new', :as => :register
+  match '/register' =>'users#register', :as => :register
 #  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
   match 'profile/:id' => 'users#edit_profile', :as => :my_account
 #  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
