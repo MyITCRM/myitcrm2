@@ -221,6 +221,9 @@ fieldset.settings label { display: block; }
 .simple_form div.input {
   margin-bottom: 15px;
 }
+.simple_form div.textile {
+  margin-left: 220px;
+}
 
 .simple_form label {
   float: left;

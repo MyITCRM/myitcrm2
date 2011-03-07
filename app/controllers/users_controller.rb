@@ -26,17 +26,23 @@ class UsersController < ApplicationController
   def index
     @title = t "user.t_title"
 #    @user = User.search(params[:search], params[:page])
-    @users = User.order("id").page(params[:page]).per(25)
+    @users = User.accessible_by(current_ability).order(:id).page params[:page]
+
 
  end
 
    def show
     @title = t "user.t_view"
-     @user = User.find(params[:id])
-      if @user != current_user
-        redirect_to(root_path, :error => [t "global.restricted"])
+#     @user = User.where(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @user }
+    end
 
-      end
+#      if @user != current_user
+#        redirect_to(root_path, :alert => [t "global.restricted"])
+#
+#      end
 
   end
 

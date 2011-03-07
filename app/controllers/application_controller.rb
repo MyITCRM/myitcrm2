@@ -8,18 +8,18 @@ class ApplicationController < ActionController::Base
 #  before_filter { |c| Authorization.current_user = c.current_user }
 #  before_filter :set_current_user
 
+
+# Used to notify user that they have tried to request a restricted action. Refer to log for more details
+rescue_from CanCan::AccessDenied do
+      flash[:alert] = [t "global.access_denied"]
+      redirect_to root_url
+    end
   protected
 
 
-  def permission_denied
-  #    notice[:error] = t "global.restricted"
-  #    redirect_to root_url
-      redirect_to(root_path, :alert => [t "global.restricted"])
-    end
   def session_expired
     redirect_to(root_path, :alert => [t "global.expired_session"])
-  #    notice[:error] = t "global.expired_session"
-  #    redirect_to root_url
-    end
+
+  end
 
 end

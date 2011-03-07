@@ -87,6 +87,7 @@ en_AU:
     activity_log: "Activity Log"
     exit: "Exit"
     subject: "Subject"
+    access_denied: "You are not authorized to perform this action.This request has been logged."
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"

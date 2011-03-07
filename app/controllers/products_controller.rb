@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   helper_method :sort_column, :sort_direction
+  load_and_authorize_resource
 
   def index
     @title = t "products.t_title"

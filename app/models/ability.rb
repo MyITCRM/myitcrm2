@@ -8,18 +8,21 @@ class Ability
 
 
   def client
-    can :read, User, :user_id => @user.id
-    can [:update, :edit_profile, :update_profile], User, :user_id => @user.id
+    can :read, User, :id => @user.id
+    can [:update, :edit_profile, :update_profile], User, :id => @user.id
     can [:create], WorkOrder
-    can [:update, :create], WorkOrder, :id => @user.id
+    can [:update, :create], WorkOrder, :user_id => @user.id
 
   end
 
   def technician
-    can :update, User, :user_id => user.id
-    can :update, User,["client = ?", true] do |user|
-      user.client = true
-    end
+    can :manage, WorkOrder
+    can :manage, Product
+    can :manage, ProductCategory
+    can [:update, :read], User, :id => @user.id
+#    can :update, User,["client = ?", true] do |user|
+#      user.client = true
+#    end
   end
 
   def manager

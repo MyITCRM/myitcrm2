@@ -12,19 +12,29 @@
 <div class="tabcontainer">
 <div id="sc1" class="tabcontent">
 <% simple_form_for(@work_order) do |f| %>
-        <%= f.input :user_id, :value => params[:client_id] %>
-        <%= f.input :subject, :label => (t "workorder.subject") %>
+        <% if params[:client_id] == nil then %>
+        <%= f.input :user_id, :input_html => {:value =>  current_user.id} %>
+          <% else %>
+        <%= f.input :user_id, :input_html => {:value =>  params[:client_id]} %>
+          <% end %>
+
+        <%= f.input :subject, :label => (t "workorder.subject"), :input_html => {:value =>  params[:client_id]} %>
+
+
         <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-        <%= f.input :assigned_to_username, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5 " )  %>
-        <%= f.input :description, :label => (t "global.description"), :input_html => {:rows => 25, :cols => 80}%>
-        <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+        <div class="simple_form label">
+        <label><%= t "workorder.subject" %></label>
+      </div>
+      <div class="textile">
+       <%= textile_editor_tag 'description', '', :rows => 25, :cols => 80 %>
+      </div>
+      <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
 
 <%= f.submit t "global.create"  %>
- <%=raw textiletoolbar_for('work_order_description') %>
+<%= textile_editor_initialize(:framework => :jquery).html_safe%>
       <% end %>
-
 
 </div>
 </div>

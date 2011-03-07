@@ -1,8 +1,8 @@
 class SuppliersController < ApplicationController
-
+load_and_authorize_resource
   def index
     @title = t "supplier.t_title"
-    @supplier = Supplier.find(:all)
+    @supplier = Supplier.where(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class SuppliersController < ApplicationController
   # GET /suppliers/1.xml
   def show
     @title = t "supplier.t_view"
-    @supplier = Supplier.find(params[:id])
+    @supplier = Supplier.where(params[:id])
 
 
     respond_to do |format|
@@ -63,7 +63,7 @@ class SuppliersController < ApplicationController
   # PUT /suppliers/1.xml
   def update
     @title = t "supplier.t_new"
-    @supplier =Supplier.find(params[:id])
+    @supplier =Supplier.where(params[:id])
 
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])
