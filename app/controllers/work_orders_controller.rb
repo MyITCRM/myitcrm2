@@ -1,15 +1,16 @@
 class WorkOrdersController < ApplicationController
-  load_and_authorize_resource
+#  load_and_authorize_resource
 prawnto :prawn => { :top_margin => 20}
 
   def index
     @title = t "workorder.t_workorders"
+#    @user = User.find(params[:user_id])
     @work_orders = WorkOrder.all
-    @new_work_orders = WorkOrder.find(:all, :conditions => "status_id = 1")
-    @assigned_work_orders = WorkOrder.find(:all, :conditions => "status_id = 2")
-    @on_hold_work_orders = WorkOrder.find(:all, :conditions => "status_id = 3")
-    @pending_work_orders = WorkOrder.find(:all, :conditions => "status_id = 4")
-    @closed_work_orders = WorkOrder.find(:all, :conditions => "status_id = 6", :order => "closed_date DESC")
+    @new_work_orders = WorkOrder.where("status_id = 1")
+    @assigned_work_orders = WorkOrder.where("status_id = 2")
+    @on_hold_work_orders = WorkOrder.where("status_id = 3")
+    @pending_work_orders = WorkOrder.where( "status_id = 4")
+    @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC")
     
 
     respond_to do |format|

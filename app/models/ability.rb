@@ -11,7 +11,7 @@ class Ability
     can :read, User, :id => @user.id
     can [:update, :edit_profile, :update_profile], User, :id => @user.id
     can [:create], WorkOrder
-    can [:update, :create], WorkOrder, :user_id => @user.id
+    can [:update, :create, :read], WorkOrder, :user_id => @user.id
 
   end
 

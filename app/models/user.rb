@@ -24,8 +24,6 @@ end
 
 has_many :work_orders
 
-
-
 # Validations for Users
 validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
 validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i

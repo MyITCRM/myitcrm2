@@ -26,7 +26,7 @@
         <label><%= t "workorder.subject" %></label>
       </div>
       <div class="textile">
-       <%= textile_editor_tag 'description', '', :rows => 25, :cols => 80 %>
+       <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
       </div>
       <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
