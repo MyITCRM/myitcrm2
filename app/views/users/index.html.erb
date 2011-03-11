@@ -1,6 +1,8 @@
+<% if can? :manage, @users %>
 <div id="top_float_left">
   <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"], :align => "bottom", :hspace => "2"), new_user_path) %><%= link_to([t "global.new"], new_user_path) %>
 </div>
+<% end %>
 <br/>
 <%= form_tag users_path, :method => 'get' do %>
    <p><%= t "user.search"  %>

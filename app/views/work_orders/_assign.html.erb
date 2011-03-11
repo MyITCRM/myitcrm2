@@ -1,5 +1,5 @@
- <%= form_for @work_order, :url =>{:action => "assign"} do |f| %>
-     <%= f.collection_select(:assigned_to_username, User.all,:id, :name)%>
+ <%= form_for @work_order, :url => {:action => "assign"} do |f| %>
+     <%= f.collection_select(:assigned_to_username, User.all,:name, :name)%>
      <%= hidden_field_tag(:id, @work_order.id ) %>
      <%= button_to "Assign" %>
 <% end %>

@@ -88,6 +88,8 @@ en_AU:
     exit: "Exit"
     subject: "Subject"
     access_denied: "You are not authorized to perform this action.This request has been logged."
+    tab:
+      notes: "Notes"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -155,6 +157,13 @@ en_AU:
      login_count: "Successful Login"
      email: "Email"
      address: "Address"
+     employed: "User is an Employee:"
+     hint:
+       employed: "Is this user a Employee?"
+       client: "Is this user a Client?."
+       assignable: "Can this user be assigned Work Order Requests? Default is No."
+     client: "User is a Client:"
+     assignable: "Assignable to Work Orders?"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
@@ -442,6 +451,7 @@ en_AU:
       user_type: "User Role"
       user_type_url: "Users_Role"
       contact_info: "Contact Information"
+      permissions: "Permissions"
   product:
     taxable: "Is Taxable?"
     new: "Create New Product"

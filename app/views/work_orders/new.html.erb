@@ -1,40 +1,34 @@
 <!--mytodo - heaps to fix up here....add tabs and all fields required.-->
 <div id="top_float_left">
-  <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), work_orders_path)%><%= link_to (t "global.exit"), work_orders_path %>
-  <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
+  <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), work_orders_path) %><%= link_to (t "global.exit"), work_orders_path %>
+  <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back) %><%= link_to (t "global.back"), :back %>
 </div>
 <br>
 <div id="ddtabs1" class="basictab">
-<ul>
-<li><a href="#<%= t "workorder.tab_menu_basic_name"  %>" rel="sc1"><%= (t "workorder.tab_menu_basic") %></a></li>
-</ul>
+  <ul>
+    <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="sc1"><%= (t "workorder.tab_menu_basic") %></a></li>
+  </ul>
 </div>
 <div class="tabcontainer">
-<div id="sc1" class="tabcontent">
-<% simple_form_for(@work_order) do |f| %>
-        <% if params[:client_id] == nil then %>
-        <%= f.input :user_id, :input_html => {:value =>  current_user.id} %>
-          <% else %>
-        <%= f.input :user_id, :input_html => {:value =>  params[:client_id]} %>
-          <% end %>
-
-        <%= f.input :subject, :label => (t "workorder.subject"), :input_html => {:value =>  params[:client_id]} %>
-
-
+  <div id="sc1" class="tabcontent">
+    <% simple_form_for(@work_order) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :user_id, :as => :hidden, :input_html => {:value => params[:client_id]} %>
+        <%= f.input :subject, :label => (t "workorder.subject"), :input_html => {:size => 60}%>
         <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
         <div class="simple_form label">
-        <label><%= t "workorder.subject" %></label>
-      </div>
-      <div class="textile">
-       <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
-      </div>
-      <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-        <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-        <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+          <label><%= t "workorder.details" %></label>
+        </div>
+        <div class="textile">
+          <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
+        </div>
+        <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
+        <%= f.input :created_by, :as => :hidden, :input_html => {:value => current_user.username} %>
+        <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
 
-<%= f.submit t "global.create"  %>
-<%= textile_editor_initialize(:framework => :jquery).html_safe%>
-      <% end %>
+        <%= f.submit t "global.create" %>
 
-</div>
+        <%= textile_editor_initialize(:framework => :jquery).html_safe %>
+    <% end %>
+  </div>
 </div>

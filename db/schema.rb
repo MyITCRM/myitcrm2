@@ -111,9 +111,10 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.string   "persistence_token"
     t.string   "role"
     t.boolean  "employee"
+    t.boolean  "workorder_assignability"
     t.boolean  "client"
-    t.integer  "login_count",        :default => 0,    :null => false
-    t.integer  "failed_login_count", :default => 0,    :null => false
+    t.integer  "login_count",             :default => 0,    :null => false
+    t.integer  "failed_login_count",      :default => 0,    :null => false
     t.datetime "last_request_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
@@ -127,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.string   "mobile"
     t.string   "fax"
     t.text     "notes"
-    t.boolean  "active",             :default => true
+    t.boolean  "active",                  :default => true
     t.datetime "edited_at"
     t.string   "edited_by"
     t.datetime "created_at"
@@ -140,8 +141,8 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.text     "description"
     t.integer  "note_id"
     t.integer  "comment_id"
-    t.integer  "attachments_id"
-    t.integer  "schedules_id"
+    t.integer  "attachment_id"
+    t.integer  "schedule_id"
     t.boolean  "closed"
     t.string   "closed_by"
     t.datetime "closed_date"

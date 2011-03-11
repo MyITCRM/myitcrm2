@@ -25,7 +25,6 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
     pdf.text Setting::business_name, :size => 8
     pdf.text Setting::business_address, :size => 8
     pdf.text Setting::business_phone, :size => 8
-    pdf.text Setting::business_email, :size => 8
     if Setting::business_email ||= nil
       pdf.text Setting::business_email, :size => 8
     end
@@ -49,7 +48,7 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
 pdf.text "#{t "workorder.pdf.t_workorder"} # #{@work_order.id}", :size => 20, :align => :center
 # Subject Block >>BOF
 pdf.cell [10,630],
-        :width => 100,
+        :width => 70,
         # Height needs to be a min. of 2 times the padding plus font_size
         :height => 17,
         :font_size => 11,
@@ -57,7 +56,7 @@ pdf.cell [10,630],
         :text  => "#{t "global.subject"}:",
         :align => :right,
         :padding => 3
-pdf.cell [110,630],
+pdf.cell [80,630],
         :width => 420,
         :height => 17,
         :font_size => 11,
@@ -69,7 +68,7 @@ pdf.move_down(5)
 # Subject Block <<EOF
 # Assigned To Block BOF
 pdf.cell [10,608],
-        :width => 100,
+        :width => 70,
         :height => 17,
         :font_size => 11,
         :border_style => :none,
@@ -78,11 +77,11 @@ pdf.cell [10,608],
         :padding => 3
 # Check if there is a user assigned and display it if there is, otherwise display "not assigned message"
 if @work_order.assigned_to_username ||= nil
-  text = User.find(:all, :select => "username", :conditions => ["id = ?", @work_order.assigned_to_username])
+    text = User.find(:all, :select => "username", :conditions => ["id = ?", @work_order.assigned_to_username])
   else
     text = t "workorder.not_assigned_message"
 end
-pdf.cell [110,608],
+pdf.cell [80,608],
         :width => 420,
         :height => 17,
         :font_size => 11,
@@ -93,14 +92,14 @@ pdf.cell [110,608],
 pdf.move_down(5)
 # Status Block BOF
 pdf.cell [10,586],
-        :width => 100,
+        :width => 70,
         :height => 17,
         :font_size => 11,
         :border_style => :none,
         :text  => "#{t "workorder.status"}:",
         :align => :right,
         :padding => 3
-pdf.cell [110,586],
+pdf.cell [80,586],
         :width => 420,
         :height => 17,
         :font_size => 11,
@@ -111,7 +110,7 @@ pdf.cell [110,586],
 pdf.move_down(5)
 # Status Block EOF
 pdf.cell [10,564],
-        :width => 100,
+        :width => 70,
         :height => 17,
         :font_size => 11,
         :border_style => :none,
@@ -119,7 +118,7 @@ pdf.cell [10,564],
         :align => :right,
         :padding => 3
 text = plaintext_for(@work_order.description)
-pdf.cell [110,564],
+pdf.cell [80,564],
         :width => 420,
         :height => 200,
         :font_size => 11,

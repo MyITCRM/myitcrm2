@@ -233,7 +233,9 @@ fieldset.settings label { display: block; }
 }
 
 div.boolean, .simple_form input[type='submit'] {
-  margin-left: 120px;
+  margin-left: 220px;
+
+  text-transform:capitalize;
 }
 
 div.boolean label, label.collection_radio {

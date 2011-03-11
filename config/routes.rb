@@ -35,9 +35,9 @@ MyITCRM2::Application.routes.draw do
 #  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
   match 'profile/:id' => 'users#edit_profile', :as => :my_account
 #  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
-  match 'work_order/:id/close' => 'work_order#close', :as => :close
+  match 'work_orders/:id/close' => 'work_orders#close', :as => :close
 #  map.assign_workorder "work_order/:id/assign", :controller => "work_orders", :action => "assign"
-  match 'work_order/:id/assign' => 'work_orders#assign', :as => :workorder_close
+  match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign
 
 
 #  map.root :register

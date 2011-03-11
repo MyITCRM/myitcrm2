@@ -1,10 +1,9 @@
 class WorkOrdersController < ApplicationController
-#  load_and_authorize_resource
+load_and_authorize_resource
 prawnto :prawn => { :top_margin => 20}
 
   def index
     @title = t "workorder.t_workorders"
-#    @user = User.find(params[:user_id])
     @work_orders = WorkOrder.all
     @new_work_orders = WorkOrder.where("status_id = 1")
     @assigned_work_orders = WorkOrder.where("status_id = 2")
@@ -50,7 +49,7 @@ prawnto :prawn => { :top_margin => 20}
   # POST /work_orders.xml
   def create
     @title = t "workorder.t_workorders"
-    @work_order = WorkOrder.new(params[:work_order])
+#    @work_order = WorkOrder.new(params[:work_order])
 
     respond_to do |format|
       if @work_order.save

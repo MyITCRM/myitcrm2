@@ -5,8 +5,8 @@ class CreateWorkOrders < ActiveRecord::Migration
       t.text :description
       t.integer :note_id
       t.integer :comment_id
-      t.integer :attachments_id
-      t.integer :schedules_id
+      t.integer :attachment_id
+      t.integer :schedule_id
       t.boolean :closed
       t.string :closed_by
       t.datetime :closed_date

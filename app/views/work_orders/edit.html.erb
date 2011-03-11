@@ -13,27 +13,30 @@
 
 <div id="tab1" class="tabcontent">
 
-<% simple_form_for(@work_order) do |f| %>
-      <% f.inputs do %>
+<%= simple_form_for(@work_order) do |f| %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
-        <%= f.input :status, :label => (t "workorder.status") %>
-        <%= f.input :priority_list, :label => (t "workorder.priority") %>
-        <%= f.input :assigned_to_username, :as => :select, :collection => User.find(:all, :conditions => "roles_mask < 5 " )  %>
-        <%= f.input :description, :label => (t "workorder.details"), :input_html => {:rows => 30, :style => "margin-left:26%" }%>
+        <%= f.association :status, :label => (t "workorder.status") %>
+        <%= f.association :priority_list, :label => (t "workorder.priority") %>
+        <%= f.input :assigned_to_username, :as => :select, :collection => User.where("role < 3 " )  %>
+       <div class="simple_form label">
+        <label><%= t "workorder.details" %></label>
+      </div>
+      <div class="textile">
+       <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
+      </div>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-      <% end %>
-    <%= f.buttons %>
-    <%= textiletoolbar_for('work_order_description') %>
+      <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+        <%= f.submit %>
+    <%= textile_editor_initialize(:framework => :jquery).html_safe%>
 <% end %>
 </div>
 <div id="tab2" class="tabcontent">
-<% simple_form_for(@work_order) do |f| %>
-      <% f.inputs do %>
+<%= simple_form_for(@work_order) do |f| %>
         <%= f.input :resolution, :label => (t "workorder.resolution"), :input_html => { :rows => 20 }%>
         <%= f.input :closed, :as => :select, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-      <% end %>
-<%= f.buttons %>
+
+<%= f.submit %>
 <% end %>
 </div>
 </div>
