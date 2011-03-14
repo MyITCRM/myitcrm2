@@ -1,12 +1,10 @@
 class UserSessionsController < ApplicationController
-
-
-
-    def new
-       @title = t "global.login"
+  def new
+    @title = t "global.login"
     @user_session = UserSession.new
 
-    end
+
+  end
 
   def create
     @title = t "global.login"

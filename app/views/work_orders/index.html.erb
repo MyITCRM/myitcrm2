@@ -1,6 +1,10 @@
 <div id="top_float_left">
-  <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"],:align => "bottom", :hspace => "2"), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
-  <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
+  <% if current_user.client = true %>
+      <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"],:align => "bottom", :hspace => "2"), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
+        <% else %>
+      <%= link_to(image_tag('add.png',:title => [t "workorder.t_add_new"],:align => "bottom", :hspace => "2"), :controller => "work_orders", :action => "new", :client_id => current_user.id ) %><%= link_to [t "workorder.t_add_new"], :controller => "work_orders", :action => "new", :client_id => current_user.id %>
+            <%end %>
+      <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back)%><%= link_to (t "global.back"), :back %>
 </div>
 <br>
 <div id="ddtabs1" class="basictab" >

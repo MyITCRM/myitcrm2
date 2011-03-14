@@ -49,7 +49,7 @@ prawnto :prawn => { :top_margin => 20}
   # POST /work_orders.xml
   def create
     @title = t "workorder.t_workorders"
-#    @work_order = WorkOrder.new(params[:work_order])
+    @work_order = WorkOrder.new(params[:work_order])
 
     respond_to do |format|
       if @work_order.save

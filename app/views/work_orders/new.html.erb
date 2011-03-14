@@ -26,7 +26,7 @@
         <%= f.input :created_by, :as => :hidden, :input_html => {:value => current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
 
-        <%= f.submit t "global.create" %>
+        <%= f.submit %>
 
         <%= textile_editor_initialize(:framework => :jquery).html_safe %>
     <% end %>

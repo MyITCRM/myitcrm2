@@ -89,7 +89,7 @@ def register
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice =>[t "user.flash_update_user"])}
+        format.html { redirect_to(@user, :notice =>[t "user.flash_delete_user"])}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -112,14 +112,13 @@ def register
    def edit_profile
     @title = t "user.t_edit_user"
     @user = current_user
-
   end
 
   def update_profile
     @title = t "user.t_update_user"
     if @user.update_attributes(params[:user])
       flash[:notice] = t "user.flash_update_user"
-      redirect_to user_path
+      redirect_to root_url
     else
       render :action => "edit_profile"
     end

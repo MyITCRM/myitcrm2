@@ -43,8 +43,12 @@ before_create :new_user
                           :conditions => ['name LIKE  ?', "%#{search}%"],
                           :order => 'id'
   end
+# DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
+#
+      ROLES = %w[administrator manager technician accountant assistant client guest]
+#
+# DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 
-ROLES = %w[administrator manager technician accountant assistant client guest]
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)

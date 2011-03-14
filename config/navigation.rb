@@ -5,9 +5,9 @@ SimpleNavigation::Configuration.run do |navigation|
     navigation.auto_highlight = true
     primary.item :home, 'Home', root_path
     if logged_in?
-        primary.item :users, [t "naviagtion.users"], users_path, :highlights_on => /\/users/
         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/
         if can? :manage, User
+          primary.item :users, [t "naviagtion.users"], users_path, :highlights_on => /\/users/
           primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/
           primary.item :products, 'Products', products_path, :highlights_on => /\/products/
           primary.item :settings, 'Settings', settings_path, :highlights_on => /\/settings/

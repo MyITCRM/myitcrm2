@@ -2,21 +2,18 @@
   <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), users_path) %><%= link_to (t "global.exit"), users_path %>
 </div>
 <br>
-
 <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
-
   </ul>
 </div>
-
 <div class="tabcontainer">
-
   <div id="sc1" class="tabcontent">
     <%= simple_form_for(@user) do |f| %>
       <%= f.error_notification %>
       <%= f.input :username, :label => (t "user.username") %>
       <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
+      <%= f.input :client, :collection => ["Yes","No"], :label =>(t "user.client") %>
       <%= f.input :password, :required => true %>
       <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
       <%= f.input :email, :label => (t "global.email") %>
@@ -35,17 +32,12 @@
             <% end %>
         <% if can? :manage, :all %>
    <div class="input">
-     <label class="string optional" for="user_role">Role</label>
+     <label class="string required" for="user_role"><abbr title="Required">*</abbr>Role</label>
      <%= f.collection_select :role,  User::ROLES, :to_s, :humanize %>
    </div>
    <% end %>
-
-
-          <%= f.button :submit %>
-
-
-
-    <% end %>
+  <%= f.button :submit %>
+ <% end %>
     </div>
         <div id="sc2" class="tabcontent">
             <%= simple_form_for(@user) do |f| %>
