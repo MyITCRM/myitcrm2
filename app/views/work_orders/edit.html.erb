@@ -17,7 +17,7 @@
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <%= f.association :status, :label => (t "workorder.status") %>
         <%= f.association :priority_list, :label => (t "workorder.priority") %>
-        <%= f.input :assigned_to_username, :as => :select, :collection => User.where("role < 3 " )  %>
+        <%= f.input :assigned_to_username, :as => :select,  :collection => User.where("workorder_assignability = ?",true),:value_method => :name  %>
        <div class="simple_form label">
         <label><%= t "workorder.details" %></label>
       </div>
@@ -33,7 +33,7 @@
 <div id="tab2" class="tabcontent">
 <%= simple_form_for(@work_order) do |f| %>
         <%= f.input :resolution, :label => (t "workorder.resolution"), :input_html => { :rows => 20 }%>
-        <%= f.input :closed, :as => :select, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
+        <%= f.input :closed, :as => :check_boxes, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
 
 <%= f.submit %>

@@ -9,7 +9,8 @@ class Product < ActiveRecord::Base
   validates_numericality_of :disc_percent, :tax_rate, :less_than_or_equal_to => 100
   
 # Define Active value to 1 on creation of new product
-  def before_create
+  before_create :create_product
+  def create_product
     self.active ||= "1"
   end
 

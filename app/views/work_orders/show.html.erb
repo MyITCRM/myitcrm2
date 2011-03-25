@@ -24,11 +24,9 @@
         <strong><%= t "workorder.assigned_to" %>:</strong>
       </td>
       <td class="tbl_fields">
-         <% if @work_order.closed = true %>
-      <%= @work_order.assigned_to_id %>
-            <% else %>
+
         <%= render(:partial => "work_orders/assign") %>
-      <% end %>
+
       </td>
   </tr>  
     <tr>
