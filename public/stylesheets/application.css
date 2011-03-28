@@ -43,7 +43,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .priority_main_4 td {background-color: #ff9999; font-weight:bold;}
 .priority_main_5 td {background-color: #cc0033; font-weight:bolder;}
 
-#top_float_right { text-transform:uppercase; font-weight:bold; padding: 0 0 0 20px; margin-bottom:20px; font-size:9px; float:left; vertical-align:middle; }
+#top_float_right { font-size:10px; float:right; clear:none; }
 #top_float_left {padding-top:0;}
 #toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
 .button {padding:inherit; margin-top:-30px;}
@@ -122,7 +122,7 @@ display: inline-block;
     background:#fff;
     color:#555;
 }
-
+.nav_workorder {background-image:url(/images/home.gif); font-weight:900;}
 
 .menu ul li a:link, {
 color: white;

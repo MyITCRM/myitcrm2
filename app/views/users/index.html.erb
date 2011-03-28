@@ -37,15 +37,15 @@
     <td><%= user.mobile %></td>
     <td><%= user.active %></td>
     <td>
-          <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
-      <% if can? :create, WorkOrder %>
-          &nbsp;|&nbsp;<%= link_to(image_tag('brick_add.png', :title => [t "global.workorder"]), :controller => "work_orders", :action => "new", :client_id => user.id )%>
-      <% end %>
+      <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
       <% if can? :update, @user %>
-        &nbsp;|&nbsp;<%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id  ) %>
-        <% end %>
+        &nbsp;<%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id  ) %>
+      <% end %>
+      <% if can? :create, WorkOrder %>
+        &nbsp;<%= link_to(image_tag('wrench.png', :title => [t "global.workorder"]), :controller => "work_orders", :action => "new", :client_id => user.id )%>
+      <% end %>
       <% if can? :destroy, @user %>
-        &nbsp;|&nbsp;<%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
+        &nbsp;<%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
       <% end %>
     </td>
   </tr>

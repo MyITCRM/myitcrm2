@@ -15,9 +15,15 @@
 
 <%= simple_form_for(@work_order) do |f| %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
-        <%= f.association :status, :label => (t "workorder.status") %>
-        <%= f.association :priority_list, :label => (t "workorder.priority") %>
-        <%= f.input :assigned_to_username, :as => :select,  :collection => User.where("workorder_assignability = ?",true),:value_method => :name  %>
+        <% if current_user.workorder_assignability == true then %>
+            <%= f.association :status, :label => (t "workorder.status"), :include_blank => false %>
+            <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+            <%= f.input :assigned_to_username, :as => :select,  :collection => User.where("workorder_assignability = ?",true),:value_method => :name %>
+         <% else %>
+            <%= f.association :status, :label => (t "workorder.status"), :disabled => true, :include_blank => false %>
+            <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+            <%= f.input :assigned_to_username, :as => :select,  :collection => User.where("workorder_assignability = ?",true),:value_method => :name, :disabled => true %>
+        <% end %>
        <div class="simple_form label">
         <label><%= t "workorder.details" %></label>
       </div>

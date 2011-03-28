@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class UsersController < ApplicationController
-  load_and_authorize_resource
+#  load_and_authorize_resource
 
  def new
     @title = t "user.t_new_user"
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @title = t "user.t_title"
 #    @user = User.search(params[:search], params[:page])
     @users = User.accessible_by(current_ability).order(:id).page params[:page]
+    authorize! :read, @user
 
 
  end
@@ -43,13 +44,14 @@ class UsersController < ApplicationController
 #        redirect_to(root_path, :alert => [t "global.restricted"])
 #
 #      end
-
+     authorize! :read, @user
   end
 
 
   def edit
     @title = t "user.t_edit_user"
     @user = User.find(params[:id])
+    authorize! :update, @user
   end
 
  def create
@@ -73,7 +75,7 @@ def register
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => [ t "user.flash_new_success"]) }
+        format.html { redirect_to(root_url, :notice => [ t "user.flash_new_success"]) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "register" }
@@ -86,7 +88,7 @@ def register
   def update
     @title = t "user.t_update_user"
     @user = User.find(params[:id])
-
+    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice =>[t "user.flash_delete_user"])}
@@ -101,6 +103,7 @@ def register
   def destroy
     @title = t "user.t_delete_user"
     @user.destroy
+    authorize! :manage, @user
 
     respond_to do |format|
       flash[:notice] = t "user.flash_delete_user"

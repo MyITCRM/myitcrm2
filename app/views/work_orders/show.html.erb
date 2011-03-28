@@ -24,8 +24,11 @@
         <strong><%= t "workorder.assigned_to" %>:</strong>
       </td>
       <td class="tbl_fields">
-
+        <% if current_user.workorder_assignability == true  then %>
         <%= render(:partial => "work_orders/assign") %>
+        <% else %>
+        <%= @work_order.assigned_to_username %>
+        <% end %>
 
       </td>
   </tr>  

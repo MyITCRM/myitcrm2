@@ -6,11 +6,10 @@ class Ability
     @user.role.each { |role| send(role) }
   end
 
-
   def client
     can :read, User, :id => @user.id
     can [:update, :edit_profile, :update_profile], User, :id => @user.id
-    can [:create], WorkOrder
+    can :create, WorkOrder
     can [:update, :read, :close], WorkOrder, :user_id => @user.id
 
   end
@@ -19,7 +18,8 @@ class Ability
     can :manage, WorkOrder
     can :manage, Product
     can :manage, ProductCategory
-    can [:update, :read], User, :id => @user.id
+    can :read, User, :client => TRUE
+    can :update, User, :id => @user.id
 #    can :update, User,["client = ?", true] do |user|
 #      user.client = true
 #    end

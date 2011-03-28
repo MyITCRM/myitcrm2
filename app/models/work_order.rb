@@ -14,8 +14,7 @@ class WorkOrder < ActiveRecord::Base
   def workorder_created
     self.created_at ||= Time.now
     self.status_id ||= 1
-    self.assigned_to_username ||= nil
-    self.closed ||= 0
+    self.closed ||= -1
   end
   def workorder_updated
     self.updated_at ||= Time.now
@@ -30,9 +29,9 @@ class WorkOrder < ActiveRecord::Base
   end
 # Used to obtain the Assigned Users name from the database on Work Order saving, instead of making a separate call each time it's displayed in the table
   def lookup_assigned_username
-    assigned_user = User.where(["name = ?", assigned_to_username]).first
-  self.assigned_to_id = assigned_user.id
+    if self.status_id == 1 then
+      assigned_user = User.where(["name = ?", assigned_to_username]).first
+      self.assigned_to_id = assigned_user.id
+    end
   end
-
-
 end
