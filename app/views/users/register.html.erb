@@ -1,53 +1,38 @@
-<div id="top_float_left">
-  <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), users_path) %><%= link_to (t "global.exit"), users_path %>
-</div>
-<br>
-
 <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
-
   </ul>
 </div>
-
 <div class="tabcontainer">
-
   <div id="sc1" class="tabcontent">
     <%= simple_form_for(@user) do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :username, :label => (t "user.username") %>
-      <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
-      <%= f.input :password, :required => true %>
-      <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
-      <%= f.input :email, :label => (t "global.email") %>
-      <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
-      <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
-      <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
-      <%= f.input :zip, :input_html => {:size => 30}, :label =>(t "global.zip") %>
-      <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
-      <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
-      <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
+        <%= f.error_notification %>
+        <%= f.input :username, :label => (t "user.username") %>
+        <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
+        <%= f.input :password, :required => true %>
+        <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
+        <%= f.input :email, :label => (t "global.email") %>
+        <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
+        <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
+        <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
+        <%= f.input :zip, :input_html => {:size => 30}, :label =>(t "global.zip") %>
+        <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
+        <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
+        <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
         <% if current_user == nil %>
             <%= hidden_field_tag "user[created_by]", "SELF" %>
             <%= hidden_field_tag "user[client]", 1 %>
             <%= hidden_field_tag "user[role]", "client" %>
-            <% else %>
-      <%= hidden_field_tag "user[created_by]", current_user.username %>
-            <% end %>
+        <% else %>
+            <%= hidden_field_tag "user[created_by]", current_user.username %>
+        <% end %>
 
 
 
-          <%= f.button :submit %>
-
+        <%= f.submit %>
 
 
     <% end %>
-    </div>
-        <div id="sc2" class="tabcontent">
-            <%= simple_form_for(@user) do |f| %>
 
-             <%= f.button :submit %>
-
-            <% end %>
-        </div>
   </div>
+</div>

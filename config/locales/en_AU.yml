@@ -91,6 +91,8 @@ en_AU:
     tab:
       notes: "Notes"
     currently_logged_in_as: "Currently logged in as"
+    disabled: "Disabled"
+    change: "Change"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"

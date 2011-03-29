@@ -4,7 +4,9 @@ class Ability
   def initialize(user)
     @user = user || User.new # for guest
     @user.role.each { |role| send(role) }
+    can :register, User
   end
+
 
   def client
     can :read, User, :id => @user.id
@@ -12,6 +14,14 @@ class Ability
     can :create, WorkOrder
     can [:update, :read, :close], WorkOrder, :user_id => @user.id
 
+  end
+
+  def assistant
+    client
+  end
+
+  def accountant
+    assistant
   end
 
   def technician
@@ -25,12 +35,13 @@ class Ability
 #    end
   end
 
+
   def manager
     technician
     can :manage, User
   end
 
-def administrator
+  def administrator
     can :manage, :all
   end
 

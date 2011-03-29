@@ -13,17 +13,22 @@
 
 <% @assigned_work_orders.each do |assigned_wo| %>
   <tr align="left" class="priority_main_<%= assigned_wo.priority_list.id %>">
-    <td><%= link_to(assigned_wo.id, assigned_wo) %></td>
-    <td><%=h assigned_wo.priority_list.name %></td>
-    <td><%= link_to(assigned_wo.user.username, user_path(assigned_wo.user_id)) %></td>
-    <td><%=h assigned_wo.subject %></td>
-    <td><%=h l assigned_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.created_by %></td>
-    <td><%=h l assigned_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.edited_by %></td>
-    <td><%=h assigned_wo.assigned_to_username %></td>
-    <td align="center" ><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(assigned_wo.id) )%>&nbsp;
-        <%= link_to(image_tag('printer.png', :title => [t "global.print"]), work_order_path(assigned_wo.id,:format => 'pdf'))%>&nbsp;
+    <td align="center"><%= link_to(assigned_wo.id, assigned_wo) %></td>
+    <td align="center"><%=h assigned_wo.priority_list.name %></td>
+    <td align="center"><%= link_to(assigned_wo.user.name, user_path(assigned_wo.user_id)) %></td>
+    <td><%= truncate(assigned_wo.subject, :length => 75) %></td>
+    <td><%= l assigned_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.created_by %></td>
+    <td><%= l assigned_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.edited_by %></td>
+    <td><%= assigned_wo.assigned_to_username %></td>
+    <td width="120" align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(assigned_wo.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(assigned_wo.id)) %>&nbsp;
-        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(assigned_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('printer.png', :title => [t "global.print"]), work_order_path(assigned_wo.id,:format => 'pdf'))%>&nbsp;
+      <% if can? :destroy, @work_orders %>
+       <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(assigned_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>&nbsp;
+       <%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_path(assigned_wo.id))%>&nbsp;
+      <% else %>
+       <%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_path(assigned_wo.id))%>
+      <% end %>
     </td>
   </tr>
 <% end %>

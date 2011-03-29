@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
   helper_method :sort_column, :sort_direction
-  load_and_authorize_resource
+#  load_and_authorize_resource
 
   def index
     @title = t "products.t_title"
-    @products = Product.paginate :page => params[:page], :order => sort_column+ " " +sort_direction, :per_page => 50
-    @products = Product.search_products(params[:search_products], params[:page], sort_column, sort_direction )
+#    @products = Product.paginate :page => params[:page], :order => sort_column+ " " +sort_direction, :per_page => 50
+    @products = Product.order(:id).page params[:page]
+#    @products = Product.search_products(params[:search_products], params[:page], sort_column, sort_direction )
 
     
     respond_to do |format|

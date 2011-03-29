@@ -30,7 +30,6 @@ validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\
 #before_save :new_user
 
 # Used to set New Users to default to active
-
   def new_user
     self.active ||= "1"
     if self.created_by == nil
@@ -45,7 +44,7 @@ validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\
   end
 # DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
-      ROLES = %w[administrator manager technician accountant assistant client guest]
+      ROLES = %w[administrator manager technician accountant assistant client]
 #
 # DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 

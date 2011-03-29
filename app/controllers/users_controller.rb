@@ -20,7 +20,6 @@ class UsersController < ApplicationController
  def new
     @title = t "user.t_new_user"
     @user = User.new
-
  end
 
   def index
@@ -28,22 +27,15 @@ class UsersController < ApplicationController
 #    @user = User.search(params[:search], params[:page])
     @users = User.accessible_by(current_ability).order(:id).page params[:page]
     authorize! :read, @user
-
-
  end
 
    def show
     @title = t "user.t_view"
-#     @user = User.where(params[:id])
+#    @user = User.where(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
     end
-
-#      if @user != current_user
-#        redirect_to(root_path, :alert => [t "global.restricted"])
-#
-#      end
      authorize! :read, @user
   end
 
@@ -63,27 +55,16 @@ class UsersController < ApplicationController
         format.html { redirect_to(@user, :notice => [ t "user.flash_new_success"]) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-
-  end
-def register
-    @title = t "user.t_new_user"
-     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(root_url, :notice => [ t "user.flash_new_success"]) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
         format.html { render :action => "register" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
 
   end
+def register
+   @title = t "user.t_new_user"
+   @user = User.new
+end
 
   def update
     @title = t "user.t_update_user"
@@ -103,12 +84,10 @@ def register
   def destroy
     @title = t "user.t_delete_user"
     @user.destroy
-    authorize! :manage, @user
-
+     authorize! :destroy, @user
     respond_to do |format|
       flash[:notice] = t "user.flash_delete_user"
       format.html { redirect_to(users_url) }
-
     end
   end
 

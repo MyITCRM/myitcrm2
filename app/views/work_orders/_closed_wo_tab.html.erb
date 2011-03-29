@@ -14,7 +14,7 @@
 <% @closed_work_orders.each do |closed_wo| %>
   <tr align="left" class="priority_main_<%= closed_wo.priority_list.id %>">
     <td><%= link_to(closed_wo.id, closed_wo) %></td>
-    <td><%= link_to(closed_wo.user.username, user_path(closed_wo.user_id)) %></td>
+    <td><%= link_to(closed_wo.user.name, user_path(closed_wo.user_id)) %></td>
     <td><%=h closed_wo.subject %></td>
     <td><%=h closed_wo.description %></td>
     <td><%=h l closed_wo.created_at, :format => :medium %></td>

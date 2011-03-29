@@ -33,16 +33,22 @@
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
       <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
         <%= f.submit %>
-    <%= textile_editor_initialize(:framework => :jquery).html_safe%>
+
 <% end %>
 </div>
 <div id="tab2" class="tabcontent">
 <%= simple_form_for(@work_order) do |f| %>
-        <%= f.input :resolution, :label => (t "workorder.resolution"), :input_html => { :rows => 20 }%>
+        <div class="simple_form label">
+        <label><%= t "workorder.resolution" %></label>
+      </div>
+      <div class="textile">
+       <%= textile_editor_tag 'work_order[resolution]', '', :rows => 25, :cols => 80 %>
+      </div>
         <%= f.input :closed, :as => :check_boxes, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
 
 <%= f.submit %>
+<%= textile_editor_initialize(:framework => :jquery).html_safe%>
 <% end %>
 </div>
 </div>

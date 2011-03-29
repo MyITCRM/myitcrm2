@@ -2,19 +2,15 @@ class SuppliersController < ApplicationController
 load_and_authorize_resource
   def index
     @title = t "supplier.t_title"
-    @supplier = Supplier.where(:all)
+    @supplier = Supplier.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @supplier }
-    end
   end
 
   # GET /suppliers/1
   # GET /suppliers/1.xml
   def show
     @title = t "supplier.t_view"
-    @supplier = Supplier.where(params[:id])
+#    @supplier = Supplier.where(params[:id])
 
 
     respond_to do |format|

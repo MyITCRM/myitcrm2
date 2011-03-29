@@ -255,7 +255,7 @@ label.collection_radio {
 .field_with_errors {
   /*background-color: #ff3333;*/
 }
-.error_notification {padding: 4px 30px 4px 30px;margin: 10px 0; background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
+.error_notification {padding: 4px 30px 4px 30px;margin: 10px 60% 10px 50px; background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
 
 
 .simple_form .error {
@@ -263,7 +263,7 @@ label.collection_radio {
   color: #ff3333;
   display: block;
   margin-left: 220px;
-  font-size:    12px;
+  font-size:10px;
   font-style:italic;
   font-weight:bold;
     text-transform:capitalize;

@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'jquery-1.5.1.min', 'textile-editor', 'rails', 'application' %>
   <%= csrf_meta_tag %>
   <script type="text/javascript">
-      ddtabmenu.definemenu("ddtabs1", 0) //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
+      ddtabmenu.definemenu("ddtabs1", 0); //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
   </script>
 </head>
 <body>
@@ -19,11 +19,11 @@
 <div id="user_nav" class="menu">
   <%= render_navigation %>
 </div>
-<div id="top_float_right">
   <% if logged_in?  %>
-    <%= t "global.currently_logged_in_as" %>&nbsp;<%= current_user.name %>
-      <% end %>
-  </div>
+    <div id="top_float_right">
+        <%= t "global.currently_logged_in_as" %>&nbsp;<%= current_user.name %>
+    </div>
+  <% end %>
 <div id="container">
   <div id="yield">
     <%- flash.each do |name, msg| -%>

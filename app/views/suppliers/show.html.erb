@@ -1,9 +1,9 @@
 <!-- mytodo adjust layout the same as users-->
 <div id="top_float_left">
-<% if permitted_to? :destroy, Supplier.new %>
+<% if can? :destroy, @supplier %>
 <%= link_to(image_tag("trash.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), @supplier, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
 <% end %>
-<% if permitted_to? :edit, Supplier %>
+<% if can? :edit, @supplier %>
 <%= link_to(image_tag("edit.png", :title=> (t "global.edit"),:align => "bottom", :hspace => "2"), edit_supplier_path)%><%= link_to (t "global.edit"), edit_supplier_path %>&nbsp;&nbsp;
 <% end %>
   <%= link_to(image_tag("exit.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), suppliers_path)%><%= link_to (t "global.close"), suppliers_path %>

@@ -1,5 +1,5 @@
  <%= form_for @work_order do |f| %>
-     <%= f.collection_select(:assigned_to_username, User.where("workorder_assignability = ?",true),:name, :name)%>
+     <%= f.collection_select(:assigned_to_username, User.where("workorder_assignability = ?",true),:name, :name, :include_blank => true)%>
      <%= hidden_field_tag(:id, @work_order.id ) %>
-     <%= button_to "Submit" %>
+     <%= button_to (t "global.change") %>
 <% end %>

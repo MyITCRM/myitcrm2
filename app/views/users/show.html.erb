@@ -35,7 +35,7 @@
       <td colspan="2" align="right">
         <strong><%= t "global.role" %>:</strong>
       </td>
-      <td align="left">
+      <td align="left" style="text-transform:capitalize;">
        <%= @user.role %>
       </td>
   </tr>
@@ -44,7 +44,11 @@
         <strong><%= t "global.active" %>:</strong>
       </td>
       <td align="left">
-       <%= @user.active %>
+       <% if @user.active == true then  %>
+        <%= image_tag("tick.png", :title => (t "global.active")) %>
+       <% else %>
+        <%= image_tag("delete.png", :title => (t "global.disabled")) %>
+       <% end %>
       </td>
   </tr>
   <tr>

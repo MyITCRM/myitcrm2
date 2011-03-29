@@ -41,8 +41,10 @@
       <% if can? :update, @user %>
         &nbsp;<%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id  ) %>
       <% end %>
-      <% if can? :create, WorkOrder %>
-        &nbsp;<%= link_to(image_tag('wrench.png', :title => [t "global.workorder"]), :controller => "work_orders", :action => "new", :client_id => user.id )%>
+      <% if user.client == true then %>
+        <% if can? :create, WorkOrder %>
+            &nbsp;<%= link_to(image_tag('wrench.png', :title => [t "global.workorder"]), :controller => "work_orders", :action => "new", :client_id => user.id )%>
+        <% end %>
       <% end %>
       <% if can? :destroy, @user %>
         &nbsp;<%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>

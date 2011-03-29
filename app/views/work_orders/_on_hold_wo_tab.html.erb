@@ -16,7 +16,7 @@
 <% @on_hold_work_orders.each do |on_hold| %>
   <tr class="priority_main_<%= on_hold.priority_list.id %>">
     <td><%= link_to(on_hold.id, on_hold) %></td>
-    <td><%= link_to(on_hold.user.username, user_path(on_hold.user_id)) %></td>
+    <td><%= link_to(on_hold.user.name, user_path(on_hold.user_id)) %></td>
     <td><%=h on_hold.subject %></td>
     <td><%=h on_hold.description %></td>
     <td><%=h on_hold.priority_list.name %></td>
