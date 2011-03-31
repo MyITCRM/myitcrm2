@@ -61,6 +61,7 @@ pdf.cell [80,630],
         :height => 17,
         :font_size => 11,
         :border_style => :all,
+        :background_color => 'cccccc',
         :text  => "#{@work_order.subject}",
         :align => :left,
         :padding => 3
@@ -76,10 +77,10 @@ pdf.cell [10,608],
         :align => :right,
         :padding => 3
 # Check if there is a user assigned and display it if there is, otherwise display "not assigned message"
-if @work_order.assigned_to_username ||= nil
-    text = User.find(:all, :select => "username", :conditions => ["id = ?", @work_order.assigned_to_username])
-  else
+if @work_order.assigned_to_username.blank?
     text = t "workorder.not_assigned_message"
+else
+    text = @work_order.assigned_to_username
 end
 pdf.cell [80,608],
         :width => 420,

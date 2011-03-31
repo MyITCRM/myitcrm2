@@ -1,11 +1,37 @@
 h1. Welcome to MyIT CRM2 - The Next Stage!
 
+h2. What is MyIT CRM2?
 
+MyIT CRM2 is a Customer Relationship Management Tool, written for the IT Community and businesses who repair computers.
+Whilst MyIT CRM2 is based around IT Repair businesses, it can easily be adapted to any business that needs to schedule and create Work Orders to
+carry out repairs.
+
+MyITCRM2 Features (Current and Planned):
+    * Customer Management,
+    * Work Order (Service Request) Management,
+    * Parts Ordering and Stock Control,
+    * Supplier Management and Ordering Processes,
+    * Detailed Invoicing,
+    * Supported Payment Types: PayPal, Cheque, Direct Deposit, Cash/COD
+    * Detailed Reporting.
 
 
 Check out http://myitcrm.com for more details
 and the current version of MyIT CRM.
 
+MyITCRM2 is a Open Source and Free Web Program written in Ruby/Rails. It's released under the GNU GPL3 Software License.
+
+If you like this program, please visit our website and help support it by making a donation (any amount) to help the ongoing development of MyIT CRM.
+
+
+Regards,
+Glen Vanderhel
+
+MyIT CRM Project Leader,
+aka geevpc in the forum
+
+
+For Developers:
 h2. Setup database.yml file for development
 
 # SQLite3 setup - requires gem install

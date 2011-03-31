@@ -27,7 +27,11 @@
     <% if current_user.workorder_assignability == true  then %>
      <%= render(:partial => "work_orders/assign") %>
     <% else %>
+     <% if @work_order.assigned_to_username.blank? then %>
+              <%= t "workorder.not_assigned_message" %>
+     <% else %>
      <%= @work_order.assigned_to_username %>
+    <% end %>
     <% end %>
     </td>
   </tr>  

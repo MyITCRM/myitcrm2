@@ -13,12 +13,12 @@ class ApplicationController < ActionController::Base
 rescue_from CanCan::AccessDenied do
       flash[:alert] = [t "global.access_denied"]
       redirect_to root_url
-    end
+end
+
   protected
-
-
   def session_expired
-    redirect_to(root_path, :alert => [t "global.expired_session"])
+    flash[:alert] = [t "global.expired_session"]
+    redirect_to root_path
 
   end
 

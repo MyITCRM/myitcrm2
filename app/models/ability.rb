@@ -7,7 +7,6 @@ class Ability
     can :register, User
   end
 
-
   def client
     can :read, User, :id => @user.id
     can [:update, :edit_profile, :update_profile], User, :id => @user.id

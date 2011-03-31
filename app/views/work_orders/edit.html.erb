@@ -28,7 +28,7 @@
         <label><%= t "workorder.details" %></label>
       </div>
       <div class="textile">
-       <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
+       <%= textile_editor_tag 'work_order[description]', @work_order.description, :rows => 25, :cols => 80 %>
       </div>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
       <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
@@ -42,7 +42,7 @@
         <label><%= t "workorder.resolution" %></label>
       </div>
       <div class="textile">
-       <%= textile_editor_tag 'work_order[resolution]', '', :rows => 25, :cols => 80 %>
+       <%= textile_editor_tag 'work_order[resolution]', @work_order.resolution, :rows => 25, :cols => 80 %>
       </div>
         <%= f.input :closed, :as => :check_boxes, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
