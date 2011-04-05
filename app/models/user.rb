@@ -19,7 +19,7 @@
 class User < ActiveRecord::Base
   #acts_as_authentic
 acts_as_authentic do |c|
-  c.logged_in_timeout = 15.seconds # default is 10 minutes. Change this value and restart server to take effect of new value
+  c.logged_in_timeout = 15.minutes # default is 10 minutes. Change this value and restart server to take effect of new value
 end
 
 has_many :work_orders

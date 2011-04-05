@@ -22,11 +22,11 @@ class Product < ActiveRecord::Base
 
   end
 
-  def category_name
+  def product_category_name
     product_category.name if product_category
   end
-  def category_name=(name)
+  def product_category_name=(name)
     self.product_category_id = ProductCategory.find_or_create_by_name(name) unless name.blank?
 
-  end
+end
 end

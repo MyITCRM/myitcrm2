@@ -1,4 +1,5 @@
 MyITCRM2::Application.routes.draw do
+
   resources :statuses
   resources :priority_lists
   resources :work_orders
@@ -15,6 +16,9 @@ MyITCRM2::Application.routes.draw do
     end
   end
   resources :product_categories
+   resources :product_categories do
+      get :product_category_name, :on => :collection
+   end
   resources :user_sessions
   resources :users
   resources :users do
@@ -26,6 +30,7 @@ MyITCRM2::Application.routes.draw do
   end
   resources :suppliers
   resources :products
+
 
 #  map.login "login", :controller => "user_sessions", :action => "new"
   match '/login' => 'user_sessions#new', :as => :login

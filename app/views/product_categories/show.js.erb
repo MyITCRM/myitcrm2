@@ -1,0 +1,3 @@
+[<% @product_category.each do |re| %>
+{"label":"<%= re.name %>","value":"<%= re.name %>"<% if re == @product_category.last %>}<% else %>},<% end %>
+<% end %>]

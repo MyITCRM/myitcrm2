@@ -14,32 +14,27 @@
 <div class="tabcontainer">
 
 <div id="sc1" class="tabcontent">
-<% form_for @product do |f| %>
+<% simple_form_for @product do |f| %>
                 <%= f.error_notification %>
                 <%= f.input :active, :label => (t "global.active")%>
                 <%= f.input :our_sku, :input_html => {:size => 20}, :label => (t "products.our_sku") %>
                 <%= f.input :description, :hint => (t "products.hint_desc"), :label => (t "global.description") %>
                 <%= f.input :model, :label => (t "products.model") %>
                 <%= f.input :manufacturer, :label => (t "products.manufacturer") %>
-                <li class="string required">
-                    <%= f.label :product_category_id%>
-                    <%= text_field_with_auto_complete :product, :category_name, { :size => 15}, { :url => formatted_product_categories_path(:js), :method => :get, :with => "'search=' + element.value"} %>
-                    <p class="inline-hints"><%= t "products.hint.category" %></p>
-                </li>
-                <%= f.input :supplier, :label_method => :company_name, :label => (t "products.supplier") %>
+                <%= f.input :product_category_name, :url => product_category_name_product_categories_path, :as => :autocomplete, :label =>([t "products.category"]), :hint => ([t "products.hint.category"]) %>
+                <%= f.association :supplier, :label_method => :company_name, :label => (t "products.supplier") %>
                 <%= f.input :supplier_sku, :input_html => {:size => 20}, :label => (t "products.supplier_sku")%>
                 <%= f.input :cost_price, :input_html => {:size => 10}, :label => (t "products.cost_price") %>
                 <%= f.input :sell_price, :input_html => {:size => 10}, :label => (t "products.sell_price") %>
                 <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
 
-       <%= f.submit t "global.create" %>
+       <%= f.submit  %>
         <% end %>
 </div>
 
 <div id="sc2" class="tabcontent">
 <% simple_form_for @product do |f| %>
-                <%= f.error_notification %>
                 <%= f.input :stocked_product, :hint => (t "products.stocked") %>
                 <%= f.input :stocking_qty, :input_html => {:size => 20} %>
                 <%= f.input :qty_on_hand, :input_html => {:size => 20} %>
@@ -55,7 +50,6 @@
 
 <div id="sc3" class="tabcontent">
 <% simple_form_for @product do |f| %>
-                <%= f.error_notification %>
                 <%= f.input :taxable %>
                 <%= f.input :tax_rate, :hint => (t "products.hint_tax_rate") %>
                 <%= f.input :discountable %>
@@ -69,7 +63,6 @@
 </div>
 <div id="sc4" class="tabcontent">
 <% simple_form_for @product do |f| %>
-                <%= f.error_notification %>
                 <%= f.input :warranty_info, :as => :text, :input_html => {:rows => 15} %>
                 <%= f.input :warranty_length, :input_html => {:size => 20} %>
                 <%= f.input :warranty_unit, :as => :select, :collection => [(t "global.days"), (t "global.months"), (t "global.years")] %>

@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+  autocomplete :product_category, :name
   helper_method :sort_column, :sort_direction
-#  load_and_authorize_resource
+
+  #  load_and_authorize_resource
 
   def index
     @title = t "products.t_title"
@@ -28,8 +30,6 @@ class ProductsController < ApplicationController
   def new
     @title = t "products.t_add_new"
     @product = Product.new
-
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }
