@@ -37,11 +37,7 @@ validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\
     end
   end
  
-  def self.search(search, page)
-      User.paginate :per_page => 25, :page => page,
-                          :conditions => ['name LIKE  ?', "%#{search}%"],
-                          :order => 'id'
-  end
+
 # DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
       ROLES = %w[administrator manager technician accountant assistant client guest]

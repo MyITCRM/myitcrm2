@@ -294,3 +294,11 @@ label.collection_check_boxes {
   vertical-align: -2px;
   margin-left:   2px;
 }
+/*JQUERY Custom Styling*/
+.toggler {position: relative; padding: .4em 0 .5em 0 }
+	#button { padding: .5em 1em; text-decoration: none; }
+	#effect { width: 100%;  padding: 0.4em; position: relative; }
+	#effect h3 { margin: 0; padding: 0.4em; text-align: center; }
+
+
+/*EOF JQUERY Customer Styling*/

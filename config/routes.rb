@@ -38,6 +38,7 @@ MyITCRM2::Application.routes.draw do
   match '/logout' => 'user_sessions#destroy', :as => :logout
 #  map.register "register", :controller => "users", :action => "new"
   match '/register' =>'users#register', :as => :register
+  match '/clients' =>'users#clients', :as => :clients
 #  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
   match 'profile/:id' => 'users#edit_profile', :as => :my_account
 #  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"

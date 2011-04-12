@@ -1,11 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-/*
-function toggleFieldset(el) {
-	var fieldset = Element.up(el, 'fieldset');
-	fieldset.toggleClassName('collapsed');
-	Effect.toggle(fieldset.down('div'), 'slide', {duration:0.2});
-}*/
+
 //DD Tab Menu- Script rewritten April 27th, 07: http://www.dynamicdrive.com
 //**Updated Feb 23rd, 08): Adds ability for menu to revert back to default selected tab when mouse moves out of menu
 
@@ -103,3 +98,5 @@ var menuitems=document.getElementById(tabid).getElementsByTagName("a");
 	}
 }
 }
+
+

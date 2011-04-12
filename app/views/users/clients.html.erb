@@ -4,22 +4,12 @@
 </div>
 <% end %>
 <br/>
-<a href="#" id="button" class="ui-widget-header ui-corner-all">Filters</a><br/>
-
-<div class="toggler">
-
-    <div id="effect" class="ui-widget-content ui-corner-all" >
 <%= form_tag users_path, :method => 'get' do %>
    <p><%= t "user.search"  %>
-     <%= text_field_tag :name, params[:name] %>&nbsp;
-     <%= t "user.search_by_role"  %>&nbsp;
-     <%= select_tag :role, options_from_collection_for_select(User::ROLES, :to_s, :humanize, params[:role]), :include_blank => true %>&nbsp;
-     <%= t "user.search_by_phone"  %>&nbsp;<%= text_field_tag :phone, params[:phone] %>&nbsp;
+     <%= text_field_tag :search, params[:search] %>
+     <%= submit_tag (t "global.submit"), :name => nil %>
     </p>
-          <%= submit_tag (t "global.filter"), :name => nil %>
     <% end %>
-      </div>
-      </div>
 
 <%= paginate @users  %>
 

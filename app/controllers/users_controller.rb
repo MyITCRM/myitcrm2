@@ -25,7 +25,14 @@ class UsersController < ApplicationController
   def index
     @title = t "user.t_title"
 #    @user = User.search(params[:search], params[:page])
-    @users = User.accessible_by(current_ability).order(:id).page params[:page]
+    name = params[:name]
+    role = params[:role]
+    phone = params[:phone]
+    @users = User.accessible_by(current_ability).where('name LIKE  ?', "%#{name}%").where('role LIKE  ?', "%#{role}%").where('phone LIKE  ?', "%#{phone}%").order(:id).page params[:page]
+    respond_to do |format|
+      format.html
+      format.js
+    end
     authorize! :read, @user
  end
 
@@ -106,4 +113,11 @@ end
     end
 
   end
+ def clients
+     @title = t "user.t_clients"
+ #    @user = User.search(params[:search], params[:page])
+     @users = User.where("client = ?", true).order(:name).page params[:page]
+     authorize! :read, @user
+  end
+
 end
