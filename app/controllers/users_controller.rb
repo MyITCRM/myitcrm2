@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
    def show
     @title = t "user.t_view"
-#    @user = User.where(params[:id])
+   @user = User.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
