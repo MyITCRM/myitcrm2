@@ -47,7 +47,7 @@
 </div>
   <% if logged_in?  %>
     <div id="top_float_right">
-        <%= t "global.currently_logged_in_as" %>&nbsp;<%= current_user.name %>
+        <%= t "global.currently_logged_in_as" %>&nbsp;<%= current_user.name %> <%= Time.now %>
     </div>
   <% end %>
 <div id="container">

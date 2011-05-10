@@ -170,7 +170,7 @@ background: #eff9ff;
 color: black;
 }
 
-}/*Menu <<<*/
+/*Menu <<<*/
 
 /*Filter section*/
 fieldset.collapsible { border-width: 1px 0 0 0; font-size: 0.9em; }
@@ -293,6 +293,9 @@ label.collection_check_boxes {
   margin: 0;
   vertical-align: -2px;
   margin-left:   2px;
+}
+input.required {
+    border: 2px solid #8b0000;
 }
 /*JQUERY Custom Styling*/
 .toggler {position: relative; padding: .4em 0 .5em 0 }

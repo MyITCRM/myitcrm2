@@ -46,7 +46,7 @@
               <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
               <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
               <% if can? :destroy, @user %>
-                  <%= f.input :roles, :as => :check_boxes, :collection => User::ROLES, :label => (t "global.role") %>
+                  <%= f.input :role, :as => :select, :collection => User::ROLES, :label => (t "global.role") %>
               <% end %>
 
               <%= f.submit %>

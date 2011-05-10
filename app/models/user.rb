@@ -17,10 +17,6 @@
 #
 
 class User < ActiveRecord::Base
-  #acts_as_authentic
-acts_as_authentic do |c|
-  c.logged_in_timeout = 15.minutes # default is 10 minutes. Change this value and restart server to take effect of new value
-end
 
 has_many :work_orders
 
@@ -36,20 +32,23 @@ validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\
       self.created_by ||= "0"
     end
   end
- 
+#  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
+ acts_as_authentic do |c|
+    c.logged_in_timeout = 30.seconds # default is 10 minutes. Change this value and restart server to take effect of new value
+  end
 
 # DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
-      ROLES = %w[administrator manager technician accountant assistant client guest]
+      ROLES = %w[administrator manager technician accountant assistant client]
 #
 # DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 
 
-  def role?(base_role)
-    ROLES.index(base_role.to_s) <= ROLES.index(role)
-  end
-
-
+#  def role?(base_role)
+#    ROLES.index(base_role.to_s) <= ROLES.index(role)
+#  end
+#
+#
   def roles
     User::ROLES.to_a
   end

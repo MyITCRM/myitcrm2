@@ -28,12 +28,12 @@ class UsersController < ApplicationController
     name = params[:name]
     role = params[:role]
     phone = params[:phone]
-    @users = User.accessible_by(current_ability).where('name LIKE  ?', "%#{name}%").where('role LIKE  ?', "%#{role}%").where('phone LIKE  ?', "%#{phone}%").order(:id).page params[:page]
+    @users = User.where('name LIKE  ?', "%#{name}%").where('role LIKE  ?', "%#{role}%").where('phone LIKE  ?', "%#{phone}%").order(:id).page params[:page]
     respond_to do |format|
       format.html
       format.js
     end
-    authorize! :read, @user
+#    authorize! :read, @user
  end
 
    def show
@@ -43,14 +43,14 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @user }
     end
-     authorize! :read, @user
+#     authorize! :read, @user
   end
 
 
   def edit
     @title = t "user.t_edit_user"
     @user = User.find(params[:id])
-    authorize! :update, @user
+#    authorize! :update, @user
   end
 
  def create
@@ -76,7 +76,7 @@ end
   def update
     @title = t "user.t_update_user"
     @user = User.find(params[:id])
-    authorize! :update, @user
+#    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice =>[t "user.flash_delete_user"])}
@@ -91,7 +91,7 @@ end
   def destroy
     @title = t "user.t_delete_user"
     @user.destroy
-     authorize! :destroy, @user
+#     authorize! :destroy, @user
     respond_to do |format|
       flash[:notice] = t "user.flash_delete_user"
       format.html { redirect_to(users_url) }
@@ -117,7 +117,7 @@ end
      @title = t "user.t_clients"
  #    @user = User.search(params[:search], params[:page])
      @users = User.where("client = ?", true).order(:name).page params[:page]
-     authorize! :read, @user
+#     authorize! :read, @user
   end
 
 end

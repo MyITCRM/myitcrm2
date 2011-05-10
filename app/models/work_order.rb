@@ -6,7 +6,7 @@ class WorkOrder < ActiveRecord::Base
 # Validate Input information
   validates_presence_of :subject, :description
 
-  attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username
+  attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by
 
   before_create :workorder_created
   before_update :workorder_updated, :change_assignment
@@ -33,7 +33,7 @@ class WorkOrder < ActiveRecord::Base
 
 # Used to obtain the Assigned Users name from the database on Work Order saving, instead of making a separate call each time it's displayed in the table
   def lookup_assigned_username
-    if self.user.client == false then
+    if self.user.client == 0 then
       if self.status_id == 1 then
         assigned_user = User.where(["name = ?", assigned_to_username]).first
         self.assigned_to_id = assigned_user.id

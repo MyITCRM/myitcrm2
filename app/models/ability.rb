@@ -1,12 +1,12 @@
 class Ability
   include CanCan::Ability
-
   def initialize(user)
     @user = user || User.new # for guest
-    @user.role.each { |role| send(role) }
+    @user.roles.each { |role| send(role) }
     can :register, User
-  end
 
+  end
+#
   def client
     can :read, User, :id => @user.id
     can [:update, :edit_profile, :update_profile], User, :id => @user.id
@@ -14,15 +14,15 @@ class Ability
     can [:update, :read, :close], WorkOrder, :user_id => @user.id
 
   end
-
+#
   def assistant
     client
   end
-
+#
   def accountant
     assistant
   end
-
+#
   def technician
     can :manage, WorkOrder
     can :manage, Product
@@ -33,13 +33,13 @@ class Ability
 #      user.client = true
 #    end
   end
-
-
+#
+#
   def manager
     technician
     can :manage, User
   end
-
+#
   def administrator
     can :manage, :all
   end

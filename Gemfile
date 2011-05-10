@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'          Y
@@ -10,11 +10,11 @@ gem 'prawn'
 # Permissions GEM
 gem 'cancan'
 # Multiple Language Support
-gem 'i18n'
+#gem 'i18n'
 # Easily generate nice forms with advanced features like hints, inline errors, etc
 gem 'simple_form', '1.3.0'
 # User Authentication GEM
-gem 'authlogic', '3.0.2'
+gem 'authlogic'
 # SQLite Database gem
 gem 'sqlite3-ruby', :require => 'sqlite3'
 # Adds Pagination to this app

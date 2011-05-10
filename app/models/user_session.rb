@@ -18,6 +18,7 @@
 
 class UserSession < Authlogic::Session::Base
   logout_on_timeout true
+  consecutive_failed_logins_limit 6
 
 def to_key
    new_record? ? nil : [ self.send(self.class.primary_key) ]
