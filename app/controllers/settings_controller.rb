@@ -1,4 +1,7 @@
 class SettingsController < ApplicationController
+  #  Used by CanCan to restrict controller access
+  load_and_authorize_resource
+
   def index
         edit
         render :action => 'edit'

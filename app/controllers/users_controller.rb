@@ -14,13 +14,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-class UsersController < ApplicationController
-#  load_and_authorize_resource
 
- def new
+class UsersController < ApplicationController
+  #  Used by CanCan to restrict controller access
+  load_and_authorize_resource
+
+  def new
     @title = t "user.t_new_user"
     @user = User.new
- end
+  end
 
   def index
     @title = t "user.t_title"
@@ -33,45 +35,43 @@ class UsersController < ApplicationController
       format.html
       format.js
     end
-#    authorize! :read, @user
- end
+  end
 
-   def show
+  def show
     @title = t "user.t_view"
-   @user = User.find(params[:id])
+    @user = User.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      format.xml { render :xml => @user }
     end
-#     authorize! :read, @user
   end
 
 
   def edit
     @title = t "user.t_edit_user"
     @user = User.find(params[:id])
-#    authorize! :update, @user
   end
 
- def create
+  def create
     @title = t "user.t_new_user"
-     @user = User.new(params[:user])
+    @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => [ t "user.flash_new_success"]) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
+        format.html { redirect_to(@user, :notice => [t "user.flash_new_success"]) }
+        format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "register" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
 
   end
-def register
-   @title = t "user.t_new_user"
-   @user = User.new
-end
+
+  def register
+    @title = t "user.t_new_user"
+    @user = User.new
+  end
 
   def update
     @title = t "user.t_update_user"
@@ -79,11 +79,11 @@ end
 #    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice =>[t "user.flash_delete_user"])}
-        format.xml  { head :ok }
+        format.html { redirect_to(@user, :notice =>[t "user.flash_delete_user"]) }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -91,14 +91,13 @@ end
   def destroy
     @title = t "user.t_delete_user"
     @user.destroy
-#     authorize! :destroy, @user
     respond_to do |format|
       flash[:notice] = t "user.flash_delete_user"
       format.html { redirect_to(users_url) }
     end
   end
 
-   def edit_profile
+  def edit_profile
     @title = t "user.t_edit_user"
     @user = current_user
   end
@@ -113,11 +112,10 @@ end
     end
 
   end
- def clients
-     @title = t "user.t_clients"
- #    @user = User.search(params[:search], params[:page])
-     @users = User.where("client = ?", true).order(:name).page params[:page]
-#     authorize! :read, @user
+
+  def clients
+    @title = t "user.t_clients"
+    @users = User.where("client = ?", true).order(:name).page params[:page]
   end
 
 end

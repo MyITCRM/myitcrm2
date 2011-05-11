@@ -1,8 +1,10 @@
+<% if logged_in? %>
 <% if can? :manage, @users %>
 <div id="top_float_left">
   <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"], :align => "bottom", :hspace => "2"), new_user_path) %><%= link_to([t "global.new"], new_user_path) %>
 </div>
 <% end %>
+
 <br/>
 <a href="#" id="button" class="ui-widget-header ui-corner-all">Filters</a><br/>
 
@@ -63,4 +65,4 @@
   </tr>
 <% end %>
 </table>
-
+ <% end %>

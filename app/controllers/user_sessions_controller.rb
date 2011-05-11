@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-#  before_filter :logged_in?, :only => :destroy
+  before_filter :logged_in?, :only => :destroy
 
   def new
     @title = t "global.login"

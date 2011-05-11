@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   autocomplete :product_category, :name
   helper_method :sort_column, :sort_direction
 
-  #  load_and_authorize_resource
+#  Used by CanCan to restrict controller access
+  load_and_authorize_resource
 
   def index
     @title = t "products.t_title"

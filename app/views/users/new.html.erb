@@ -14,7 +14,7 @@
       <%= f.input :username, :label => (t "user.username") %>
       <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
       <% if logged_in? %>
-      <%= f.input :client, :collection => ["Yes","No"], :label =>(t "user.client") %>
+      <%= f.input :client, :input_html => {:value => "1", :value => "1"}, :label =>(t "user.client") %>
       <% end %>
       <%= f.input :password, :required => true %>
       <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>

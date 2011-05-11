@@ -1,4 +1,6 @@
 class StatusesController < ApplicationController
+  #  Used by CanCan to restrict controller access
+  load_and_authorize_resource
   # GET /statuses
   # GET /statuses.xml
   def index

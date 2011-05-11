@@ -294,9 +294,8 @@ label.collection_check_boxes {
   vertical-align: -2px;
   margin-left:   2px;
 }
-input.required {
-    border: 2px solid #8b0000;
-}
+input.required {border: 2px solid #8b0000; background-color:#ffffcc;}
+textarea.required {border: 2px solid #8b0000; background-color:#ffffcc;}
 /*JQUERY Custom Styling*/
 .toggler {position: relative; padding: .4em 0 .5em 0 }
 	#button { padding: .5em 1em; text-decoration: none; }
