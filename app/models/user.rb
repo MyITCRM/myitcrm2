@@ -17,41 +17,39 @@
 #
 
 class User < ActiveRecord::Base
+# This allows/connects the Users to many Work Orders
+  has_many :work_orders
 
-has_many :work_orders
+# Mass Assignment Protection
+  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role, :updated_by, :created_by,  :password_confirmation, :mobile, :fax, :password
 
 # Validations for Users
-validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
-validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-#before_save :new_user
+  validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
+  validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  before_create :new_user
 
-# Used to set New Users to default to active
+# Used to seNew Users to default to activeve
   def new_user
-    self.active ||= "1"
-    if self.created_by == nil
-      self.created_by ||= "0"
+    if self.role.nil?
+      self.role = "client"
+      self.client = true
     end
   end
+
 #  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
- acts_as_authentic do |c|
-    c.logged_in_timeout = 30.seconds # default is 10 minutes. Change this value and restart server to take effect of new value
-  end
+  acts_as_authentic do |c|
+    c.logged_in_timeout 10.minutes # default is 10 minutes. Change this value and restart server to take effect of new value
+ end
 
 # DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
       ROLES = %w[administrator manager technician accountant assistant client]
+#      ROLES = %w[client assistant accountant technician manager administrator]
 #
 # DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 
-
-#  def role?(base_role)
-#    ROLES.index(base_role.to_s) <= ROLES.index(role)
-#  end
-#
-#
   def roles
     User::ROLES.to_a
   end
-
 
 end

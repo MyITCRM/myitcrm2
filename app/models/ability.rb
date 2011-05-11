@@ -1,10 +1,18 @@
 class Ability
   include CanCan::Ability
   def initialize(user)
-    @user = user || User.new # for guest
-    @user.roles.each { |role| send(role) }
-    can :register, User
 
+    @user = user || User.new
+#    Feature #68 - This fixes this feature no with CanCan and Authlogic time_out
+    if @user.role.nil?
+      @user.role = "guest"
+    else
+      @user.role.each { |role| send(role) }
+    end
+    can :register, User
+  end
+  def guest
+     can :register, User
   end
 #
   def client
