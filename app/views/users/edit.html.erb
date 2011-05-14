@@ -14,8 +14,8 @@
           <%= f.error_notification %>
           <%= f.input :username, :label => (t "user.username") %>
           <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
-          <%= f.input :password, :input_html => {:autocomplete => 'off'}, :required => true, :label => (t "user.password") %>
-          <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation"), :required => true %>
+          <%= f.input :password, :input_html => {:autocomplete => 'off'}, :label => (t "user.password") %>
+          <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation") %>
           <%= f.input :email, :label => (t "global.email") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>

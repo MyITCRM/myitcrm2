@@ -22,6 +22,7 @@
         <div class="textile">
           <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
         </div>
+        <%= f.input :description, :input_html => { :class => "ckeditor"} %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
         <%= f.input :created_by, :as => :hidden, :input_html => {:value => current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>

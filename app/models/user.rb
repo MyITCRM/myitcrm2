@@ -21,14 +21,14 @@ class User < ActiveRecord::Base
   has_many :work_orders
 
 # Mass Assignment Protection
-  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role, :updated_by, :created_by,  :password_confirmation, :mobile, :fax, :password
+  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role, :updated_by, :created_by, :password_confirmation, :mobile, :fax, :password, :employee, :client, :workorder_assignability
 
 # Validations for Users
   validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  before_create :new_user
+#  before_create :new_user
 
-# Used to seNew Users to default to activeve
+# Used to seNew Users to default to active
   def new_user
     if self.role.nil?
       self.role = "client"

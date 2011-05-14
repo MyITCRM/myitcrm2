@@ -53,7 +53,7 @@
       <% if can? :update, @user %>
         &nbsp;<%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id  ) %>
       <% end %>
-      <% if user.client == true then %>
+      <% if user.client? then %>
         <% if can? :create, WorkOrder %>
             &nbsp;<%= link_to(image_tag('wrench.png', :title => [t "global.workorder"]), :controller => "work_orders", :action => "new", :client_id => user.id )%>
         <% end %>

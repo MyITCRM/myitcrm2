@@ -79,7 +79,7 @@ class UsersController < ApplicationController
 #    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice =>[t "user.flash_delete_user"]) }
+        format.html { redirect_to(@user, :notice =>[t "user.flash_update_user"]) }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }
