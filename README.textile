@@ -42,6 +42,7 @@ development:
 production:
   adapter: sqlite3
   database: db/pro.sqlite3
+
   
 # MySQL setup - Fill in your own username and password to access your local database
 production:
