@@ -24,7 +24,7 @@ MyITCRM2::Application.configure do
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
 
-  config.logger = Logger.new(config.log_path, 10, 1048576)
+  config.logger = Logger.new(config.paths.log.first, 10, 1048576)
   config.logger.level = Logger::INFO
 
   # Use a different cache store in production
@@ -32,7 +32,7 @@ MyITCRM2::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
