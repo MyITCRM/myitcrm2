@@ -7,8 +7,9 @@
   <%= javascript_include_tag 'application', 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.effects.core.min','jquery.effects.slide.min', 'rails', 'autocomplete-rails', 'textile-editor' %>
   <%= csrf_meta_tag %>
   <script type="text/javascript">
-      ddtabmenu.definemenu("ddtabs1", 0); //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
-      $(function() {
+// Used for JQuery Slide effects on Filters Divs
+//myTODO: Move to seperate JS file and remove from <HEAD> section
+$(function() {
               // run the currently selected effect
               function runEffect() {
                   // get effect type from
@@ -33,7 +34,6 @@
                   return false;
               });
           });
-
   </script>
 </head>
 <body>

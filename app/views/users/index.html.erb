@@ -1,68 +1,70 @@
 <% if logged_in? %>
-<% if can? :manage, @users %>
-<div id="top_float_left">
-  <%= link_to(image_tag('add.png',:title => [t "user.add_new_user"], :align => "bottom", :hspace => "2"), new_user_path) %><%= link_to([t "global.new"], new_user_path) %>
-</div>
-<% end %>
-
-<br/>
-<a href="#" id="button" class="ui-widget-header ui-corner-all">Filters</a><br/>
-
-<div class="toggler">
-
-    <div id="effect" class="ui-widget-content ui-corner-all" >
-<%= form_tag users_path, :method => 'get' do %>
-   <p><%= t "user.search"  %>
-     <%= text_field_tag :name, params[:name] %>&nbsp;
-     <%= t "user.search_by_role"  %>&nbsp;
-     <%= select_tag :role, options_from_collection_for_select(User::ROLES, :to_s, :humanize, params[:role]), :include_blank => true %>&nbsp;
-     <%= t "user.search_by_phone"  %>&nbsp;<%= text_field_tag :phone, params[:phone] %>&nbsp;
-    </p>
-          <%= submit_tag (t "global.filter"), :name => nil %>
+    <% if can? :manage, @users %>
+        <div id="top_float_left">
+          <%= link_to(image_tag('add.png', :title => [t "user.add_new_user"], :align => "bottom", :hspace => "2"), new_user_path) %><%= link_to([t "global.new"], new_user_path) %>
+        </div>
     <% end %>
-      </div>
-      </div>
+    <% if current_user.employee? && current_user.employee = true  %>
+    <br/>
+    <a href="#" id="button" class="ui-widget-header ui-corner-all">Filters</a><br/>
 
-<%= paginate @users  %>
+    <div class="toggler">
 
-<table id="index_table" >
-  <tr>
-    <th ><%= t "user.number" %></th>
-    <th ><%= t "user.name" %></th>
-    <th ><%= t "user.username" %></th>
-    <th ><%= t "global.email" %></th>
-    <th ><%= t "global.role" %></th>
-    <th ><%= t "global.phone" %></th>
-    <th ><%= t "global.mobile" %></th>
-    <th ><%= t "global.active" %></th>
-    <th align="center" ><%= t "supplier.actions" %></th>
-  </tr>
-
-<% for user in @users do  %>
-  <tr class="<%= cycle :odd, :even %>">
-    <td><%= user.id %></td>
-    <td><%= user.name %></td>
-    <td><%= user.username %></td>
-    <td><%= auto_link_email_addresses( user.email ).html_safe %></td>
-    <td style="text-transform:capitalize;"><%= user.role %></td>
-    <td><%= user.phone %></td>
-    <td><%= user.mobile %></td>
-    <td><%= user.active %></td>
-    <td>
-      <%= link_to(image_tag('view.png', :title => [t "global.view"]), user )%>
-      <% if can? :update, @user %>
-        &nbsp;<%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id  ) %>
-      <% end %>
-      <% if user.client? then %>
-        <% if can? :create, WorkOrder %>
-            &nbsp;<%= link_to(image_tag('wrench.png', :title => [t "global.workorder"]), :controller => "work_orders", :action => "new", :client_id => user.id )%>
+      <div id="effect" class="ui-widget-content ui-corner-all">
+        <%= form_tag users_path, :method => 'get' do %>
+            <p><%= t "user.search" %>
+              <%= text_field_tag :name, params[:name] %>&nbsp;
+              <%= t "user.search_by_role" %>&nbsp;
+              <%= select_tag :role, options_from_collection_for_select(User::ROLES, :to_s, :humanize, params[:role]), :include_blank => true %>&nbsp;
+              <%= t "user.search_by_phone" %>&nbsp;<%= text_field_tag :phone, params[:phone] %>&nbsp;
+            </p>
+            <%= submit_tag (t "global.filter"), :name => nil %>
         <% end %>
+      </div>
+    </div>
+     <% end %>
+    <% if can? :manage, @users %>
+    <%= paginate @users %>
+        <% end %>
+
+    <table id="index_table">
+      <tr>
+        <th><%= t "user.number" %></th>
+        <th><%= t "user.name" %></th>
+        <th><%= t "user.username" %></th>
+        <th><%= t "global.email" %></th>
+        <th><%= t "global.role" %></th>
+        <th><%= t "global.phone" %></th>
+        <th><%= t "global.mobile" %></th>
+        <th><%= t "global.active" %></th>
+        <th align="center"><%= t "supplier.actions" %></th>
+      </tr>
+
+      <% for user in @users do %>
+          <tr class="<%= cycle :odd, :even %>">
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= user.username %></td>
+            <td><%= auto_link_email_addresses(user.email).html_safe %></td>
+            <td style="text-transform:capitalize;"><%= user.role %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.mobile %></td>
+            <td><%= user.active %></td>
+            <td>
+              <%= link_to(image_tag('view.png', :title => [t "global.view"]), user) %>
+              <% if can? :update, @user %>
+                  &nbsp;<%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id) %>
+              <% end %>
+              <% if user.client? then %>
+                  <% if can? :create, WorkOrder %>
+                      &nbsp;<%= link_to(image_tag('wrench.png', :title => [t "global.workorder"]), :controller => "work_orders", :action => "new", :client_id => user.id) %>
+                  <% end %>
+              <% end %>
+              <% if can? :destroy, @user %>
+                  &nbsp;<%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete) %>
+              <% end %>
+            </td>
+          </tr>
       <% end %>
-      <% if can? :destroy, @user %>
-        &nbsp;<%= link_to(image_tag('delete.png', :title => [t "global.delete"]), user, :confirm => 'Are you sure?', :method => :delete ) %>
-      <% end %>
-    </td>
-  </tr>
+    </table>
 <% end %>
-</table>
- <% end %>

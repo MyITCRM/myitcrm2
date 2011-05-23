@@ -62,7 +62,10 @@ class WorkOrdersController < ApplicationController
 
   def create
     @title = t "workorder.t_workorders"
-    @work_order = WorkOrder.new(params[:work_order])
+#    Defines the current users id if they are a client only.
+    if current_user.client == true
+      @work_order.user_id ||= current_user.id
+    end
 
     respond_to do |format|
       if @work_order.save

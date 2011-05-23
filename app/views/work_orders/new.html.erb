@@ -13,7 +13,6 @@
   <div id="sc1" class="tabcontent">
     <% simple_form_for(@work_order) do |f| %>
         <%= f.error_notification %>
-        <%= f.input :user_id, :as => :hidden, :input_html => {:value => params[:client_id]} %>
         <%= f.input :subject, :label => (t "workorder.subject"), :input_html => {:size => 60}%>
         <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
         <div class="simple_form label">
@@ -22,7 +21,6 @@
         <div class="textile">
           <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
         </div>
-        <%= f.input :description, :input_html => { :class => "ckeditor"} %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
         <%= f.input :created_by, :as => :hidden, :input_html => {:value => current_user.username} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>

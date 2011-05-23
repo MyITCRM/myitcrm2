@@ -47,84 +47,75 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
 
 pdf.text "#{t "workorder.pdf.t_workorder"} # #{@work_order.id}", :size => 20, :align => :center
 # Subject Block >>BOF
-pdf.cell [10,630],
-        :width => 70,
-        # Height needs to be a min. of 2 times the padding plus font_size
-        :height => 17,
-        :font_size => 11,
-        :border_style => :none,
-        :text  => "#{t "global.subject"}:",
-        :align => :right,
-        :padding => 3
-pdf.cell [80,630],
-        :width => 420,
-        :height => 17,
-        :font_size => 11,
-        :border_style => :all,
-        :background_color => 'cccccc',
-        :text  => "#{@work_order.subject}",
-        :align => :left,
-        :padding => 3
-pdf.move_down(5)
-# Subject Block <<EOF
-# Assigned To Block BOF
-pdf.cell [10,608],
-        :width => 70,
-        :height => 17,
-        :font_size => 11,
-        :border_style => :none,
-        :text  => "#{t "workorder.assigned_to"}:",
-        :align => :right,
-        :padding => 3
+
 # Check if there is a user assigned and display it if there is, otherwise display "not assigned message"
 if @work_order.assigned_to_username.blank?
-    text = t "workorder.not_assigned_message"
+    assignee = t "workorder.not_assigned_message"
 else
-    text = @work_order.assigned_to_username
+    assignee = @work_order.assigned_to_username
 end
-pdf.cell [80,608],
-        :width => 420,
-        :height => 17,
-        :font_size => 11,
-        :border_style => :all,
-        :text  => "#{text}",
-        :align => :left,
-        :padding => 3
-pdf.move_down(5)
-# Status Block BOF
-pdf.cell [10,586],
-        :width => 70,
-        :height => 17,
-        :font_size => 11,
-        :border_style => :none,
-        :text  => "#{t "workorder.status"}:",
-        :align => :right,
-        :padding => 3
-pdf.cell [80,586],
-        :width => 420,
-        :height => 17,
-        :font_size => 11,
-        :border_style => :all,
-        :text  => "#{@work_order.status.name}",
-        :align => :left,
-        :padding => 3
-pdf.move_down(5)
-# Status Block EOF
-pdf.cell [10,564],
-        :width => 70,
-        :height => 17,
-        :font_size => 11,
-        :border_style => :none,
-        :text  => "#{t "global.description"}:",
-        :align => :right,
-        :padding => 3
-text = plaintext_for(@work_order.description)
-pdf.cell [80,564],
-        :width => 420,
-        :height => 200,
-        :font_size => 11,
-        :border_style => :all,
-        :text  => "#{text}",
-        :align => :left,
-        :padding => 3
+# Left Column
+pdf.bounding_box([10,630], :width => 100, :font_size => 11, :align => :right, :padding => 3) do
+  pdf.stroke_bounds
+  pdf.text "#{t "workorder.status"}:"
+  pdf.text "#{@work_order.status.name}"
+  pdf.text "#{t "workorder.assigned_to"}:"
+  pdf.text "#{assignee}"
+
+end
+# Center Column
+pdf.bounding_box([120,630], :width => 400, :font_size => 11, :align => :right, :padding => 3) do
+  pdf.stroke_bounds
+  pdf.text "#{t "global.subject"}:"
+  pdf.text "#{@work_order.subject}"
+  pdf.text "#{t "workorder.details"}:"
+  pdf.text "#{@work_order.description}"
+end
+## Status Block BOF
+data = [ ["this is not quite as long as the others",
+            "here we have a line that is long but with smaller words",
+            "this is so very looooooooooooooooooooooooooooooong"] ]
+
+  pdf.text "Prawn trying to guess the column widths"
+  pdf.table(data)
+  pdf.move_down 20
+
+  pdf.text "Manually setting all the column widths"
+  pdf.table(data, :column_widths => [100, 200, 240])
+  pdf.move_down 20
+
+  pdf.text "Setting only the last column width"
+  pdf.table(data, :column_widths => {2 => 240})
+
+pdf.cell :content  => "#{t "workorder.status"}:", :width => 70, :height => 17, :align => :right, :padding => 3
+pdf.cell :content  => "#{t "workorder.status"}:", :width => 70, :height => 17, :align => :right, :padding => 3
+
+#pdf.cell [80,586],
+#        :width => 420,
+#        :height => 17,
+#        :font_size => 11,
+#        :border_style => :all,
+#        :text  => "#{@work_order.status.name}",
+#        :align => :left,
+#        :padding => 3
+#pdf.move_down(5)
+## Status Block EOF
+#pdf.cell [10,564],
+#        :width => 70,
+#        :height => 17,
+#        :font_size => 11,
+#        :border_style => :none,
+#        :text  => "#{t "global.description"}:",
+#        :align => :right,
+#        :padding => 3
+#text = plaintext_for(@work_order.description)
+#pdf.cell [80,564],
+#        :width => 420,
+#        :height => 200,
+#        :font_size => 11,
+#        :border_style => :all,
+#        :text  => "#{text}",
+#        :align => :left,
+#        :padding => 3
 # myTODO - Add more cells, eg Resolution, Notes, Scheduled Time(s), Actual Times, Travel, Signatures, logging info....printed at, etc
+

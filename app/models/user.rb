@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 # Validations for Users
   validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  before_create :new_user
+  before_save :new_user
 
 # Used to set New Users to defaults
   def new_user
@@ -34,10 +34,10 @@ class User < ActiveRecord::Base
       self.role = "client"
     end
     if self.client.nil?
-      self.client = true
+      self.client = 1
     end
     if self.employee.nil?
-      self.employee = false
+      self.employee = 0
     end
   end
 

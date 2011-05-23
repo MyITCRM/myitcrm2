@@ -98,5 +98,8 @@ var menuitems=document.getElementById(tabid).getElementsByTagName("a");
 	}
 }
 }
+//initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
+ddtabmenu.definemenu("ddtabs1", 0);
+
 
 

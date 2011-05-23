@@ -4,7 +4,7 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :user
 
 # Validate Input information
-  validates_presence_of :subject, :description
+  validates_presence_of :subject, :description, :user_id
 
   attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by
 
@@ -21,11 +21,11 @@ class WorkOrder < ActiveRecord::Base
 
   def workorder_updated
     self.updated_at ||= Time.now
-    if self.closed == 1 then
+    if self.closed == 1
       self.status_id ||= 4
       self.closed_by ||= edited_by
     end
-    if self.status_id == 1 then
+    if self.status_id == 1
       self.assigned_to_id ||= nil
       self.assigned_to_username ||= nil
     end
@@ -33,12 +33,10 @@ class WorkOrder < ActiveRecord::Base
 
 # Used to obtain the Assigned Users name from the database on Work Order saving, instead of making a separate call each time it's displayed in the table
   def lookup_assigned_username
-    if self.user.client == 0 then
-      if self.status_id == 1 then
+      if self.status_id == 1
         assigned_user = User.where(["name = ?", assigned_to_username]).first
         self.assigned_to_id = assigned_user.id
       end
-    end
   end
 
   def change_assignment

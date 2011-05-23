@@ -19,10 +19,10 @@ MyITCRM2::Application.configure do
   # just comment this out and Rails will serve the files
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+#  config.log_level = :info
 
   # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
+#  config.logger = SyslogLogger.new
 
   config.logger = Logger.new(config.paths.log.first, 10, 1048576)
   config.logger.level = Logger::INFO
@@ -32,7 +32,7 @@ MyITCRM2::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = true
+  config.serve_static_assets = true  # this needs to be enabled for running production on local server
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

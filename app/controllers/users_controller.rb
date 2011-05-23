@@ -26,12 +26,14 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-#    @user = User.search(params[:search], params[:page])
+#    Instance Variables for Searching
     name = params[:name]
     role = params[:role]
     phone = params[:phone]
-    @users = User.where('name LIKE  ?', "%#{name}%").where('role LIKE  ?', "%#{role}%").where('phone LIKE  ?', "%#{phone}%").order(:id).page params[:page]
-    respond_to do |format|
+    if current_user.employee == true
+      @users = User.where('name LIKE  ?', "%#{name}%").where('role LIKE  ?', "%#{role}%").where('phone LIKE  ?', "%#{phone}%").order(:id).page params[:page]
+    end
+      respond_to do |format|
       format.html
       format.js
     end
@@ -58,7 +60,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => [t "user.flash_new_success"]) }
+        flash[:notice] = [t "user.flash_new_success"]
+        format.html { redirect_to(@user) }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "register" }
@@ -75,7 +78,7 @@ class UsersController < ApplicationController
 
   def update
     @title = t "user.t_update_user"
-    @user = User.find(params[:id])
+#    @user = User.find(params[:id])
 #    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])

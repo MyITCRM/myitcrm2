@@ -16,7 +16,7 @@ gem 'simple_form', '1.3.0'
 # User Authentication GEM
 gem 'authlogic'
 # SQLite Database gem
-gem 'sqlite3-ruby'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 # Adds Pagination to this app
 gem 'kaminari'
 # Add Autocomplete to specific fields using JQuery

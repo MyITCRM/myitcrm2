@@ -11,13 +11,10 @@ class Ability
     end
     can :register, User
   end
-  def guest
-     can :register, User
-  end
+
 #
   def client
-    can :read, User, :id => @user.id
-    can [:update, :edit_profile, :update_profile], User, :id => @user.id
+    can [:read, :update, :edit_profile, :update_profile], User, :id => @user.id
     can :create, WorkOrder
     can [:update, :read, :close], WorkOrder, :user_id => @user.id
 
