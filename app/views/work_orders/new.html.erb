@@ -13,6 +13,9 @@
   <div id="sc1" class="tabcontent">
     <% simple_form_for(@work_order) do |f| %>
         <%= f.error_notification %>
+        <% if current_user.employee == true %>
+            <%= f.input :user_id, :as => :hidden, :input_html => {:value =>  params[:client_id]} %>
+        <% end %>
         <%= f.input :subject, :label => (t "workorder.subject"), :input_html => {:size => 60}%>
         <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
         <div class="simple_form label">

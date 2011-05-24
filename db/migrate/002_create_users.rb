@@ -41,6 +41,7 @@ class CreateUsers < ActiveRecord::Migration
                         :password_salt => "3t3Xc_YhQ6AeTlUde-Om",
                         :email => "admin@example.net",
                         :employee => true,
+                        :client => false,
                         :workorder_assignability => true,
                         :role => "administrator"
   end

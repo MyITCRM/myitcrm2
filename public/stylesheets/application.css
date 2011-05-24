@@ -13,12 +13,12 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #show_view {border: 1px solid #999999;background-color: #edf2f6;padding:10px 10px 10px 10px;}
 #show_view table {width:100%;padding-left:1%;border:none;}
 .clear {clear: both;height: 0;overflow: hidden;}
-#container {width: 97%;float:left;background-color: #FFF;padding: 20px 40px 20px 40px;text-align:left;}
+#container {width: 100%;float:left;background-color: #FFF;padding: 5px 20px 5px 20px;text-align:left;}
 #yield {margin: 0 auto;}
 #yield h1 {display:inline-block;padding-right: 5px;font-size:16px;text-decoration:underline;color: #999999;}
 #menu {width: 100%;float:left;margin: 0 auto;background-color: #FFF;padding: 20px 40px;border: solid 1px black;}
 /*FLASH NOTICES >>>*/
-#flash_notice, #flash_alert {padding: 4px 30px 4px 30px;margin: 10px 0;}
+#flash_notice, #flash_alert {padding: 4px 30px 4px 30px;margin: 10px 0;display:inline;}
 #flash_notice {background: url(/images/tick.png) 8px 5px no-repeat #CFC;border: solid 2px #6C6;font-weight:bold;}
 #flash_alert {background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
 /*FLASH NOTICES <<<*/
@@ -34,7 +34,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #footer { width:100%; float:left; color: #FFF; text-align: center; padding: 4px 0;}
 .footer_link a {color: #FFF;}
 .footer_version {font-size:x-small;}
-#header {text-align:center; padding-bottom:25px;}
+#header {text-align:center; padding-bottom:2px;}
 .even td {background-color: #E3E6FF;}
 .odd td {background-color: #ffffff;}
 .priority_main_1 td {background-color: #ccffcc;}

@@ -45,12 +45,13 @@ $(function() {
 <div id="user_nav" class="menu">
   <%= render_navigation %>
 </div>
+
+<div id="container">
   <% if logged_in?  %>
     <div id="top_float_right">
         <%= t "global.currently_logged_in_as" %>&nbsp;<%= current_user.name %> <%= Time.now %>
     </div>
   <% end %>
-<div id="container">
   <div id="yield">
     <%- flash.each do |name, msg| -%>
         <p>
