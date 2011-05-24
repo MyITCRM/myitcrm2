@@ -1,5 +1,5 @@
 <div id="top_float_left">
-  <% if current_user.client? %>
+  <% if current_user.client == true %>
       <%= link_to(image_tag('add.png', :title => [t "workorder.t_add_new"], :align => "bottom", :hspace => "2"), :controller => "work_orders", :action => "new") %><%= link_to [t "workorder.t_add_new"], :controller => "work_orders", :action => "new"%>
   <% else %>
       <%= link_to(image_tag('add.png', :title => [t "workorder.t_add_new"], :align => "bottom", :hspace => "2"), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
@@ -11,10 +11,8 @@
   <ul>
     <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if @new_work_orders.count > 0 %><span style="color:red;"><%= @new_work_orders.count %></span><% else %><%= @new_work_orders.count %><% end %>)</a></li>
     <li><a href="#assigned" rel="tab2"><%= t "workorder.tab_menu_assigned" %>&nbsp;(<%= @assigned_work_orders.count %>)</a></li>
-    <li><a href="#on_hold" rel="tab3"><%= t "workorder.tab_menu_on_hold" %>&nbsp;(<%= @on_hold_work_orders.count %>)</a>
-    </li>
-    <li><a href="#closed" rel="tab4"><%= t "workorder.tab_menu_closed" %>&nbsp;(<%= @closed_work_orders.count %>)</a>
-    </li>
+    <li><a href="#on_hold" rel="tab3"><%= t "workorder.tab_menu_on_hold" %>&nbsp;(<%= @on_hold_work_orders.count %>)</a></li>
+    <li><a href="#closed" rel="tab4"><%= t "workorder.tab_menu_closed" %>&nbsp;(<%= @closed_work_orders.count %>)</a></li>
   </ul>
 </div>
 <div id="index_table">
