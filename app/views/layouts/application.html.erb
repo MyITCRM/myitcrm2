@@ -58,7 +58,9 @@ $(function() {
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         </p>
     <%- end -%>
-    <h1><%= @title || "" %></h1>
+    <div>
+      <h1><%= @title || "" %></h1>
+    </div>
     <%= yield %>
   </div>
 </div>
