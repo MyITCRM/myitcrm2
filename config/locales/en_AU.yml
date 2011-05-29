@@ -94,6 +94,9 @@ en_AU:
     disabled: "Disabled"
     change: "Change"
     filter: "Apply Filter"
+    required: "Required"
+    contact_numbers: "Contact Numbers"
+    special: "Office Use"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -166,7 +169,7 @@ en_AU:
        employed: "Is this user a Employee?"
        client: "Is this user a Client?."
        assignable: "Can this user be assigned Work Order Requests? Default is No."
-     client: "User is a Client:"
+     client: "Client/Customer?"
      assignable: "Assignable to Work Orders?"
      t_clients: "Clients"
      search_by_role: "Filter by Role"

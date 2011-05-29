@@ -44,7 +44,7 @@
         <strong><%= t "global.active" %>:</strong>
       </td>
       <td align="left">
-       <% if @user.active == true then  %>
+       <% if @user.active == true  %>
         <%= image_tag("tick.png", :title => (t "global.active")) %>
        <% else %>
         <%= image_tag("delete.png", :title => (t "global.disabled")) %>
