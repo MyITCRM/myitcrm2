@@ -64,7 +64,7 @@ class UsersController < ApplicationController
         format.html { redirect_to(@user) }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
-        format.html { render :action => "register" }
+        format.html { render :action => "new" }
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
@@ -74,6 +74,7 @@ class UsersController < ApplicationController
   def register
     @title = t "user.t_new_user"
     @user = User.new
+     render :action => "register"
   end
 
   def update

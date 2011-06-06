@@ -216,9 +216,9 @@ fieldset.settings label { display: block; }
 .priority_4 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
 
 /* ----- SimpleForm Styles ----- */
-/*input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {margin:0.5em 0;}*/
-/*input.text, input.title {width:300px;padding:5px;}*/
-/*input.title {font-size:1.5em;}*/
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {margin:0.5em 0;}
+/*input.text, input.title {width:200px;padding:5px;}*/
+input.title {font-size:1.5em;}
 .simple_form div.input {
   margin-bottom: 5px;
 }
@@ -227,15 +227,16 @@ fieldset.settings label { display: block; }
 }
 
 .simple_form label {
-  float: left;
-  width: 150px;
-  text-align: right;
+  width:170px;
+  float:left;
+  text-align:right;
   margin: 2px 10px;
 }
 
 div.boolean, .simple_form input[type='submit'] {
-   margin-left:170px;
+   /*margin-left:170px;*/
   text-transform:capitalize;
+  padding:5px;
 }
 
 div.boolean label, label.collection_radio {
@@ -259,19 +260,19 @@ label.collection_radio {
 
 
 .simple_form .error {
-  clear:   left;
+  /*clear:left;*/
   color: #ff3333;
-  display: block;
-  margin-left: 170px;
+  display: inline-block;
+  margin-left: 190px;
   font-size:10px;
   font-style:italic;
   font-weight:bold;
-    text-transform:capitalize;
+  text-transform:capitalize;
 }
 
 .simple_form .hint {
   clear: left;
-  margin-left: 170px;
+  margin-left: 190px;
   font-size:12px;
   color: #555;
   display: block;
@@ -317,26 +318,27 @@ caption {background:#eee;}
 .last {margin-right:0;padding-right:0;}
 .top {margin-top:0;padding-top:0;}
 .bottom {margin-bottom:0;padding-bottom:0;}
+.center {margin-bottom:0;padding-bottom:0; width:100%; text-align:center;}
 fieldset {padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
 legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
 fieldset, #IE8#HACK {padding-top:1.4em;}
 legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
-.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {float:left;margin-right:10px;}
+.column, .span-30, .span-70, .span-110, .span-150, .span-190, .span-230, .span-270, .span-310, .span-350, .span-390, .span-430, .span-470, .span-510, .span-550, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {float:left;margin-right:10px;display:inline;}
 .last {margin-right:0;}
-.span-1 {width:30px;}
-.span-2 {width:70px;}
-.span-3 {width:110px;}
-.span-4 {width:150px;}
-.span-5 {width:190px;}
-.span-6 {width:230px;}
-.span-7 {width:270px;}
-.span-8 {width:310px;}
-.span-9 {width:350px;}
-.span-10 {width:390px;}
-.span-11 {width:430px;}
-.span-12 {width:470px;}
-.span-13 {width:510px;}
-.span-14 {width:550px;}
+.span-30 {width:30px;}
+.span-70 {width:70px;}
+.span-110 {width:110px;}
+.span-150 {width:150px;}
+.span-190 {width:190px;}
+.span-230 {width:230px;}
+.span-270 {width:270px;}
+.span-310 {width:310px;}
+.span-350 {width:350px;}
+.span-390 {width:390px;}
+.span-430 {width:430px;}
+.span-470 {width:470px;}
+.span-510 {width:510px;}
+.span-550 {width:550px;}
 .span-15 {width:590px;}
 .span-16 {width:630px;}
 .span-17 {width:670px;}
