@@ -1,54 +1,58 @@
 <div id="top_float_left">
-   <%= link_to(image_tag('exit.png', :title => [t "global.cancel"],:align => "bottom", :hspace => "2"), work_orders_path) %>&nbsp;&nbsp;<%= link_to([t "global.cancel"], work_orders_path) %>&nbsp;&nbsp;<%= link_to(image_tag('tick.png', :title => [t "global.close"],:align => "bottom", :hspace => "2"), close_path, :confirm => 'Are you sure?', :method => :put) %>&nbsp;<%= link_to([t "global.close"], close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put) %>
+  <%= link_to(image_tag('exit.png', :title => [t "global.cancel"], :align => "bottom", :hspace => "2"), work_orders_path) %>&nbsp;&nbsp;<%= link_to([t "global.cancel"], work_orders_path) %>&nbsp;&nbsp;<%= link_to(image_tag('tick.png', :title => [t "global.close"], :align => "bottom", :hspace => "2"), close_path, :confirm => 'Are you sure?', :method => :put) %>&nbsp;<%= link_to([t "global.close"], close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put) %>
 </div>
 <br>
 <div id="ddtabs1" class="basictab">
-<ul>
-<li><a href="#<%= t "workorder.tab_menu_basic_name"  %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>
-<li><a href="#<%= t "workorder.tab_menu_resolution"  %>" rel="tab2"><%= (t "workorder.tab_menu_resolution") %></a></li>
-</ul>
+  <ul>
+    <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>
+    <li><a href="#<%= t "workorder.tab_menu_resolution" %>" rel="tab2"><%= (t "workorder.tab_menu_resolution") %></a>
+    </li>
+  </ul>
 </div>
 
 <div class="tabcontainer">
 
-<div id="tab1" class="tabcontent">
+  <div id="tab1" class="tabcontent">
 
-<%= simple_form_for(@work_order) do |f| %>
+    <%= simple_form_for(@work_order) do |f| %>
         <%= f.input :subject, :label => (t "workorder.subject") %>
         <% if current_user.workorder_assignability == true then %>
             <%= f.association :status, :label => (t "workorder.status"), :include_blank => false %>
             <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-            <%= f.input :assigned_to_username, :as => :select,  :collection => User.where("workorder_assignability = ?",true),:value_method => :name %>
-         <% else %>
+            <%= f.input :assigned_to_username, :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name %>
+        <% else %>
             <%= f.association :status, :label => (t "workorder.status"), :disabled => true, :include_blank => false %>
             <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-            <%= f.input :assigned_to_username, :as => :select,  :collection => User.where("workorder_assignability = ?",true),:value_method => :name, :disabled => true %>
+            <%= f.input :assigned_to_username, :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
         <% end %>
-       <div class="simple_form label">
-        <label><%= t "workorder.details" %></label>
-      </div>
-      <div class="textile">
-       <%= textile_editor_tag 'work_order[description]', @work_order.description, :rows => 25, :cols => 80 %>
-      </div>
-        <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-      <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-        <%= f.submit %>
-
-<% end %>
-</div>
-<div id="tab2" class="tabcontent">
-<%= simple_form_for(@work_order) do |f| %>
         <div class="simple_form label">
-        <label><%= t "workorder.resolution" %></label>
-      </div>
-      <div class="textile">
-       <%= textile_editor_tag 'work_order[resolution]', @work_order.resolution, :rows => 25, :cols => 80 %>
-      </div>
-        <%= f.input :closed, :as => :check_boxes, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
-        <%= f.input :updated_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+          <label><%= t "workorder.details" %></label>
+        </div>
+        <div class="textile">
+          <%= textile_editor_tag 'work_order[description]', @work_order.description, :rows => 25, :cols => 80 %>
+        </div>
+        <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
+        <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
+        <div class="clear"></div>
+        <div class="center"><%= f.submit %></div>
 
-<%= f.submit %>
-<%= textile_editor_initialize(:framework => :jquery).html_safe%>
-<% end %>
-</div>
+    <% end %>
+  </div>
+  <div id="tab2" class="tabcontent">
+    <%= simple_form_for(@work_order) do |f| %>
+        <div class="simple_form label">
+          <label><%= t "workorder.resolution" %></label>
+        </div>
+        <div class="textile">
+          <%= textile_editor_tag 'work_order[resolution]', @work_order.resolution, :rows => 25, :cols => 80 %>
+        </div>
+        <%= f.input :closed, :as => :check_boxes, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
+        <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
+        <div class="clear"></div>
+        <div class="center"><%= f.submit %></div>
+        <div class="clear"></div>
+
+        <%= textile_editor_initialize(:framework => :jquery).html_safe %>
+    <% end %>
+  </div>
 </div>

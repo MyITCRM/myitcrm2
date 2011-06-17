@@ -12,7 +12,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #conatiner a {color: #0000FF;}
 #show_view {border: 1px solid #999999;background-color: #edf2f6;padding:10px 10px 10px 10px;}
 #show_view table {width:100%;padding-left:1%;border:none;}
-.clear {clear: both;height: 0;overflow: hidden;}
+.clear {clear: both;height: 0;overflow: hidden;display:none;margin-bottom:0.5em;}
 #container {width: 100%;float:left;background-color: #FFF;padding: 5px 20px 5px 20px;text-align:left;}
 #yield {margin: 0 auto;}
 #yield h1 {display:inline-block;padding-right: 5px;font-size:16px;text-decoration:underline;color: #999999;}
@@ -47,37 +47,13 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
 .button {padding:inherit; margin-top:-30px;}
 
-.pagination {
-  margin: 20px 0;
-
-}
- .pagination a, .pagination span {
-    display: block;
-    float: left;
-    margin-right: 1px; }
-  .pagination span.disabled {
-    color: #999;
-    border: 1px solid #DDD; }
-  .pagination span.current {
-    font-weight: bold;
-    background: #4B7399;
-    color: white;
-    border: 1px solid #2E6AB1; }
-  .pagination a {
-    text-decoration: none;
-    color: #105CB6;
-    border: 1px solid #9AAFE5;
-  background: #ccccff;}
-    .pagination a:hover, .pagination a:focus {
-      color: #003;
-      border-color: #003; }
-
-  .pagination:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden; }
+.pagination {margin: 20px 0;}
+.pagination a, .pagination span {display: block; float: left; margin-right: 1px; }
+.pagination span.disabled { color: #999; border: 1px solid #DDD; }
+.pagination span.current {font-weight: bold; background: #4B7399; color: white; border: 1px solid #2E6AB1; }
+.pagination a { text-decoration: none; color: #105CB6; border: 1px solid #9AAFE5;background: #ccccff;}
+.pagination a:hover, .pagination a:focus {color: #003; border-color: #003; }
+.pagination:after {content: "."; display: block; height: 0;clear: both; visibility: hidden; }
   /** html .pagination {*/
     /*height: 1%; }*/
   /**:first-child+html .pagination {*/
@@ -85,55 +61,18 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 
 
 /*Menu >>>*/
-.menu{
-font: bold 12px Verdana;
-background: #414141;
-width: 100%;
-}
-
-.menu ul{
-margin: 0;
-padding: 0;
-list-style-type: none;
-}
-
+.menu{font: bold 12px Verdana;background: #414141;width: 100%;}
+.menu ul{margin: 0;padding: 0;list-style-type: none; }
 /*Top level list items*/
-.menu ul li{
-position: relative;
-display: inline;
-float: left;
-}
-
+.menu ul li{position: relative;display: inline;float: left;}
 /*Top level menu link items style*/
-.menu ul li a{
-display: block;
-background: #414141; /*background of tabs (default state)*/
-color: white;
-padding: 8px 10px;
-border-right: 1px solid #778;
-text-decoration: none;
-}
-
-* html .menu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
-display: inline-block;
-}
-.menu li a.selected, .menu li a.selected:hover {
-    background:#fff;
-    color:#555;
-}
+.menu ul li a{display: block;background: #414141; /*background of tabs (default state)*/color: white; padding: 8px 10px;border-right: 1px solid #778; text-decoration: none;}
+* html .menu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/display: inline-block;}
+.menu li a.selected, .menu li a.selected:hover { background:#fff; color:#555;}
 .nav_workorder {background-image:url(/images/home.gif); font-weight:900;}
-
-.menu ul li a:link, {
-color: white;
-}
-.menu ul li   {
-color:aquamarine;
-}
-
-.menu ul li a:hover{
-background: black; /*tab link background during hover state*/
-color: white;
-}
+.menu ul li a:link, {color: white;}
+.menu ul li   {color:aquamarine;}
+.menu ul li a:hover{background: black; /*tab link background during hover state*/color: white;}
 
 /*1st sub level menu*/
 .menu ul li ul{
@@ -191,20 +130,14 @@ html>body .tabular p {overflow:hidden;}
 .tabular label{ font-weight: bold;float: left;text-align: right;margin-left: -180px; /*width of left column*/width: 175px; /*width of labels. Should be smaller than left column to create some right
 margin*/
 }
-
 .tabular label.floating{font-weight: normal;margin-left: 0px;text-align: left;width: 270px;}
-
 .tabular label.block{font-weight: normal;margin-left: 0px !important;text-align: left;float: none;display: block;width: auto;}
-
 input#time_entry_comments { width: 90%;}
-
 /*#preview fieldset {margin-top: 1em; background: url(../images/draft.png)}*/
-
 .tabular.settings p{ padding-left: 300px; }
 .tabular.settings label{ margin-left: -300px; width: 295px; }
 .tabular.settings textarea { width: 99%; }
 fieldset.settings label { display: block; }
-
 /*Display Nice Table Labels and Fields and Fieldsets Headers*/
 .tbl_labels { width:25%; text-align:right; vertical-align:top;}
 .tbl_fields { text-align:left; vertical-align:top; text-decoration:underline; width:60%}
@@ -214,45 +147,16 @@ fieldset.settings label { display: block; }
 .priority_3 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
 .priority_4 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
 .priority_4 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
-
 /* ----- SimpleForm Styles ----- */
-input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {margin:0.5em 0;}
+/*input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {margin:0.5em 0;}*/
 /*input.text, input.title {width:200px;padding:5px;}*/
 input.title {font-size:1.5em;}
-.simple_form div.input {
-  margin-bottom: 5px;
-}
-.simple_form div.textile {
-  margin-left: 220px;
-}
-
-.simple_form label {
-  width:170px;
-  float:left;
-  text-align:right;
-  margin: 2px 10px;
-}
-
-div.boolean, .simple_form input[type='submit'] {
-   /*margin-left:170px;*/
-  text-transform:capitalize;
-  padding:5px;
-}
-
-div.boolean label, label.collection_radio {
-  float: none;
-  margin: 0;
-}
-
-label.collection_radio {
-  margin-right: 10px;
-  vertical-align: -2px;
-  margin-left:   2px;
-  display:table-row;
-  height:25px;
-  text-align:left;
-}
-
+.simple_form div.input { margin-bottom: 5px;}
+.simple_form div.textile { margin-left: 190px;}
+.simple_form label {width:170px;float:left;text-align:right; margin: 2px 10px;}
+div.boolean, .simple_form input[type='submit'] { /*margin-left:170px;*/ text-transform:capitalize; padding:5px;}
+div.boolean label, label.collection_radio {float: none;margin: 0;}
+label.collection_radio { margin-right: 10px;vertical-align:-2px; margin-left:2px; display:table-row; height:25px; text-align:left;}
 .field_with_errors {
   /*background-color: #ff3333;*/
 }
@@ -297,6 +201,7 @@ label.collection_check_boxes {
 }
 input.required {border: 2px solid #8b0000; background-color:#ffffcc;}
 textarea.required {border: 2px solid #8b0000; background-color:#ffffcc;}
+.select_required {border: 2px solid #8b0000; background-color:#ffffcc; padding:0.4em;}
 /*JQUERY Custom Styling*/
 .toggler {position: relative; padding: .4em 0 .5em 0 }
 	#button { padding: .5em 1em; text-decoration: none; }
@@ -305,6 +210,17 @@ textarea.required {border: 2px solid #8b0000; background-color:#ffffcc;}
 
 
 /*EOF JQUERY Customer Styling*/
+/*BOF Basic Tabs/menu Css*/
+.basictab ul { margin: 0; padding: 7px 0 19px; font-weight: bold; list-style-type: none; text-align: left; /*set to left, center, or right to align the menu as desired*/}
+.basictab ul li{position: relative; display: inline; float: left;}
+.basictab li a {text-decoration: none;padding: 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; border-left: 1px solid #999999; border-right: 1px solid #999999; border-top: 1px solid #999999; border-bottom: #edf2f6;}
+.basictab li a:visited {}
+.basictab li a:hover, .basictab li a.current { background-color: #edf2f6; color: black;}
+.basictab li a:active {color: black;}
+.tabcontainer {background-color: #edf2f6;}
+.tabcontent {padding-top: 10px; border: 1px solid #999999; display: none;}
+/*EOF Basic Tabs/menu Css*/
+
 caption {background:#eee;}
 .small {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}
 .large {font-size:1.2em;line-height:2.5em;margin-bottom:1.25em;}

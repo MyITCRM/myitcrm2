@@ -5,23 +5,22 @@
         </div>
     <% end %>
     <% if current_user.employee? && current_user.employee = true  %>
-    <br/>
-    <a href="#" id="button" class="ui-widget-header ui-corner-all">Filters</a><br/>
-
-    <div class="toggler">
-
-      <div id="effect" class="ui-widget-content ui-corner-all">
-        <%= form_tag users_path, :method => 'get' do %>
+    <div class="clear"></div>
+        <br/>
+    <fieldset>
+    <legend><a href="#" id="button"><%= t "global.filters" %></a></legend>
+    <div id="effect">
+         <%= form_tag users_path, :method => 'get' do %>
             <p><%= t "user.search" %>
               <%= text_field_tag :name, params[:name] %>&nbsp;
               <%= t "user.search_by_role" %>&nbsp;
               <%= select_tag :role, options_from_collection_for_select(User::ROLES, :to_s, :humanize, params[:role]), :include_blank => true %>&nbsp;
               <%= t "user.search_by_phone" %>&nbsp;<%= text_field_tag :phone, params[:phone] %>&nbsp;
+              <%= submit_tag (t "global.filter"), :name => nil %>
             </p>
-            <%= submit_tag (t "global.filter"), :name => nil %>
         <% end %>
-      </div>
     </div>
+    </fieldset>
      <% end %>
     <% if can? :manage, @users %>
     <%= paginate @users %>

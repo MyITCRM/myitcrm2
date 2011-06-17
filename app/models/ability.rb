@@ -9,7 +9,7 @@ class Ability
     else
       @user.role.each { |role| send(role) }
     end
-    can :register, User
+    can [:register, :create], User
   end
 
 #

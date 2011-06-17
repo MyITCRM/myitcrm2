@@ -97,6 +97,7 @@ en_AU:
     required: "Required"
     contact_numbers: "Contact Numbers"
     special: "Office Use"
+    filters: "Filters"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -154,7 +155,7 @@ en_AU:
      list_users: "List of Users"
      edit_profile: "Edit My Details"
      add_new_user: "Create New User"
-     search: "Filter by Full Name"
+     search: "By Full Name"
      name: "Full Name"
      name_eg: "eg: John Smith"
      t_log: "User Log"
@@ -172,8 +173,8 @@ en_AU:
      client: "Client/Customer?"
      assignable: "Assignable to Work Orders?"
      t_clients: "Clients"
-     search_by_role: "Filter by Role"
-     search_by_phone: "Filter by Phone"
+     search_by_role: "By Role"
+     search_by_phone: "By Phone"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
