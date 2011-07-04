@@ -56,7 +56,7 @@
         <strong><%= t "workorder.details" %>:</strong>
       </td>
       <td class="tbl_textarea">
-        <%= simple_format(RedCloth3.new(@work_order.description).to_html) %>
+        <%=raw @work_order.description %>
       </td>
   </tr>
   </table>

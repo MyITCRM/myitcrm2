@@ -28,8 +28,8 @@
         <div class="simple_form label">
           <label><%= t "workorder.details" %></label>
         </div>
-        <div class="textile">
-          <%= textile_editor_tag 'work_order[description]', @work_order.description, :rows => 25, :cols => 80 %>
+        <div class="span-670">
+          <%= ckeditor_tag 'work_order[description]', @work_order.description, :class => 'ckeditor' %>
         </div>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
@@ -43,16 +43,18 @@
         <div class="simple_form label">
           <label><%= t "workorder.resolution" %></label>
         </div>
-        <div class="textile">
-          <%= textile_editor_tag 'work_order[resolution]', @work_order.resolution, :rows => 25, :cols => 80 %>
+        <div class="span-670">
+          <%= ckeditor_tag 'work_order[resolution]', @work_order.resolution, :class => 'ckeditor' %>
         </div>
-        <%= f.input :closed, :as => :check_boxes, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
+        <div class="clear"></div>
+        <div class="span-15">
+        <%= f.input :closed, :as => :radio, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
+        </div>
+
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
         <div class="clear"></div>
         <div class="center"><%= f.submit %></div>
         <div class="clear"></div>
-
-        <%= textile_editor_initialize(:framework => :jquery).html_safe %>
     <% end %>
   </div>
 </div>

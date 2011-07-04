@@ -6,7 +6,6 @@
     <% end %>
     <% if current_user.employee? && current_user.employee = true  %>
     <div class="clear"></div>
-        <br/>
     <fieldset>
     <legend><a href="#" id="button"><%= t "global.filters" %></a></legend>
     <div id="effect">
@@ -25,7 +24,7 @@
     <% if can? :manage, @users %>
     <%= paginate @users %>
         <% end %>
-
+      <div class="clear"></div>
     <table id="index_table">
       <tr>
         <th><%= t "user.number" %></th>

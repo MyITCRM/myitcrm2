@@ -11,26 +11,32 @@
 </div>
 <div class="tabcontainer">
   <div id="sc1" class="tabcontent">
-    <% simple_form_for(@work_order) do |f| %>
+    <%= simple_form_for(@work_order) do |f| %>
         <%= f.error_notification %>
         <% if current_user.employee == true %>
-            <%= f.input :user_id, :as => :hidden, :input_html => {:value =>  params[:client_id]} %>
+            <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:client_id] } %>
         <% end %>
-        <%= f.input :subject, :label => (t "workorder.subject"), :input_html => {:size => 60}%>
+        <%= f.input :subject, :label => (t "workorder.subject"), :input_html => { :size => 60 } %>
         <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-        <div class="simple_form label">
-          <label><%= t "workorder.details" %></label>
-        </div>
-        <div class="textile">
-          <%= textile_editor_tag 'work_order[description]', '', :rows => 25, :cols => 80 %>
-        </div>
-        <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
-        <%= f.input :created_by, :as => :hidden, :input_html => {:value => current_user.username} %>
-        <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
 
-        <%= f.submit %>
+        <div class="clear"></div>
+        <div class="span-190">
+          <%= (t "workorder.subject") %>
+        </div>
+        <div class="span-670">
+          <%= ckeditor_tag 'work_order[description]', @work_order.description, :class => 'ckeditor' %>
+        </div>
 
-        <%= textile_editor_initialize(:framework => :jquery).html_safe %>
+
+        <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
+        <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
+        <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now } %>
+        <div class="clear"></div>
+        <div class="center">
+          <%= f.submit %>
+        </div>
+        <div class="clear"></div>
+
     <% end %>
   </div>
 </div>
