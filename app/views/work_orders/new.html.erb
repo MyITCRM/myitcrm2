@@ -26,8 +26,6 @@
         <div class="span-670">
           <%= ckeditor_tag 'work_order[description]', @work_order.description, :class => 'ckeditor' %>
         </div>
-
-
         <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
         <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
         <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now } %>

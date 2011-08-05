@@ -90,7 +90,7 @@ en_AU:
     access_denied: "You are not authorized to perform this action.This request has been logged."
     tab:
       notes: "Notes"
-    currently_logged_in_as: "Currently logged in as"
+    welcome_back: "Welcome back,"
     disabled: "Disabled"
     change: "Change"
     filter: "Apply Filter"

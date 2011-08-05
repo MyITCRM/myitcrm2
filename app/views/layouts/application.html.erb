@@ -49,7 +49,7 @@ $(function() {
 <div id="container">
   <% if logged_in?  %>
     <div id="top_float_right">
-        <%= t "global.currently_logged_in_as" %>&nbsp;<%= current_user.name %> <%= Time.now %>
+        <%= t "global.welcome_back" %>&nbsp;<%= current_user.name %> <%= Time.now %>
     </div>
   <% end %>
   <div id="yield">
