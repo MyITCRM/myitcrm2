@@ -37,10 +37,19 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .even td {background-color: #E3E6FF;}
 .odd td {background-color: #ffffff;}
 .priority_main_1 td {background-color: #ccffcc;}
+.priority_main_1 tr:hover {background-color: #99ff99;}
 .priority_main_2 td {background-color: #ffff99;}
 .priority_main_3 td {background-color: #ffcc00;}
 .priority_main_4 td {background-color: #ff9999; font-weight:bold;}
 .priority_main_5 td {background-color: #cc0033; font-weight:bolder;}
+
+/*Testing css out on sub menu system*/
+.sub_menu {}
+.sub_menu ul { margin: 0; padding: 7px 0 19px; font-weight: bold; list-style-type: none; text-align: left; /*set to left, center, or right to align the menu as desired*/}
+.sub_menu ul li{display: inline;}
+/*.sub_menu li a {text-decoration: none;padding: 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; border-left: 1px solid #999999; border-right: 1px solid #999999; border-top: 1px solid #999999; border-bottom: #edf2f6;}*/
+.back {background:url(/images/tick.png) 8px 5px no-repeat;background-color:ButtonFace;padding: 4px 30px 4px 30px;margin: 10px 0;}
+.back i:hover{background-color:aqua;}
 
 #top_float_right { font-size:10px; float:right; clear:none; }
 #top_float_left {padding-top:0;}
