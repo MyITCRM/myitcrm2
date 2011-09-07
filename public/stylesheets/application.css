@@ -1,4 +1,4 @@
-body {width:95%;margin:5px;padding:0;border:0;vertical-align:baseline; background-color: #4B7399;font-family: Verdana, Helvetica, Arial,serif;font-size: 12px;}
+body {width:95%;margin:5px;padding:0;border:0;vertical-align:baseline; background-color: #243647;font-family: Verdana, Helvetica, Arial,serif;font-size: 12px;}
 a img {border: none;}
 h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #index_table {border-collapse:collapse;}
@@ -52,7 +52,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .back i:hover{background-color:aqua;}
 
 #top_float_right { font-size:10px; float:right; clear:none; }
-#top_float_left {padding-top:0;}
+#top_float_left {padding-top:0;font-size:10px;}
 #toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
 .button {padding:inherit; margin-top:-30px;}
 
