@@ -42,14 +42,14 @@ $(function() {
   <%= image_tag 'logo.png', :height => 60 %>
 </div>
 
-<div id="user_nav" class="menu">
+<div id="menu">
   <%= render_navigation %>
 </div>
 
 <div id="container">
   <% if logged_in?  %>
-    <div id="top_float_right">
-        <%= t "global.welcome_back" %>&nbsp;<%= current_user.name %> <%= Time.now %>
+    <div id="user_info_menu">
+        <%= t "global.welcome_back" %>&nbsp;<a href="<%= my_account_path(:id=> current_user)%>"><%= current_user.name %></a>
     </div>
   <% end %>
   <div id="yield">
@@ -58,9 +58,6 @@ $(function() {
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         </p>
     <%- end -%>
-    <div>
-      <h1><%= @title || "" %></h1>
-    </div>
     <%= yield %>
   </div>
 </div>

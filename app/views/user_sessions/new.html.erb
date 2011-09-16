@@ -1,13 +1,7 @@
-<div class="span-430 fieldset">
+
   <%= simple_form_for(@user_session, :url => {:action => "create" }) do |f| %>
     <%= f.error_notification %>
-
-
-      <%= f.input :username %>
-      <%= f.input :password %>
-
+      <%= f.input :username, :placeholder => 'Username', :error_html => { :id => "login_error"}%>
+      <%= f.input :password, :placeholder => 'Password', :error_html => { :id => "login_error"} %>
       <%= f.submit t 'global.login'  %>
   <% end %>
-
-
-</div>

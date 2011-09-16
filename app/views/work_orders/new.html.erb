@@ -3,7 +3,9 @@
   <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), work_orders_path) %><%= link_to (t "global.exit"), work_orders_path %>
   <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back) %><%= link_to (t "global.back"), :back %>
 </div>
-<br>
+<div>
+      <h1><%= @title || "" %></h1>
+    </div>
 <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="sc1"><%= (t "workorder.tab_menu_basic") %></a></li>

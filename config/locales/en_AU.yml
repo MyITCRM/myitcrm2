@@ -19,6 +19,7 @@ en_AU:
       html: '<abbr title="Required">*</abbr>'
     error_notification:
       default_message: "Some errors were found, please take a look:"
+      login_error: "Username and/or Password are incorrect"
     # Labels and hints examples
     # labels:
     #   password: 'Password'

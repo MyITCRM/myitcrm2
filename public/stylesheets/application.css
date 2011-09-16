@@ -16,7 +16,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #container {width: 100%;float:left;background-color: #FFF;padding: 5px 20px 5px 20px;text-align:left;}
 #yield {margin: 0 auto;}
 #yield h1 {display:inline-block;padding-right: 5px;font-size:16px;text-decoration:underline;color: #999999;}
-#menu {width: 100%;float:left;margin: 0 auto;background-color: #FFF;padding: 20px 40px;border: solid 1px black;}
+/*#menu {width: 100%;float:left;margin: 0 auto;background-color: #FFF;padding: 20px 40px;border: solid 1px black;}*/
 /*FLASH NOTICES >>>*/
 #flash_notice, #flash_alert {padding: 4px 30px 4px 30px;margin: 10px 0;display:inline;}
 #flash_notice {background: url(/images/tick.png) 8px 5px no-repeat #CFC;border: solid 2px #6C6;font-weight:bold;}
@@ -28,7 +28,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #errorExplanation p { color: #333; margin-bottom: 0; padding: 8px;}
 #errorExplanation ul { margin: 2px 24px;}
 #errorExplanation ul li { font-size: 12px; list-style: disc; }
-#user_nav { margin: 0 auto;}
+#menu_tabs { margin: 0 auto;}
 #right_bar { width:15%; height:100%; float:right; border: 1px solid #000000; text-align: left; background-color: #ccffcc; font-size:10px; padding:3px;}
 .round { -moz-border-radius:10px; -webkit-border-radius:10px;}
 #footer { width:100%; float:left; color: #FFF; text-align: center; padding: 4px 0;}
@@ -37,7 +37,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .even td {background-color: #E3E6FF;}
 .odd td {background-color: #ffffff;}
 .priority_main_1 td {background-color: #ccffcc;}
-.priority_main_1 tr:hover {background-color: #99ff99;}
+.priority_main_1 tr :hover {background-color: #99ff99;}
 .priority_main_2 td {background-color: #ffff99;}
 .priority_main_3 td {background-color: #ffcc00;}
 .priority_main_4 td {background-color: #ff9999; font-weight:bold;}
@@ -45,13 +45,13 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 
 /*Testing css out on sub menu system*/
 .sub_menu {}
-.sub_menu ul { margin: 0; padding: 7px 0 19px; font-weight: bold; list-style-type: none; text-align: left; /*set to left, center, or right to align the menu as desired*/}
-.sub_menu ul li{display: inline;}
-/*.sub_menu li a {text-decoration: none;padding: 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; border-left: 1px solid #999999; border-right: 1px solid #999999; border-top: 1px solid #999999; border-bottom: #edf2f6;}*/
+.sub_menu ul { margin: 12px; padding: 7px 0 19px; font-weight: bold; list-style-type: none; text-align: left; /*set to left, center, or right to align the menu as desired*/}
+.sub_menu ul li{display: block;}
+.sub_menu li a {text-decoration: none;padding: 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; border-left: 1px solid #999999; border-right: 1px solid #999999; border-top: 1px solid #999999; border-bottom: #edf2f6;}
 .back {background:url(/images/tick.png) 8px 5px no-repeat;background-color:ButtonFace;padding: 4px 30px 4px 30px;margin: 10px 0;}
 .back i:hover{background-color:aqua;}
 
-#top_float_right { font-size:10px; float:right; clear:none; }
+#user_info_menu { font-size:10px; float:right;}
 #top_float_left {padding-top:0;font-size:10px;}
 #toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
 .button {padding:inherit; margin-top:-30px;}
@@ -69,54 +69,63 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
     /*overflow: hidden; }*/
 
 
-/*Menu >>>*/
-.menu{font: bold 12px Verdana;background: #414141;width: 100%;}
-.menu ul{margin: 0;padding: 0;list-style-type: none; }
+/*Menu */
+/*Template for creating menu*/
+/*
+#navMenu li {float: left; font-size: 10px; line-height: 28px; position: relative; z-index: 2;}
+#navMenu ul li a {color: #242525; display: block; font-family: Arial,Helvetica,sans-serif; text-align: left; width: 119px;}
+#navMenu ul li:hover ul {visibility: visible;}
+#navMenu ul ul {left: 10px; position: absolute; top: 33px; width: 119px; visibility: hidden;}
+#navMenu ul li:hover ul li a:hover {color: #BE2E1A; height: 28px;}
+#tsubsc ul li.sub {background-color: #F5F0ED; border-bottom: 1px solid #FBB76A; border-left: 2px solid #990000; border-right: 2px solid #990000; ; text-indent: 6px; top: -1px; width: 119px;}
+#tsubsc {display: block; height: 38px; width: 143px;}
+#tsubsc .hide, #tnewsletters .hide, #tshop .hide, #tevents .hide {border: medium none;}
+#tsubsc .hide span, #tnewsletters .hide span, #tshop .hide span, #tevents .hide span {display: block; font-size: 0; text-indent: -9999px;}
+#tsubsc ul li.sub {background-color: #F5F0ED; border-bottom: 1px solid #FBB76A; border-left: 2px solid #990000; border-right: 2px solid #990000; position: relative; text-indent: 6px;  top: -1px; width: 119px;}
+#tsubsc ul li.last {background-color: #F5F0ED; border-left: 2px solid #990000; border-right: 2px solid #990000; position: relative; text-indent: 6px; top: -1px; width: 119px;}
+#tsubsc ul li.curve {background-image: url("/images/dropfooter.png"); display: block; height: 10px; top: -1px; width: 124px;}
+*/
+#menu{font: bold 12px Verdana;background: #414141;padding: 0;}
+#menu ul{margin: 0;padding: 0;list-style-type: none;z-index: 2; }
+#menu li{float: left;position: relative;display: inline;}
+#menu ul li a{display: block;background: #414141; /*background of tabs (default state)*/color: white; padding: 8px 10px;border-right: 1px solid #778; text-decoration: none;}
+#menu ul li:hover ul {visibility: visible;}
+#menu ul ul {position: absolute; visibility: hidden;}
+#menu li a.selected, #menu li a.selected:hover { background:#fff; color:#555;}
+#menu ul li:hover ul li a:hover {background:#eff9ff; color: #990000;}
+
+/*Sub Menu Options*/
+#sub_menu ul li.sub {background-color: #F5F0ED; border-bottom: 1px solid #FBB76A; border-left: 2px solid #990000; border-right: 2px solid #990000; ; text-indent: 6px; top: -1px; width: 119px;}
+#sub_menu {display: block; height: 38px; width: 143px;}
+#sub_menu .hide, #home .hide, #register .hide, #login .hide {border: medium none;}
+#sub_menu .hide span, #home .hide span, #register .hide span, #login .hide span {display: block; font-size: 0; text-indent: -9999px;}
+#sub_menu ul li.sub {background-color: #F5F0ED; border-bottom: 1px solid #FBB76A; border-left: 2px solid #990000; border-right: 2px solid #990000; position: relative; text-indent: 6px;  top: -1px; width: 119px;}
+#sub_menu ul li.last {background-color: #F5F0ED; border-left: 2px solid #990000; border-right: 2px solid #990000; position: relative; text-indent: 6px; top: -1px; width: 119px;}
+#sub_menu ul li.curve { display: block; height: 10px; top: -1px; width: 124px;}
+
+/*#menu ul{margin: 0;padding: 0;list-style-type: none; }*/
 /*Top level list items*/
-.menu ul li{position: relative;display: inline;float: left;}
+
 /*Top level menu link items style*/
-.menu ul li a{display: block;background: #414141; /*background of tabs (default state)*/color: white; padding: 8px 10px;border-right: 1px solid #778; text-decoration: none;}
-* html .menu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/display: inline-block;}
-.menu li a.selected, .menu li a.selected:hover { background:#fff; color:#555;}
-.nav_workorder {background-image:url(/images/home.gif); font-weight:900;}
-.menu ul li a:link, {color: white;}
-.menu ul li   {color:aquamarine;}
-.menu ul li a:hover{background: black; /*tab link background during hover state*/color: white;}
-
+/*#menu ul li a{display: block;background: #414141; *//*background of tabs (default state)*//*color: white; padding: 8px 10px;border-right: 1px solid #778; text-decoration: none;}*/
+/** html #menu ul li a{ *//*IE6 hack to get sub menu links to behave correctly*//*display: inline-block;}*/
+/**/
+/*#menu ul li a:link, {color: white;}*/
+/*.menu ul li   {color:aquamarine;}*/
+/*#menu ul li a:hover{background: black; *//*tab link background during hover state*//*color: white;}*/
 /*1st sub level menu*/
-.menu ul li ul{
-position: absolute;
-left: 0;
-display: block;
-visibility: hidden;
-}
-
+/*.menu ul li ul{ position: absolute;left: 0;display:block;}*/
+/*.menu :hover ul ul {position:absolute; left:-9999px; top:-9999px; width:0; height:0; margin:0; padding:0; list-style:none;}*/
+/*.menu :hover ul :hover ul {left:120px; top:-1px; background:#222; white-space:nowrap; width:100px; z-index:200; height:auto;}*/
 /*Sub level menu list items (undo style from Top level List Items)*/
-.menu ul li ul li{
-display: list-item;
-float: none;
-}
-
+/*.menu ul li ul li{ display:block;float: none;}*/
 /*All subsequent sub menu levels vertical offset after 1st level sub menu */
-.menu ul li ul li ul{
-top: 0;
-}
-
+/*#menu ul li ul li ul{ top: 0;}*/
 /* Sub level menu links style */
-.menu ul li ul li a{
-font: normal 13px Verdana;
-width: 160px; /*width of sub menus*/
-padding: 5px;
-margin: 0;
-border-top-width: 0;
-border-bottom: 1px solid gray;
-}
-
-.menuz ul li ul li a:hover{ /*sub menus hover style*/
-background: #eff9ff;
-color: black;
-}
-
+/*#menu ul li ul li a{font: normal 13px Verdana;width: 160px; *//*width of sub menus*/
+/*padding: 5px;margin: 0;border-top-width: 0;border-bottom: 1px solid gray;}*/
+/*sub menus hover style*//*
+#menu ul li ul li a:hover{ background: #eff9ff; color: black;}  */
 /*Menu <<<*/
 
 /*Filter section*/
@@ -163,17 +172,13 @@ input.title {font-size:1.5em;}
 .simple_form div.input { margin-bottom: 5px;}
 .simple_form div.textile { margin-left: 190px;}
 .simple_form label {width:170px;float:left;text-align:right; margin: 2px 10px;}
-div.boolean, .simple_form input[type='submit'] { /*margin-left:170px;*/ text-transform:capitalize; padding:5px;}
+div.boolean, .simple_form input[type='submit'] { position:relative;text-transform:capitalize;padding:5px;}
 div.boolean label, label.collection_radio {float: none;margin: 0;}
 label.collection_radio { margin-right: 10px;vertical-align:-2px; margin-left:2px; display:table-row; height:25px; text-align:left;}
-.field_with_errors {
-  /*background-color: #ff3333;*/
-}
+.field_with_errors {/*background-color: #ff3333;*/}
 .error_notification {padding: 4px 30px 4px 30px;margin: 10px 60% 10px 50px; background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
-
-
 .simple_form .error {
-  /*clear:left;*/
+  clear:left;
   color: #ff3333;
   display: inline-block;
   margin-left: 190px;
@@ -182,7 +187,6 @@ label.collection_radio { margin-right: 10px;vertical-align:-2px; margin-left:2px
   font-weight:bold;
   text-transform:capitalize;
 }
-
 .simple_form .hint {
   clear: left;
   margin-left: 190px;
@@ -191,17 +195,14 @@ label.collection_radio { margin-right: 10px;vertical-align:-2px; margin-left:2px
   display: block;
   font-style: italic;
 }
-
 input.radio {
   margin-right: 5px;
   vertical-align: -3px;
 }
-
 input.check_boxes {
   margin-left: 3px;
   vertical-align: -3px;
 }
-
 label.collection_check_boxes {
   float: none;
   margin: 0;
