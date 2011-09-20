@@ -43,7 +43,7 @@ $(function() {
 </div>
 
 <div id="menu">
-  <%= render_navigation %>
+  <%= render_navigation(:expand_all => true) %>
 </div>
 
 <div id="container">
@@ -58,6 +58,9 @@ $(function() {
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         </p>
     <%- end -%>
+    <div>
+      <h1><%= @title || "" %></h1>
+    </div>
     <%= yield %>
   </div>
 </div>

@@ -4,19 +4,24 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     navigation.auto_highlight = true
     primary.item :home, 'Home', root_path do |sub_nav|
-      sub_nav.item :logout, 'Logout', logout_path
+      sub_nav.item :logout, 'Logout', logout_path, :class => "selected", :if => Proc.new { logged_in? }
     end
     if logged_in?
-        primary.item :work_orders, 'Work Orders', work_orders_path, options do |sub_nav|
-          sub_nav.item :work_orders, 'New Work Order', new_work_order_path
+        primary.item :work_orders, 'Work Orders', work_orders_path  do |sub_nav|
+          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
+          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
+          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
+          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
+          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
           end
-
-       primary.item :users, [t "naviagtion.users"], users_path, :highlights_on => /\/users/
-        if can? :manage, User
+       primary.item :users, [t "naviagtion.users"], users_path do |sub_nav_user|
+         sub_nav_user.item :users, 'New User', new_users_path,  :class => "sub_menu"
+       end
+    if can? :manage, User
           primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/
           primary.item :products, 'Products', products_path, :highlights_on => /\/products/
           primary.item :settings, 'Settings', settings_path, :highlights_on => /\/settings/
-        end
+    end
        # primary.item :profile, 'My Details', my_account_url(:id => current_user)
         primary.item :logout, 'Logout', logout_path
     else

@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 # Validations for Users
   validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_length_of :password, :password_confirmation, :minimum => 8
   before_save :new_user
 
 # Used to set New Users to defaults

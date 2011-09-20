@@ -86,23 +86,22 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #tsubsc ul li.curve {background-image: url("/images/dropfooter.png"); display: block; height: 10px; top: -1px; width: 124px;}
 */
 #menu{font: bold 12px Verdana;background: #414141;padding: 0;}
-#menu ul{margin: 0;padding: 0;list-style-type: none;z-index: 2; }
-#menu li{float: left;position: relative;display: inline;}
-#menu ul li a{display: block;background: #414141; /*background of tabs (default state)*/color: white; padding: 8px 10px;border-right: 1px solid #778; text-decoration: none;}
+#menu ul{margin: 0;padding: 0;list-style-type: none;}
+#menu li{float: left;position: relative;display: inline-block;z-index: 2;}
+#menu ul li a{display: inline-block;background: #414141;color: white; padding: 8px 10px;text-decoration:none;}
+#menu ul li ul li a{width: 160px;}/*width of sub menus*/
 #menu ul li:hover ul {visibility: visible;}
-#menu ul ul {position: absolute; visibility: hidden;}
-#menu li a.selected, #menu li a.selected:hover { background:#fff; color:#555;}
-#menu ul li:hover ul li a:hover {background:#eff9ff; color: #990000;}
+#menu ul ul {position: absolute; visibility: hidden;width:200px; }
+#menu li a.selected {background:#fff; color:#555;z-index: 2;}
+#menu li a.selected:hover{background:#414141;color: white;}
+#menu ul li:hover ul li a:hover {color: #4b7399;background:transparent}
+#menu li a:hover {color: #4b7399;}
+#menu ul:hover {background:#fff;}
 
 /*Sub Menu Options*/
-#sub_menu ul li.sub {background-color: #F5F0ED; border-bottom: 1px solid #FBB76A; border-left: 2px solid #990000; border-right: 2px solid #990000; ; text-indent: 6px; top: -1px; width: 119px;}
-#sub_menu {display: block; height: 38px; width: 143px;}
-#sub_menu .hide, #home .hide, #register .hide, #login .hide {border: medium none;}
-#sub_menu .hide span, #home .hide span, #register .hide span, #login .hide span {display: block; font-size: 0; text-indent: -9999px;}
-#sub_menu ul li.sub {background-color: #F5F0ED; border-bottom: 1px solid #FBB76A; border-left: 2px solid #990000; border-right: 2px solid #990000; position: relative; text-indent: 6px;  top: -1px; width: 119px;}
-#sub_menu ul li.last {background-color: #F5F0ED; border-left: 2px solid #990000; border-right: 2px solid #990000; position: relative; text-indent: 6px; top: -1px; width: 119px;}
-#sub_menu ul li.curve { display: block; height: 10px; top: -1px; width: 124px;}
-
+/*#sub_menu ul li {background-color: #F5F0ED; border-bottom: 1px solid #FBB76A; border-left: 2px solid #990000; border-right: 2px solid #990000; ; text-indent: 6px; top: -1px; width: 119px;}*/
+#sub_menu {display: block; height: 60px;}
+#sub_menu ul ul {position: absolute; visibility: hidden;width:200px; }
 /*#menu ul{margin: 0;padding: 0;list-style-type: none; }*/
 /*Top level list items*/
 
