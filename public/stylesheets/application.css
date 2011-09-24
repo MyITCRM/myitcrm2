@@ -1,4 +1,4 @@
-body {width:95%;margin:5px;padding:0;border:0;vertical-align:baseline; background-color: #243647;font-family: Verdana, Helvetica, Arial,serif;font-size: 12px;}
+body {width:100%;margin:0.9px;padding:0;border:0;vertical-align:baseline; background-color: white;font-family: Verdana, Helvetica, Arial,serif;font-size: 10px;}
 a img {border: none;}
 h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #index_table {border-collapse:collapse;}
@@ -13,7 +13,9 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #show_view {border: 1px solid #999999;background-color: #edf2f6;padding:10px 10px 10px 10px;}
 #show_view table {width:100%;padding-left:1%;border:none;}
 .clear {clear:both;height: 0;overflow: hidden;margin-bottom:0.5em;padding-top:20px;}
-#container {width: 100%;float:left;background-color: #FFF;padding: 5px 20px 5px 20px;text-align:left;}
+.text_left{text-align:left;}
+.text_right{text-align:right;}
+#container {padding: 5px 20px 5px 20px;text-align:left;}
 #yield {margin: 0 auto;}
 #yield h1 {display:inline-block;padding-right: 5px;font-size:16px;text-decoration:underline;color: #999999;}
 /*#menu {width: 100%;float:left;margin: 0 auto;background-color: #FFF;padding: 20px 40px;border: solid 1px black;}*/
@@ -51,8 +53,9 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .back {background:url(/images/tick.png) 8px 5px no-repeat;background-color:ButtonFace;padding: 4px 30px 4px 30px;margin: 10px 0;}
 .back i:hover{background-color:aqua;}
 
-#user_info_menu { font-size:10px; float:right;}
-#top_float_left {padding-top:0;font-size:10px;}
+#user_info_menu { font-size:10px; float:right;color: white;padding-top: 6px;padding-right: 13px;}
+#user_info_menu a { color: white;}
+#top_float_left {padding-top:0;font-size:10px;float:left;}
 #toolbar_menu {width:95%;padding:5px 5px 5px 5px;}
 .button {padding:inherit; margin-top:-30px;}
 
@@ -85,16 +88,16 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #tsubsc ul li.last {background-color: #F5F0ED; border-left: 2px solid #990000; border-right: 2px solid #990000; position: relative; text-indent: 6px; top: -1px; width: 119px;}
 #tsubsc ul li.curve {background-image: url("/images/dropfooter.png"); display: block; height: 10px; top: -1px; width: 124px;}
 */
-#menu{font: bold 12px Verdana;background: #414141;padding: 0;}
+#menu{width:100%;height:30px;background-color:black;font: bold 10px Verdana;padding: 0;}
 #menu ul{margin: 0;padding: 0;list-style-type: none;}
 #menu li{float: left;position: relative;display: inline-block;z-index: 2;}
-#menu ul li a{display: inline-block;background: #414141;color: white; padding: 8px 10px;text-decoration:none;}
+#menu ul li a{display: inline-block;background:black;color: white; padding: 8px 10px;text-decoration:none;border-bottom:2px solid black;}
 #menu ul li ul li a{width: 160px;}/*width of sub menus*/
 #menu ul li:hover ul {visibility: visible;}
-#menu ul ul {position: absolute; visibility: hidden;width:200px; }
-#menu li a.selected {background:#fff; color:#555;z-index: 2;}
-#menu li a.selected:hover{background:#414141;color: white;}
-#menu ul li:hover ul li a:hover {color: #4b7399;background:transparent}
+#menu ul ul {position: absolute; visibility: hidden }
+#menu ul li a.selected {border-bottom:2px solid red}
+#menu li a.selected:hover{color: #4b7399;}
+#menu ul li:hover ul li a:hover {background:black}
 #menu li a:hover {color: #4b7399;}
 #menu ul:hover {background:#fff;}
 
@@ -220,8 +223,9 @@ textarea.required {border: 2px solid #8b0000; background-color:#ffffcc;}
 
 /*EOF JQUERY Customer Styling*/
 /*BOF Basic Tabs/menu Css*/
-.basictab ul { margin: 0; padding: 7px 0 19px; font-weight: bold; list-style-type: none; text-align: left; /*set to left, center, or right to align the menu as desired*/}
-.basictab ul li{position: relative; display: inline; float: left;}
+.basictab, .tabcontainer {margin-left:160px; margin-right:160px;}
+.basictab ul { margin: 0; padding: 7px 0 5px; font-weight: bold; list-style-type: none; text-align: left; /*set to left, center, or right to align the menu as desired*/}
+.basictab ul li{position: relative; display: inline;}
 .basictab li a {text-decoration: none;padding: 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; border-left: 1px solid #999999; border-right: 1px solid #999999; border-top: 1px solid #999999; border-bottom: #edf2f6;}
 .basictab li a:visited {}
 .basictab li a:hover, .basictab li a.current { background-color: #edf2f6; color: black;}
@@ -248,12 +252,13 @@ fieldset {padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
 legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
 fieldset, #IE8#HACK {padding-top:1.4em;}
 legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
-.column, .span-30, .span-70, .span-110, .span-150, .span-190, .span-230, .span-270, .span-310, .span-350, .span-390, .span-430, .span-470, .span-510, .span-550, .span-590, .span-630, .span-670, .span-710, .span-750, .span-790, .span-830, .span-870, .span-910, .span-950 {float:left;margin-right:10px;display:inline;}
+.column, .span-30, .span-70, .span-110, .span-150, .span-180, .span-190, .span-230, .span-270, .span-310, .span-350, .span-390, .span-430, .span-470, .span-510, .span-550, .span-590, .span-630, .span-670, .span-710, .span-750, .span-790, .span-830, .span-870, .span-910, .span-950 {float:left;margin-right:10px;display:inline;}
 .last {margin-right:0;}
 .span-30 {width:30px;}
 .span-70 {width:70px;}
 .span-110 {width:110px;}
 .span-150 {width:150px;}
+.span-180 {width:180px;}
 .span-190 {width:190px;}
 .span-230 {width:230px;}
 .span-270 {width:270px;}

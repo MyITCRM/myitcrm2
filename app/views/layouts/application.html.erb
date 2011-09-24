@@ -38,20 +38,22 @@ $(function() {
 </head>
 <body>
 
-<div id="header">
-  <%= image_tag 'logo.png', :height => 60 %>
-</div>
+<!--<div id="header">-->
+  <!--<%= image_tag 'logo.png', :height => 60 %>-->
+<!--</div>-->
 
 <div id="menu">
   <%= render_navigation(:expand_all => true) %>
-</div>
 
-<div id="container">
-  <% if logged_in?  %>
+ <% if logged_in?  %>
     <div id="user_info_menu">
         <%= t "global.welcome_back" %>&nbsp;<a href="<%= my_account_path(:id=> current_user)%>"><%= current_user.name %></a>
     </div>
   <% end %>
+  </div>
+<div style="clear:both;float:none;"></div>
+<div id="container">
+
   <div id="yield">
     <%- flash.each do |name, msg| -%>
         <p>

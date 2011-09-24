@@ -6,7 +6,7 @@ include Authentication
 
 # Used to notify user that they have tried to request a restricted action. Refer to log for more details
   rescue_from CanCan::AccessDenied do
-    flash[:alert] = [t "global.access_denied"]
+    flash[:alert] = t "global.access_denied"
     redirect_to root_url
   end
 

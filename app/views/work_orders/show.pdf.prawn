@@ -69,7 +69,7 @@ pdf.bounding_box([120,630], :width => 400, :font_size => 11, :align => :right, :
   pdf.text "#{t "global.subject"}:"
   pdf.text "#{@work_order.subject}"
   pdf.text "#{t "workorder.details"}:"
-  pdf.text "#{@work_order.description}"
+  pdf.text @work_order.description
 end
 ## Status Block BOF
 data = [ ["this is not quite as long as the others",

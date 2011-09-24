@@ -1,5 +1,10 @@
 module SettingsHelper
 
+# Redmine - project management software
+# Copyright (C) 2006-2011  Jean-Philippe Lang
+#  The next 52 lines of code were extracted
+
+
   def setting_select(setting, choices, options={})
     if blank_text = options.delete(:blank)
       choices = [[blank_text.is_a?(Symbol) ? l(blank_text) : blank_text, '']] + choices
@@ -41,6 +46,6 @@ module SettingsHelper
 
   def setting_label(setting, options={})
     label = options.delete(:label)
-    label != false ? content_tag("label", [t "setting_#{setting}"]) : ''
+    label != false ? content_tag("label", l(label || "setting_#{setting}")) : ''
   end
 end

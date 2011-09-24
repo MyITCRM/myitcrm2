@@ -22,8 +22,8 @@
         <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
 
         <div class="clear"></div>
-        <div class="span-190">
-          <%= (t "workorder.subject") %>
+        <div class="span-180 text_right">
+          <%= (t "workorder.details") %>
         </div>
         <div class="span-670">
           <%= ckeditor_tag 'work_order[description]', @work_order.description, :class => 'ckeditor' %>
@@ -31,6 +31,7 @@
         <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
         <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
         <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now } %>
+        <%= f.submit %>
         <div class="clear"></div>
         <div class="center">
           <%= f.submit %>
