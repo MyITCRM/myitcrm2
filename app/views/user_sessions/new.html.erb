@@ -1,7 +1,12 @@
-
-  <%= simple_form_for(@user_session, :url => {:action => "create" }) do |f| %>
+<div class="centered">
+   <%= simple_form_for(@user_session, :url => {:action => "create" }) do |f| %>
     <%= f.error_notification %>
       <%= f.input :username, :placeholder => 'Username', :error_html => { :id => [t 'workorder.details']}%>
       <%= f.input :password, :placeholder => 'Password', :error_html => { :id => "login_error"} %>
-      <%= f.submit t 'global.login'  %>
+      <div class="center">
+        <%= f.submit t 'global.login'  %>
+      </div>
+
   <% end %>
+</div>
+

@@ -53,20 +53,19 @@ $(function() {
   </div>
 <div style="clear:both;float:none;"></div>
 <div id="container">
-
   <div id="yield">
-    <%- flash.each do |name, msg| -%>
+<%- flash.each do |name, msg| -%>
         <p>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         </p>
     <%- end -%>
-    <div>
+    <div id="page_title">
       <h1><%= @title || "" %></h1>
     </div>
     <%= yield %>
   </div>
 </div>
-<div id="footer" class="footer_link">
+<div id="footer">
   <p>
     Powered by <a href="http://myitcrm.com">MyIT CRM</a>&copy; 2010 - 2011 - v2.0.0.0 ALPHA - Glen Vanderhel
   </p>

@@ -1,5 +1,6 @@
 <!-- mytodo adjust layout the same as users-->
 <div id="top_float_left">
+  <h1><%= t "global.quick_links" %></h1>
 <% if can? :destroy, @supplier %>
 <%= link_to(image_tag("trash.png", :title=> (t "global.delete"),:align => "bottom", :hspace => "2"), :confirm => 'Are you sure?',  :action => :destroy )%><%= link_to (t "global.delete"), @supplier, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
 <% end %>

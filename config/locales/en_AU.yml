@@ -99,6 +99,7 @@ en_AU:
     contact_numbers: "Contact Numbers"
     special: "Office Use"
     filters: "Filters"
+    quick_links: "Quick Links"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"

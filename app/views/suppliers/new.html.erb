@@ -1,7 +1,8 @@
 <div id="top_float_left">
-   <%= link_to(image_tag('exit.png', :title => [t "global.close"]), suppliers_path) %>&nbsp;<%= link_to([t "global.close"], suppliers_path) %>
+  <h1><%= t 'global.quick_links' %></h1>
+  <%= link_to(image_tag('exit.png', :title => [t "global.exit"]), suppliers_path) %>&nbsp;<%= link_to([t "global.exit"], suppliers_path) %>
 </div>
-
+ <div class="centered">
 <div id="ddtabs1" class="basictab">
 <ul>
 <li><a href="#<%= t "supplier.tab.basic"  %>" rel="sc1"><%= (t "supplier.tab.basic") %></a></li>
@@ -9,7 +10,7 @@
 </ul>
 </div>
 
-<div class="tabcontainer">
+ <div class="tabcontainer">
 
 <div id="sc1" class="tabcontent">
 <% simple_form_for @supplier do |f| %>
@@ -27,9 +28,11 @@
                 <%= f.input :notes, :label => (t "global.notes"), :input_html => {:rows => 10} %>
                 <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :created_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+        <div class="center">
+          <%= f.button :submit %>
 
-        <%= f.button :submit %>
-  <% end %>
+        </div>
+    <% end %>
     </div><div id="sc2" class="tabcontent">
 <% simple_form_for @supplier do |f| %>
                 <%= f.input :credit_terms, :label => (t "supplier.credit_terms"), :input_html => {:size => 30} %>
@@ -38,7 +41,12 @@
                 <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :created_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
 
-        <%= f.button :submit %>
+        <div class="center">
+          <%= f.button :submit %>
+
+        </div>
   <% end %>
     </div>
     </div>
+</div>
+

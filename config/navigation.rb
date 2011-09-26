@@ -8,18 +8,18 @@ SimpleNavigation::Configuration.run do |navigation|
     end
     if logged_in?
         primary.item :work_orders, 'Work Orders', work_orders_path  do |sub_nav|
-          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
-          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
-          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
-          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
-          sub_nav.item :work_orders, 'New Work Order', new_work_order_path, :class => "sub_menu"
+          sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           end
-       primary.item :users, [t "naviagtion.users"], users_path do |sub_nav_user|
-         sub_nav_user.item :users, 'New User', new_users_path,  :class => "sub_menu"
+       primary.item :users, [t "naviagtion.users"], users_path do |sub_nav|
+         sub_nav.item :users, 'New User', new_user_path
        end
     if can? :manage, User
-          primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/
-          primary.item :products, 'Products', products_path, :highlights_on => /\/products/
+          primary.item :suppliers, 'Suppliers', suppliers_path do |sub_nav|
+            sub_nav.item :suppliers, [t 'global.create'], new_supplier_path
+          end
+          primary.item :products, 'Products', products_path  do |sub_nav|
+            sub_nav.item :products, [t 'global.create'], new_product_path
+          end
           primary.item :settings, 'Settings', settings_path, :highlights_on => /\/settings/
     end
        # primary.item :profile, 'My Details', my_account_url(:id => current_user)

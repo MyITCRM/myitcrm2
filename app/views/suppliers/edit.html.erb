@@ -1,4 +1,5 @@
 <div id="top_float_left">
+  <h1><%= t "global.quick_links" %></h1>
    <%= link_to(image_tag('exit.png', :title => [t "global.close"]), suppliers_path) %>&nbsp;<%= link_to([t "global.close"], suppliers_path) %>
 </div>
 
@@ -7,8 +8,8 @@
 <li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
 </ul>
 </div>
-
-<div class="tabcontainer">
+<div class="centered">
+ <div class="tabcontainer">
 
 <div id="sc1" class="tabcontent">
 <% simple_form_for @supplier do |f| %>
@@ -36,3 +37,6 @@
   <% end %>
     </div>
     </div>
+
+</div>
+

@@ -1,4 +1,4 @@
-<div id="top_float_left span-110">
+<div id="top_float_left">
   <% if current_user.client == true %>
       <%= link_to(image_tag('add.png', :title => [t "workorder.t_add_new"], :align => "bottom", :hspace => "2"), :controller => "work_orders", :action => "new") %><%= link_to [t "workorder.t_add_new"], :controller => "work_orders", :action => "new"%>
   <% else %>
@@ -6,29 +6,32 @@
    <% end %>
   <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back) %><%= link_to (t "global.back"), :back %>
 </div>
-<div id="ddtabs1" class="basictab">
-  <ul>
-    <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if @new_work_orders.count > 0 %><span style="color:red;"><%= @new_work_orders.count %></span><% else %><%= @new_work_orders.count %><% end %>)</a></li>
-    <li><a href="#assigned" rel="tab2"><%= t "workorder.tab_menu_assigned" %>&nbsp;(<% if @assigned_work_orders.count > 0 %><span style="color:red;"><%= @assigned_work_orders.count %></span><% else %><%= @assigned_work_orders.count %><% end %>)</a></li>
-    <li><a href="#on_hold" rel="tab3"><%= t "workorder.tab_menu_on_hold" %>&nbsp;(<% if @on_hold_work_orders.count > 0 %><span style="color:red;"><%= @on_hold_work_orders.count %></span><% else %><%= @on_hold_work_orders.count %><% end %>)</a></li>
-    <li><a href="#closed" rel="tab4"><%= t "workorder.tab_menu_closed" %>&nbsp;(<% if @closed_work_orders.count > 0 %><span style="color:red;"><%= @closed_work_orders.count %></span><% else %><%= @closed_work_orders.count %><% end %>)</a></li>
-  </ul>
-</div>
-<div id="index_table">
-  <div class="tabcontainer">
+<div class="centered">
+  <div id="ddtabs1" class="basictab">
+    <ul>
+      <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if @new_work_orders.count > 0 %><span style="color:red;"><%= @new_work_orders.count %></span><% else %><%= @new_work_orders.count %><% end %>)</a></li>
+      <li><a href="#assigned" rel="tab2"><%= t "workorder.tab_menu_assigned" %>&nbsp;(<% if @assigned_work_orders.count > 0 %><span style="color:red;"><%= @assigned_work_orders.count %></span><% else %><%= @assigned_work_orders.count %><% end %>)</a></li>
+      <li><a href="#on_hold" rel="tab3"><%= t "workorder.tab_menu_on_hold" %>&nbsp;(<% if @on_hold_work_orders.count > 0 %><span style="color:red;"><%= @on_hold_work_orders.count %></span><% else %><%= @on_hold_work_orders.count %><% end %>)</a></li>
+      <li><a href="#closed" rel="tab4"><%= t "workorder.tab_menu_closed" %>&nbsp;(<% if @closed_work_orders.count > 0 %><span style="color:red;"><%= @closed_work_orders.count %></span><% else %><%= @closed_work_orders.count %><% end %>)</a></li>
+    </ul>
+  </div>
+  <div id="index_table">
+    <div class="tabcontainer">
 
-    <div id="tab1" class="tabcontent" style="padding:10px 10px 10px 10px">
-      <%= render(:partial => 'work_orders/new_wo_tab') %>
-    </div>
-    <div id="tab2" class="tabcontent" style="padding:10px 10px 10px 10px">
-      <%= render(:partial => 'work_orders/assigned_wo_tab') %>
-    </div>
-    <div id="tab3" class="tabcontent" style="padding:10px 10px 10px 10px">
-      <%= render(:partial => 'work_orders/on_hold_wo_tab') %>
-    </div>
-    <div id="tab4" class="tabcontent" style="padding:10px 10px 10px 10px">
-      <%= render(:partial => 'work_orders/closed_wo_tab') %>
+      <div id="tab1" class="tabcontent" style="padding:10px 10px 10px 10px">
+        <%= render(:partial => 'work_orders/new_wo_tab') %>
+      </div>
+      <div id="tab2" class="tabcontent" style="padding:10px 10px 10px 10px">
+        <%= render(:partial => 'work_orders/assigned_wo_tab') %>
+      </div>
+      <div id="tab3" class="tabcontent" style="padding:10px 10px 10px 10px">
+        <%= render(:partial => 'work_orders/on_hold_wo_tab') %>
+      </div>
+      <div id="tab4" class="tabcontent" style="padding:10px 10px 10px 10px">
+        <%= render(:partial => 'work_orders/closed_wo_tab') %>
+      </div>
     </div>
   </div>
+  <div style="clear:both;"></div>
+
 </div>
-<div style="clear:both;"></div>
