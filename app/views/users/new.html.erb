@@ -1,14 +1,17 @@
-<div id="top_float_left">
-  <h1><%= t "global.quick_links" %></h1>
-  <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), users_path) %><%= link_to (t "global.exit"), users_path %>
+<% if logged_in? %>
+<div id="sidebar_left">
+  <%= render 'layouts/quick_links_sidebar' %>
+  <ul>
+    <li class="exit">
+      <%= link_to (t "global.exit"), users_path %>
+    </li>
+  </ul>
 </div>
-<br>
-<%= simple_form_for(@user) do |f| %>
-    <%= f.error_notification %>
-    <div id=middle_col>
-      <fieldset>
-        <legend><%= t "global.required" %></legend>
-
+<% end %>
+<div class="centered">
+  <%= simple_form_for(@user) do |f| %>
+      <%= f.error_notification %>
+        <div id="two_columns" class="first float_left">
           <%= f.input :name, :hint =>(t "user.name_eg"), :label =>(t "user.name") %>
           <%= f.input :username, :label => (t "user.username") %>
           <%= f.input :password, :required => true %>
@@ -19,12 +22,10 @@
           <%= f.input :city, :label => (t "global.city") %>
           <%= f.input :zip, :label =>(t "global.zip") %>
           <%= f.input :state, :label => (t "global.state") %>
-
-
-      </fieldset>
-        <fieldset>
-          <legend><%= t "global.contact_numbers" %></legend>
-          <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
+</div>
+<div class="clear"></div>
+<div id="two_columns" class="float_right">
+   <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
           <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
           <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
           <% if current_user == nil %>
@@ -33,27 +34,22 @@
           <% else %>
               <%= hidden_field_tag "user[created_by]", current_user.username %>
           <% end %>
-        </fieldset>
+</div>
       <% if can? :manage, :all %>
-            <fieldset>
-              <legend><%= t "global.special" %></legend>
-
               <% if current_user.employee == true %>
                   <%= f.input :client, :as => :radio, :input_html => {:value => "1", :value => "1"}, :label =>(t "user.client") %>
                   <%= f.input :employee, :as => :radio, :input_html => {:value => "1", :value => "1"}, :label =>(t "user.employed") %>
                   <%= f.input :workorder_assignability, :as => :radio, :input_html => {:value => "1", :value => "1"}, :label =>(t "user.assignable") %>
               <% end %>
               <label class="string required" for="user_role"><abbr title="Required">*</abbr>Role</label>
-              <span class="select_required"><%= f.collection_select :role, User::ROLES, :to_s, :humanize, :include_blank => true%></span>
+              <%= f.collection_select :role, User::ROLES, :to_s, :humanize, :include_blank => true%>
 
-            </fieldset>
-          </div>
+
+
       <% end %>
-
-
-
     <div class="clear"></div>
     <div class="center">
       <%= f.button :submit %>
     </div>
 <% end %>
+    </div>

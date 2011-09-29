@@ -4,17 +4,17 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     navigation.auto_highlight = true
     primary.item :home, 'Home', root_path do |sub_nav|
-      sub_nav.item :logout, 'Logout', logout_path, :class => "selected", :if => Proc.new { logged_in? }
+      sub_nav.item :logout, 'Logout', logout_path, :if => Proc.new { logged_in? }
     end
     if logged_in?
-        primary.item :work_orders, 'Work Orders', work_orders_path  do |sub_nav|
+        primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
           sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           end
-       primary.item :users, [t "naviagtion.users"], users_path do |sub_nav|
+       primary.item :users, [t "naviagtion.users"], users_path  do |sub_nav|
          sub_nav.item :users, 'New User', new_user_path
        end
     if can? :manage, User
-          primary.item :suppliers, 'Suppliers', suppliers_path do |sub_nav|
+          primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/ do |sub_nav|
             sub_nav.item :suppliers, [t 'global.create'], new_supplier_path
           end
           primary.item :products, 'Products', products_path  do |sub_nav|

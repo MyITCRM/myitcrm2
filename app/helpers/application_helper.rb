@@ -15,7 +15,6 @@ module ApplicationHelper
       #   #    </textarea>
       #
       def ckeditor_tag(name, content = nil, options = {})
-#        editor_id = options[:id] || name
         text_area_tag(name, content, options)
       end
 

@@ -508,7 +508,7 @@ en_AU:
       client: "Name :"
       t_customer_details: "Customer Details"
     message_assigned_success: "Work Order Assigned Successfully!"
-  setting_business_name: Business Name
+  setting_business_name: "Business Name"
   setting_business_slogan: "Business Slogan"
   setting_business_number: "Business Number"
   setting_business_email: "Primary Email"

@@ -3,11 +3,13 @@ class SettingsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @title = "Settings"
         edit
         render :action => 'edit'
   end
 
   def edit
+     @title = "Settings"
     if request.post? && params[:settings] && params[:settings].is_a?(Hash)
       settings = (params[:settings] || {}).dup.symbolize_keys
       settings.each do |name, value|
@@ -18,6 +20,7 @@ class SettingsController < ApplicationController
       flash[:notice] = "All Good!"
       redirect_to :action => 'index'
       return
-    end
+
+ end
  end
  end

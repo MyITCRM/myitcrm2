@@ -1,8 +1,12 @@
-<div id="top_float_left">
-  <h1><%= t 'global.quick_links' %></h1>
-  <%= link_to(image_tag('exit.png', :title => [t "global.exit"]), suppliers_path) %>&nbsp;<%= link_to([t "global.exit"], suppliers_path) %>
+<div id="sidebar_left">
+  <%= render 'layouts/quick_links_sidebar'%>
+  <ul>
+    <li class="exit">
+      <%= link_to([t "global.exit"], suppliers_path) %>
+    </li>
+  </ul>
 </div>
- <div class="centered">
+ <div id="center_col">
 <div id="ddtabs1" class="basictab">
 <ul>
 <li><a href="#<%= t "supplier.tab.basic"  %>" rel="sc1"><%= (t "supplier.tab.basic") %></a></li>

@@ -1,7 +1,7 @@
 business_name:
-  default: MyIT CRM  Software Company
+  default: "MyIT CRM  Software Company"
 business_slogan:
-  default: The Best CRM Software for your Repair Shop
+  default: "The Best CRM Software for your Repair Shop"
 business_phone:
   default: '02 9999 8888'
 business_toll_free:
@@ -11,11 +11,11 @@ business_fax:
 business_mobile:
   default: '02 9999 8888'
 business_email:
-  default: admin@exmaple.com
+  default: "admin@exmaple.com"
 business_address:
   default: '49 Fake Road'
 business_number:
-  default: 
+  default: ''
 meta_tags:
   default: 'CRM, FREE, Opensource, Repair, Business, Computer, IT, Shop'
 

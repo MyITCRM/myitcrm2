@@ -1,8 +1,12 @@
-<div id="top_float_left">
-  <h1><%= t "global.quick_links" %></h1>
-  <%= link_to(image_tag('add.png',:title => [t "supplier.t_add_new_supplier"]), new_supplier_path) %><%= link_to [t "supplier.t_add_new_supplier"], new_supplier_path %>
+<div id="sidebar_left">
+  <%= render 'layouts/quick_links_sidebar' %>
+  <ul>
+    <li class="create">
+      <%= link_to [t "supplier.t_add_new_supplier"], new_supplier_path %>
+    </li>
+  </ul>
 </div>
-
+<div id="center_col">
 <table id="index_table" >
   <tr>
     <th><%= t "supplier.company_name" %></th>
@@ -23,7 +27,7 @@
     <td><%=h supplier.email %></td>
     <td><%=h supplier.contact_name %></td>
     <td><%=h supplier.contact_phone %></td>
-    <td><%=h supplier.active %></td>    
+    <td><%=h supplier.active %></td>
     <td width="80">
         <% if can? :read, @supplier %><%= link_to(image_tag('view.png', :title => [t "global.view"]), supplier )%> <% end %>
         <% if can? :edit, @supplier %> <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_supplier_path(supplier)) %>   <% end %>
@@ -33,6 +37,5 @@
   </tr>
 <% end %>
 </table>
-
-<br />
+</div>
 

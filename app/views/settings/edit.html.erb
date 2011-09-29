@@ -1,13 +1,12 @@
 <!--myTODO I18N labels and formats and add full field sets-->
-
-<h1><%= t "settings.t_title" %></h1>
-
-<div id="top_float_left">
-  <%= link_to(image_tag('exit.png', :title => [t "global.exit"]), root_url) %>&nbsp;<%= link_to([t "global.exit"], root_url) %>
+<div id="sidebar_left">
+  <%= render 'layouts/quick_links_sidebar' %>
+  <ul>
+    <li class="exit"><%= link_to([t "global.exit"], root_url) %></li>
+  </ul>
 </div>
-<br/>
-
-<div id="ddtabs1" class="basictab">
+<div class="centered">
+  <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
     <!--<li><a href="#<%= t "settings.tab.billing_information_url" %>" rel="sc2"><%= t "settings.tab.billing_information" %></a></li>-->
@@ -51,4 +50,6 @@
 <div id="sc5" class="tabcontent">
 
   </div>
+</div>
+   <div class="clear"></div>
 </div>

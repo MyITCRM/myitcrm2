@@ -1,12 +1,16 @@
-<div id="top_float_left">
-  <% if current_user.client == true %>
-      <%= link_to(image_tag('add.png', :title => [t "workorder.t_add_new"], :align => "bottom", :hspace => "2"), :controller => "work_orders", :action => "new") %><%= link_to [t "workorder.t_add_new"], :controller => "work_orders", :action => "new"%>
-  <% else %>
-      <%= link_to(image_tag('add.png', :title => [t "workorder.t_add_new"], :align => "bottom", :hspace => "2"), users_path) %><%= link_to [t "workorder.t_add_new"], users_path %>
-   <% end %>
-  <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back) %><%= link_to (t "global.back"), :back %>
+<div id="sidebar_left">
+  <%= render 'layouts/quick_links_sidebar' %>
+
+  <ul>
+    <% if current_user.client == true %>
+        <li class="create"><%= link_to [t "workorder.t_add_new"], :controller => "work_orders", :action => "new"%></li>
+     <% else %>
+        <li class="create"><%= link_to [t "workorder.t_add_new"], users_path %></li>
+    <% end %>
+    <li class="back"><%= link_to (t "global.back"), :back %></li>
+  </ul>
 </div>
-<div class="centered">
+<div id="center_col">
   <div id="ddtabs1" class="basictab">
     <ul>
       <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if @new_work_orders.count > 0 %><span style="color:red;"><%= @new_work_orders.count %></span><% else %><%= @new_work_orders.count %><% end %>)</a></li>
@@ -18,16 +22,16 @@
   <div id="index_table">
     <div class="tabcontainer">
 
-      <div id="tab1" class="tabcontent" style="padding:10px 10px 10px 10px">
+      <div id="tab1" class="tabcontent">
         <%= render(:partial => 'work_orders/new_wo_tab') %>
       </div>
-      <div id="tab2" class="tabcontent" style="padding:10px 10px 10px 10px">
+      <div id="tab2" class="tabcontent" >
         <%= render(:partial => 'work_orders/assigned_wo_tab') %>
       </div>
-      <div id="tab3" class="tabcontent" style="padding:10px 10px 10px 10px">
+      <div id="tab3" class="tabcontent">
         <%= render(:partial => 'work_orders/on_hold_wo_tab') %>
       </div>
-      <div id="tab4" class="tabcontent" style="padding:10px 10px 10px 10px">
+      <div id="tab4" class="tabcontent">
         <%= render(:partial => 'work_orders/closed_wo_tab') %>
       </div>
     </div>

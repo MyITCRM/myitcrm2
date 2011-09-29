@@ -45,6 +45,7 @@ MyITCRM2::Application.routes.draw do
   match 'work_order/:id/close' => 'work_orders#close', :as => :close
 #  map.assign_workorder "work_order/:id/assign", :controller => "work_orders", :action => "assign"
   match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign
+  match 'settings/edit' => 'settings#edit', :as => :edit
 
 
 #  map.root :register

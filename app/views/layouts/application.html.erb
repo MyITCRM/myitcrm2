@@ -37,11 +37,6 @@ $(function() {
   </script>
 </head>
 <body>
-
-<!--<div id="header">-->
-  <!--<%= image_tag 'logo.png', :height => 60 %>-->
-<!--</div>-->
-
 <div id="menu">
   <%= render_navigation(:expand_all => true) %>
 
@@ -59,9 +54,14 @@ $(function() {
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         </p>
     <%- end -%>
+
     <div id="page_title">
-      <h1><%= @title || "" %></h1>
+      <% if logged_in?  %><h1><%= @title || "" %></h1>
+      <% else %>
+      &nbsp;
+      <% end %>
     </div>
+
     <%= yield %>
   </div>
 </div>
