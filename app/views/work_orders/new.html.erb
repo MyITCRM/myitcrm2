@@ -1,10 +1,12 @@
 <!--mytodo - heaps to fix up here....add tabs and all fields required.-->
-<div id="top_float_left">
-  <h1><%= t'global.quick_links' %></h1>
-  <%= link_to(image_tag("exit.png", :title=> (t "global.exit"), :align => "bottom", :hspace => "2"), work_orders_path) %><%= link_to (t "global.exit"), work_orders_path %>
-  <%= link_to(image_tag("back.png", :title=> (t "global.back"), :align => "bottom", :hspace => "2"), :back) %><%= link_to (t "global.back"), :back %>
+<div class="sidebar_left">
+  <%= render 'layouts/quick_links_sidebar' %>
+  <ul>
+    <li class="exit"><%= link_to (t "global.exit"), work_orders_path %></li>
+    <li class="back"><%= link_to (t "global.back"), :back %></li>
+      </ul>
 </div>
-<div class="centered">
+<div class="center_col">
   <div id="ddtabs1" class="basictab">
     <ul>
       <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="sc1"><%= (t "workorder.tab_menu_basic") %></a></li>
@@ -25,7 +27,7 @@
           <div class="label select required">
             <%= (t "workorder.details") %>
           </div>
-          <div class="centered">
+          <div class="simple_form input textarea">
             <%= ckeditor_tag 'work_order[description]', @work_order.description, :class => 'simple_form textarea ckeditor' %>
           </div>
           <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>

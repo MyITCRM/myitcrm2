@@ -5,22 +5,22 @@ body {width:100%;margin:0.9px;padding:0;border:0;vertical-align:baseline; backgr
 #conatiner a {color: #0000FF;}
 #yield {margin: 0 auto;}
 #yield h1 {display:inline-block;padding-right:20px;font-size:16px;color: #999999;}
-#center_col {margin-left:20em;margin-right:20em; padding:15px 15px 15px 15px;}
+.center_col {margin-left:20em;margin-right:20em; padding:0 15px 15px 15px;}
 #user_info_menu { font-size:10px; float:right;color: white;padding-top: 6px;padding-right: 13px;}
-#sidebar_left, #sidebar_right {border:1px solid silver;width:17em;padding:5px;line-height:1.5em;height:auto;display:block;}
-#sidebar_left {float:left;}
-#sidebar_left h1 {display:block;font-size:12px;padding-right:0;text-align:center;font-weight:bold;}
-#sidebar_left a {color:#000000;text-decoration:none}
-#sidebar_left ul {margin-left:-40px;display:list-item;list-style-type:none;}
-#sidebar_left li {font-size:1.2em;line-height:1.5em;}
-#sidebar_left li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
-#sidebar_right {float:right;}
-#sidebar_right h1 {display:block;font-size:12px;padding-right:0;text-align:center;font-weight:bold;}
-#sidebar_right a {color:#000000;text-decoration:none}
-#sidebar_right ul {margin-left:-40px;display:list-item;list-style-type:none;}
-#sidebar_right li {font-size:1.2em;line-height:1.5em;}
-#sidebar_right li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
-#two_columns {width:50%;}
+.sidebar_left, .sidebar_right {border:1px solid silver;width:17em;padding:5px;line-height:1.5em;height:auto;display:block;}
+.sidebar_left {float:left;}
+.sidebar_left h1 {display:block;font-size:12px;padding-right:0;text-align:center;font-weight:bold;}
+.sidebar_left a {color:#000000;text-decoration:none}
+.sidebar_left ul {margin-left:-40px;display:list-item;list-style-type:none;}
+.sidebar_left li {font-size:1.2em;line-height:1.5em;}
+.sidebar_left li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
+.sidebar_right {float:right;}
+.sidebar_right h1 {display:block;font-size:12px;padding-right:0;text-align:center;font-weight:bold;}
+.sidebar_right a {color:#000000;text-decoration:none}
+.sidebar_right ul {margin-left:-40px;display:list-item;list-style-type:none;}
+.sidebar_right li {font-size:1.2em;line-height:1.5em;}
+.sidebar_right li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
+.two_columns {width:50%;}
 .first {margin-right:15px;padding-right:15px;}
 .float_right{float:right;display:inline-block;}
 .float_left{float:left;display:inline-block;}
@@ -37,12 +37,14 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .text_left{text-align:left;}
 .text_right{text-align:right;}
 .light_fill {background:#ceeeda}
-.create, .delete, .exit, .home, .back {padding: 4px 30px 4px 25px;}
+.create, .delete, .exit, .home, .back, .edit,.print {padding: 4px 30px 4px 25px;}
 .create {background: url(/images/add.png) 8px 5px no-repeat;}
 .delete {background: url(/images/delete.png) 8px 5px no-repeat;}
 .exit {background: url(/images/exit.png) 8px 5px no-repeat;}
 .home {background: url(/images/home.gif) 8px 5px no-repeat;}
 .back {background: url(/images/back.png) 8px 5px no-repeat;}
+.edit {background: url(/images/edit.png) 8px 5px no-repeat;}
+.print {background: url(/images/printer.png) 8px 5px no-repeat;}
 .border {background-color:silver; -moz-border-radius:10px;-moz-box-shadow:#6495ed;-webkit-border-radius:10px;border-radius:10px; padding:5px}
 #user_info_menu a {color: white;}
 

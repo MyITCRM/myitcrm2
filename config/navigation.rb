@@ -26,7 +26,6 @@ SimpleNavigation::Configuration.run do |navigation|
         primary.item :logout, 'Logout', logout_path
     else
       primary.item :register, 'Register', register_path, :highlights_on => /\/register/
-      primary.item :login, 'Login', login_path, :highlights_on => /\/login/
     end
   end
   end
