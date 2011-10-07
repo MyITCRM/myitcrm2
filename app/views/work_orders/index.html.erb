@@ -1,7 +1,7 @@
-<div class="sidebar_left">
-  <%= render 'layouts/quick_links_sidebar' %>
-
-  <ul>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
     <% if current_user.client == true %>
         <li class="create"><%= link_to [t "workorder.t_add_new"], :controller => "work_orders", :action => "new"%></li>
      <% else %>
@@ -9,8 +9,11 @@
     <% end %>
     <li class="back"><%= link_to (t "global.back"), :back %></li>
   </ul>
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
 </div>
-<div class="center_col">
+
+<div id="center_col">
   <div id="ddtabs1" class="basictab">
     <ul>
       <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if @new_work_orders.count > 0 %><span style="color:red;"><%= @new_work_orders.count %></span><% else %><%= @new_work_orders.count %><% end %>)</a></li>

@@ -1,7 +1,7 @@
 <% if logged_in? %>
     <% if can? :manage, @users %>
         <div id="sidebar_left">
-          <%= render 'layouts/quick_links_sidebar' %>
+          <%= render 'layouts/left_sidebar_modules' %>
           <ul>
             <li class="create">
                <%= link_to([t "global.new"], new_user_path) %>

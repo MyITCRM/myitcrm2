@@ -1,5 +1,6 @@
 GEM
   remote: http://rubygems.org/
+  remote: http://github.com/
   specs:
     Ascii85 (1.0.1)
     abstract (1.0.0)

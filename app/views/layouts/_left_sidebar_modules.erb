@@ -1,0 +1,25 @@
+<div id="sidebar_left">
+  <% if not logged_in? %>
+  <%= module_header(t "global.login") %>
+  <div class="module">
+
+   <%= simple_form_for(@user_session, :url => {:action => "create" }) do |f| %>
+    <%= f.error_notification %>
+      <%= f.input :username, :placeholder => 'Username', :input_html => {:size => 28 } %>
+      <%= f.input :password, :placeholder => 'Password', :input_html => {:size => 28 } %>
+      <div class="center">
+        <%= f.submit t 'global.login'  %>
+      </div>
+  <% end %>
+      </div>
+   <% end %>
+  <% if logged_in? %>
+  <%= module_header(t "global.logout") %>
+  <div class="module">
+
+      <div class="center">
+        <%=  button_to "Logout", :controller => 'user_sessions', :action => :destroy %>
+      </div>
+  </div>
+   <% end %>
+</div>

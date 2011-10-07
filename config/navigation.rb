@@ -10,7 +10,7 @@ SimpleNavigation::Configuration.run do |navigation|
         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
           sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           end
-       primary.item :users, [t "naviagtion.users"], users_path  do |sub_nav|
+       primary.item :users, 'Users', users_path, :highlights_on => /\/users/  do |sub_nav|
          sub_nav.item :users, 'New User', new_user_path
        end
     if can? :manage, User

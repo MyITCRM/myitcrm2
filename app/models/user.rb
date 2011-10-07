@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role, :updated_by, :created_by, :password_confirmation, :mobile, :fax, :password, :employee, :client, :workorder_assignability
 
 # Validations for Users
-  validates_presence_of :name, :address, :city, :username, :email, :phone, :state, :zip
+  validates_presence_of :name, :username, :email, :phone
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_length_of :password, :password_confirmation, :minimum => 8
   before_save :new_user

@@ -465,6 +465,7 @@ en_AU:
       user_type_url: "Users_Role"
       contact_info: "Contact Information"
       permissions: "Permissions"
+      attributes: "Attributes"
   product:
     taxable: "Is Taxable?"
     new: "Create New Product"

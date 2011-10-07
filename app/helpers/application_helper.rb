@@ -18,6 +18,16 @@ module ApplicationHelper
         text_area_tag(name, content, options)
       end
 
+
+   private
+   def module_header(title = nil)
+     if title.present?
+       title
+       else
+       title = [t "global.quick_links"]
+     end
+     "<div class='module_header text_shadow'>#{title}</div>".html_safe
+   end
 end
 
 
