@@ -5,6 +5,7 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 #conatiner a {color: #0000FF;}
 #yield {margin: 0 auto;}
 #center_col {margin-left:18em;margin-right:18em; padding:0 15px 15px 15px;}
+.no_right_sidebar {margin-right:0 !important}
 #user_info_menu { font-size:10px; float:right;color: white;padding-top: 6px;padding-right: 13px;}
 #sidebar_left, #sidebar_right {width:17em;line-height:1.5em;height:auto;display:block;}
 #sidebar_left {float:left;}
@@ -13,10 +14,12 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 .first {margin-right:15px;padding-right:15px;}
 .float_right{float:right;display:inline-block;}
 .float_left{float:left;display:inline-block;}
+.ckeditor_layout {margin-left:27% !important;}
 
 
 /*Typography*/
 body {font:13px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; }
+.content {background-color:#ffffff;padding:5px;border-radius:10px;}
 #container, #footer, body {background:url(/images/content.jpg) top left repeat;}
 #container {text-align:left;}
 #page_title {margin-left:160px;margin-right:160px;text-align:center;}
@@ -35,16 +38,19 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
     .module li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
 
 .clear {clear:both;height: 0;overflow: hidden;margin-bottom:0.5em;padding-top:20px;}
-.hide {display:none;}
+.hide {display:none; !important}
 .text_left{text-align:left;}
 .text_right{text-align:right;}
 .light_fill {background:#ceeeda}
-.create, .delete, .exit, .home, .back {padding: 4px 30px 4px 25px;}
+.create, .delete, .exit, .home, .back, .edit, .print, .close {padding: 4px 30px 4px 25px;}
 .create {background: url(/images/add.png) 8px 5px no-repeat;}
 .delete {background: url(/images/delete.png) 8px 5px no-repeat;}
 .exit {background: url(/images/exit.png) 8px 5px no-repeat;}
+.edit {background: url(/images/edit.png) 8px 5px no-repeat;}
 .home {background: url(/images/home.gif) 8px 5px no-repeat;}
 .back {background: url(/images/back.png) 8px 5px no-repeat;}
+.print {background: url(/images/printer.png) 8px 5px no-repeat;}
+.close {background: url(/images/tick.png) 8px 5px no-repeat;}
 .border {background-color:silver; -moz-border-radius:10px;-moz-box-shadow:#6495ed;-webkit-border-radius:10px;border-radius:10px; padding:5px}
 .text_shadow {text-shadow: 0 1px 2px #333;}
 #user_info_menu a {color: white;}
@@ -63,7 +69,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
     #menu li{float: left;position: relative;display: inline-block;z-index: 2;}
     #menu ul li a{display: inline-block;background:black;color: white; padding: 8px 10px;text-decoration:none;border-bottom:2px solid black;}
     #menu ul li ul li a{width:160px;}/*width of sub menus*/
-    #menu ul li:hover ul {visibility: visible;-moz-border-radius:10px;-webkit-border-radius:10px}
+    #menu ul li:hover ul {visibility: visible;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
     #menu ul ul {position: absolute; visibility: hidden }
     #menu ul li a.selected {background:#333333;border-bottom:2px solid red}
     #menu li a.selected:hover{color:white;}
@@ -76,7 +82,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 input.title {font-size:1.5em;}
 .simple_form {margin-bottom:0;}
     .simple_form div.input, div.textarea, div.textile {font-size:100%; margin-bottom: 5px;width:100%;clear:left; display:inline-block;}
-    .simple_form label {float:left;text-align:right; margin: 2px 10px;display:block;width:auto;min-width:33%}
+    .simple_form label {float:left;text-align:right; margin: 2px 10px;display:block;width:auto;min-width:25%}
     .simple_form input[type='submit'] {text-transform:capitalize;display:inline;}
     .simple_form div.boolean {text-transform:none;}
     .simple_form button {position:relative;}
@@ -99,7 +105,7 @@ input.title {font-size:1.5em;}
 .basictab ul { margin: 0; padding: 13px 0 5px 4px; font-weight: bold; list-style-type: none; text-align: left;}
 .basictab ul li{position: relative; display: inline;}
 .basictab li a {border-radius:7px 7px 0 0; }
-.basictab li a {text-decoration: none;padding: 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; }
+.basictab li a {text-decoration: none;padding:6px 6px 7px 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; }
 .basictab li a:visited {}
 .basictab li a:hover, .basictab li a.current { background-color:#fffefe; color: black;}
 .basictab li a:active {color: black;}
@@ -178,6 +184,65 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 	#button { padding: .5em 1em; text-decoration: none; }
 	#effect { width: 100%;  padding: 0.4em; position: relative; }
 	#effect h3 { margin: 0; padding: 0.4em; text-align: center; }
+
+
+/* CKeditor */
+input, textarea, select, option, optgroup, button, td, th {	font-size: 100%; }
+pre,code,kbd,samp,tt{font-family: monospace,monospace;font-size: 1em;}
+h1.samples { color:#0782C1; font-size:200%; font-weight:normal; margin: 0; padding: 0;}
+h2.samples { color:#000000; font-size:130%; margin: 0; padding: 0;}
+p, blockquote, address, form, pre, dl, h1.samples, h2.samples {margin-bottom:15px;}
+ul.samples {margin-bottom:15px;}
+.clear {clear:both;}
+fieldset{margin: 0;	padding: 10px;}
+a.samples {color:#189DE1;text-decoration:none;}
+a.samples:hover {text-decoration: underline;}
+form { margin: 0; padding: 0;}
+pre.samples{background-color: #F7F7F7;border: 1px solid #D7D7D7;overflow: auto;	padding: 0.25em;}
+#outputSample{width: 100%;table-layout: fixed;}
+#outputSample thead th{color: #dddddd;background-color: #999999;padding: 4px;white-space: nowrap;}
+#outputSample tbody th {vertical-align: top;text-align: left;}
+#outputSample pre{margin: 0;padding: 0;white-space: pre; /* CSS2 */	white-space: -moz-pre-wrap; /* Mozilla*/white-space: -o-pre-wrap; /* Opera 7 */	white-space: pre-wrap; /* CSS 2.1 */white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */word-wrap: break-word; /* IE */}
+.description {border: 1px dotted #B7B7B7;margin-bottom: 10px;padding: 10px 10px 0;}
+label {display: block;margin-bottom:6px;}
+.cke_dialog label{display: inline;margin-bottom: auto;}
+
+/*body, input, textarea {*/
+	/*color: #333333;*/
+	/*font-family: Arial, Helvetica, sans-serif;*/
+/*}*/
+
+/*body {*/
+	/*font-size: 75%;*/
+/*}*/
+
+
+/*#alerts*/
+/*{*/
+	/*color: Red;*/
+/*}*/
+
+/*#footer hr*/
+/*{*/
+	/*margin: 10px 0 15px 0;*/
+	/*height: 1px;*/
+	/*border: solid 1px gray;*/
+	/*border-bottom: none;*/
+/*}*/
+
+/*#footer p*/
+/*{*/
+	/*margin: 0 10px 10px 10px;*/
+	/*float: left;*/
+/*}*/
+
+/*#footer #copy*/
+/*{*/
+	/*float: right;*/
+/*}*/
+
+
+
 
 
 /*Footer Styling*/

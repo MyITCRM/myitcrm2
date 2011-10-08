@@ -15,7 +15,7 @@ module ApplicationHelper
       #   #    </textarea>
       #
       def ckeditor_tag(name, content = nil, options = {})
-        text_area_tag(name, content, options)
+        "<div class='ckeditor_layout'>#{text_area_tag(name, content, options)}</div>".html_safe
       end
 
 

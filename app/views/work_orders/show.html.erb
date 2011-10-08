@@ -1,17 +1,19 @@
 <div id="sidebar_left">
   <%= module_header %>
   <div class="module">
-    <% if can? :destroy, WorkOrder %>
-<%= link_to (t "global.delete"), work_order_path, :class => "delete", :confirm => 'Are you sure?', :method => :delete %>
-<% end %>
-<% if can? :edit, WorkOrder %>
-<%= link_to (t "global.edit"), edit_work_order_path, :class => "edit" %>
-<% end %>
- <%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf'), :class => "printer" %>
- <%= link_to (t "global.exit"), work_orders_path, :class => "exit" %>
+    <ul>
+       <% if can? :destroy, WorkOrder %>
+            <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+       <% end %>
+       <% if can? :edit, WorkOrder %>
+            <li class="edit"><%= link_to (t "global.edit"), edit_work_order_path %></li>
+       <% end %>
+      <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
+      <li class="exit"><%= link_to (t "global.exit"), work_orders_path %></li>
+    </ul>
 </div>
   </div>
-<div id="center_col">
+<div id="center_col" class="content no_right_sidebar">
   <table>
     <tr>
       <td class="tbl_labels" >

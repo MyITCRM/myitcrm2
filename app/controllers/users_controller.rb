@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   def new
     @title = t "user.t_new_user"
     @user = User.new
+    @clients = User.where('client = 1').where('active = 1').order(:name)
   end
 
   def index

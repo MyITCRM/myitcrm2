@@ -1,12 +1,12 @@
-﻿/*
-Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or http://ckeditor.com/license
-*/
-
-CKEDITOR.editorConfig = function( config )
+﻿CKEDITOR.editorConfig = function( config )
 {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-//	config.uiColor = '#AADC6E';
-    config.toolbar = [['Bold', 'Italic', 'Underline', 'Link']];
+	config.toolbar = 'MyToolbar';
+
+	config.toolbar_MyToolbar =
+	[
+		{ name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat','-','Undo','Redo','-'
+            ,'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote', '-','Link','Unlink','Anchor','-','Maximize',
+            '-','Cut','Copy','Paste','PasteText','PasteFromWord','-','Scayt','-','Image','Table','HorizontalRule','NewPage','Preview' ] },
+        { name: 'styles', items : [ 'Styles','Format' ] }
+	];
 };

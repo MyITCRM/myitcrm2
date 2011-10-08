@@ -73,7 +73,7 @@ en_AU:
     or: "or"
     confirm: "Confirm"
     actions: "Actions"
-    close: "Close"
+    close: "Mark as Completed"
     my_details: "Edit My Profile"
     days: "Day(s)"
     months: "Month(s)"
@@ -100,6 +100,7 @@ en_AU:
     special: "Office Use"
     filters: "Filters"
     quick_links: "Quick Links"
+    clients: "Clients"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
