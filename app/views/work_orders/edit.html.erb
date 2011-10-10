@@ -25,20 +25,13 @@
         <% if current_user.workorder_assignability == true then %>
             <%= f.association :status, :label => (t "workorder.status"), :include_blank => false %>
             <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-            <%= f.input :assigned_to_username, :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name %>
+            <%= f.input :assigned_to_username, :label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name %>
         <% else %>
             <%= f.association :status, :label => (t "workorder.status"), :disabled => true, :include_blank => false %>
             <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-            <%= f.input :assigned_to_username, :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
+            <%= f.input :assigned_to_username,:label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
         <% end %>
-
-        <div class="simple_form input select optional">
-          <label class="simple_form select optional"><%= t "workorder.details" %></label>
-
-           <%= ckeditor_tag 'work_order[description]', @work_order.description, :class => 'ckeditor' %>
-
-        </div>
-
+        <%= f.input :description, :label => (t "workorder.details"), :input_html => {:cols => 60} %>
         <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
         <div class="clear"></div>
@@ -55,7 +48,7 @@
           <%= ckeditor_tag 'work_order[resolution]', @work_order.resolution, :class => 'ckeditor' %>
         </div>
         <div class="clear"></div>
-        <div class="span-15">
+        <div>
         <%= f.input :closed, :as => :radio, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
         </div>
 

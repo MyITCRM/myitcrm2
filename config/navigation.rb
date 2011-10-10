@@ -10,7 +10,7 @@ SimpleNavigation::Configuration.run do |navigation|
         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
           sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           end
-       primary.item :users, 'Users', users_path, :highlights_on => /\/users/  do |sub_nav|
+       primary.item :users, 'Users', users_path, :highlights_on => /\/users/ || /\/profile/   do |sub_nav|
          sub_nav.item :users, 'New User', new_user_path
        end
     if can? :manage, User
@@ -22,8 +22,6 @@ SimpleNavigation::Configuration.run do |navigation|
           end
           primary.item :settings, 'Settings', settings_path, :highlights_on => /\/settings/
     end
-       # primary.item :profile, 'My Details', my_account_url(:id => current_user)
-        primary.item :logout, 'Logout', logout_path
     else
       primary.item :register, 'Register', register_path, :highlights_on => /\/register/
     end

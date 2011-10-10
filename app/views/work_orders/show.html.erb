@@ -14,79 +14,33 @@
 </div>
   </div>
 <div id="center_col" class="content no_right_sidebar">
-  <table>
-    <tr>
-      <td class="tbl_labels" >
-        <strong><%= t "workorder.subject" %>:</strong>
-      </td>
-      <td class="tbl_fields">
-       <%= @work_order.subject %>
-      </td>
-  </tr>
-  <tr>
-      <td class="tbl_labels" >
-        <strong><%= t "workorder.assigned_to" %>:</strong>
-      </td>
-    <td class="tbl_fields">
-    <% if current_user.workorder_assignability == true  then %>
-     <%= render(:partial => "work_orders/assign") %>
-    <% else %>
-     <% if @work_order.assigned_to_username.blank? then %>
-              <%= t "workorder.not_assigned_message" %>
-     <% else %>
-     <%= @work_order.assigned_to_username %>
-    <% end %>
-    <% end %>
-    </td>
-  </tr>  
-    <tr>
-          <td class="tbl_labels" >
-            <strong><%= t "workorder.priority" %>:</strong>
-          </td>
-          <td class="tbl_fields priority_<%=@work_order.priority_list.id %>">
-           <%= @work_order.priority_list.name %>
-          </td>
-      </tr>
-      <tr>
-          <td class="tbl_labels" >
-            <strong><%= t "workorder.status" %>:</strong>
-          </td>
-          <td class="tbl_fields">
-           <%=h @work_order.status.name %>
-          </td>
-      </tr>
-    <tr>
-      <td align="right" valign="top">
-        <strong><%= t "workorder.details" %>:</strong>
-      </td>
-      <td class="tbl_textarea">
-        <%=raw @work_order.description %>
-      </td>
-  </tr>
-  </table>
-  <fieldset>
-    <legend class="label"><label><%= t "global.activity_log" %></label></legend>
-  <table >
-    <tr>
-      <td class="tbl_labels" >
-        <strong><%= t "global.created_at" %>:</strong>
-      </td>
-      <td class="tbl_fields" >
-        <%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.created_by %>.
-      </td>
-    </tr>
+  <div id="show_layout">
+  <label><%= t "workorder.subject" %>:</label><div class="field"> <%= @work_order.subject  %></div>
+  <% if current_user.workorder_assignability == true %>
+     <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><%= render(:partial => "work_orders/assign") %>
+  <% else %>
+   <% if @work_order.assigned_to_username.blank? %>
+     <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= t "workorder.not_assigned_message" %></div>
+   <% else %>
+     <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= @work_order.assigned_to_username %> </div>
+   <% end %>
+  <% end %>
+    <label><%= t "workorder.priority" %>:</label><div class="field "><span class="priority_<%=@work_order.priority_list.id %>"><%= @work_order.priority_list.name %></span></div>
+    <label><%= t "workorder.status" %>:</label><div class="field"><%= @work_order.status.name %></div>
+    <div>
+      <label><%= t "workorder.details" %>:</label>
+      <div class="html_area"><%= simple_format(@work_order.description) %> </div>
+    </div>
+
+  <fieldset style="text-align:center;">
+    <legend><%= t "global.activity_log" %></legend>
+
+        <strong><%= t "global.created_at" %>:</strong><%= time_ago_in_words(@work_order.created_at) %> <%= t "global.ago" %> (<%= localize @work_order.created_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.created_by %>.
+
     <% if @work_order.updated_at == nil %>
         <% else %>
-    <tr>
-      <td class="tbl_labels">
-        <strong><%= t "global.updated_at" %>:</strong>
-      </td>
-      <td class="tbl_fields" >
-        <%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.edited_by %>.
-      </td>
-    </tr>
-        <% end %>
-  </table>
-    <br>
+        | <strong><%= t "global.updated_at" %>:</strong><%= time_ago_in_words(@work_order.updated_at) %> <%= t "global.ago" %> (<%= localize @work_order.updated_at, :format => :short  %>) <%= t "global.by" %> <%= @work_order.edited_by %>.
+<% end %>
   </fieldset>
+</div>
 </div>

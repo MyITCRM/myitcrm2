@@ -6,7 +6,7 @@ class WorkOrder < ActiveRecord::Base
 # Validate Input information
   validates_presence_of :subject, :description, :user_id
 
-  attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by
+  attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by, :status_id
 
   before_create :workorder_created
   before_update :workorder_updated, :change_assignment
@@ -62,3 +62,4 @@ class WorkOrder < ActiveRecord::Base
     end
   end
 end
+

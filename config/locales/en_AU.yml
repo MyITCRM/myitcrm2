@@ -100,7 +100,8 @@ en_AU:
     special: "Office Use"
     filters: "Filters"
     quick_links: "Quick Links"
-    clients: "Clients"
+    clients: "Client's"
+    client: "Client's Name"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -495,7 +496,7 @@ en_AU:
     t_log: "Work Order Log"
     t_viewing_workorder_details: "Viewing Work Order Details"
     t_edit: "Editing Work Order"
-    closed: "Is Closed?"
+    closed: "Re-Open Work Order ?"
     hint:
       re_open: "Use this to re-open the Works Order"
     message_close_confirmation: "Are you sure you want to close this Work Order?"

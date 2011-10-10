@@ -26,8 +26,8 @@
               <% if params[:client_id].present?  %>
               <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:client_id] } %>
               <% else %>
-                  <div>
-                    <label>Test</label>
+                  <div >
+                    <label>* <%= t "global.client" %></label>
               <%= f.collection_select(:user_id, User.where("client = ?",true),:id, :name, :include_blank => true)%>
                   </div>
 
@@ -35,13 +35,7 @@
           <% end %>
           <%= f.input :subject, :label => (t "workorder.subject"), :input_html => { :size => 60 } %>
           <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-
-
-
-
-            <label><%= (t "workorder.details") %></label>
-            <%= ckeditor_tag 'work_order[description]', @work_order.description, :class => 'ckeditor' %>
-
+          <%= f.input :description, :label => (t "workorder.details") %>
           <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
           <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
           <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now } %>

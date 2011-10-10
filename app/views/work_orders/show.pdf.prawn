@@ -17,6 +17,13 @@
 #:font_size = The font size for the cell text.
 #:font_style = The font style for the cell text.
 
+# Declare local variables here first.
+# Check if there is a user assigned and display it if there is, otherwise display "not assigned message"
+if @work_order.assigned_to_username.blank?
+    assignee = t "workorder.not_assigned_message"
+else
+    assignee = @work_order.assigned_to_username
+end
 # Logo
 pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
 # Business information
@@ -40,82 +47,33 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
 
   end
 
-# Lets move down the pdf 10 points before next object
+# Lets move down the pdf xx points before next object
  pdf.move_down(15)
 
 # Work Order details start
 
-pdf.text "#{t "workorder.pdf.t_workorder"} # #{@work_order.id}", :size => 20, :align => :center
+pdf.text "#{t "workorder.pdf.t_workorder"} : #{@work_order.id}", :size => 26, :align => :center
+#pdf.move_down(5)
+pdf.text "#{t "workorder.status"}: #{@work_order.status.name} | #{t "workorder.assigned_to"} : #{assignee}",:size => 9, :align => :center
+
+pdf.move_down(5)
 # Subject Block >>BOF
 
-# Check if there is a user assigned and display it if there is, otherwise display "not assigned message"
-if @work_order.assigned_to_username.blank?
-    assignee = t "workorder.not_assigned_message"
-else
-    assignee = @work_order.assigned_to_username
-end
+
 # Left Column
-pdf.bounding_box([10,630], :width => 100, :font_size => 11, :align => :right, :padding => 3) do
-  pdf.stroke_bounds
-  pdf.text "#{t "workorder.status"}:"
-  pdf.text "#{@work_order.status.name}"
-  pdf.text "#{t "workorder.assigned_to"}:"
-  pdf.text "#{assignee}"
+pdf.bounding_box([10,600], :width => 90) do
 
+  pdf.text "#{t "global.subject"}:" , :align => :right, :size => 9
+  pdf.text "#{t "workorder.details"}:", :align => :right, :size => 9
 end
+pdf.move_down(15)
 # Center Column
-pdf.bounding_box([120,630], :width => 400, :font_size => 11, :align => :right, :padding => 3) do
-  pdf.stroke_bounds
-  pdf.text "#{t "global.subject"}:"
-  pdf.text "#{@work_order.subject}"
-  pdf.text "#{t "workorder.details"}:"
-  pdf.text sanitize(@work_order.description)
+
+pdf.bounding_box([105,600], :width => 300,  :padding => 3) do
+#  pdf.stroke_bounds
+  pdf.text @work_order.subject, :size => 9
+  pdf.text @work_order.description, :size => 9
 end
-## Status Block BOF
-data = [ ["this is not quite as long as the others",
-            "here we have a line that is long but with smaller words",
-            "this is so very looooooooooooooooooooooooooooooong"] ]
 
-  pdf.text "Prawn trying to guess the column widths"
-  pdf.table(data)
-  pdf.move_down 20
-
-  pdf.text "Manually setting all the column widths"
-  pdf.table(data, :column_widths => [100, 200, 240])
-  pdf.move_down 20
-
-  pdf.text "Setting only the last column width"
-  pdf.table(data, :column_widths => {2 => 240})
-
-pdf.cell :content  => "#{t "workorder.status"}:", :width => 70, :height => 17, :align => :right, :padding => 3
-pdf.cell :content  => "#{t "workorder.status"}:", :width => 70, :height => 17, :align => :right, :padding => 3
-
-#pdf.cell [80,586],
-#        :width => 420,
-#        :height => 17,
-#        :font_size => 11,
-#        :border_style => :all,
-#        :text  => "#{@work_order.status.name}",
-#        :align => :left,
-#        :padding => 3
-#pdf.move_down(5)
-## Status Block EOF
-#pdf.cell [10,564],
-#        :width => 70,
-#        :height => 17,
-#        :font_size => 11,
-#        :border_style => :none,
-#        :text  => "#{t "global.description"}:",
-#        :align => :right,
-#        :padding => 3
-#text = plaintext_for(@work_order.description)
-#pdf.cell [80,564],
-#        :width => 420,
-#        :height => 200,
-#        :font_size => 11,
-#        :border_style => :all,
-#        :text  => "#{text}",
-#        :align => :left,
-#        :padding => 3
 # myTODO - Add more cells, eg Resolution, Notes, Scheduled Time(s), Actual Times, Travel, Signatures, logging info....printed at, etc
 

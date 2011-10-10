@@ -28,6 +28,8 @@ a img {border: none;}
 h1 {font-size:25px;color:#ff9900;}
 h2 {font:15px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; ;color: #fffefe;}
 h3 {}
+h4 {}
+h5 {}
 h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .module_header {text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:20px;padding:5px;color:#fffefe;background-color:#707070;border-radius:10px 10px 0 0;border:1px 1px 0 1px solid silver;}
 .module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 5px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
@@ -51,13 +53,13 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .back {background: url(/images/back.png) 8px 5px no-repeat;}
 .print {background: url(/images/printer.png) 8px 5px no-repeat;}
 .close {background: url(/images/tick.png) 8px 5px no-repeat;}
-.border {background-color:silver; -moz-border-radius:10px;-moz-box-shadow:#6495ed;-webkit-border-radius:10px;border-radius:10px; padding:5px}
+.border {background-color:silver; -moz-box-shadow:#6495ed;border-radius:10px; padding:5px;}
 .text_shadow {text-shadow: 0 1px 2px #333;}
 #user_info_menu a {color: white;}
 
 /*Flash Notices*/
 #flash_notice, #flash_alert {padding: 4px 30px 4px 30px;margin:160px 10px 10px 10px 0;display:block;}
-#flash_notice {background: url(/images/tick.png) 8px 5px no-repeat #CFC;border: solid 2px #6C6;font-weight:bold;}
+#flash_notice {background: url(/images/tick.png) 8px 5px no-repeat #CFC;border: solid 2px #6C6;}
 #flash_alert {background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
 
 
@@ -69,7 +71,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
     #menu li{float: left;position: relative;display: inline-block;z-index: 2;}
     #menu ul li a{display: inline-block;background:black;color: white; padding: 8px 10px;text-decoration:none;border-bottom:2px solid black;}
     #menu ul li ul li a{width:160px;}/*width of sub menus*/
-    #menu ul li:hover ul {visibility: visible;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
+    #menu ul li:hover ul {visibility: visible;border-radius:10px;}
     #menu ul ul {position: absolute; visibility: hidden }
     #menu ul li a.selected {background:#333333;border-bottom:2px solid red}
     #menu li a.selected:hover{color:white;}
@@ -80,32 +82,33 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 
 /*SimpleForm Styles*/
 input.title {font-size:1.5em;}
-.simple_form {margin-bottom:0;}
+.simple_form {margin-bottom:0;line-height:2.5em;}
     .simple_form div.input, div.textarea, div.textile {font-size:100%; margin-bottom: 5px;width:100%;clear:left; display:inline-block;}
-    .simple_form label {float:left;text-align:right; margin: 2px 10px;display:block;width:auto;min-width:25%}
+    .simple_form label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;width:auto;min-width:25%;vertical-align:top;}
     .simple_form input[type='submit'] {text-transform:capitalize;display:inline;}
     .simple_form div.boolean {text-transform:none;}
     .simple_form button {position:relative;}
     .simple_form label.collection_radio {margin-right: 10px;vertical-align:-2px; margin-left:2px; display:table-row;text-align:left;float:none;width:0;}
     .error_notification {padding: 4px 30px 4px 30px;background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
     .simple_form .error {clear:left;color: #ff3333;display:block;margin-left:33%;font-size:10px;padding-left:20px;font-style:italic;font-weight:bold;text-transform:capitalize;}
-    .simple_form .hint {clear: left;margin-left: 33%;padding-left:20px;color: #555;display: block;font-style: italic;}
+    .simple_form .hint {clear: left;margin-left: 27%;padding-left:20px;color: #555;display: block;font-style: italic;}
     input.radio { vertical-align: -3px; }
     input.check_boxes { margin-left: 3px; vertical-align: -3px;}
-    label.collection_check_boxes { margin: 0; vertical-align: -2px; margin-left:2px;}
+    label.collection_check_boxes { margin:2px 0; vertical-align: -2px;}
     input.required, input.optional, textarea.optional, textarea.required, {display:block;}
     input.required, textarea.required, .select_required {border: 2px solid #8b0000; background-color:#ffffcc;font-size:inherit;}
+    input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-size:inherit;}
     .select_required {padding:0.4em;}
 
 
 /*Form Tab CSS Styling*/
 .tabcontainer {background-color:#fffefe;border-radius:0 0 10px 10px;border:none}
-.tabcontent {display: none;overflow:hidden;padding:10px 10px 10px 10px}
+.tabcontent {display: none;overflow:hidden;padding:10px 10px 10px 10px;}
 .basictab {background-color:#bfbebe;border-radius:10px 10px 0 0}
 .basictab ul { margin: 0; padding: 13px 0 5px 4px; font-weight: bold; list-style-type: none; text-align: left;}
 .basictab ul li{position: relative; display: inline;}
 .basictab li a {border-radius:7px 7px 0 0; }
-.basictab li a {text-decoration: none;padding:6px 6px 7px 6px;border-bottom: none;background-color: #4B7399; color: #ffffff; }
+.basictab li a {text-decoration: none;padding:6px 6px 7px 6px;background-color: #4B7399; color: #ffffff; }
 .basictab li a:visited {}
 .basictab li a:hover, .basictab li a.current { background-color:#fffefe; color: black;}
 .basictab li a:active {color: black;}
@@ -136,7 +139,7 @@ input.title {font-size:1.5em;}
 .even td {background-color: #E3E6FF;}
 .odd td {background-color: #ffffff;}
 .priority_main_1 td {background-color: #ccffcc;}
-.priority_main_1 tr :hover {background-color: #99ff99;}
+.priority_main_1 tr:hover {background-color: #99ff99;}
 .priority_main_2 td {background-color: #ffff99;}
 .priority_main_3 td {background-color: #ffcc00;}
 .priority_main_4 td {background-color: #ff9999; font-weight:bold;}
@@ -144,14 +147,19 @@ input.title {font-size:1.5em;}
 
 
 /*Display Nice Table Labels and Fields and Field sets Headers*/
+#show_layout {line-height:2.5em; }
+#show_layout label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;width:auto;min-width:25%;font-weight:bold;}
+#show_layout div.field {font-size:100%;display:block;margin-left:27%;width:60%}
+#show_layout .html_area {line-height:1.5em;display:block;margin-left:27%;width:55%;background-color:#e3dede;padding:0 15px 15px 15px;}
+#show_layout div.fieldsets {font-size:80%;display:inline-block;margin-left:27%;}
 .tbl_labels { width:25%; text-align:right; vertical-align:top;}
-.tbl_fields { text-align:left; vertical-align:top; text-decoration:underline; width:60%}
+.tbl_fields { text-align:left; vertical-align:top; text-decoration:underline; width:50%;}
 .tbl_textarea { text-align:left; background-color:white; border:black solid thin}
-.priority_1 { font-weight:bold; text-transform:uppercase;}
-.priority_2 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
-.priority_3 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
-.priority_4 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
-.priority_4 { font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_1 {background-color: #ccffcc; font-weight:bold; text-transform:uppercase;}
+.priority_2 {background-color: #ffff99; font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_3 {background-color: #ffcc00; font-weight:bold; text-transform:uppercase ; border-collapse:collapse;padding:4px;text-decoration:blink;}
+.priority_4 {background-color: #ff9999; font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_5 {background-color: #cc0033; font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
 
 
 
@@ -171,8 +179,8 @@ caption {background:#eee;}
 .top {margin-top:0;padding-top:0;}
 .bottom {margin-bottom:0;padding-bottom:0;}
 .center {margin-bottom:0.5em;padding-top:0.5em; width:100%; text-align:center;}
-.round { -moz-border-radius:10px; -webkit-border-radius:10px;}
-legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
+.round {border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;}
+legend {}
 fieldset, #IE8#HACK {padding-top:1.4em;}
 legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 
