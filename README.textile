@@ -1,3 +1,5 @@
+!http://myitcrm.com/images/logo.png!
+
 h1. Welcome to MyIT CRM2 - The Next Stage!
 
 
