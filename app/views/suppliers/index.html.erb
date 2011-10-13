@@ -1,10 +1,17 @@
 <div id="sidebar_left">
-  <%= render 'layouts/left_sidebar_modules' %>
-  <ul>
+  <%= module_header %>
+  <div class="module">
+   <ul>
     <li class="create">
-      <%= link_to [t "supplier.t_add_new_supplier"], new_supplier_path %>
+      <%= link_to (t "supplier.t_add_new_supplier"), new_supplier_path %>
+    </li>
+     <li class="create">
+      <%= link_to (t "product.new"), new_product_path %>
     </li>
   </ul>
+  </div>
+
+ <%= render 'layouts/left_sidebar_modules' %>
 </div>
 <div id="center_col">
 <table id="index_table" >

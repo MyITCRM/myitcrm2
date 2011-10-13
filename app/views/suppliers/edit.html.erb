@@ -1,8 +1,16 @@
-<div id="top_float_left">
-  <h1><%= t "global.quick_links" %></h1>
-   <%= link_to(image_tag('exit.png', :title => [t "global.close"]), suppliers_path) %>&nbsp;<%= link_to([t "global.close"], suppliers_path) %>
-</div>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+      <li class="exit">
+        <%= link_to([t "global.exit"], suppliers_path) %>
+      </li>
+    </ul>
 
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
+</div>
+<div id="center_col">
 <div id="ddtabs1" class="basictab">
 <ul>
 <li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
@@ -13,7 +21,7 @@
 
 <div id="sc1" class="tabcontent">
 <% simple_form_for @supplier do |f| %>
-              <% f.inputs do %>
+                <%= f.error_notification %>
                 <%= f.input :active, :label =>(t "global.active") %>
                 <%= f.input :company_name, :label =>(t "supplier.company_name"), :input_html => {:size => 50} %>
                 <%= f.input :website, :label =>(t "supplier.website"), :input_html => {:size => 50} %>
@@ -32,11 +40,12 @@
                 <%= f.input :notes, :label => (t "global.notes"), :input_html => {:rows => 10} %>
                 <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
                 <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-            <% end %>
-        <%= f.buttons %>
+<div class="center"><%= f.submit %></div>
+
   <% end %>
     </div>
     </div>
 
+</div>
 </div>
 
