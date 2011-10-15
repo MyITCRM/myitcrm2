@@ -50,15 +50,14 @@ $(function() {
 <div style="clear:both;float:none;"></div>
 <div id="container">
   <div id="yield">
-    <div id="page_title" class="text_shadow">
-      <% if logged_in?  %><h1><%= @title || "" %></h1><% end %>
-    </div>
-          <%- flash.each do |name, msg| -%>
+    <%- flash.each do |name, msg| -%>
         <p>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         </p>
     <%- end -%>
-
+    <div id="page_title" class="text_shadow">
+      <% if logged_in?  %><h1><%= @title || "" %></h1><% end %>
+    </div>
     <%= yield %>
   </div>
 </div>

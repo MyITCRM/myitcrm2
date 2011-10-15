@@ -1,13 +1,13 @@
 <table width="100%" cellspacing="0" >
   <tr> <!--mytodo: add translation-->
-    <th><%= "WO #" %></th>
-    <th><%= "Priority" %></th>
-    <th><%= "Client" %></th>
-    <th><%= "Subject" %></th>
-    <th><%= "Created" %></th>
-    <th><%= "Updated" %></th>
-    <th><%= "Assigned To" %></th>
-    <th><%= "Actions" %></th>
+    <th><%= t "workorder.index.t_wo" %></th>
+    <th><%= t "workorder.priority" %></th>
+    <th><%= t "global.client" %></th>
+    <th><%= t "global.subject" %></th>
+    <th><%= t "global.created_at" %></th>
+    <th><%= t "global.updated_at" %></th>
+    <th><%= t "workorder.assigned_to" %></th>
+    <th><%= t "global.actions" %></th>
   </tr>
 
 
@@ -25,10 +25,10 @@
         <%= link_to(image_tag('printer.png', :title => [t "global.print"]), work_order_path(assigned_wo.id,:format => 'pdf'))%>&nbsp;
       <% if can? :destroy, @work_orders %>
        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(assigned_wo.id), :confirm => 'Are you sure?', :method => :delete ) %>&nbsp;
-       <%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_path(assigned_wo.id))%>&nbsp;
-      <% else %>
-       <%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_path(assigned_wo.id))%>
+
       <% end %>
+       <%= link_to(image_tag('tick.png', :title => [t "global.close"]), close_path(assigned_wo.id))%>
+
     </td>
   </tr>
 <% end %>

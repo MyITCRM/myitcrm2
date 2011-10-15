@@ -18,6 +18,7 @@
 class UsersController < ApplicationController
   #  Used by CanCan to restrict controller access
   load_and_authorize_resource
+  helper_method :sort_column, :sort_direction
 
   def new
     @title = t "user.t_new_user"
@@ -27,12 +28,8 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-#    Instance Variables for Searching
-    name = params[:name]
-    role = params[:role]
-    phone = params[:phone]
     if current_user.employee == true
-      @users = User.where('name LIKE  ?', "%#{name}%").where('role LIKE  ?', "%#{role}%").where('phone LIKE  ?', "%#{phone}%").order(:id).page params[:page]
+    @users = User.order(:id).page params[:page]
     end
       respond_to do |format|
       format.html
@@ -123,4 +120,13 @@ class UsersController < ApplicationController
     @users = User.where("client = ?", true).order(:name).page params[:page]
   end
 
+   private
+
+  def sort_column
+   User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+   %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "ASC"
+  end
 end

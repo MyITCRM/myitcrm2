@@ -19,24 +19,18 @@
       <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if @new_work_orders.count > 0 %><span style="color:red;"><%= @new_work_orders.count %></span><% else %><%= @new_work_orders.count %><% end %>)</a></li>
       <li><a href="#assigned" rel="tab2"><%= t "workorder.tab_menu_assigned" %>&nbsp;(<% if @assigned_work_orders.count > 0 %><span style="color:red;"><%= @assigned_work_orders.count %></span><% else %><%= @assigned_work_orders.count %><% end %>)</a></li>
       <li><a href="#on_hold" rel="tab3"><%= t "workorder.tab_menu_on_hold" %>&nbsp;(<% if @on_hold_work_orders.count > 0 %><span style="color:red;"><%= @on_hold_work_orders.count %></span><% else %><%= @on_hold_work_orders.count %><% end %>)</a></li>
-      <li><a href="#closed" rel="tab4"><%= t "workorder.tab_menu_closed" %>&nbsp;(<% if @closed_work_orders.count > 0 %><span style="color:red;"><%= @closed_work_orders.count %></span><% else %><%= @closed_work_orders.count %><% end %>)</a></li>
+      <li><a href="#pending" rel="tab4"><%= t "workorder.tab_menu_pending" %>&nbsp;(<% if @pending_work_orders.count > 0 %><span style="color:red;"><%= @pending_work_orders.count %></span><% else %><%= @pending_work_orders.count %><% end %>)</a></li>
+      <li><a href="#closed" rel="tab5"><%= t "workorder.tab_menu_closed" %>&nbsp;(<% if @closed_work_orders.count > 0 %><span style="color:lime;"><%= @closed_work_orders.count %></span><% else %><%= @closed_work_orders.count %><% end %>)</a></li>
     </ul>
   </div>
   <div id="index_table">
     <div class="tabcontainer">
 
-      <div id="tab1" class="tabcontent">
-        <%= render(:partial => 'work_orders/new_wo_tab') %>
-      </div>
-      <div id="tab2" class="tabcontent" >
-        <%= render(:partial => 'work_orders/assigned_wo_tab') %>
-      </div>
-      <div id="tab3" class="tabcontent">
-        <%= render(:partial => 'work_orders/on_hold_wo_tab') %>
-      </div>
-      <div id="tab4" class="tabcontent">
-        <%= render(:partial => 'work_orders/closed_wo_tab') %>
-      </div>
+      <div id="tab1" class="tabcontent"><%= render(:partial => 'work_orders/new_wo_tab') %></div>
+      <div id="tab2" class="tabcontent" ><%= render(:partial => 'work_orders/assigned_wo_tab') %></div>
+      <div id="tab3" class="tabcontent"><%= render(:partial => 'work_orders/on_hold_wo_tab') %></div>
+      <div id="tab4" class="tabcontent"><%= render(:partial => 'work_orders/pending_wo_tab') %></div>
+      <div id="tab5" class="tabcontent"><%= render(:partial => 'work_orders/closed_wo_tab') %></div>
     </div>
   </div>
   <div style="clear:both;"></div>

@@ -16,23 +16,23 @@
      <% if current_user.employee? && current_user.employee = true  %>
         <div id="center_col" class="no_right_sidebar content">
                    <br/>
-                   <%= form_tag users_path, :method => 'get' do %>
-                      <p><%= t "user.search" %>
-                        <%= text_field_tag :name, params[:name] %>&nbsp;
-                        <%= t "user.search_by_role" %>&nbsp;
-                        <%= select_tag :role, options_from_collection_for_select(User::ROLES, :to_s, :humanize, params[:role]), :include_blank => true %>&nbsp;
-                        <%= t "user.search_by_phone" %>&nbsp;<%= text_field_tag :phone, params[:phone] %>&nbsp;
-                        <%= submit_tag (t "global.filter"), :name => nil %>
-                      </p>
-                  <% end %>
-               <% end %>
+             <%= form_tag users_path, :method => 'get' do %>
+            <p><%= t "user.search"  %>
+                <%=  text_field_tag :search_users, params[:search_users]  %>
+                <%= submit_tag (t "global.submit"), :name => nil %>
+
+             </p>
+            <% end %>
+            <% end %>
+
               <% if can? :manage, @users %>
-              <%= paginate @users %>
-                  <% end %>
+                 <%= paginate @users %>
+              <% end %>
               <table id="index_table">
                 <tr>
                   <th><%= t "user.number" %></th>
-                  <th><%= t "user.name" %></th>
+                  <th><%= sortable "name", [t "user.name"] %></th>
+                  <th><%= [t "user.active_wo"] %></th>
                   <th><%= t "user.username" %></th>
                   <th><%= t "global.email" %></th>
                   <th><%= t "global.role" %></th>
@@ -46,6 +46,7 @@
                     <tr class="<%= cycle :odd, :even %>">
                       <td><%= user.id %></td>
                       <td><%= user.name %></td>
+                      <td align="center"><%= active_work_order_count(user.id).count %></td>
                       <td><%= user.username %></td>
                       <td><%= auto_link_email_addresses(user.email).html_safe %></td>
                       <td style="text-transform:capitalize;"><%= user.role %></td>

@@ -9,12 +9,12 @@
 
 
 <% @closed_work_orders.each do |closed_wo| %>
-  <tr  class="priority_main_<%= closed_wo.priority_list.id %>">
+  <tr class="priority_main_<%= closed_wo.priority_list.id %>">
     <td align="center"><%= link_to(closed_wo.id, closed_wo) %></td>
     <td align="center"><%= link_to(closed_wo.user.name, user_path(closed_wo.user_id)) %></td>
     <td align="left"><%= truncate(closed_wo.subject, :length => 75) %></td>
     <td align="left"><%= l closed_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= closed_wo.created_by %></td>
-    <td align="left"><%= time_ago_in_words(closed_wo.closed_date) %>&nbsp;<%= t "global.by" %>&nbsp;<%= closed_wo.closed_by %>&nbsp;<%= t "global.ago" %></td>
+    <td align="left"><%= time_ago_in_words(closed_wo.closed_date) %>&nbsp;<%= t "global.ago" %>&nbsp;<%= t "global.by" %>&nbsp;<%= closed_wo.closed_by %></td>
 
   </tr>
 <% end %>

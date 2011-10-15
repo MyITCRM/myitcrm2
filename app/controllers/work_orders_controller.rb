@@ -46,12 +46,22 @@ class WorkOrdersController < ApplicationController
   end
 
   def new
-    @title = t "workorder.t_workorders"
+
+    if params[:client_id].present?
+    @client = User.find(params[:client_id])
+    @title = (t "workorder.creating_wo_for")+@client.name.camelcase
+    end
+    if params[:client_id].blank?
+
+      redirect_to users_url
+      flash[:info] = "You MUST select a client first before creating a new Work Order"
+    else
     @work_order = WorkOrder.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml { render :xml => @work_order }
+    end
     end
   end
 
@@ -98,6 +108,10 @@ class WorkOrdersController < ApplicationController
   def close
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
+    if @work_order.assigned_to_id.blank?
+      redirect_to(work_orders_url)
+      flash[:alert] = "Work Order needs to be assigned to an Employee first before closing. Please assign a User to this Work Order Request"
+    else
     respond_to do |format|
       if @work_order.update_attribute(:status_id, "6")
         @work_order.update_attribute(:closed, true)
@@ -110,6 +124,7 @@ class WorkOrdersController < ApplicationController
         format.html { render :action => "index" }
         format.xml { render :xml => @work_order.errors, :status => :unprocessable_entity }
       end
+    end
     end
   end
 

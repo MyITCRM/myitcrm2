@@ -18,7 +18,8 @@ MyITCRM2::Application.routes.draw do
   resources :product_categories
    resources :product_categories do
       get :product_category_name, :on => :collection
-   end
+      end
+
   resources :user_sessions
   resources :users
   resources :users do
@@ -27,7 +28,7 @@ MyITCRM2::Application.routes.draw do
       put :update_profile
       put :register
     end
-  end
+    end
   resources :suppliers
   resources :products
 

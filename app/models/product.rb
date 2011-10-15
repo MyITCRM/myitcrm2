@@ -15,10 +15,8 @@ class Product < ActiveRecord::Base
   end
 
 # Search by 
-  def self.search_products(search_products, page, sort_column, sort_direction)
-      paginate :per_page => 50, :page => page,
-                          :conditions => ['description LIKE  ?', "%#{search_products}%"],
-                          :order => "#{sort_column+ " "+sort_direction}"
+  def self.search_products(search_products, sort_column, sort_direction)
+      Product.where('description LIKE  ?', "%#{search_products}%").order(sort_column+ " "+sort_direction)
 
   end
 

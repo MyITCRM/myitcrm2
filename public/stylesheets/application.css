@@ -58,9 +58,10 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 #user_info_menu a {color: white;}
 
 /*Flash Notices*/
-#flash_notice, #flash_alert {padding: 4px 30px 4px 30px;margin:160px 10px 10px 10px 0;display:block;}
+#flash_notice, #flash_alert, #flash_info {margin-left:18em;margin-right:18em;padding: 4px 30px 4px 30px;margin:160px 10px 10px 10px 0;display:block;}
 #flash_notice {background: url(/images/tick.png) 8px 5px no-repeat #CFC;border: solid 2px #6C6;}
 #flash_alert {background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
+#flash_info {background: url(/images/information.png) 8px 5px no-repeat #bbd1f2;border: solid 2px #012549;}
 
 
 /*Menu */
@@ -139,7 +140,6 @@ input.title {font-size:1.5em;}
 .even td {background-color: #E3E6FF;}
 .odd td {background-color: #ffffff;}
 .priority_main_1 td {background-color: #ccffcc;}
-.priority_main_1 tr:hover {background-color: #99ff99;}
 .priority_main_2 td {background-color: #ffff99;}
 .priority_main_3 td {background-color: #ffcc00;}
 .priority_main_4 td {background-color: #ff9999; font-weight:bold;}

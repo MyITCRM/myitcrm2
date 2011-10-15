@@ -7,7 +7,6 @@ class WorkOrder < ActiveRecord::Base
   validates_presence_of :subject, :description, :user_id
 
   attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by, :status_id
-
   before_create :workorder_created
   before_update :workorder_updated, :change_assignment
   before_save :lookup_assigned_username, :change_assignment, :closed_action
@@ -17,6 +16,7 @@ class WorkOrder < ActiveRecord::Base
     self.created_at ||= Time.now
     self.status_id ||= 1
     self.closed ||= -1
+
   end
 
   def workorder_updated

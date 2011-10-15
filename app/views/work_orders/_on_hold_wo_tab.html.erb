@@ -1,26 +1,24 @@
 <table width="100%" cellspacing="0">
   <tr><!--myTODO: Translation -->
-    <th><%= "WO #" %></th>
-    <th><%= "Client" %></th>
-    <th><%= "Subject" %></th>
-    <th><%= "Priority" %></th>
-    <th><%= "Created at" %></th>
-    <th><%= "Created by" %></th>
-    <th><%= "Last Updated" %></th>
-    <th><%= "Assigned To" %></th>
-    <th><%= "Actions" %></th>
+    <th><%= t "workorder.index.t_wo" %></th>
+    <th><%= t "workorder.priority" %></th>
+    <th><%= t "global.client" %></th>
+    <th><%= t "global.subject" %></th>
+    <th><%= t "global.created_at" %></th>
+    <th><%= t "global.updated_at" %></th>
+    <th><%= t "workorder.assigned_to" %></th>
+    <th><%= t "global.actions" %></th>
   </tr>
 
 
 <% @on_hold_work_orders.each do |on_hold| %>
   <tr class="priority_main_<%= on_hold.priority_list.id %>">
-    <td><%= link_to(on_hold.id, on_hold) %></td>
-    <td><%= link_to(on_hold.user.name, user_path(on_hold.user_id)) %></td>
+    <td align="center"><%= link_to(on_hold.id, on_hold) %></td>
+    <td align="center"><%= on_hold.priority_list.name %></td>
+    <td align="center"><%= link_to(on_hold.user.name, user_path(on_hold.user_id)) %></td>
     <td><%= truncate(on_hold.subject , :length => 75) %></td>
-    <td><%= on_hold.priority_list.name %></td>
-    <td><%= l on_hold.created_at, :format => :medium %></td>
-    <td><%= on_hold.created_by %></td>
-    <td><%= l on_hold.updated_at, :format => :medium %></td>
+    <td><%= l on_hold.created_at, :format => :medium %><%= t "global.by" %><%= on_hold.created_by %></td>
+    <td><%= l on_hold.updated_at, :format => :medium %><%= t "global.by" %><%= on_hold.edited_by %></td>
     <td><%= on_hold.assigned_to_username %></td>
     <td align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(on_hold.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(on_hold.id)) %>&nbsp;

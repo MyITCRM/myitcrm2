@@ -75,5 +75,10 @@ pdf.bounding_box([105,600], :width => 300,  :padding => 3) do
   pdf.text @work_order.description, :size => 9
 end
 
+bounding_box [90, 600], :width => 200, :height => 150 do
+transparent(0.5) { stroke_bounds }
+text "This text will flow along this bounding box we created for it. " * 5
+end
+
 # myTODO - Add more cells, eg Resolution, Notes, Scheduled Time(s), Actual Times, Travel, Signatures, logging info....printed at, etc
 

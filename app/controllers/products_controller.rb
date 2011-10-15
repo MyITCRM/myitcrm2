@@ -8,8 +8,8 @@ class ProductsController < ApplicationController
   def index
     @title = t "products.t_title"
 #    @products = Product.paginate :page => params[:page], :order => sort_column+ " " +sort_direction, :per_page => 50
-    @products = Product.order(:id).page params[:page]
-#    @products = Product.search_products(params[:search_products], params[:page], sort_column, sort_direction )
+#    @products = Product.order(:id).page params[:page]
+    @products = Product.search_products(params[:search_products], sort_column, sort_direction ).page(params[:page]).per(2)
 
     
     respond_to do |format|

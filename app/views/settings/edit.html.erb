@@ -1,11 +1,14 @@
 <!--myTODO I18N labels and formats and add full field sets-->
 <div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="exit"><%= link_to([t "global.exit"], root_url) %></li>
+    </ul>
+  </div>
   <%= render 'layouts/left_sidebar_modules' %>
-  <ul>
-    <li class="exit"><%= link_to([t "global.exit"], root_url) %></li>
-  </ul>
 </div>
-<div class="centered">
+<div id="center_col">
   <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
@@ -19,7 +22,7 @@
 <div class="tabcontainer">
 
   <div id="sc1" class="tabcontent">
-    <div class="box tabular settings">
+    <div class="simple_form">
     <%= form_tag({:action => 'edit'}) do %>
         <p><%= setting_text_field(:business_name, :size => 40)%></p>
         <p><%= setting_text_field(:business_slogan, :size => 80)%></p>
@@ -28,9 +31,11 @@
         <p><%= setting_text_field(:business_fax, :size => 20)%></p>
         <p><%= setting_text_field(:business_mobile, :size => 20)%></p>
         <p><%= setting_text_field(:business_email, :size => 50)%></p>
-        <p><%= setting_text_area(:business_address, :cols => 10 , :rows => 5 )%></p>
+        <p><%= setting_text_area(:business_address, :cols => 10 , :rows => 5, :cols => 20 )%></p>
+         <div class="center">
+            <%= submit_tag t "global.confirm" %>
+         </div>
 
-        <%= submit_tag "Save" %>
     <% end %>
     </div>
 

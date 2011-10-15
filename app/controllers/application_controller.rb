@@ -4,6 +4,7 @@ include Authentication
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
 
+
 # Used to notify user that they have tried to request a restricted action. Refer to log for more details
   rescue_from CanCan::AccessDenied do
     flash[:alert] = t "global.access_denied"
