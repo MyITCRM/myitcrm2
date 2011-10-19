@@ -1,25 +1,59 @@
 <div id="sidebar_left">
   <% if not logged_in? %>
-  <%= module_header(t "global.login") %>
-  <div class="module">
+      <%= module_header(t "global.login") %>
+      <div class="module">
 
-   <%= simple_form_for(@user_session, :url => {:action => "create" }) do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :username, :placeholder => 'Username',:error => false, :input_html => {:size => 28 } %>
-      <%= f.input :password, :placeholder => 'Password',:error => false, :input_html => {:size => 28 } %>
-      <div class="center">
-        <%= f.submit t 'global.login'  %>
+        <%= simple_form_for(@user_session, :url => {:action => "create"}) do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :username, :placeholder => 'Username', :error => false, :input_html => {:size => 28} %>
+            <%= f.input :password, :placeholder => 'Password', :error => false, :input_html => {:size => 28} %>
+            <div class="center">
+              <%= f.submit t 'global.login' %>
+            </div>
+        <% end %>
       </div>
   <% end %>
-      </div>
-   <% end %>
   <% if logged_in? %>
-  <%= module_header(t "global.logout") %>
-  <div class="module">
+          <%= module_header('My Overview') %>
+              <div class="module">
+                <p>
+                  <% if current_user.employee? %>
+                  New : <%= employees_work_overview('1').count %><br/>
+                  Assigned : <%= link_to employees_work_overview('2', current_user.id).count, work_orders_path %> <br/>
+                  On Hold : <%= employees_work_overview('3', current_user.id).count %><br/>
+                  Pending : <%= employees_work_overview('4', current_user.id).count %> <br/>
+                  Pending : <%= employees_work_overview('5', current_user.id).count %><br/>
+                  Closed : <%= employees_work_overview('6', current_user.id).count %> <br/>
+                  <% end %>
+                  <% if current_user.client? %>
+                  New : <%= clients_overview('1', current_user.id ).count %><br/>
+                  Assigned : <%= link_to clients_overview('2', current_user.id).count, work_orders_path %> <br/>
+                  On Hold : <%= clients_overview('3', current_user.id).count %><br/>
+                  Pending : <%= clients_overview('4', current_user.id).count %> <br/>
+                  Pending : <%= clients_overview('5', current_user.id).count %><br/>
+                  Closed : <%= clients_overview('6', current_user.id).count %> <br/>
+                  <% end %>
+                </p>
+              </div>
+      <% if current_user.client? %>
+            <%= module_header([t "global.module.contact_us"], 'email_icon') %>
+            <div class="module">
+              <p>
+                  <% if Setting::business_phone.present? %><p><img src="/images/telephone.png" hspace="8"><%= Setting::business_phone %><% end %>
+                  <% if Setting::business_mobile.present? %><p><img src="/images/mobile_phone.png" hspace="8"><%= Setting::business_mobile %><% end %>
+                  <% if Setting::business_email.present? %><p><img src="/images/email.png" hspace="8"><%= Setting::business_email %><% end %>
+              </p>
 
-      <div class="center">
-        <%=  button_to "Logout", :controller => 'user_sessions', :action => :destroy %>
+            </div>
+                <% end %>
+
+      <%= module_header(t "global.logout") %>
+      <div class="module">
+
+        <div class="center">
+          <%= button_to "Logout", logout_url %>
+        </div>
       </div>
-  </div>
-   <% end %>
+
+  <% end %>
 </div>

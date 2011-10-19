@@ -25,13 +25,20 @@ class WorkOrdersController < ApplicationController
   def index
     @title = t "workorder.t_workorders"
     @work_orders = WorkOrder.all
-    @new_work_orders = WorkOrder.where("status_id = 1")
+    if current_user.client == true
+      @new_work_orders = WorkOrder.where("status_id = 1").where('user_id = ?', current_user.id)
+      @assigned_work_orders = WorkOrder.where("status_id = 2").where('user_id = ?', current_user.id)
+      @on_hold_work_orders = WorkOrder.where("status_id = 3").where('user_id = ?', current_user.id)
+      @pending_work_orders = WorkOrder.where("status_id = 4").where('user_id = ?', current_user.id)
+      @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC").where('user_id = ?', current_user.id)
+    else
+    @new_work_orders = WorkOrder.where("status_id = 1" )
     @assigned_work_orders = WorkOrder.where("status_id = 2")
     @on_hold_work_orders = WorkOrder.where("status_id = 3")
     @pending_work_orders = WorkOrder.where("status_id = 4")
     @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC")
 
-
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @work_orders }
@@ -52,7 +59,6 @@ class WorkOrdersController < ApplicationController
     @title = (t "workorder.creating_wo_for")+@client.name.camelcase
     end
     if params[:client_id].blank?
-
       redirect_to users_url
       flash[:info] = "You MUST select a client first before creating a new Work Order"
     else
@@ -110,7 +116,7 @@ class WorkOrdersController < ApplicationController
     @work_order = WorkOrder.find(params[:id])
     if @work_order.assigned_to_id.blank?
       redirect_to(work_orders_url)
-      flash[:alert] = "Work Order needs to be assigned to an Employee first before closing. Please assign a User to this Work Order Request"
+      flash[:alert] = "Work Order needs to be assigned to an Employee first before closing."
     else
     respond_to do |format|
       if @work_order.update_attribute(:status_id, "6")

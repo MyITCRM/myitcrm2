@@ -8,10 +8,16 @@ SimpleNavigation::Configuration.run do |navigation|
     end
     if logged_in?
         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
-          sub_nav.item :work_orders, 'New Work Order', new_work_order_path
+          if can? :manage, @work_orders
+            sub_nav.item :work_orders, 'New Work Order', new_work_order_path
+          else
+            sub_nav.item :work_orders, 'New Work Order', "work_orders/new?client_id=#{current_user.id}"
           end
-       primary.item :users, 'Users', users_path, :highlights_on => /\/users/ || /\/profile/   do |sub_nav|
-         sub_nav.item :users, 'New User', new_user_path
+        end
+        if can? :manage, @work_order
+          primary.item :users, 'Users', users_path, :highlights_on => /\/users/ || /\/profile/   do |sub_nav|
+            sub_nav.item :users, 'New User', new_user_path
+           end
        end
     if can? :manage, User
           primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/ do |sub_nav|

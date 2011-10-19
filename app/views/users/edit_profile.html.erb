@@ -1,6 +1,19 @@
-<%= render :partial => 'actions' %>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+      <li class="delete"><%= link_to (t "user.cancel_account_button"),@user, :confirm => [t 'user.msg.cancel_account'], :href => '#' %></li>
+      <li class="exit"><%= link_to (t "global.exit"), :back %></li>
+      <% if can? :manage, @users %>
+        <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
+      <% end %>
+    </ul>
+  </div>
+   <%= render 'layouts/left_sidebar_modules' %>
+  </div>
 
-<div id="ddtabs1" class="basictab">
+<div id=center_col>
+ <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="tab1"><%= (t "products.tab_menu_basic") %></a></li>
     <li><a href="#<%= t "users.tab.contact_info" %>" rel="tab2"><%= t "users.tab.contact_info" %></a></li>
@@ -11,60 +24,30 @@
 </div>
 
 <div class="tabcontainer">
-
   <div id="tab1" class="tabcontent">
-
       <%= simple_form_for(@user) do |f| %>
-              <%= f.input :active , :label => (t "global.active") %>
               <%= f.input :username ,:input_html => {:autocomplete => 'off'}, :label => (t "user.username") %>
               <%= f.input :name , :label =>(t "user.name_eg") %>
+              <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
               <%= f.input :password,:input_html => {:autocomplete => 'off'}, :required => true %>
               <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation"), :required => true %>
               <%= f.input :email, :label => (t "global.email") %>
-
-              <%= f.submit  %>
-
-
-              <p>
-                <% if current_user == nil %>
-                    <%= hidden_field_tag "user[created_by]", @user.username %>
-                <% else %>
-                    <%= hidden_field_tag "user[created_by]", current_user.username %>
-                <% end %>
-              </p>
-              <p>
-
-              </p>
-      <% end %>
-    
+              <div class="center"><%= f.submit  %></div>
   </div>
   <div id="tab2" class="tabcontent">
-     <%= simple_form_for(@user) do |f| %>
               <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
               <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
               <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
               <%= f.input :zip, :input_html => {:size => 30}, :label => (t "global.zip") %>
-              <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
               <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
               <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
               <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
-              <%= f.submit %>
-              <p>
-                <% if current_user == nil %>
-                    <%= hidden_field_tag "user[created_by]", @user.username %>
-                <% else %>
-                    <%= hidden_field_tag "user[created_by]", current_user.username %>
-                <% end %>
-              </p>
-              <p>
-
-              </p>
-      <% end %>
-
+              <%= hidden_field_tag "user[edited_at]", Time.now %>
+              <%= hidden_field_tag "user[edited_by]", current_user.username %>
+             <div class="center"><%= f.submit  %></div>
   </div>
   <% if can? :manage, :all %>
   <div id="tab3" class="tabcontent">
-      <%= simple_form_for(@user) do |f| %>
         <div class="input">
                 <label class="string optional" for="user_role">Role</label>
                 <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
@@ -72,10 +55,10 @@
           <%= f.input :employee, :as => :radio, :hint => (t "user.hint.employed" ),  :label => (t "user.employed")   %>
           <%= f.input :client, :as => :radio, :hint => (t "user.hint.client" ),:label => (t "user.client")  %>
           <%= f.input :workorder_assignability, :as => :radio, :hint => (t "user.hint.assignable" ),:label => (t "user.assignable") %>
-          <%= hidden_field_tag "user[edited_at]", Time.now %>
-          <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <%= f.submit %>
-      <% end %>
+
+          <div class="center"><%= f.submit  %></div>
   </div>
       <% end %>
+      <% end %>
+</div>
 </div>

@@ -11,7 +11,9 @@
   <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>
+    <% if current_user.client = false and cannot? :manage, @work_orders %>
     <li><a href="#<%= t "workorder.tab_menu_resolution" %>" rel="tab2"><%= (t "workorder.tab_menu_resolution") %></a>
+      <% end %>
     </li>
   </ul>
 </div>
@@ -37,10 +39,9 @@
         <div class="clear"></div>
         <div class="center"><%= f.submit %></div>
 
-    <% end %>
   </div>
+  <% if current_user.client = false and cannot? :manage, @work_orders %>
   <div id="tab2" class="tabcontent">
-    <%= simple_form_for(@work_order) do |f| %>
         <div class="simple_form label">
           <label><%= t "workorder.resolution" %></label>
         </div>
@@ -58,6 +59,7 @@
         <div class="clear"></div>
     <% end %>
   </div>
+  <% end %>
 </div>
 </div>
 

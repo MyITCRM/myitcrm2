@@ -28,8 +28,13 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
+#    mytodo - Fix pagination issues
+    if params[:deactivate].present?
+      flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
+
+    end
     if current_user.employee == true
-    @users = User.order(:id).page params[:page]
+    @users = User.order(:id).page(params[:page])
     end
       respond_to do |format|
       format.html

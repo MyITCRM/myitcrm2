@@ -2,11 +2,17 @@
   <%= module_header %>
   <div class="module">
     <ul>
-      <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
+      <% if current_user.client = true %>
+        <li class="delete">placeholder</li>
+      <% end %>
+      <% if can? :manage, :all %>
+        <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
+      <% end %>
       <li class="edit"><%= link_to (t "global.edit"), edit_user_path %></li>
       <li class="exit"><%= link_to (t "global.exit"), users_path %></li>
     </ul>
   </div>
+  <%= render 'layouts/left_sidebar_modules' %>
 </div>
 <div id="center_col">
   <div class="content">

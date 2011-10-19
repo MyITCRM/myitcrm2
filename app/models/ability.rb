@@ -16,7 +16,7 @@ class Ability
   def client
     can [:read, :update, :edit_profile, :update_profile], User, :id => @user.id
     can :create, WorkOrder
-    can [:update, :read, :close], WorkOrder, :user_id => @user.id
+    can [:update, :read], WorkOrder, :user_id => @user.id
 
   end
 #

@@ -1,33 +1,35 @@
 <!--mytodo -add all fields, -add tabs-->
-<div id="top_float_left">
-  <% if can? :read, @Products %>
-      <%= link_to(image_tag("trash.png", :title=> (t "global.delete"), :align => "bottom", :hspace => "2"), :confirm => 'Are you sure?', :action => :destroy) %><%= link_to (t "global.delete"), @product, :confirm => 'Are you sure?', :method => :delete %>&nbsp;&nbsp;
-  <% end %>
-  <% if can? :edit, @Products %>
-      <%= link_to(image_tag("edit.png", :title=> (t "global.edit"), :align => "bottom", :hspace => "2"), edit_product_path) %><%= link_to (t "global.edit"), edit_product_path %>&nbsp;&nbsp;
-  <% end %>
-  <%= link_to(image_tag("exit.png", :title=> (t "global.close"), :align => "bottom", :hspace => "2"), products_path) %><%= link_to (t "global.close"), products_path %>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+      <% if can? :read, @products %><li class="delete"><%= link_to (t "global.delete"), @product, :confirm => 'Are you sure?', :method => :delete %></li> <% end %>
+      <% if can? :edit, @products %><li class="edit"><%= link_to (t "global.edit"), edit_product_path %></li> <% end %>
+      <li class="exit"><%= link_to (t "global.close"), products_path %></li>
+    </ul>
+  </div>
+<%= render 'layouts/left_sidebar_modules' %>
 </div>
 
 <div id="ddtabs1" class="basictab" >
 <ul>
-<li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
-<li><a href="#<%= t "products.tab_menu_inventory_name" %>" rel="sc2"><%= t "products.tab_menu_inventory_name" %></a></li>
-<li><a href="#<%= t "products.tab_menu_selling_name" %>" rel="sc3"><%= t "products.tab_menu_selling" %></a></li>
-<li><a href="#<%= t "products.tab_menu_warranty_name"  %>" rel="sc4"><%= t "products.tab_menu_warranty" %></a></li>
+<li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="tab1"><%= (t "products.tab_menu_basic") %></a></li>
+<li><a href="#<%= t "products.tab_menu_inventory_name" %>" rel="tab2"><%= t "products.tab_menu_inventory_name" %></a></li>
+<li><a href="#<%= t "products.tab_menu_selling_name" %>" rel="tab3"><%= t "products.tab_menu_selling" %></a></li>
+<li><a href="#<%= t "products.tab_menu_warranty_name"  %>" rel="tab4"><%= t "products.tab_menu_warranty" %></a></li>
 </ul>
 </div>
 
 <div class="tabcontainer">
 
-<div id="sc1" class="tabcontent">
+<div id="tab1" class="tabcontent">
   <table width="60%">
     <tr>
       <td >
         <strong><%= t "products.supplier" %>:</strong>
       </td>
       <td align="left">
-        <%= h @product.supplier.company_name %>
+        <%= @product.supplier.company_name %>
       </td>
     </tr>
     <tr>
@@ -35,7 +37,7 @@
         <strong><%= t "global.active" %></strong>
       </td>
       <td align="left">
-        <%= h @product.active? %>
+        <%= @product.active? %>
       </td>
     </tr>
     <tr>
@@ -43,7 +45,7 @@
         <strong><%= t "global.description" %>:</strong>
       </td>
       <td align="left">
-        <%= h @product.description %>
+        <%=  @product.description %>
       </td>
     </tr>
     <tr>
@@ -51,7 +53,7 @@
         <strong><%= t "products.model" %>:</strong>
       </td>
       <td align="left">
-        <%= h @product.model %>
+        <%=  @product.model %>
       </td>
     </tr>
     <tr>
@@ -59,7 +61,7 @@
         <strong><%= t "products.cost" %>:</strong>
       </td>
       <td align="left">
-        <%= h number_to_currency(@product.cost_price) %>
+        <%=  number_to_currency(@product.cost_price) %>
       </td>
     </tr>
     <tr>
@@ -67,7 +69,7 @@
         <strong><%= t "products.sell" %>:</strong>
       </td>
       <td align="left">
-        <%= h number_to_currency(@product.sell_price) %>
+        <%=  number_to_currency(@product.sell_price) %>
       </td>
     </tr>
     <tr>
@@ -75,7 +77,7 @@
         <strong><%= t "products.sell" %>:</strong>
       </td>
       <td align="left">
-        <%= h number_to_currency(@product.sell_price) %>
+        <%=  number_to_currency(@product.sell_price) %>
       </td>
     </tr>
     <tr>
@@ -113,13 +115,13 @@
     </table>
   </fieldset>
 </div>
-<div id="sc2" class="tabcontent">
+<div id="tab2" class="tabcontent">
 
 </div>
-<div id="sc3" class="tabcontent">
+<div id="tab3" class="tabcontent">
 
 </div>
-<div id="sc4" class="tabcontent">
+<div id="tab4" class="tabcontent">
 
 </div>
 </div>

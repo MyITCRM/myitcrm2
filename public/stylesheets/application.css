@@ -31,6 +31,7 @@ h3 {}
 h4 {}
 h5 {}
 h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
+.email_icon {background:url(/images/user_suit_black.png) 8px no-repeat;}
 .module_header {text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:20px;padding:5px;color:#fffefe;background-color:#707070;border-radius:10px 10px 0 0;border:1px 1px 0 1px solid silver;}
 .module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 5px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
     .module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
@@ -38,6 +39,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
     .module ul {margin-left:-40px;display:list-item;list-style-type:none;}
     .module li {font-size:1.2em;line-height:1.5em;}
     .module li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
+
 
 .clear {clear:both;height: 0;overflow: hidden;margin-bottom:0.5em;padding-top:20px;}
 .hide {display:none; !important}
@@ -119,6 +121,7 @@ input.title {font-size:1.5em;}
 .pagination {margin: 20px 0;}
 .pagination a, .pagination span {display: block; float: left; margin-right: 1px; }
 .pagination span.disabled { color: #999; border: 1px solid #DDD; }
+.pagination prev { color: #999; border: 1px solid #DDD; }
 .pagination span.current {font-weight: bold; background: #4B7399; color: white; border: 1px solid #2E6AB1; }
 .pagination a { text-decoration: none; color: #105CB6; border: 1px solid #9AAFE5;background: #ccccff;}
 .pagination a:hover, .pagination a:focus {color: #003; border-color: #003; }

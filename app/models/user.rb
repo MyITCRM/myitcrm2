@@ -27,12 +27,26 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :username, :email, :phone
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 #  validates_length_of :password, :password_confirmation
-  before_save :new_user
+  before_update :define_permissions
+  before_create :new_user
 
 # Used to set New Users to defaults
   def new_user
-      validates_length_of :password, :password_confirmation, :minimum => 8
-    if self.role.nil?
+    validates_length_of :password, :password_confirmation, :minimum => 8
+    if self.role.blank?
+      self.role = "client"
+    end
+    if self.client.nil?
+      self.client = 1
+    end
+    if self.employee.nil?
+      self.employee = 0
+    end
+  end
+
+#  Used to define permission and roles if they don't exist for this user
+  def define_permissions
+    if self.role.blank?
       self.role = "client"
     end
     if self.client.nil?
@@ -60,8 +74,12 @@ class User < ActiveRecord::Base
   end
 
   def self.search_users(search_users, sort_column, sort_direction)
-#       User.where().all.order(sort_column+ " "+sort_direction)
+       User.where().all.order(sort_column+ " "+sort_direction)
 
-    end
+  end
+
+  def default_role
+     User::ROLES.client
+  end
 
 end

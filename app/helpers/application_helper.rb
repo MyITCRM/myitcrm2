@@ -19,15 +19,26 @@ module ApplicationHelper
       end
 
 
-   private
-   def module_header(title = nil)
+
+   def module_header(title = nil, module_class = nil)
      if title.present?
        title
        else
        title = [t "global.quick_links"]
      end
-     "<div class='module_header text_shadow'>#{title}</div>".html_safe
+     "<div class='module_header text_shadow #{module_class}'>#{title}</div>".html_safe
    end
+# Used to show Employees Overview
+   def employees_work_overview(status_id, employee_number = nil)
+     if employee_number.present?
+      WorkOrder.where("assigned_to_id = #{employee_number} ").where("status_id = #{status_id}")
+      else
+      WorkOrder.where("status_id = #{status_id}")
+     end
+   end
+#  Used to Show Clients Overview
+  def clients_overview(status_id, client_number)
+      WorkOrder.where("user_id = #{client_number} ").where("status_id = #{status_id}")
+  end
 end
-
 

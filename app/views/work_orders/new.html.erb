@@ -1,6 +1,7 @@
 <!--mytodo - heaps to fix up here....add tabs and all fields required.-->
 
 <div id="sidebar_left">
+    <% if logged_in? and can? :manage, @users %>
      <%= module_header %>
         <div class="module">
           <ul>
@@ -8,6 +9,7 @@
             <li class="back"><%= link_to (t "global.back"), :back %></li>
           </ul>
         </div>
+      <% end %>
      <%= render 'layouts/left_sidebar_modules' %>
 </div>
 
