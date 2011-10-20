@@ -11,7 +11,7 @@ SimpleNavigation::Configuration.run do |navigation|
           if can? :manage, @work_orders
             sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           else
-            sub_nav.item :work_orders, 'New Work Order', "work_orders/new?client_id=#{current_user.id}"
+            sub_nav.item :work_orders, 'New Work Order', "/work_orders/new?client_id=#{current_user.id}"
           end
         end
         if can? :manage, @work_order

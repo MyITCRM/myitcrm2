@@ -1,21 +1,32 @@
 <div id="sidebar_left">
   <% if not logged_in? %>
-      <%= module_header(t "global.login") %>
-      <div class="module">
+      <%= module_header([t "global.module.contact_us"], 'email_icon') %>
+            <div class="module">
+              <p>
+                  <% if Setting::business_phone.present? %><p><img src="/images/telephone.png" hspace="8"><%= Setting::business_phone %><% end %>
+                  <% if Setting::business_mobile.present? %><p><img src="/images/mobile_phone.png" hspace="8"><%= Setting::business_mobile %><% end %>
+                  <% if Setting::business_email.present? %><p><img src="/images/email.png" hspace="8"><%= Setting::business_email %><% end %>
+              </p>
 
-        <%= simple_form_for(@user_session, :url => {:action => "create"}) do |f| %>
+            </div>
+      <%= module_header(t "global.login") %>
+      <div class="module links">
+
+        <%= simple_form_for(UserSession.new, :url => {:action => "create"}) do |f| %>
             <%= f.error_notification %>
             <%= f.input :username, :placeholder => 'Username', :error => false, :input_html => {:size => 28} %>
             <%= f.input :password, :placeholder => 'Password', :error => false, :input_html => {:size => 28} %>
             <div class="center">
               <%= f.submit t 'global.login' %>
             </div>
+
         <% end %>
+        <%= link_to "Don't have a login, Register here", register_path  %>
       </div>
   <% end %>
   <% if logged_in? %>
           <%= module_header('My Overview') %>
-              <div class="module">
+              <div class="module links">
                 <p>
                   <% if current_user.employee? %>
                   New : <%= employees_work_overview('1').count %><br/>

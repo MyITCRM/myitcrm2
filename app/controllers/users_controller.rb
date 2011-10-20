@@ -23,18 +23,23 @@ class UsersController < ApplicationController
   def new
     @title = t "user.t_new_user"
     @user = User.new
-    @clients = User.where('client = 1').where('active = 1').order(:name)
+
   end
 
   def index
     @title = t "user.t_title"
 #    mytodo - Fix pagination issues
+#    @clients = User.where('client = 1').where('active = 1').order(:name).page :page
+
     if params[:deactivate].present?
       flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
 
     end
     if current_user.employee == true
-    @users = User.order(:id).page(params[:page])
+      @users = User.where('client = 1').order(:name)
+    end
+    if can? :manage, @users
+      @users = User.order(:id).page(params[:page])
     end
       respond_to do |format|
       format.html

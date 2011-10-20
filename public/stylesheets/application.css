@@ -35,7 +35,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .module_header {text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:20px;padding:5px;color:#fffefe;background-color:#707070;border-radius:10px 10px 0 0;border:1px 1px 0 1px solid silver;}
 .module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 5px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
     .module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
-    .module a {color:#000000;text-decoration:none}
+    .module a {color:#666666;text-decoration:none;}
     .module ul {margin-left:-40px;display:list-item;list-style-type:none;}
     .module li {font-size:1.2em;line-height:1.5em;}
     .module li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
@@ -46,6 +46,7 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
 .text_left{text-align:left;}
 .text_right{text-align:right;}
 .light_fill {background:#ceeeda}
+.links a {color:#0000ff;text-decoration:underline;font-style:italic;font-size:smaller;}
 .create, .delete, .exit, .home, .back, .edit, .print, .close {padding: 4px 30px 4px 25px;}
 .create {background: url(/images/add.png) 8px 5px no-repeat;}
 .delete {background: url(/images/delete.png) 8px 5px no-repeat;}

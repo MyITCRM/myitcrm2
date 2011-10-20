@@ -53,10 +53,37 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
 
 # Work Order details start
 
-pdf.text "#{t "workorder.pdf.t_workorder"} : #{@work_order.id}", :size => 26, :align => :center
+#pdf.text "#{t "workorder.pdf.t_workorder"} : #{@work_order.id}", :size => 26, :align => :center
 #pdf.move_down(5)
-pdf.text "#{t "workorder.status"}: #{@work_order.status.name} | #{t "workorder.assigned_to"} : #{assignee}",:size => 9, :align => :center
+pad = 5
+pdf.bounding_box([0, pdf.cursor], :width => 560, :height => 25, :fill_color => 'ffeeee') do
+  pdf.stroke_bounds
+pdf.pad_top(5) {pdf.text("#{t "workorder.pdf.t_workorder"} : #{@work_order.id}", :size => 18, :align => :center) }
+end
+data = "#{localize Time.now, :format => :medium}"
+pdf.bounding_box [0, pdf.cursor], :width => 560 do
+  pdf.table([ ["Scheduled Information", "Timesheet Information"],
+              ["Scheduled Time : #{data} \n \n #{t "workorder.assigned_to"} : #{assignee}","Start Time : _____:_____ AM PM \n\n Finish Time : _____:_____ AM PM"] ],
+          :cell_style => { :overflow => :shrink_to_fit, :size => 9, :align => :center },
+          :column_widths => {0 => 280, 1 => 280})
+end
+pdf.bounding_box([30,pdf.cursor],:width => 500 ) do
+pdf.pad_top(15) { pdf.text "Work Order Details", :size => 18, :align => :center }
+pdf.table([["#{t "global.subject"} :","#{@work_order.subject}"],
+            ["#{t "workorder.status"} :","#{@work_order.status.name}"],
+            ["#{t "workorder.details"} :"," #{@work_order.description}"]],
+          :cell_style => { :overflow => :shrink_to_fit, :size => 9 },
+          :column_widths => {0 => 50, 1 => 450})
+end
 
+pdf.bounding_box([30,pdf.cursor],:width => 500 ) do
+  pdf.pad_top(15) { pdf.text "Notes", :size => 18, :align => :center }
+  pdf.table([[""], [""] ]* 4,
+          :cell_style => { :height => 15 },
+          :column_widths => {0 => 500})
+end
+pdf.move_down(30)
+ pdf.stroke_horizontal_rule
 =begin
 pdf.move_down(2)
 pdf.stroke_horizontal_rule
@@ -88,21 +115,17 @@ pdf.text "Scheduled Time.",:align => :center, :size => 10
 pdf.text "Date/Time : #{localize Time.now, :format => :medium}", :size => 7
 end
 =end
+=begin
 pdf.bounding_box([400,615],:width => 120, :height => 200 ) do
   pdf.transparent(0.9) {pdf.stroke_bounds}
-    pdf.bounding_box([390,605],:width => 110, :height => 190 ) do
+    pdf.bounding_box([400,615],:width => 120, :height => 2 ) do
       pdf.transparent(0.1) {pdf.stroke_bounds}
       pdf.pad_top(5) {pdf.text "Schedule Info.",:align => :center, :size => 12 }
       pdf.pad_top(5) {pdf.text "  Scheduled Arrival: " + "\n" + " #{localize Time.now, :format => :medium}",:align => :left, :size => 9}
       pdf.pad_top(5) {pdf.text "  Actual Arrival: " + "\n" + "#{localize Time.now, :format => :short} ___:___ AM PM",:align => :left, :size => 9 }
     end
 end
-pdf.bounding_box([0,615],:width => 400 ) do
-pdf.table([ ["#{t "global.subject"}:",@work_order.subject],
-            ["#{t "workorder.details"}:", @work_order.description] ],
-          :cell_style => { :overflow => :shrink_to_fit, :size => 9 },
-          :column_widths => {0 => 60})
-end
+
 gap = 5
 pdf.bounding_box([0, pdf.cursor], :width => 400) do
   pdf.stroke_bounds
@@ -125,6 +148,7 @@ pdf.bounding_box([gap, pdf.cursor - gap], :width => 300, :height => 50) do
 pdf.text("5555555555")
 end
 end
+=end
 # Page X of X
 pdf.bounding_box([0,0],:width => 520 ) do
   pdf.number_pages "Page <page> of <total>", :align => :center , :size => 8
