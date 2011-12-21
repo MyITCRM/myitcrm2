@@ -1,0 +1,35 @@
+<h1>Listing pages</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Permalink</th>
+    <th>Content</th>
+    <th>User</th>
+    <th>Category</th>
+    <th>Published</th>
+    <th>Private</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pages.each do |page| %>
+  <tr>
+    <td><%= page.name %></td>
+    <td><%= page.permalink %></td>
+    <td><%= truncate(page.content) %></td>
+    <td><%= page.user_id %></td>
+    <td><%= page.category_id %></td>
+    <td><%= page.published %></td>
+    <td><%= page.private %></td>
+    <td><%= link_to 'Show', page %></td>
+    <td><%= link_to 'Edit', edit_page_path(page) %></td>
+    <td><%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Page', new_page_path %>

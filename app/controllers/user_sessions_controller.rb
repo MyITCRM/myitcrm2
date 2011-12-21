@@ -11,9 +11,9 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
       if @user_session.save
         flash[:notice] = t("user.login_success")
-        redirect_to_target_or_default root_url
+        redirect_to_target_or_default work_orders_url
       else
-        render :action => "new"
+        redirect_to_target_or_default login_path
       end
     end
   def destroy

@@ -1,12 +1,15 @@
 <div id="sidebar_left">
-  <%= render 'layouts/left_sidebar_modules' %>
-  <ul>
-    <li class="create">
-      <%= link_to [t "products.t_add_new"], new_product_path %>
-    </li>
-  </ul>
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="create"><%= link_to [t "workorder.t_add_new"], new_product_path %></li>
+        <li class="back"><%= link_to (t "global.back"), :back %></li>
+    </ul>
   </div>
-<div id="center_col">
+  <%= render 'layouts/left_sidebar_modules' %>
+</div>
+
+<div id="center_col" class="no_right_sidebar">
   <% form_tag products_path, :method => 'get' do %>
    <p><%= t "products.search"  %>
      <%=  text_field_tag :search_products, params[:search_products]  %>
@@ -14,7 +17,7 @@
 
    </p>
 <% end %>
-  <%= paginate @products %>
+  <%= will_paginate @products %>
 
 
 

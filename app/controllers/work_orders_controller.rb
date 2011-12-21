@@ -26,16 +26,19 @@ class WorkOrdersController < ApplicationController
     @title = t "workorder.t_workorders"
     @work_orders = WorkOrder.all
     if current_user.client == true
+
       @new_work_orders = WorkOrder.where("status_id = 1").where('user_id = ?', current_user.id)
       @assigned_work_orders = WorkOrder.where("status_id = 2").where('user_id = ?', current_user.id)
       @on_hold_work_orders = WorkOrder.where("status_id = 3").where('user_id = ?', current_user.id)
       @pending_work_orders = WorkOrder.where("status_id = 4").where('user_id = ?', current_user.id)
+      @re_opened_work_orders = WorkOrder.where("status_id = 5").where('user_id = ?', current_user.id)
       @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC").where('user_id = ?', current_user.id)
     else
     @new_work_orders = WorkOrder.where("status_id = 1" )
     @assigned_work_orders = WorkOrder.where("status_id = 2")
     @on_hold_work_orders = WorkOrder.where("status_id = 3")
     @pending_work_orders = WorkOrder.where("status_id = 4")
+    @re_opened_work_orders = WorkOrder.where("status_id = 5")
     @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC")
 
     end
@@ -48,6 +51,7 @@ class WorkOrdersController < ApplicationController
   def show
     @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
+    @replies = Reply.where("work_order_id = #{params[:id]}").order("id DESC")
 
 
   end
@@ -59,7 +63,7 @@ class WorkOrdersController < ApplicationController
     @title = (t "workorder.creating_wo_for")+@client.name.camelcase
     end
     if params[:client_id].blank?
-      redirect_to users_url
+      redirect_to clients_url
       flash[:info] = "You MUST select a client first before creating a new Work Order"
     else
     @work_order = WorkOrder.new

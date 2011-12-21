@@ -14,15 +14,18 @@ gem 'cancan'
 # Multiple Language Support
 #gem 'i18n'
 # Easily generate nice forms with advanced features like hints, inline errors, etc
-gem 'simple_form', '1.3.0'
+gem 'simple_form'
 # User Authentication GEM
 gem 'authlogic'
 # SQLite Database gem
 gem 'sqlite3-ruby', :require => 'sqlite3'
+
 # Adds Pagination to this app
-gem 'kaminari'
+#gem 'kaminari'
+gem 'will_paginate'
+
 # Add Autocomplete to specific fields using JQuery
-gem 'rails3-jquery-autocomplete', '0.6.3'
+gem 'rails3-jquery-autocomplete'
 
 # Use unicorn as the web server
 # gem 'unicorn'

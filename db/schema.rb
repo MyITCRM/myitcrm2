@@ -10,7 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100906074944) do
+ActiveRecord::Schema.define(:version => 20111221063203) do
+
+  create_table "page_categories", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "permalink"
+    t.text     "content"
+    t.integer  "user_id"
+    t.string   "page_category_id"
+    t.boolean  "published"
+    t.boolean  "private"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "priority_lists", :force => true do |t|
     t.string   "name"
@@ -56,6 +72,15 @@ ActiveRecord::Schema.define(:version => 20100906074944) do
     t.decimal  "qty_ordered",         :default => 0.0, :null => false
     t.decimal  "stocking_qty",        :default => 0.0, :null => false
     t.boolean  "stocked_product"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "replies", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "work_order_id"
+    t.text     "content"
+    t.boolean  "private"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

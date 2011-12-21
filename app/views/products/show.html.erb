@@ -5,12 +5,12 @@
     <ul>
       <% if can? :read, @products %><li class="delete"><%= link_to (t "global.delete"), @product, :confirm => 'Are you sure?', :method => :delete %></li> <% end %>
       <% if can? :edit, @products %><li class="edit"><%= link_to (t "global.edit"), edit_product_path %></li> <% end %>
-      <li class="exit"><%= link_to (t "global.close"), products_path %></li>
+      <li class="exit"><%= link_to (t "global.exit"), products_path %></li>
     </ul>
   </div>
 <%= render 'layouts/left_sidebar_modules' %>
 </div>
-
+<div id="center_col" class="no_right_sidebar">
 <div id="ddtabs1" class="basictab" >
 <ul>
 <li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="tab1"><%= (t "products.tab_menu_basic") %></a></li>
@@ -123,5 +123,6 @@
 </div>
 <div id="tab4" class="tabcontent">
 
+</div>
 </div>
 </div>

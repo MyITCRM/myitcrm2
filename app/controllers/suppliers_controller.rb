@@ -74,7 +74,7 @@ class SuppliersController < ApplicationController
 
   def update
     @title = t "supplier.t_new"
-    @supplier =Supplier.where(params[:id])
+    #@supplier =Supplier.where(params[:id])
 
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])

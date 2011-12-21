@@ -1,12 +1,13 @@
 <div id="sidebar_left">
- <%= render 'layouts/left_sidebar_modules' %>
-  <ul>
-    <li class="exit">
-      <%= link_to([t "global.exit"], products_path) %>
-    </li>
-  </ul>
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="exit"><%= link_to (t "global.exit"), products_path %></li>
+    </ul>
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
 </div>
-<div id="center_col">
+<div id="center_col" class="no_right_sidebar">
   <div id="ddtabs1" class="basictab" >
   <ul>
   <li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>

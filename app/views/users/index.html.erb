@@ -27,7 +27,7 @@
             <% end %>
 
               <% if can? :manage, @users %>
-                 <%= paginate @users %>
+                 <%= will_paginate @users %>
               <% end %>
               <table id="index_table">
                 <tr>
@@ -71,6 +71,9 @@
                     </tr>
                 <% end %>
               </table>
+    <% if can? :manage, @users %>
+                 <%= will_paginate @users %>
+              <% end %>
           <% end %>
 
         </div>

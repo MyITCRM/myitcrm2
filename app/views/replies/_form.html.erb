@@ -1,0 +1,18 @@
+<%= simple_form_for(@reply) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+    <%= f.input :work_order_id, :as => :hidden, :input_html => { :value => params[:work_order_id]} %>
+
+    <%= f.input :content %>
+
+    <%= f.input :private %>
+
+  </div>
+
+  <div class="center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

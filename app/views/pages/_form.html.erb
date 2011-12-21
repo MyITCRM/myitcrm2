@@ -1,0 +1,14 @@
+<% simple_form_for(@page) do |f| %>
+    <%= f.error_notification %>
+
+   <%= f.input :name %>
+   <%= f.input :permalink, :hint => "Don't use spaces between words. Please insert _ underscores instead" %>
+    <%= ckeditor_tag 'page[content]', @page.content, :cols => 60, :rows => 40, :class => 'ckeditor' %>
+     <p>
+      <%= f.input :page_category_name, :url => page_category_name_page_categories_path, :as => :autocomplete %>
+     </p>
+    <%= content_tag :div, f.submit, :class => "center" %>
+
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+
+    <% end %>

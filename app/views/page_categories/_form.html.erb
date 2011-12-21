@@ -1,0 +1,13 @@
+<%= simple_form_for(@page_category) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :name %>
+
+  </div>
+
+  <div class="center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

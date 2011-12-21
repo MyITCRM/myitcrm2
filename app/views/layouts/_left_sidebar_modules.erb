@@ -1,5 +1,12 @@
 <div id="sidebar_left">
   <% if not logged_in? %>
+      <%= module_header([t "global.module.menu"]) %>
+            <div class="menu_module">
+                <ul>
+                  <li><%= link_to 'Home', root_url %></li>
+                   <li><%= link_to 'Login', login_url %></li>
+                </ul>
+            </div>
       <%= module_header([t "global.module.contact_us"], 'email_icon') %>
             <div class="module">
               <p>
@@ -9,44 +16,68 @@
               </p>
 
             </div>
-      <%= module_header(t "global.login") %>
-      <div class="module links">
 
-        <%= simple_form_for(UserSession.new, :url => {:action => "create"}) do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :username, :placeholder => 'Username', :error => false, :input_html => {:size => 28} %>
-            <%= f.input :password, :placeholder => 'Password', :error => false, :input_html => {:size => 28} %>
-            <div class="center">
-              <%= f.submit t 'global.login' %>
-            </div>
-
-        <% end %>
-        <%= link_to "Don't have a login, Register here", register_path  %>
-      </div>
   <% end %>
   <% if logged_in? %>
           <%= module_header('My Overview') %>
               <div class="module links">
                 <p>
                   <% if current_user.employee? %>
-                  New : <%= employees_work_overview('1').count %><br/>
-                  Assigned : <%= link_to employees_work_overview('2', current_user.id).count, work_orders_path %> <br/>
-                  On Hold : <%= employees_work_overview('3', current_user.id).count %><br/>
-                  Pending : <%= employees_work_overview('4', current_user.id).count %> <br/>
-                  Pending : <%= employees_work_overview('5', current_user.id).count %><br/>
-                  Closed : <%= employees_work_overview('6', current_user.id).count %> <br/>
+                  <div id="my_overview">
+                    <h5> Work Orders </h5>
+                    <div class="col_name">
+                  New : <br/>
+                  Assigned : <br/>
+                  On Hold : <br/>
+                  Pending : <br/>
+                  Re-Opened : <br/>
+                  Closed : <br/>
+                  </div>
+                   <div class="col_value">
+                     <!--Add a for each function here to tidy up code-->
+                    <% if employees_work_overview('1').count > 0 %>
+                        <%= link_to employees_work_overview('1').count, work_orders_path %><br/>
+                           <% else %>
+                        <%= link_to employees_work_overview('1').count, work_orders_path, :class => "col_value_new" %><br/>
+                    <% end %>
+                  <%= link_to employees_work_overview('2', current_user.id).count, work_orders_path %> <br/>
+                  <%= employees_work_overview('3', current_user.id).count %><br/>
+                  <%= employees_work_overview('4', current_user.id).count %> <br/>
+                  <%= employees_work_overview('5', current_user.id).count %><br/>
+                  <%= employees_work_overview('6', current_user.id).count %> <br/>
+                    </div>
+                  </div>
+
                   <% end %>
-                  <% if current_user.client? %>
-                  New : <%= clients_overview('1', current_user.id ).count %><br/>
-                  Assigned : <%= link_to clients_overview('2', current_user.id).count, work_orders_path %> <br/>
-                  On Hold : <%= clients_overview('3', current_user.id).count %><br/>
-                  Pending : <%= clients_overview('4', current_user.id).count %> <br/>
-                  Pending : <%= clients_overview('5', current_user.id).count %><br/>
-                  Closed : <%= clients_overview('6', current_user.id).count %> <br/>
+                  <% if current_user.client == true %>
+                     <div id="my_overview">
+                        <h5> Work Orders </h5>
+                    <div class="col_name">
+                  New : <br/>
+                  Assigned : <br/>
+                  On Hold : <br/>
+                  Pending : <br/>
+                  Re-Opened : <br/>
+                  Closed : <br/>
+                  </div>
+                   <div class="col_value">
+                     <!--Add a for each function here to tidy up code-->
+                    <% if clients_overview('1',current_user.id).count > 0 %>
+                        <%= link_to clients_overview('1',current_user.id).count, work_orders_path %><br/>
+                           <% else %>
+                        <%= link_to clients_overview('1',current_user.id).count, work_orders_path, :class => "col_value_new" %><br/>
+                    <% end %>
+                  <%= link_to clients_overview('2', current_user.id).count, work_orders_path %> <br/>
+                  <%= clients_overview('3', current_user.id).count %><br/>
+                  <%= clients_overview('4', current_user.id).count %> <br/>
+                  <%= clients_overview('5', current_user.id).count %><br/>
+                  <%= clients_overview('6', current_user.id).count %> <br/>
+                    </div>
+                  </div>
                   <% end %>
                 </p>
               </div>
-      <% if current_user.client? %>
+      <% if current_user.client == true %>
             <%= module_header([t "global.module.contact_us"], 'email_icon') %>
             <div class="module">
               <p>
@@ -60,11 +91,10 @@
 
       <%= module_header(t "global.logout") %>
       <div class="module">
-
         <div class="center">
           <%= button_to "Logout", logout_url %>
         </div>
       </div>
 
   <% end %>
-</div>
+ </div>

@@ -1,0 +1,29 @@
+<table width="100%" cellspacing="0">
+  <tr><!--myTODO: Translation -->
+    <th><%= t "workorder.index.t_wo" %></th>
+    <th><%= t "workorder.priority" %></th>
+    <th><%= t "global.client" %></th>
+    <th><%= t "global.subject" %></th>
+    <th><%= t "global.created_at" %></th>
+    <th><%= t "global.updated_at" %></th>
+    <th><%= t "workorder.assigned_to" %></th>
+    <th><%= t "global.actions" %></th>
+  </tr>
+
+
+<% @re_opened_work_orders.each do |re_opened| %>
+  <tr class="priority_main_<%= re_opened.priority_list.id %>">
+    <td align="center"><%= link_to(re_opened.id, re_opened) %></td>
+    <td align="center"><%= re_opened.priority_list.name %></td>
+    <td align="center"><%= link_to(re_opened.user.name, user_path(re_opened.user_id)) %></td>
+    <td><%= truncate(re_opened.subject , :length => 75) %></td>
+    <td><%= l re_opened.created_at, :format => :medium %> <%= t "global.by" %> <%= re_opened.created_by %></td>
+    <td><%= l re_opened.updated_at, :format => :medium %> <%= t "global.by" %> <%= re_opened.edited_by %></td>
+    <td><%= re_opened.assigned_to_username %></td>
+    <td align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(re_opened.id) )%>&nbsp;
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(re_opened.id)) %>&nbsp;
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(re_opened.id), :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
+  </tr>
+<% end %>
+</table>

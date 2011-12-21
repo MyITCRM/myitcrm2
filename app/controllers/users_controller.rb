@@ -35,11 +35,11 @@ class UsersController < ApplicationController
       flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
 
     end
-    if current_user.employee == true
+    if current_user.employee = true
       @users = User.where('client = 1').order(:name)
     end
     if can? :manage, @users
-      @users = User.order(:id).page(params[:page])
+      @users = User.order(:id).paginate(:per_page => 30, :page => params[:page])
     end
       respond_to do |format|
       format.html
@@ -87,7 +87,7 @@ class UsersController < ApplicationController
 
   def update
     @title = t "user.t_update_user"
-#    @user = User.find(params[:id])
+    @user = User.find(params[:id])
 #    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -111,7 +111,8 @@ class UsersController < ApplicationController
 
   def edit_profile
     @title = t "user.t_edit_user"
-    @user = current_user
+    #@user = current_user
+    #@user = User.find(params[:id])
   end
 
   def update_profile
@@ -127,9 +128,13 @@ class UsersController < ApplicationController
 
   def clients
     @title = t "user.t_clients"
-    @users = User.where("client = ?", true).order(:name).page params[:page]
+    @users = User.where("client = ?", true).search_users(params[:search_users], sort_column, sort_direction ).paginate(:per_page => 20, :page => params[:page])
   end
+  def employees
+    @title = t "user.t_employees"
+    @users = User.where("employee = ?", true).search_users(params[:search_users], sort_column, sort_direction ).paginate(:per_page => 20, :page => params[:page])
 
+  end
    private
 
   def sort_column

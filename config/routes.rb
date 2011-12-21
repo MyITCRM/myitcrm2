@@ -1,5 +1,12 @@
 MyITCRM2::Application.routes.draw do
+  resources :replies
 
+  resources :page_categories
+  resources :page_categories do
+    get :page_category_name, :on => :collection
+  end
+
+  resources :pages
   resources :statuses
   resources :priority_lists
   resources :work_orders
@@ -33,6 +40,7 @@ MyITCRM2::Application.routes.draw do
   resources :products
 
 
+
 #  map.login "login", :controller => "user_sessions", :action => "new"
   match '/login' => 'user_sessions#new', :as => :login
 #  map.logout "logout", :controller => "user_sessions", :action => "destroy"
@@ -40,6 +48,7 @@ MyITCRM2::Application.routes.draw do
 #  map.register "register", :controller => "users", :action => "new"
   match '/register' =>'users#register', :as => :register
   match '/clients' =>'users#clients', :as => :clients
+  match '/employees' =>'users#employees', :as => :employees
 #  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
   match 'profile/:id' => 'users#edit_profile', :as => :my_account
 #  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
@@ -48,10 +57,16 @@ MyITCRM2::Application.routes.draw do
   match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign
   match 'settings/edit' => 'settings#edit', :as => :edit
 
+#  Ensure these are last in this list and before the root route
+  match '/article/:permalink' => 'pages#show'
+  match '/article/:category/:permalink' => 'pages#show'
+  match '/home' => 'pages#home'
+#  match '/faq/:permalink' => 'pages#show'
+#  match '/faq/:category/:permalink' => 'pages#show'
 
 #  map.root :register
+#  root :to => 'pages#home'
   root :to => 'user_sessions#new'
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

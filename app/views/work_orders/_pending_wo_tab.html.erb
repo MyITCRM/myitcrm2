@@ -18,7 +18,7 @@
     <td align="center"><%= link_to(pending.user.name, user_path(pending.user_id)) %></td>
     <td><%= truncate(pending.subject , :length => 75) %></td>
     <td><%= l pending.created_at, :format => :medium %> <%= t "global.by" %> <%= pending.created_by %></td>
-    <td><%= l pending.updated_at, :format => :medium %><%= t "global.by" %><%= pending.edited_by %></td>
+    <td><%= l pending.updated_at, :format => :medium %> <%= t "global.by" %> <%= pending.edited_by %></td>
     <td><%= pending.assigned_to_username %></td>
     <td align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(pending.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(pending.id)) %>&nbsp;

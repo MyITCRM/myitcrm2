@@ -16,7 +16,10 @@
       <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="required"><%= (t "products.tab_menu_basic") %></a>
       </li>
       <li><a href="#<%= t "users.tab.contact_info" %>" rel="contact"><%= (t "users.tab.contact_info") %></a></li>
-      <li><a href="#<%= t "users.tab.attributes" %>" rel="attributes"><%= (t "users.tab.attributes") %></a></li>
+      <% if can? :manage, :all %>
+        <li><a href="#<%= t "users.tab.attributes" %>" rel="attributes"><%= (t "users.tab.attributes") %></a></li>
+      <% end %>
+
     </ul>
   </div>
   <div class="tabcontainer">
@@ -52,8 +55,9 @@
               <%= f.button :submit %>
             </div>
     </div>
-            <div id="attributes" class="tabcontent simple_form">
-              <% if can? :manage, :all %>
+            <% if can? :manage, :all %>
+              <div id="attributes" class="tabcontent simple_form">
+
                   <% if current_user.employee == true %>
                       <%= f.input :client, :as => :radio, :checked => true, :label =>(t "user.client") %>
                       <%= f.input :employee, :as => :radio, :checked => [true, false], :label =>(t "user.employed") %>
@@ -61,12 +65,13 @@
                   <% end %>
                   <label class="string required" for="user_role"><abbr title="Required">*</abbr>Role</label>
                   <%= f.collection_select :role, User::ROLES, :to_s, :humanize, :include_blank => true %>
-              <% end %>
+
 
               <div class="center">
                 <%= f.button :submit %>
               </div>
             </div>
+          <% end %>
       <% end %>
       </div>
 </div>

@@ -8,31 +8,39 @@ SimpleNavigation::Configuration.run do |navigation|
     end
     if logged_in?
         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
-          if can? :manage, @work_orders
+          if can? :manage, WorkOrder
             sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           else
             sub_nav.item :work_orders, 'New Work Order', "/work_orders/new?client_id=#{current_user.id}"
           end
         end
-        if can? :manage, @work_order
-          primary.item :users, 'Users', users_path, :highlights_on => /\/users/ || /\/profile/   do |sub_nav|
+        if can? :update, WorkOrder
+          primary.item :users, 'Clients & Employees',users_path, :highlights_on => /\/users/ || /\/clients/   do |sub_nav|
+            sub_nav.item :user, 'Employees', employees_path
+            sub_nav.item :user, 'Clients', clients_path
             sub_nav.item :users, 'New User', new_user_path
            end
        end
-    if can? :manage, User
+        if can? :manage, Supplier
           primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/ do |sub_nav|
             sub_nav.item :suppliers, [t 'global.create'], new_supplier_path
           end
+          end
+        if can? :manage, Product
           primary.item :products, 'Products', products_path  do |sub_nav|
             sub_nav.item :products, [t 'global.create'], new_product_path
           end
+        end
+        if can? :manage, :all
           primary.item :settings, 'Settings', settings_path, :highlights_on => /\/settings/
-    end
+        end
+
     else
       primary.item :register, 'Register', register_path, :highlights_on => /\/register/
     end
   end
   end
+
 
   # The auto highlight feature is turned on by default.
   # This turns it off globally (for the whole plugin)

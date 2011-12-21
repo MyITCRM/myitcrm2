@@ -15,22 +15,45 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 .float_right{float:right;display:inline-block;}
 .float_left{float:left;display:inline-block;}
 .ckeditor_layout {margin-left:27% !important;}
+#header {width:100%}
+.logo {width:33%}
+.slogan {width:66%}
 
 
 /*Typography*/
 body {font:13px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; }
+acronym {text-decoration:underline}
+acronym:hover {cursor:help;}
 .content {background-color:#ffffff;padding:5px;border-radius:10px;}
 #container, #footer, body {background:url(/images/content.jpg) top left repeat;}
 #container {text-align:left;}
 #page_title {margin-left:160px;margin-right:160px;text-align:center;}
+
+/*My Overview styling*/
+#my_overview {display: inline-block;width: 100%;overflow: hidden;text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:14px;color:#666666; }
+#my_overview a {color: #0000FF; font-style: normal;font-size: inherit;text-decoration: none }
+.col_name {width: 50%;text-align: right;float: left;}
+.col_value {padding-left:10px;width: 30%; text-align: left;float: left;}
+.col_value_new { color: #990000 !important; text-decoration: blink !important;}
+
+
+/*Pages Typo...*/
+.created_on {margin-top: 0; padding-top: 0; font: italic; color: #707070; }
+.page_name {color:#ff9900;font:25px/2.0 Impact,Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif ;text-decoration: underline;padding-top: 0;}
+.page_name ul {position: relative;display: inline-block;list-style-type: none;}
+.page_name ul li {display: inline-block;}
+.page_name li a {font:16px normal Tahoma ;color: #B7B7B7;}
+.page_name li:hover {visibility: visible;}
 #sidebar_left h2, #sidebar_right h2 {display:block;font-size:12px;padding-right:0;text-align:center;font-weight:bold;}
 a img {border: none;}
 h1 {font-size:25px;color:#ff9900;}
 h2 {font:15px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; ;color: #fffefe;}
 h3 {}
 h4 {}
-h5 {}
-h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
+h5 {font-size:14px;color: #010101; text-decoration: underline;padding: 0;margin: 0}
+h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
+.logo {text-align:right;}
+.slogan {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 22px;text-align:left;vertical-align:middle;}
 .email_icon {background:url(/images/user_suit_black.png) 8px no-repeat;}
 .module_header {text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:20px;padding:5px;color:#fffefe;background-color:#707070;border-radius:10px 10px 0 0;border:1px 1px 0 1px solid silver;}
 .module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 5px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
@@ -39,7 +62,13 @@ h6 {width: 95%;font-family: Verdana, Helvetica, Arial,fantasy;font-size: 12px;}
     .module ul {margin-left:-40px;display:list-item;list-style-type:none;}
     .module li {font-size:1.2em;line-height:1.5em;}
     .module li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
-
+.menu_module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 38px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
+    .menu_module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
+    .menu_module a {color:#666666;text-decoration:none;}
+    .menu_module ul {margin:10px 0 10px -35px;}
+    .menu_module li {padding-left:10px;font-size:1.2em;line-height:1.5em;display:list-item;list-style-image:url(/images/bullet_right.png);}
+    .menu_module li:hover {list-style-image:url(/images/bullet_hover.png);background-color:#a9a9a9;font-weight:bold;padding-left:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
+    .menu_module li a.selected {list-style-image:url(/images/bullet_hover.png);background-color:#a9a9a9;font-weight:bold;padding-left:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
 
 .clear {clear:both;height: 0;overflow: hidden;margin-bottom:0.5em;padding-top:20px;}
 .hide {display:none; !important}
@@ -120,13 +149,14 @@ input.title {font-size:1.5em;}
 
 /*Pagination CSS styles*/
 .pagination {margin: 20px 0;}
-.pagination a, .pagination span {display: block; float: left; margin-right: 1px; }
+.pagination a, .pagination span {display: inline-block; float: left; margin-right: 1px; padding: 2px; }
+.pagination em {visibility: hidden;}
 .pagination span.disabled { color: #999; border: 1px solid #DDD; }
 .pagination prev { color: #999; border: 1px solid #DDD; }
 .pagination span.current {font-weight: bold; background: #4B7399; color: white; border: 1px solid #2E6AB1; }
 .pagination a { text-decoration: none; color: #105CB6; border: 1px solid #9AAFE5;background: #ccccff;}
 .pagination a:hover, .pagination a:focus {color: #003; border-color: #003; }
-.pagination:after {content: "."; display: block; height: 0;clear: both; visibility: hidden; }
+.pagination:after {content: "."; display: block; height: 0;visibility: hidden; }
 
 
 

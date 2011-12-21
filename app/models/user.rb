@@ -19,21 +19,25 @@
 class User < ActiveRecord::Base
 # This allows/connects the Users to many Work Orders
   has_many :work_orders
+  has_many :pages
+  has_many :replies
 
 # Mass Assignment Protection
-  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role, :updated_by, :created_by, :password_confirmation, :mobile, :fax, :password, :employee, :client, :workorder_assignability
+  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role, :updated_by,
+                  :created_by, :password_confirmation, :mobile, :fax, :password, :employee, :client,
+                  :workorder_assignability, :notes, :edited_by, :edited_at
 
 # Validations for Users
   validates_presence_of :name, :username, :email, :phone
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 #  validates_length_of :password, :password_confirmation
-  before_update :define_permissions
+  before_save :define_permissions
   before_create :new_user
 
 # Used to set New Users to defaults
   def new_user
     validates_length_of :password, :password_confirmation, :minimum => 8
-    if self.role.blank?
+    if self.role.nil?
       self.role = "client"
     end
     if self.client.nil?
@@ -46,7 +50,7 @@ class User < ActiveRecord::Base
 
 #  Used to define permission and roles if they don't exist for this user
   def define_permissions
-    if self.role.blank?
+    if self.role.nil?
       self.role = "client"
     end
     if self.client.nil?
@@ -74,7 +78,7 @@ class User < ActiveRecord::Base
   end
 
   def self.search_users(search_users, sort_column, sort_direction)
-       User.where().all.order(sort_column+ " "+sort_direction)
+       User.where('name LIKE  ?', "%#{search_users}%").order(sort_column+ " "+sort_direction)
 
   end
 

@@ -32,6 +32,17 @@
       <div class="html_area"><%= simple_format(@work_order.description) %> </div>
     </div>
 
+  <div>
+    <%= link_to ('Post a New Reply'), "/replies/new?work_order_id=#{@work_order.id}" %>
+    <% @replies.each do |reply|  %>
+    <div>Replied by <%= reply.user.username %>, <%= time_ago_in_words(reply.created_at) %> (<%= localize reply.created_at, :format => :medium %>) </div>
+    <div><strong> Reply:</strong> <%= reply.content %></div>
+    <HR>
+
+    <% end %>
+    <%= link_to ('Post a New Reply'), "/replies/new?work_order_id=#{@work_order.id}" %>
+  </div>
+
   <fieldset style="text-align:center;">
     <legend><%= t "global.activity_log" %></legend>
 

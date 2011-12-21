@@ -2,6 +2,7 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :priority_list
   belongs_to :status
   belongs_to :user
+  has_many :replies
 
 # Validate Input information
   validates_presence_of :subject, :description, :user_id
@@ -33,12 +34,12 @@ class WorkOrder < ActiveRecord::Base
 
 # Used to obtain the Assigned Users name from the database on Work Order saving, instead of making a separate call each time it's displayed in the table
   def lookup_assigned_username
-    if self.assigned_to_username.blank? then
+    if self.assigned_to_username.blank?
+        self.assigned_to_id = nil
       else
-      if self.status_id == 1
         assigned_user = User.where(["name = ?", assigned_to_username]).first
         self.assigned_to_id = assigned_user.id
-      end
+
       end
   end
 
@@ -61,5 +62,12 @@ class WorkOrder < ActiveRecord::Base
       self.status_id = closed_status
     end
   end
+
+  def reply
+      @reply
+    end
+  def reply_attributes=(attributes)
+
+    end
 end
 

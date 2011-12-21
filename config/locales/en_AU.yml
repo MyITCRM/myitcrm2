@@ -106,6 +106,8 @@ en_AU:
     cancel_account: "Cancel Account"
     module:
       contact_us: "Contact Us"
+      menu: "Menu"
+    wiki: "wiki"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -170,7 +172,7 @@ en_AU:
      account_accessed: "User last Logged in"
      not_logged_in_yet: "User has not logged in yet."
      login_failures: "Failed Login Attempts"
-     login_count: "Successful Login"
+     login_count: "Successful Login's"
      email: "Email"
      address: "Address"
      employed: "User is an Employee:"
@@ -187,6 +189,7 @@ en_AU:
      msg:
        cancel_account: "Please call us to have you account deactivated."
      cancel_account_button: "Cancel Account"
+     t_employees: "Employee's"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
@@ -476,6 +479,10 @@ en_AU:
       contact_info: "Contact Information"
       permissions: "Permissions"
       attributes: "Attributes"
+      address_info: "Address Info"
+      notes: "Notes"
+      log: "Log"
+      details: "Details"
   product:
     taxable: "Is Taxable?"
     new: "Create New Product"
@@ -523,6 +530,7 @@ en_AU:
     tab_menu_pending: "Pending"
     index:
       t_wo: "WO #"
+    tab_menu_re_opened: "Re-Opened"
   setting_business_name: "Business Name"
   setting_business_slogan: "Business Slogan"
   setting_business_number: "Business Number"
@@ -551,3 +559,7 @@ en_AU:
   naviagtion:
     users: "Users"
   setting_details: "Business Details"
+  page:
+    posted_in: "Posted in"
+    under: "under"
+    created_at: "Created "

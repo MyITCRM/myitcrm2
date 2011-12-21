@@ -1,0 +1,7 @@
+<% if not logged_in? %>
+  <div id="header">
+    <div class="logo float_left"><%= image_tag("logo.png",:height => '64') %></div>
+      <div class="slogan text_shadow"><%= Setting::business_slogan %></div>
+  </div>
+ <hr>
+<% end %>

@@ -1,0 +1,24 @@
+<%= render 'layouts/left_sidebar_modules' %>
+<div id="center_col" class="content">
+  <div class="page_info">
+    <div class="page_name"><%= @title = @page.name %>
+      <% if can? :manage, @page %>
+      <ul>
+        <li><%= link_to 'Edit', edit_page_path(@page) %> </li>
+        <li><%= link_to 'New', new_page_path %></li>
+        <li class="delete"><%= link_to (t "global.delete"), @page, :confirm => 'Are you sure?', :method => :delete %></li>
+      </ul>
+       <% end %>
+    </div>
+    <p>
+      <var class="created_on"><%= t"page.created_at" %> <%= @page.created_at.strftime("%b %d %Y") %> by <%= @page.user.username %></var>
+    </p>
+
+  </div>
+
+
+
+    <%= @page.content.html_safe%>
+
+</div>
+

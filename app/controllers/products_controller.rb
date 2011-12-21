@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     @title = t "products.t_title"
 #    @products = Product.paginate :page => params[:page], :order => sort_column+ " " +sort_direction, :per_page => 50
 #    @products = Product.order(:id).page params[:page]
-    @products = Product.search_products(params[:search_products], sort_column, sort_direction ).page(params[:page]).per(2)
+    @products = Product.search_products(params[:search_products], sort_column, sort_direction ).paginate :per_page => 50, :page => params[:page]
 
     
     respond_to do |format|

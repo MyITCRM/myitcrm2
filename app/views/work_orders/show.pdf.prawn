@@ -83,6 +83,18 @@ pdf.bounding_box([30,pdf.cursor],:width => 500 ) do
           :column_widths => {0 => 500})
 end
 pdf.move_down(30)
+#Customers Signature required.
+pdf.bounding_box([30,pdf.cursor],:width => 500 ) do
+  pdf.pad_top(15) { pdf.text "Job Completion Signoff", :size => 12, :align => :center }
+  pdf.pad_top(5) { pdf.text "This section is required to be signed by both Client and the Repairer before leaving the work site.\n
+    By signing this form, you both acknowledge that the work detailed out in this work order form has been carried out in a Safe and Professional manor.", :size => 8, :align => :center }
+  pdf.table([[ "Whom","Names & Signatures" ],
+            [ "Client"," Name:____________________Signed by____________________ dated _____/_____/_____" ],
+            [ "Repairer"," Name:____________________Signed by____________________ dated _____/_____/_____" ]],
+          :cell_style => { :overflow => :shrink_to_fit, :size => 9, :align => :left, :height => 25 },
+          :column_widths => {0 => 100, 1 => 400})
+end
+pdf.move_down(30)
  pdf.stroke_horizontal_rule
 =begin
 pdf.move_down(2)
@@ -149,9 +161,11 @@ pdf.text("5555555555")
 end
 end
 =end
+printed_by = current_user.username
 # Page X of X
+
 pdf.bounding_box([0,0],:width => 520 ) do
-  pdf.number_pages "Page <page> of <total>", :align => :center , :size => 8
+  pdf.number_pages "Page <page> of <total> | Printed #{data} by #{printed_by}", :align => :center , :size => 8
 
 end
 
