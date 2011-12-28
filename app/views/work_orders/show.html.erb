@@ -33,7 +33,20 @@
     </div>
 
   <div>
-    <%= link_to ('Post a New Reply'), "/replies/new?work_order_id=#{@work_order.id}" %>
+    <% form_for [@work_order, @reply] do |f|  %>
+        <%= f.error_messages %>
+  <%= f.hidden_field :id %>
+
+  <p>
+    <%= f.label :content, "Comment" %><br />
+    <%= f.text_area :content, :rows => '12', :cols => 35 %>
+  </p>
+    <div class="center">
+       <%= f.submit %>
+    </div>
+  <% end %>
+
+    <%= link_to ('Post a New Reply'), new_work_order_reply_url(@work_order) %>
     <% @replies.each do |reply|  %>
     <div>Replied by <%= reply.user.username %>, <%= time_ago_in_words(reply.created_at) %> (<%= localize reply.created_at, :format => :medium %>) </div>
     <div><strong> Reply:</strong> <%= reply.content %></div>

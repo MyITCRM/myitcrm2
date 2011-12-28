@@ -9,8 +9,11 @@ MyITCRM2::Application.routes.draw do
   resources :pages
   resources :statuses
   resources :priority_lists
-  resources :work_orders
   resources :work_orders do
+    resources :replies
+  end
+  resources :work_orders do
+
     collection do
       put :close
       put :assign
