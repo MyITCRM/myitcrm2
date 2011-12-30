@@ -51,8 +51,8 @@ class WorkOrdersController < ApplicationController
   def show
     @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
+    @reply = Reply.new(:work_order_id => @work_order.id)
     @replies = Reply.where("work_order_id = #{params[:id]}").order("id DESC")
-
 
   end
 

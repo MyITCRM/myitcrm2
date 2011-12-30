@@ -48,7 +48,7 @@ acronym:hover {cursor:help;}
 a img {border: none;}
 h1 {font-size:25px;color:#ff9900;}
 h2 {font:15px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; ;color: #fffefe;}
-h3 {}
+h3 {font:15px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; ;color: #64a2b8;}
 h4 {}
 h5 {font-size:14px;color: #010101; text-decoration: underline;padding: 0;margin: 0}
 h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
@@ -173,6 +173,8 @@ input.title {font-size:1.5em;}
 #show_view table {width:100%;padding-left:1%;border:none;}
 .even td {background-color: #E3E6FF;}
 .odd td {background-color: #ffffff;}
+.even {background-color: #E3E6FF;}
+.odd {background-color: #afdeff;}
 .priority_main_1 td {background-color: #ccffcc;}
 .priority_main_2 td {background-color: #ffff99;}
 .priority_main_3 td {background-color: #ffcc00;}

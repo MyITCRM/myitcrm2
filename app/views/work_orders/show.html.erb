@@ -31,29 +31,20 @@
       <label><%= t "workorder.details" %>:</label>
       <div class="html_area"><%= simple_format(@work_order.description) %> </div>
     </div>
-
-  <div>
-    <% form_for [@work_order, @reply] do |f|  %>
-        <%= f.error_messages %>
-  <%= f.hidden_field :id %>
-
-  <p>
-    <%= f.label :content, "Comment" %><br />
-    <%= f.text_area :content, :rows => '12', :cols => 35 %>
-  </p>
-    <div class="center">
-       <%= f.submit %>
+    <input type="submit" value="Post a Reply" id="button" />
+  <div id="effect" class="hide">
+     <h3 align="left">Leave a Reply</h3>
+     <%= render :partial => 'replies/form' %>
+  </div>
+  <% @replies.each do |reply|  %>
+    <div class="<%= cycle :odd, :even %>">
+        <div>Replied by <%= reply.user.username %>, <%= time_ago_in_words(reply.created_at) %> (<%= localize reply.created_at, :format => :medium %>) </div>
+        <div><strong> Reply:</strong> <%= reply.content %><BR />
+        <%= link_to 'Destroy', reply, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Edit', edit_reply_path(:reply_id) %></div>
+        <HR>
     </div>
-  <% end %>
-
-    <%= link_to ('Post a New Reply'), new_work_order_reply_url(@work_order) %>
-    <% @replies.each do |reply|  %>
-    <div>Replied by <%= reply.user.username %>, <%= time_ago_in_words(reply.created_at) %> (<%= localize reply.created_at, :format => :medium %>) </div>
-    <div><strong> Reply:</strong> <%= reply.content %></div>
-    <HR>
 
     <% end %>
-    <%= link_to ('Post a New Reply'), "/replies/new?work_order_id=#{@work_order.id}" %>
   </div>
 
   <fieldset style="text-align:center;">

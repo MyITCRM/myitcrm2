@@ -4,36 +4,12 @@
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
   <meta name="keywords" content="<%= Setting::meta_tags %>"/>
   <%= stylesheet_link_tag 'application', 'jquery-ui-1.8.11.custom' %>
-  <%= javascript_include_tag 'application', 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.effects.core.min','jquery.effects.slide.min', 'rails', 'autocomplete-rails', 'ckeditor/ckeditor' %>
+  <%= javascript_include_tag 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.effects.core.min','jquery.effects.slide.min', 'rails', 'autocomplete-rails', 'ckeditor/ckeditor', 'application' %>
   <%= csrf_meta_tag %>
   <script type="text/javascript">
 // Used for JQuery Slide effects on Filters Divs
 //myTODO: Move to seperate JS file and remove from <HEAD> section
-$(function() {
-              // run the currently selected effect
-              function runEffect() {
-                  // get effect type from
-                  var selectedEffect = $( "#effectTypes" ).val();
 
-                  // most effect types need no options passed by default
-                  var options = {};
-                  // some effects have required parameters
-                  if ( selectedEffect === "scale" ) {
-                      options = { percent: 0 };
-                  } else if ( selectedEffect === "size" ) {
-                      options = { to: { width: 200, height: 60 } };
-                  }
-
-                  // run the effect
-                  $( "#effect" ).toggle( selectedEffect, options, 1000 );
-              };
-
-              // set effect from select menu value
-              $( "#button" ).click(function() {
-                  runEffect();
-                  return false;
-              });
-          });
   </script>
 </head>
 <body>

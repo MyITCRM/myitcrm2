@@ -101,5 +101,40 @@ var menuitems=document.getElementById(tabid).getElementsByTagName("a");
 //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
 ddtabmenu.definemenu("ddtabs1", 0);
 
+/* Used for JQuery Toggle effect to show or hide a div with the id of "effect". Class of hide make the div hidden by default*/
+// EXAMPLE::
+// <input type="submit" value="Post a Reply" id="button" />
+//  <div id="effect" class="hide">
+//    <%= render :partial => 'replies/form' %>
+//  </div>
+
+$(function() {
+              // run the currently selected effect
+function runEffect() {
+                  // get effect type from
+                  var selectedEffect = $( "#effectTypes" ).val();
+
+                  // most effect types need no options passed by default
+                  var options = {};
+                  // some effects have required parameters
+                  if ( selectedEffect === "scale" ) {
+                      options = { percent: 0 };
+                  } else if ( selectedEffect === "size" ) {
+                      options = { to: { width: 200, height: 60 } };
+                  }
+
+                  // run the effect
+                  $( "#effect" ).toggle( selectedEffect, options, 1000 );
+              };
+
+              // set effect from select menu value
+              $( "#button" ).click(function() {
+                  runEffect();
+                  return false;
+              });
+    });
+
+
+
 
 

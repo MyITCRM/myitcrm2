@@ -1,17 +1,15 @@
-<%= form_for [@work_order,@reply] do |f| %>
-  <%= f.error_messages %>
+<% form_for [@work_order,@reply] do |f| %>
   <%= f.hidden_field :work_order_id %>
-  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <p>
-    <%= f.label :private %><br />
-    <%= f.boolean :private %>
+    <%= f.label :private %><%= f.check_box :private %>
   </p>
   <p>
-    <%= f.label :content, "Comment" %><br />
-    <%= f.text_area :content, :rows => '12', :cols => 35 %>
+    <%= f.label :content, "Comment" %>
+    <%= f.text_area :content, :rows => '12', :cols => 72 %>
   </p>
     <div class="center">
-       <%= f.submit %>
+       <%= f.submit "Post Reply" %>
     </div>
 
 <% end %>
