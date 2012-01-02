@@ -34,8 +34,7 @@ class RepliesController < ApplicationController
 
   # GET /replies/1/edit
   def edit
-    @reply = Reply.find(params[:reply_id])
-    @work_order = WorkOrder.find(params[:work_order_id])
+    @reply = Reply.find(params[:id])
   end
 
   # POST /replies
@@ -61,7 +60,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.update_attributes(params[:reply])
-        format.html { redirect_to( :back, :notice => 'Reply was successfully updated.') }
+        format.html { redirect_to( work_order_path(@reply.work_order_id), :notice => 'Reply was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

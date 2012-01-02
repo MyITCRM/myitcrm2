@@ -260,7 +260,7 @@ en_AU:
     formats:
       default: "%a, %d %b %Y %H:%M:%S"
       short: "%d/%m/%Y"
-      medium: "%d/%m/%Y @ %I:%M %p"
+      medium: "%d/%m/%Y at %I:%M %p"
       long: "%B %d, %Y %H:%M"
     am: "AM"
     pm: "PM"
@@ -531,6 +531,7 @@ en_AU:
     index:
       t_wo: "WO #"
     tab_menu_re_opened: "Re-Opened"
+    reply_posted_by: "Posted by"
   setting_business_name: "Business Name"
   setting_business_slogan: "Business Slogan"
   setting_business_number: "Business Number"

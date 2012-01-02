@@ -1,4 +1,5 @@
 MyITCRM2::Application.routes.draw do
+#  resources :replies, :only => [:show, :index, :edit]
   resources :replies
 
   resources :page_categories

@@ -31,26 +31,33 @@
       <label><%= t "workorder.details" %>:</label>
       <div class="html_area"><%= simple_format(@work_order.description) %> </div>
     </div>
-    <input type="submit" value="Post a Reply" id="button" />
+    <div class="center">
+      <input type="submit" value="Post a Reply" id="button" />
+    </div>
   <div id="effect" class="hide">
      <h3 align="left">Leave a Reply</h3>
      <%= render :partial => 'replies/form' %>
   </div>
+    <div class="clear"></div>
   <% @replies.each do |reply|  %>
-    <div id="reply_author">
-      <div class="avatar_image">
+   <div id="reply_container">
+     <div id="reply_author" class="float_left">
+      <div class="avatar">
        <%= image_tag "blank_avatar.png", :size => "32x32"  %>
+        <%= t "workorder.reply_posted_by" %> <%= reply.user.username %>
       </div>
-
-      By <%= reply.user.username %>
-
+      <span style="font-size:10px"><%= time_ago_in_words(reply.created_at) %> ago</span> <br />
+      <span style="font-size:10px">(<%= localize reply.created_at, :format => :medium %>)</span>
     </div>
-    <div id="reply" class="<%= cycle :odd, :even %> re">
-        <div>Replied by <%= reply.user.username %>, <%= time_ago_in_words(reply.created_at) %> (<%= localize reply.created_at, :format => :medium %>) </div>
-        <div><strong> Reply:</strong> <%= reply.content %><BR />
-        <%= link_to 'Destroy', reply, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Edit', edit_reply_path(:reply_id) %></div>
+
+    <div id="reply" class="<%= cycle :odd, :even %>" style="display:inline-block;margin-left:1px">
+        <div><strong> Message:</strong> <%= reply.content %><BR />
+        <%= link_to 'Destroy', reply, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Edit', edit_reply_url(reply.id) %><br/>
+        <% if reply.updated_at > reply.created_at %><a>*Edited at <%= localize reply.updated_at, :format => :medium %> *</a><% end %></div>
         <HR>
     </div>
+<div class="clear"></div>
+
 
     <% end %>
   </div>
