@@ -18,6 +18,7 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 #header {width:100%}
 .logo {width:33%}
 .slogan {width:66%}
+#reply_author {width: 150px;}
 
 
 /*Typography*/
@@ -28,7 +29,7 @@ acronym:hover {cursor:help;}
 #container, #footer, body {background:url(/images/content.jpg) top left repeat;}
 #container {text-align:left;}
 #page_title {margin-left:160px;margin-right:160px;text-align:center;}
-
+.avatar {margin: 15px;outline: 1px black solid}
 /*My Overview styling*/
 #my_overview {display: inline-block;width: 100%;overflow: hidden;text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:14px;color:#666666; }
 #my_overview a {color: #0000FF; font-style: normal;font-size: inherit;text-decoration: none }

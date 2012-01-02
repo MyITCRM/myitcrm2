@@ -37,7 +37,15 @@
      <%= render :partial => 'replies/form' %>
   </div>
   <% @replies.each do |reply|  %>
-    <div class="<%= cycle :odd, :even %>">
+    <div id="reply_author">
+      <div class="avatar_image">
+       <%= image_tag "blank_avatar.png", :size => "32x32"  %>
+      </div>
+
+      By <%= reply.user.username %>
+
+    </div>
+    <div id="reply" class="<%= cycle :odd, :even %> re">
         <div>Replied by <%= reply.user.username %>, <%= time_ago_in_words(reply.created_at) %> (<%= localize reply.created_at, :format => :medium %>) </div>
         <div><strong> Reply:</strong> <%= reply.content %><BR />
         <%= link_to 'Destroy', reply, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Edit', edit_reply_path(:reply_id) %></div>
