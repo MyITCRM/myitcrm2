@@ -12,7 +12,7 @@
   <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
-    <!--<li><a href="#<%= t "settings.tab.billing_information_url" %>" rel="sc2"><%= t "settings.tab.billing_information" %></a></li>-->
+    <li><a href="#<%= t "settings.tab.taxation_info" %>" rel="sc2"><%= t "settings.tab.taxation_information" %></a></li>
     <!--<li><a href="#<%= t "settings.tab.payment_options_url" %>" rel="sc3"><%= t "settings.tab.payment_options" %></a></li>-->
     <!--<li><a href="#<%= t "settings.tab.priority_fields_url" %>" rel="sc4"><%= t "settings.tab.priority_fields_options" %></a></li>-->
     <!--<li><a href="#<%= t "settings.tab.localisation_url" %>" rel="sc5"><%= t "settings.tab.localisation_url" %></a></li>-->
@@ -42,6 +42,16 @@
   </div>
 
   <div id="sc2" class="tabcontent">
+    <div class="simple_form">
+        <%= form_tag({:action => 'edit'}) do %>
+            <p><%= setting_text_field(:tax_type, :size => 10)%></p>
+            <p><%= setting_text_field(:tax_rate, :size => 10)%></p>
+             <div class="center">
+                <%= submit_tag t "global.confirm" %>
+             </div>
+
+        <% end %>
+        </div>
 
   </div>
 

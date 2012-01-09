@@ -22,6 +22,7 @@
     <td><%= re_opened.assigned_to_username %></td>
     <td align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(re_opened.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(re_opened.id)) %>&nbsp;
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), close_path(re_opened.id)) %>&nbsp;
         <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(re_opened.id), :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>

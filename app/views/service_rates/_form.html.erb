@@ -1,0 +1,27 @@
+    <%= simple_form_for(@service_rate) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="inputs">
+
+        <%= f.input :sku %>
+
+        <%= f.input :description %>
+
+        <%= f.input :rate %>
+
+        <%= f.input :taxable %>
+
+        <% if @service_rate.tax_rate.blank? %>
+            <%= f.input :tax_rate, :input_html => {:value => Setting::tax_rate} %>
+        <% else %>
+           <%= f.input :tax_rate %>
+        <% end %>
+
+        <%= f.input :active %>
+
+      </div>
+
+      <div class="center">
+        <%= f.button :submit %>
+      </div>
+    <% end %>

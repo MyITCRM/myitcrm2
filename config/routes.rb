@@ -1,4 +1,10 @@
 MyITCRM2::Application.routes.draw do
+  resources :service_rates
+  resources :invoice_lines
+
+  resources :invoices
+
+
 #  resources :replies, :only => [:show, :index, :edit]
   resources :replies
 

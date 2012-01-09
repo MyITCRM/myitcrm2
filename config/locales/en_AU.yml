@@ -108,6 +108,8 @@ en_AU:
       contact_us: "Contact Us"
       menu: "Menu"
     wiki: "wiki"
+    index: "List"
+    invoice: "Invoice"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -464,6 +466,8 @@ en_AU:
       localisation_url: "Localisation"
       priority_fields_url: "Priority_Values"
       priority_fields_options: "Priority Values"
+      taxation_info: "Taxation_Information"
+      taxation_information: "Taxation Information"
     hint:
       business_number: "eg: ACN, ABN, etc"
       transaction_fee: "eg: 3% of total invoice amount"

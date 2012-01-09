@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :product_category
-  
+  has_many :invoice_lines
+
 # Validations on inputs
   validates_presence_of :supplier, :description, :cost_price, :manufacturer, :model, :sell_price, :our_sku, :supplier_sku
   validates_uniqueness_of :our_sku

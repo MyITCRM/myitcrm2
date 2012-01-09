@@ -1,0 +1,33 @@
+<%= simple_form_for(@invoice) do |f| %>
+  <%= f.error_notification %>
+    <table id="index_table" width="100%">
+      <th>Qty</th>
+      <th>Service Description</th>
+      <th>Rate</th>
+      <th>Tax Rate</th>
+      <th>Tax Amnt</th>
+      <th>Sub Total</th>
+      <th>Line Total</th>
+      <th>Line Comment</th>
+      <th>Remove Rate</th>
+<% f.simple_fields_for :invoice_lines do |builder| %>
+    <%= render "invoice_lines_form", :f => builder %>
+  <% end %>
+    </table>
+    <HR>
+    <%=  %>
+    <%= f.input :invoice_note, :input_html => { :cols => 40, :rows => 3 } %>
+    <%= f.input :payment_id %>
+    <%= f.input :paid %>
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+    <% if  params[:client_id].present? %>
+    <%= f.input :client_id, :as => :hidden, :input_html => { :value => params[:client_id] } %>
+    <% end %>
+    <% if params[:work_order_id].present? %>
+    <%= f.input :work_order_id, :as => :hidden, :input_html => { :value => params[:work_order_id] } %>
+    <% end %>
+
+  <div class="center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

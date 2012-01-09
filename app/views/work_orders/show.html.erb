@@ -3,11 +3,18 @@
   <div class="module">
     <ul>
        <% if can? :destroy, WorkOrder %>
-            <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+            <% if @work_order.closed? %>
             <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
+            <li class="print"><%= link_to (t "global.invoice"), new_invoice_path(:work_order_id => @work_order.id, :client_id => @work_order.user_id) %></li>
+            <% else %>
+            <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+            <li class="close"><%= link_to (t "global.close"), close_path(@work_order.id)%> </li>
+       <% end %>
        <% end %>
        <% if can? :edit, WorkOrder %>
+           <% if @work_order.closed.blank? %>
             <li class="edit"><%= link_to (t "global.edit"), edit_work_order_path %></li>
+       <% end %>
        <% end %>
       <li class="exit"><%= link_to (t "global.exit"), work_orders_path %></li>
     </ul>
@@ -16,6 +23,10 @@
 <div id="center_col" class="content no_right_sidebar">
   <div id="show_layout">
   <label><%= t "workorder.subject" %>:</label><div class="field"> <%= @work_order.subject  %></div>
+  <% if @work_order.closed? %>
+        <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= @work_order.assigned_to_username %> </div>
+        <% else %>
+
   <% if current_user.workorder_assignability == true %>
      <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><%= render(:partial => "work_orders/assign") %>
   <% else %>
@@ -25,12 +36,14 @@
      <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= @work_order.assigned_to_username %> </div>
    <% end %>
   <% end %>
+  <% end %>
     <label><%= t "workorder.priority" %>:</label><div class="field "><span class="priority_<%=@work_order.priority_list.id %>"><%= @work_order.priority_list.name %></span></div>
     <label><%= t "workorder.status" %>:</label><div class="field"><%= @work_order.status.name %></div>
     <div>
       <label><%= t "workorder.details" %>:</label>
       <div class="html_area"><%= simple_format(@work_order.description) %> </div>
     </div>
+     <% if @work_order.closed.blank? %>
     <div class="center">
       <input type="submit" value="Post a Reply" id="button" />
     </div>
@@ -38,6 +51,7 @@
      <h3 align="left">Leave a Reply</h3>
      <%= render :partial => 'replies/form' %>
   </div>
+  <% end %>
     <div class="clear"></div>
   <% @replies.each do |reply|  %>
    <div id="reply_container">
@@ -52,7 +66,9 @@
 
     <div id="reply" class="<%= cycle :odd, :even %>" style="display:inline-block;margin-left:1px">
         <div><strong> Message:</strong> <%= reply.content %><BR />
-        <%= link_to 'Destroy', reply, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Edit', edit_reply_url(reply.id) %><br/>
+        <% if @work_order.closed.blank? %>
+            <%= link_to 'Destroy', reply, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Edit', edit_reply_url(reply.id) %><br/>
+        <% end %>
         <% if reply.updated_at > reply.created_at %><a>*Edited at <%= localize reply.updated_at, :format => :medium %> *</a><% end %></div>
         <HR>
     </div>

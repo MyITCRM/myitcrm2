@@ -19,20 +19,27 @@ SimpleNavigation::Configuration.run do |navigation|
             sub_nav.item :user, 'Employees', employees_path
             sub_nav.item :user, 'Clients', clients_path
             sub_nav.item :users, 'New User', new_user_path
-           end
-       end
+          end
+
+        end
         if can? :manage, Supplier
           primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/ do |sub_nav|
+            sub_nav.item :suppliers, "Suppliers #{[t 'global.index']}", suppliers_path
             sub_nav.item :suppliers, [t 'global.create'], new_supplier_path
           end
           end
         if can? :manage, Product
-          primary.item :products, 'Products', products_path  do |sub_nav|
+          primary.item :products, 'Products', products_path, :highlights_on => /\/products/  do |sub_nav|
+            sub_nav.item :products, "Products #{[t 'global.index']}", products_path
             sub_nav.item :products, [t 'global.create'], new_product_path
           end
         end
         if can? :manage, :all
-          primary.item :settings, 'Settings', settings_path, :highlights_on => /\/settings/
+          primary.item :invoices, "Invoices", invoices_path, :highlights_on => /\/invoices/
+          primary.item :settings, 'Rates & Settings', nil, :highlights_on => /\/settings/ do |sub_nav|
+            sub_nav.item :service_rates, 'Service Rates', service_rates_path, :highlights_on => /\/service_rates/
+            sub_nav.item :settings, 'Business Settings', settings_path, :highlights_on => /\/settings/
+          end
         end
 
     else

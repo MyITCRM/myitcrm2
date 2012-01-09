@@ -1,0 +1,40 @@
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="create"><%= link_to [t "workorder.t_add_new"], new_service_rate_path %></li>
+        <li class="back"><%= link_to (t "global.back"), :back %></li>
+    </ul>
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
+</div>
+
+<div id="center_col" class="no_right_sidebar">
+
+<table id="index_table" >
+  <tr>
+    <th>SKU</th>
+    <th>Description</th>
+    <th>Rate</th>
+    <th>Taxable</th>
+    <th>Tax rate</th>
+    <th>Active</th>
+    <th><%= t "global.actions" %></th>
+  </tr>
+
+<% @service_rates.each do |service_rate| %>
+  <tr align="left" class="<%= cycle :odd, :even %>">
+    <td><%= service_rate.sku %></td>
+    <td><%= service_rate.description %></td>
+    <td><%= number_to_currency(service_rate.rate) %></td>
+    <td><%= service_rate.taxable %></td>
+    <td><%= number_to_percentage(service_rate.tax_rate) %></td>
+    <td><%= service_rate.active %></td>
+    <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), service_rate )%>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_service_rate_path(service_rate)) %>
+        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), service_rate, :confirm => 'Are you sure?', :method => :delete ) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+</div>

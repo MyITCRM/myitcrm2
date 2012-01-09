@@ -1,0 +1,41 @@
+<h1>Listing invoice_lines</h1>
+
+<table>
+  <tr>
+    <th>Invoice</th>
+    <th>Service rate</th>
+    <th>Product</th>
+    <th>Qty</th>
+    <th>Tax rate</th>
+    <th>Tax</th>
+    <th>Price</th>
+    <th>Sub total</th>
+    <th>Total price</th>
+    <th>Line comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @invoice_lines.each do |invoice_line| %>
+  <tr>
+    <td><%= invoice_line.invoice_id %></td>
+    <td><%= invoice_line.service_rate_id %></td>
+    <td><%= invoice_line.product_id %></td>
+    <td><%= invoice_line.qty %></td>
+    <td><%= invoice_line.tax_rate %></td>
+    <td><%= invoice_line.tax %></td>
+    <td><%= invoice_line.price %></td>
+    <td><%= invoice_line.sub_total %></td>
+    <td><%= invoice_line.total_price %></td>
+    <td><%= invoice_line.line_comment %></td>
+    <td><%= link_to 'Show', invoice_line %></td>
+    <td><%= link_to 'Edit', edit_invoice_line_path(invoice_line) %></td>
+    <td><%= link_to 'Destroy', invoice_line, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Invoice line', new_invoice_line_path %>

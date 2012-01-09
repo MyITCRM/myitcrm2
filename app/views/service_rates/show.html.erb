@@ -1,0 +1,94 @@
+
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+      <% if can? :read, @products %><li class="delete"><%= link_to (t "global.delete"), @service_rate, :confirm => 'Are you sure?', :method => :delete %></li> <% end %>
+      <% if can? :edit, @products %><li class="edit"><%= link_to (t "global.edit"), edit_service_rate_path(@service_rate) %></li> <% end %>
+      <li class="exit"><%= link_to (t "global.exit"), service_rates_path %></li>
+    </ul>
+  </div>
+<%= render 'layouts/left_sidebar_modules' %>
+</div>
+<div id="center_col" class="no_right_sidebar">
+<div id="ddtabs1" class="basictab" >
+<ul>
+<li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="tab1"><%= (t "products.tab_menu_basic") %></a></li>
+</ul>
+</div>
+
+<div class="tabcontainer">
+
+<div id="tab1" class="tabcontent">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <b>Sku:</b>
+    <%= @service_rate.sku %>
+  </p>
+
+  <p>
+    <b>Description:</b>
+    <%= @service_rate.description %>
+  </p>
+
+  <p>
+    <b>Rate:</b>
+    <%= @service_rate.rate %>
+  </p>
+
+  <p>
+    <b>Taxable:</b>
+    <%= @service_rate.taxable %>
+  </p>
+
+  <p>
+    <b>Tax rate:</b>
+    <%= @service_rate.tax_rate %>
+  </p>
+
+  <p>
+    <b>Active:</b>
+    <%= @service_rate.active %>
+  </p>
+
+  <fieldset id="collapsable">
+    <table>
+      <tr>
+        <td  >
+          <h1><%= t "products.t_log" %></h1>
+        </td>
+      </tr>
+      <tr>
+        <td  >
+          <strong><%= t "supplier.date_created" %>:</strong>
+        </td>
+        <td align="left">
+          <%= time_ago_in_words(@service_rate.created_at) %> <%= t "global.ago" %>
+          (<%= localize @service_rate.created_at, :format => :short %>).
+        </td>
+      </tr>
+      <tr>
+        <td >
+          <strong><%= t "global.last_updated_by" %>:</strong>
+        </td>
+        <td align="left">
+              <%= time_ago_in_words(@service_rate.created_at) %> <%= t "global.ago" %>
+              (<%= localize @service_rate.created_at, :format => :short %>).
+
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+</div>
+<div id="tab2" class="tabcontent">
+
+</div>
+<div id="tab3" class="tabcontent">
+
+</div>
+<div id="tab4" class="tabcontent">
+
+</div>
+</div>
+</div>

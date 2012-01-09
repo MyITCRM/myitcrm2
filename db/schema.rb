@@ -10,7 +10,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111221063203) do
+ActiveRecord::Schema.define(:version => 20120105233750) do
+
+  create_table "invoice_lines", :force => true do |t|
+    t.integer  "invoice_id"
+    t.integer  "service_rate_id"
+    t.integer  "product_id"
+    t.decimal  "qty"
+    t.decimal  "tax_rate"
+    t.decimal  "tax"
+    t.decimal  "price"
+    t.decimal  "sub_total"
+    t.decimal  "total_price"
+    t.string   "line_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invoices", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "client_id"
+    t.integer  "invoice_line_id"
+    t.integer  "work_order_id"
+    t.text     "invoice_note"
+    t.integer  "payment_id"
+    t.boolean  "paid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "page_categories", :force => true do |t|
     t.string "name"
@@ -81,6 +108,17 @@ ActiveRecord::Schema.define(:version => 20111221063203) do
     t.integer  "work_order_id"
     t.text     "content"
     t.boolean  "private"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "service_rates", :force => true do |t|
+    t.string   "sku"
+    t.string   "description"
+    t.decimal  "rate"
+    t.boolean  "taxable"
+    t.decimal  "tax_rate"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

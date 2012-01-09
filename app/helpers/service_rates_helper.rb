@@ -1,0 +1,2 @@
+module ServiceRatesHelper
+end

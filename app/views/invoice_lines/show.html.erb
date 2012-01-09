@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Invoice:</b>
+  <%= @invoice_line.invoice_id %>
+</p>
+
+<p>
+  <b>Service rate:</b>
+  <%= @invoice_line.service_rate_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @invoice_line.product_id %>
+</p>
+
+<p>
+  <b>Qty:</b>
+  <%= @invoice_line.qty %>
+</p>
+
+<p>
+  <b>Tax rate:</b>
+  <%= @invoice_line.tax_rate %>
+</p>
+
+<p>
+  <b>Tax:</b>
+  <%= @invoice_line.tax %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @invoice_line.price %>
+</p>
+
+<p>
+  <b>Sub total:</b>
+  <%= @invoice_line.sub_total %>
+</p>
+
+<p>
+  <b>Total price:</b>
+  <%= @invoice_line.total_price %>
+</p>
+
+<p>
+  <b>Line comment:</b>
+  <%= @invoice_line.line_comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_invoice_line_path(@invoice_line) %> |
+<%= link_to 'Back', invoice_lines_path %>

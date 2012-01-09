@@ -1,7 +1,3 @@
-<div id="top_float_left">
-   <%= link_to(image_tag('exit.png', :title => [t "global.close"],:align => "bottom", :hspace => "2"), work_orders_path) %>&nbsp;<%= link_to([t "global.close"], work_orders_path) %><%= link_to(image_tag('exit.png', :title => [t "global.close"],:align => "bottom", :hspace => "2"), close_workorder_path) %>&nbsp;<%= link_to([t "global.close"], close_workorder_path) %>
-</div>
-<br>
 <div id="ddtabs1" class="basictab">
 <ul>
 <li><a href="#<%= t "workorder.tab_menu_resolution"  %>" rel="sc2"><%= (t "workorder.tab_menu_resolution") %></a></li>
@@ -13,13 +9,13 @@
 <div id="sc2" class="tabcontent">
 
 <% simple_form_for(@work_order) do |f| %>
-      <% f.inputs do %>
         <%= f.input :resolution, :label => (t "workorder.resolution") %>
-        <%= f.input :closed, :label => (t "workorder.details") %>
-        <%= f.input :closed_by, :as => :hidden, :input_html => {:value =>  current_user.user_id} %>
-        <%= f.input :closed_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-      <% end %>
-<%= f.buttons %>
+        <%= f.input :closed, :input_html => {:checked =>  true} %>
+        <%= f.input :status_id, :as => :hidden, :input_html => {:value => 6 } %>
+        <%= f.input :closed_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+        <%= f.input :closed_date, :as => :hidden, :input_html => {:value =>  Time.now} %>
+
+<%= f.button :submit, 'Close' %>
 <% end %>
 </div>
 </div>

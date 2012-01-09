@@ -18,4 +18,9 @@ business_number:
   default: ''
 meta_tags:
   default: 'CRM, FREE, Opensource, Repair, Business, Computer, IT, Shop'
+tax_type:
+  default: 'GST'
+tax_rate:
+  default: '10'
+
 

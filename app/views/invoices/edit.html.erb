@@ -1,0 +1,25 @@
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+       <% if can? :destroy, WorkOrder %>
+            <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) %></li>
+            <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+       <% end %>
+       <% if can? :edit, WorkOrder %>
+            <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path %></li>
+       <% end %>
+      <li class="exit"><%= link_to (t "global.exit"), invoices_path %></li>
+    </ul>
+</div>
+  </div>
+<div id="center_col" class="content no_right_sidebar">
+  <div id="show_layout">
+ <div><%= render 'form' %></div>
+
+
+
+<%= link_to 'Show', @invoice %> |
+<%= link_to 'Back', invoices_path %>
+</div>
+</div>

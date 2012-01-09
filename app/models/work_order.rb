@@ -2,12 +2,12 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :priority_list
   belongs_to :status
   belongs_to :user
-  has_many :replies
+  has_many :replies, :dependent => :destroy
 
 # Validate Input information
   validates_presence_of :subject, :description, :user_id
 
-  attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by, :status_id
+  attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by, :status_id, :resolution, :closed_by, :closed_date, :closed
   before_create :workorder_created
   before_update :workorder_updated, :change_assignment
   before_save :lookup_assigned_username, :change_assignment, :closed_action
@@ -61,13 +61,15 @@ class WorkOrder < ActiveRecord::Base
        closed_status = "6"
       self.status_id = closed_status
     end
-  end
+    end
+
 
   def reply
       @reply
     end
   def reply_attributes=(attributes)
 
-    end
+  end
+
 end
 

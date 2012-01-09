@@ -102,15 +102,30 @@ class WorkOrdersController < ApplicationController
   def update
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
+    @invoicing_enabled = true
+    invoicing_enabled = true
 
+    if invoicing_enabled.present? and @work_order.closed.present?
+       respond_to do |format|
+      if @work_order.update_attributes(params[:work_order])
+        flash[:notice] = 'Work Order was successfully updated.'
+        format.html { redirect_to(new_work_order_invoice_path) }
+        format.xml { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml { render :xml => @work_order.errors, :status => :unprocessable_entity }
+      end
+      end
+    else
     respond_to do |format|
       if @work_order.update_attributes(params[:work_order])
-        flash[:notice] = 'WorkOrder was successfully updated.'
+        flash[:notice] = 'Work Order was successfully updated.'
         format.html { redirect_to(@work_order) }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml { render :xml => @work_order.errors, :status => :unprocessable_entity }
+      end
       end
     end
   end
@@ -121,20 +136,20 @@ class WorkOrdersController < ApplicationController
     if @work_order.assigned_to_id.blank?
       redirect_to(work_orders_url)
       flash[:alert] = "Work Order needs to be assigned to an Employee first before closing."
-    else
-    respond_to do |format|
-      if @work_order.update_attribute(:status_id, "6")
-        @work_order.update_attribute(:closed, true)
-        @work_order.update_attribute(:closed_date, Time.now)
-        @work_order.update_attribute(:closed_by, current_user.username)
-        flash[:notice] = 'WorkOrder was successfully Closed.'
-        format.html { redirect_to(work_orders_url) }
-        format.xml { head :ok }
-      else
-        format.html { render :action => "index" }
-        format.xml { render :xml => @work_order.errors, :status => :unprocessable_entity }
-      end
-    end
+    #else
+    #respond_to do |format|
+    #  if @work_order.update_attribute(:status_id, "6")
+    #    @work_order.update_attribute(:closed, true)
+    #    @work_order.update_attribute(:closed_date, Time.now)
+    #    @work_order.update_attribute(:closed_by, current_user.username)
+    #    flash[:notice] = 'WorkOrder was successfully Closed.'
+    #    format.html { redirect_to( Invoice.new) }
+    #    format.xml { head :ok }
+    #  else
+    #    format.html { render :action => "index" }
+    #    format.xml { render :xml => @work_order.errors, :status => :unprocessable_entity }
+    #  end
+    #end
     end
   end
 
