@@ -3,7 +3,7 @@ class CreateInvoices < ActiveRecord::Migration
     create_table :invoices do |t|
       t.integer :user_id
       t.integer :client_id
-      t.integer :invoice_line_id
+      t.datetime :due_date
       t.integer :work_order_id
       t.text :invoice_note
       t.integer :payment_id

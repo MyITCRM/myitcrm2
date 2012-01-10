@@ -1,5 +1,20 @@
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+      <% if current_user.client == true %>
+      <li class="delete"><%= link_to (t "user.cancel_account_button"),@user, :confirm => [t 'user.msg.cancel_account'], :href => '#' %></li>
+     <% end %>
+      <li class="exit"><%= link_to (t "global.exit"), :back %></li>
+      <% if can? :manage, @users %>
+        <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
+      <% end %>
+    </ul>
+  </div>
+   <%= render 'layouts/left_sidebar_modules' %>
+  </div>
 
-
+<div id=center_col>
 <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "users.tab.details" %>" rel="tab1"><%= t "users.tab.details" %></a></li>
@@ -19,7 +34,8 @@
           <%= f.input :email, :label => (t "global.email") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <%= f.submit %>
+          <div class="center"><%= f.submit %></div>
+
 
   </div>
 <div id="tab2" class="tabcontent">
@@ -32,13 +48,13 @@
           <%= f.input :zip, :input_html => {:size => 30}, :label => (t "global.zip") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <%= f.submit %>
+          <div class="center"><%= f.submit %></div>
   </div>
 <div id="tab3" class="tabcontent">
           <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <%= f.submit %>
+          <div class="center"><%= f.submit %></div>
   </div>
   <% if can? :manage, :all %>
   <div id="tab4" class="tabcontent">
@@ -51,8 +67,9 @@
           <%= f.input :workorder_assignability, :as => :radio, :hint => (t "user.hint.assignable" ),:label => (t "user.assignable") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <%= f.submit %>
+          <div class="center"><%= f.submit %></div>
   </div>
   <% end %>
   <% end %>
+</div>
 </div>

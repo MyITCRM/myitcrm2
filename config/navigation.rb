@@ -37,8 +37,9 @@ SimpleNavigation::Configuration.run do |navigation|
         if can? :manage, :all
           primary.item :invoices, "Invoices", invoices_path, :highlights_on => /\/invoices/
           primary.item :settings, 'Rates & Settings', nil, :highlights_on => /\/settings/ do |sub_nav|
-            sub_nav.item :service_rates, 'Service Rates', service_rates_path, :highlights_on => /\/service_rates/
+            sub_nav.item :service_rates, 'Service Rates', service_rates_path, :highlights_on => /\/service_rates/ || /\/settings/
             sub_nav.item :settings, 'Business Settings', settings_path, :highlights_on => /\/settings/
+            sub_nav.item :priority_lists, 'Priority List', priority_lists_path, :highlights_on => /\/priority_lists/ || /\/settings/
           end
         end
 

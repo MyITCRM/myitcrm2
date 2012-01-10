@@ -1,18 +1,15 @@
-<% form_for(@priority_list) do |f| %>
-  <%= f.error_messages %>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="back"><%= link_to (t "global.back"), :back %></li>
+    </ul>
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
+</div>
 
-  <p>
-    <%= f.label :priority_id %><br />
-    <%= f.text_field :priority_id %>
-  </p>
-  <p>
-    <%= f.label :priority_name %><br />
-    <%= f.text_field :priority_name %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<div id="center_col" class="tabcontainer">
+  <p>&nbsp;</p>
+<%= render 'form' %>
 
-<%= link_to 'Show', @priority_list %> |
-<%= link_to 'Back', priority_lists_path %>
+</div>

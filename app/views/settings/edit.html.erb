@@ -16,6 +16,7 @@
     <!--<li><a href="#<%= t "settings.tab.payment_options_url" %>" rel="sc3"><%= t "settings.tab.payment_options" %></a></li>-->
     <!--<li><a href="#<%= t "settings.tab.priority_fields_url" %>" rel="sc4"><%= t "settings.tab.priority_fields_options" %></a></li>-->
     <!--<li><a href="#<%= t "settings.tab.localisation_url" %>" rel="sc5"><%= t "settings.tab.localisation_url" %></a></li>-->
+    <li><a href="#<%= t "settings.tab.misc" %>" rel="sc6"><%= t "settings.tab.misc_url" %></a></li>
   </ul>
 </div>
 
@@ -35,8 +36,7 @@
          <div class="center">
             <%= submit_tag t "global.confirm" %>
          </div>
-
-    <% end %>
+         <% end %>
     </div>
 
   </div>
@@ -49,8 +49,8 @@
              <div class="center">
                 <%= submit_tag t "global.confirm" %>
              </div>
+             <% end %>
 
-        <% end %>
         </div>
 
   </div>
@@ -64,6 +64,17 @@
   </div>
 <div id="sc5" class="tabcontent">
 
+  </div>
+<div id="sc6" class="tabcontent">
+      <div class="simple_form">
+        <%= form_tag({:action => 'edit'}) do %>
+            <p><%= setting_check_box(:logout_limit) %></p>
+             <div class="center">
+                <%= submit_tag t "global.confirm" %>
+             </div>
+            <% end %>
+
+        </div>
   </div>
 </div>
    <div class="clear"></div>

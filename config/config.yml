@@ -22,5 +22,11 @@ tax_type:
   default: 'GST'
 tax_rate:
   default: '10'
+logout_limit:
+  default: 'true'
+version:
+  default: 'v2.0.0'
+
+
 
 

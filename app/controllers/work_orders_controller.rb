@@ -52,7 +52,7 @@ class WorkOrdersController < ApplicationController
     @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
     @reply = Reply.new(:work_order_id => @work_order.id)
-    @replies = Reply.where("work_order_id = #{params[:id]}").order("id DESC")
+    @replies = Reply.where("work_order_id = #{params[:id]}").order("id DESC").paginate(:per_page => 4, :page => params[:page])
 
   end
 

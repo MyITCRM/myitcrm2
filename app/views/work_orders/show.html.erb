@@ -2,25 +2,24 @@
   <%= module_header %>
   <div class="module">
     <ul>
+        <% if @work_order.closed.blank? and can? :edit, WorkOrder %>
+            <li class="edit"><%= link_to (t "global.edit"), edit_work_order_path %></li>
+        <% end %>
        <% if can? :destroy, WorkOrder %>
             <% if @work_order.closed? %>
             <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
             <li class="print"><%= link_to (t "global.invoice"), new_invoice_path(:work_order_id => @work_order.id, :client_id => @work_order.user_id) %></li>
             <% else %>
-            <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
             <li class="close"><%= link_to (t "global.close"), close_path(@work_order.id)%> </li>
+            <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
        <% end %>
        <% end %>
-       <% if can? :edit, WorkOrder %>
-           <% if @work_order.closed.blank? %>
-            <li class="edit"><%= link_to (t "global.edit"), edit_work_order_path %></li>
-       <% end %>
-       <% end %>
+
       <li class="exit"><%= link_to (t "global.exit"), work_orders_path %></li>
     </ul>
 </div>
   </div>
-<div id="center_col" class="content no_right_sidebar">
+<div id="center_col" class="content">
   <div id="show_layout">
   <label><%= t "workorder.subject" %>:</label><div class="field"> <%= @work_order.subject  %></div>
   <% if @work_order.closed? %>
@@ -45,7 +44,7 @@
     </div>
      <% if @work_order.closed.blank? %>
     <div class="center">
-      <input type="submit" value="Post a Reply" id="button" />
+      <input type="submit" value="Add a Reply" id="button" />
     </div>
   <div id="effect" class="hide">
      <h3 align="left">Leave a Reply</h3>
@@ -53,31 +52,34 @@
   </div>
   <% end %>
     <div class="clear"></div>
+  <%= will_paginate @replies %>
   <% @replies.each do |reply|  %>
-   <div id="reply_container">
-     <div id="reply_author" class="float_left">
-      <div class="avatar">
-       <%= image_tag "blank_avatar.png", :size => "32x32"  %>
-        <%= t "workorder.reply_posted_by" %> <%= reply.user.username %>
-      </div>
-      <span style="font-size:10px"><%= time_ago_in_words(reply.created_at) %> ago</span> <br />
-      <span style="font-size:10px">(<%= localize reply.created_at, :format => :medium %>)</span>
-    </div>
+    <div id="reply_container">
+      <div id="reply" class="<%= cycle :odd, :even %>" >
+      <div>
+        <div class="reply_author">
+           <%= image_tag "blank_avatar.png", :size => "32x32"  %><br/>
+          <%= reply.user.name %>
+        </div>
+        <div class="reply_message">
+           <strong> Message:</strong> <%= simple_format reply.content %>
 
-    <div id="reply" class="<%= cycle :odd, :even %>" style="display:inline-block;margin-left:1px">
-        <div><strong> Message:</strong> <%= reply.content %><BR />
+        <span style="font-size:10px">
+          <% if reply.updated_at > reply.created_at %><%= image_tag('comment_edit.png') %>[ Edited <%= localize reply.updated_at, :format => :medium %> ]<% end %>
+          <%= time_ago_in_words(reply.created_at) %> ago (<%= localize reply.created_at, :format => :medium %>)
+        </span>
         <% if @work_order.closed.blank? %>
-            <%= link_to 'Destroy', reply, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Edit', edit_reply_url(reply.id) %><br/>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_reply_url(reply.id)) %>&nbsp;
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), reply_path(reply.id), :confirm => [t 'alert.destroy'], :method => :delete ) %>
         <% end %>
-        <% if reply.updated_at > reply.created_at %><a>*Edited at <%= localize reply.updated_at, :format => :medium %> *</a><% end %></div>
-        <HR>
+        </div>
     </div>
-<div class="clear"></div>
-
-
-    <% end %>
+    <div style="clear:both;"></div>
   </div>
-
+    </div>
+ <% end %>
+    <%= will_paginate @replies %>
+  <div class="clear"></div>
   <fieldset style="text-align:center;">
     <legend><%= t "global.activity_log" %></legend>
 

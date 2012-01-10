@@ -47,7 +47,6 @@ en_AU:
     phone: "Phone"
     fax: "Fax"
     email: "Email"
-
     home: "Home"
     submit: "Submit"
     login: "Login"
@@ -110,6 +109,10 @@ en_AU:
     wiki: "wiki"
     index: "List"
     invoice: "Invoice"
+    priority_list: "Work Order Priority List"
+    edit_priority_list: "Edit Priority list Name"
+    priority_name: "Priority List Name"
+    not_logged_in: "You must first log in or sign up before accessing this page."
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -468,6 +471,8 @@ en_AU:
       priority_fields_options: "Priority Values"
       taxation_info: "Taxation_Information"
       taxation_information: "Taxation Information"
+      misc_url: "Misc"
+      misc: "Misc"
     hint:
       business_number: "eg: ACN, ABN, etc"
       transaction_fee: "eg: 3% of total invoice amount"
@@ -551,6 +556,8 @@ en_AU:
   setting_enable_tax: "Enable Tax"
   setting_tax_rate: "Tax rate %"
   setting_tax_type: "Tax Type"
+  setting_logout_limit: "Logout after inactivity enabled"
+  setting_version: "MyITCRM Version"
   setting_business_contact_name: "Head Office Contact Name"
   setting_business_contact_phone: "Head Office Contact Number"
   setting_business_contact_email: "Head Office Contact Email"
@@ -568,3 +575,9 @@ en_AU:
     posted_in: "Posted in"
     under: "under"
     created_at: "Created "
+  alert:
+    destroy: "Are you sure you want to Delete this record?"
+  reply:
+    message: "Reply Message"
+    internal: "Internal Reply"
+    internal_hint: "These replies marked as 'Internal' will not been seen by the client"

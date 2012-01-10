@@ -6,8 +6,8 @@
   <div style="width: 45%; margin-left:27.5%; padding: 10px;border:#999999 solid 2px;background-color: #dff1ff;" >
   <%= simple_form_for(UserSession.new, :url => {:action => "create"}) do |f| %>
             <%= f.error_notification %>
-            <%= f.input :username, :placeholder => 'Username', :error => false, :input_html => {:size => 27} %>
-            <%= f.input :password, :placeholder => 'Password', :error => false, :input_html => {:size => 28} %>
+            <%= f.input :username, :placeholder => 'Username', :error => true, :input_html => {:size => 27} %>
+            <%= f.input :password, :placeholder => 'Password', :error => true, :input_html => {:size => 28} %>
             <div class="center">
               <%= f.submit t 'global.login' %><br />
               <%= link_to "New User? Register here.", register_path  %>

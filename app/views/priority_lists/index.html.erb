@@ -1,20 +1,29 @@
-<table>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="back"><%= link_to (t "global.back"), :back %></li>
+    </ul>
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
+</div>
+
+<div id="center_col" class="no_right_sidebar">
+
+<table id="index_table">
   <tr>
-    <th>Priority</th>
-    <th>Priority name</th>
+    <th><%= t 'global.priority_name' %></th>
+    <th><%= t 'global.actions' %></th>
   </tr>
 
 <% @priority_lists.each do |priority_list| %>
-  <tr>
-    <td><%=h priority_list.priority_id %></td>
-    <td><%=h priority_list.priority_name %></td>
-    <td><%= link_to 'Show', priority_list %></td>
-    <td><%= link_to 'Edit', edit_priority_list_path(priority_list) %></td>
-    <td><%= link_to 'Destroy', priority_list, :confirm => 'Are you sure?', :method => :delete %></td>
+  <tr class="<%= cycle :odd, :even %>">
+    <td><%= priority_list.name %></td>
+    <td align="center"><%= link_to(image_tag('edit.png', :title => [t "global.edit"]),  edit_priority_list_path(priority_list)) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New priority_list', new_priority_list_path %>
+    </div>

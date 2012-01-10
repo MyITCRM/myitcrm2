@@ -36,7 +36,7 @@ module Authentication
   
   def login_required
     unless logged_in?
-      flash[:notice] = "You must first log in or sign up before accessing this page."  #mytodo - add translation here
+      flash[:notice] = [t 'global.not_logged_in']
       store_target_location
       redirect_to login
     end

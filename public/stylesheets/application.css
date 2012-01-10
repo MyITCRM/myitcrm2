@@ -18,8 +18,10 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 #header {width:100%}
 .logo {width:33%}
 .slogan {width:66%}
-#reply_author {width: 150px; padding:10px; outline: 1px black solid}
-#reply {max-width: 80%; min-width:60%; padding:10px; outline: 1px black solid}
+.reply_author {width:6em;display:inline-block;float: left;}
+#reply_container {margin: 0 auto;}
+#reply {max-width: 100%; min-width:60%; padding:10px;}
+.reply_message {margin-left: 6.2em;}
 
 
 /*Typography*/
@@ -30,7 +32,10 @@ acronym:hover {cursor:help;}
 #container, #footer, body {background:url(/images/content.jpg) top left repeat;}
 #container {text-align:left;}
 #page_title {margin-left:160px;margin-right:160px;text-align:center;}
-.avatar img { padding:3px; outline: 1px black solid}
+#reply {outline: 1px black solid; line-height: normal !important; font-size: 12px;}
+.reply_author {font: 10px bold}
+.reply_author img { padding:3px; outline: 1px black solid}
+.reply_edited {font: 13px italic bold;color:#ff9900;text-decoration:blink; }
 .reply_edited {font: 13px italic bold;color:#ff9900;text-decoration:blink; }
 /*My Overview styling*/
 #my_overview {display: inline-block;width: 100%;overflow: hidden;text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:14px;color:#666666; }
@@ -151,7 +156,7 @@ input.title {font-size:1.5em;}
 
 
 /*Pagination CSS styles*/
-.pagination {margin: 20px 0;}
+.pagination {margin: 20px 0;line-height:normal !important;}
 .pagination a, .pagination span {display: inline-block; float: left; margin-right: 1px; padding: 2px; }
 .pagination em {visibility: hidden;}
 .pagination span.disabled { color: #999; border: 1px solid #DDD; }

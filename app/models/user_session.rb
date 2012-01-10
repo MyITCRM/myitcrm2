@@ -18,7 +18,11 @@
 
 class UserSession < Authlogic::Session::Base
 #  myTODO - Feature #68 - Need to re-enable when near completion of Public Release
-  logout_on_timeout true
+  if Setting::logout_limit = 1
+    logout_on_timeout true
+  else
+     logout_on_timeout false
+  end
   consecutive_failed_logins_limit 6
 
 def to_key
