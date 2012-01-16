@@ -1,6 +1,8 @@
 MyITCRM2::Application.routes.draw do
+  resources :product_invoice_lines
+
   resources :service_rates
-  resources :invoice_lines
+  resources :service_invoice_lines
 
   resources :invoices
 
@@ -22,6 +24,7 @@ MyITCRM2::Application.routes.draw do
       put :close
       put :assign
     end
+    resources :invoices
   end
   resources :settings do
     collection do
@@ -59,7 +62,7 @@ MyITCRM2::Application.routes.draw do
 #  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
   match 'profile/:id' => 'users#edit_profile', :as => :my_account
 #  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
-  match 'work_order/:id/close' => 'work_orders#close', :as => :close
+  match 'work_orders/:id/close' => 'work_orders#close', :as => :close
 #  map.assign_workorder "work_order/:id/assign", :controller => "work_orders", :action => "assign"
   match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign
   match 'settings/edit' => 'settings#edit', :as => :edit
@@ -67,6 +70,7 @@ MyITCRM2::Application.routes.draw do
 #  Ensure these are last in this list and before the root route
   match '/article/:permalink' => 'pages#show'
   match '/article/:category/:permalink' => 'pages#show'
+  match '/:category/:permalink' => 'pages#show'
   match '/home' => 'pages#home'
 #  match '/faq/:permalink' => 'pages#show'
 #  match '/faq/:category/:permalink' => 'pages#show'

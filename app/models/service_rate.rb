@@ -1,3 +1,3 @@
 class ServiceRate < ActiveRecord::Base
-  has_many :invoice_lines
+  has_many :service_invoice_lines
 end

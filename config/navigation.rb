@@ -15,10 +15,17 @@ SimpleNavigation::Configuration.run do |navigation|
           end
         end
         if can? :update, WorkOrder
-          primary.item :users, 'Clients & Employees',users_path, :highlights_on => /\/users/ || /\/clients/   do |sub_nav|
-            sub_nav.item :user, 'Employees', employees_path
-            sub_nav.item :user, 'Clients', clients_path
-            sub_nav.item :users, 'New User', new_user_path
+
+            if current_user.client.present?
+              primary.item :users, 'My Account',my_account_path(:id=> current_user), :highlights_on => /\/my account/ do |sub_nav|
+               sub_nav.item :users, 'Edit Profile', my_account_path(:id=> current_user)
+               end
+            else
+              primary.item :users, 'User Accounts',users_path, :highlights_on => /\/user accounts/ || /\/clients/ || /\/employees/ || /\/new user/ do |sub_nav|
+                sub_nav.item :user, 'Employees', employees_path
+                sub_nav.item :user, 'Clients', clients_path
+                sub_nav.item :users, 'New User', new_user_path
+          end
           end
 
         end
@@ -36,7 +43,7 @@ SimpleNavigation::Configuration.run do |navigation|
         end
         if can? :manage, :all
           primary.item :invoices, "Invoices", invoices_path, :highlights_on => /\/invoices/
-          primary.item :settings, 'Rates & Settings', nil, :highlights_on => /\/settings/ do |sub_nav|
+          primary.item :settings, 'Rates & Settings', settings_path, :highlights_on => /\/settings/ do |sub_nav|
             sub_nav.item :service_rates, 'Service Rates', service_rates_path, :highlights_on => /\/service_rates/ || /\/settings/
             sub_nav.item :settings, 'Business Settings', settings_path, :highlights_on => /\/settings/
             sub_nav.item :priority_lists, 'Priority List', priority_lists_path, :highlights_on => /\/priority_lists/ || /\/settings/

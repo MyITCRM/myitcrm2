@@ -3,8 +3,8 @@
 <head>
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
   <meta name="keywords" content="<%= Setting::meta_tags %>"/>
-  <%= stylesheet_link_tag 'application', 'jquery-ui-1.8.11.custom' %>
-  <%= javascript_include_tag 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.effects.core.min','jquery.effects.slide.min', 'rails', 'autocomplete-rails', 'ckeditor/ckeditor', 'application' %>
+  <%= stylesheet_link_tag 'jquery-ui-1.8.11.custom','application' %>
+  <%= javascript_include_tag 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.effects.core.min','jquery.effects.slide.min', 'rails', 'autocomplete-rails', 'ckeditor/ckeditor','application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -33,7 +33,7 @@
 </div>
 <div id="footer">
   <p>
-    Powered by <a href="http://myitcrm.com">MyIT CRM</a>&copy; 2010 - 2012 - <%= Setting::version %> - Glen Vanderhel
+    Powered by <a href="http://myitcrm.com">MyIT CRM</a>&copy; 2010 - <%= Date.today.year %> - <%= Setting::version %> - Glen Vanderhel
   </p>
 </div>
 </body>

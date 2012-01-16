@@ -34,7 +34,7 @@
         <p><%= setting_text_field(:business_email, :size => 50)%></p>
         <p><%= setting_text_area(:business_address, :cols => 10 , :rows => 5, :cols => 20 )%></p>
          <div class="center">
-            <%= submit_tag t "global.confirm" %>
+            <%= submit_tag t "global.apply" %>
          </div>
          <% end %>
     </div>
@@ -47,7 +47,7 @@
             <p><%= setting_text_field(:tax_type, :size => 10)%></p>
             <p><%= setting_text_field(:tax_rate, :size => 10)%></p>
              <div class="center">
-                <%= submit_tag t "global.confirm" %>
+                <%= submit_tag t "global.apply" %>
              </div>
              <% end %>
 
@@ -70,7 +70,7 @@
         <%= form_tag({:action => 'edit'}) do %>
             <p><%= setting_check_box(:logout_limit) %></p>
              <div class="center">
-                <%= submit_tag t "global.confirm" %>
+                <%= submit_tag t "global.apply" %>
              </div>
             <% end %>
 

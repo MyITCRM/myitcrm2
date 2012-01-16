@@ -9,8 +9,8 @@ class WorkOrder < ActiveRecord::Base
 
   attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by, :status_id, :resolution, :closed_by, :closed_date, :closed
   before_create :workorder_created
-  before_update :workorder_updated, :change_assignment
-  before_save :lookup_assigned_username, :change_assignment, :closed_action
+  before_update :workorder_updated, :change_assignment, :lookup_assigned_username, :change_status
+  #before_save  : :change_assignment
 
 
   def workorder_created
@@ -23,8 +23,8 @@ class WorkOrder < ActiveRecord::Base
   def workorder_updated
     self.updated_at ||= Time.now
     if self.closed == 1
-      self.status_id ||= 4
-      self.closed_by ||= edited_by
+      self.status_id = 4
+      self.closed_by = edited_by
     end
     if self.status_id == 1
       self.assigned_to_id ||= nil
@@ -32,7 +32,8 @@ class WorkOrder < ActiveRecord::Base
     end
   end
 
-# Used to obtain the Assigned Users name from the database on Work Order saving, instead of making a separate call each time it's displayed in the table
+# Used to obtain the Assigned Users name from the database on Work Order saving,
+# instead of making a separate call each time it's displayed in the table
   def lookup_assigned_username
     if self.assigned_to_username.blank?
         self.assigned_to_id = nil
@@ -56,20 +57,19 @@ class WorkOrder < ActiveRecord::Base
       end
     end
   end
-  def closed_action
-    if self.closed == 1
-       closed_status = "6"
-      self.status_id = closed_status
-    end
-    end
 
-
-  def reply
-      @reply
+    def change_status
+      if self.closed.present?
+        self.status_id=6
+      end
     end
-  def reply_attributes=(attributes)
-
-  end
+  #
+  #def reply
+  #    @reply
+  #  end
+  #def reply_attributes=(attributes)
+  #
+  #end
 
 end
 

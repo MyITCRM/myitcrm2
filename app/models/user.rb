@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 # Used to set New Users to defaults
   def new_user
     validates_length_of :password, :password_confirmation, :minimum => 8
-    if self.role.nil?
+    if self.role.blank?
       self.role = "client"
     end
     if self.client.nil?
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
 
 #  Used to define permission and roles if they don't exist for this user
   def define_permissions
-    if self.role.nil?
+    if self.role.blank?
       self.role = "client"
     end
     if self.client.nil?

@@ -3,10 +3,6 @@ class CreateWorkOrders < ActiveRecord::Migration
     create_table :work_orders do |t|
       t.string :subject, :null => false
       t.text :description, :null => false
-      t.integer :note_id
-      t.integer :comment_id
-      t.integer :attachment_id
-      t.integer :schedule_id
       t.boolean :closed
       t.string :closed_by
       t.datetime :closed_date

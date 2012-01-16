@@ -1,9 +1,8 @@
-class InvoiceLine < ActiveRecord::Base
+class ServiceInvoiceLine < ActiveRecord::Base
   belongs_to :invoice
-  belongs_to :product
   belongs_to :service_rate
 
-  accepts_nested_attributes_for :product, :service_rate
+  accepts_nested_attributes_for  :service_rate
 
   before_update :calculate
   before_save :calculate

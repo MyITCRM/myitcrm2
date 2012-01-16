@@ -10,31 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105233750) do
-
-  create_table "invoice_lines", :force => true do |t|
-    t.integer  "invoice_id"
-    t.integer  "service_rate_id"
-    t.integer  "product_id"
-    t.decimal  "qty"
-    t.decimal  "tax_rate"
-    t.decimal  "tax"
-    t.decimal  "price"
-    t.decimal  "sub_total"
-    t.decimal  "total_price"
-    t.string   "line_comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120112063317) do
 
   create_table "invoices", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "client_id"
-    t.integer  "invoice_line_id"
     t.integer  "work_order_id"
     t.text     "invoice_note"
-    t.integer  "payment_id"
     t.boolean  "paid"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "due_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,6 +49,20 @@ ActiveRecord::Schema.define(:version => 20120105233750) do
   create_table "product_categories", :force => true do |t|
     t.string   "name"
     t.integer  "sub_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_invoice_lines", :force => true do |t|
+    t.integer  "invoice_id"
+    t.integer  "product_id"
+    t.decimal  "qty",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax_rate",     :precision => 10, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "tax",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "price",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sub_total",    :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "total_price",  :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.string   "line_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,12 +111,26 @@ ActiveRecord::Schema.define(:version => 20120105233750) do
     t.datetime "updated_at"
   end
 
+  create_table "service_invoice_lines", :force => true do |t|
+    t.integer  "invoice_id",                                  :default => 0,   :null => false
+    t.integer  "service_id",                                  :default => 0,   :null => false
+    t.decimal  "qty",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax_rate",     :precision => 10, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "tax",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "price",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sub_total",    :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "total_price",  :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.string   "line_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "service_rates", :force => true do |t|
     t.string   "sku"
     t.string   "description"
-    t.decimal  "rate"
+    t.decimal  "rate",        :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "taxable"
-    t.decimal  "tax_rate"
+    t.decimal  "tax_rate",    :precision => 10, :scale => 3, :default => 0.0, :null => false
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -200,21 +213,17 @@ ActiveRecord::Schema.define(:version => 20120105233750) do
   end
 
   create_table "work_orders", :force => true do |t|
-    t.string   "subject"
-    t.text     "description"
-    t.integer  "note_id"
-    t.integer  "comment_id"
-    t.integer  "attachment_id"
-    t.integer  "schedule_id"
+    t.string   "subject",                             :null => false
+    t.text     "description",                         :null => false
     t.boolean  "closed"
     t.string   "closed_by"
     t.datetime "closed_date"
     t.text     "resolution"
-    t.integer  "user_id"
+    t.integer  "user_id",                             :null => false
     t.integer  "assigned_to_id"
     t.text     "assigned_to_username"
     t.integer  "priority_list_id"
-    t.integer  "status_id"
+    t.integer  "status_id",            :default => 1, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "created_at"

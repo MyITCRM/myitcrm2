@@ -10,6 +10,7 @@ class SettingsController < ApplicationController
 
   def edit
      @title = "Settings"
+     @priority_list = PriorityList.all
     if request.post? && params[:settings] && params[:settings].is_a?(Hash)
       settings = (params[:settings] || {}).dup.symbolize_keys
       settings.each do |name, value|

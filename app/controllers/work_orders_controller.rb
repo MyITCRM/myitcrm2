@@ -89,7 +89,7 @@ class WorkOrdersController < ApplicationController
 
     respond_to do |format|
       if @work_order.save
-        flash[:notice] = 'WorkOrder was successfully created.'
+        flash[:notice] = 'Work Order was successfully created.'
         format.html { redirect_to(@work_order) }
         format.xml { render :xml => @work_order, :status => :created, :location => @work_order }
       else
@@ -102,14 +102,14 @@ class WorkOrdersController < ApplicationController
   def update
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
-    @invoicing_enabled = true
+    #@invoicing_enabled = true
     invoicing_enabled = true
 
     if invoicing_enabled.present? and @work_order.closed.present?
        respond_to do |format|
       if @work_order.update_attributes(params[:work_order])
         flash[:notice] = 'Work Order was successfully updated.'
-        format.html { redirect_to(new_work_order_invoice_path) }
+        format.html { redirect_to( new_work_order_invoice_path(:work_order_id => @work_order.id) ) }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }

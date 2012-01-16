@@ -1,3 +1,14 @@
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+      <li class="exit"><%= link_to (t "global.exit"), :back %></li>
+    </ul>
+  </div>
+   <%= render 'layouts/left_sidebar_modules' %>
+  </div>
+
+<div id=center_col>
 <div id="ddtabs1" class="basictab">
 <ul>
 <li><a href="#<%= t "workorder.tab_menu_resolution"  %>" rel="sc2"><%= (t "workorder.tab_menu_resolution") %></a></li>
@@ -11,11 +22,10 @@
 <% simple_form_for(@work_order) do |f| %>
         <%= f.input :resolution, :label => (t "workorder.resolution") %>
         <%= f.input :closed, :input_html => {:checked =>  true} %>
-        <%= f.input :status_id, :as => :hidden, :input_html => {:value => 6 } %>
         <%= f.input :closed_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-        <%= f.input :closed_date, :as => :hidden, :input_html => {:value =>  Time.now} %>
+ <div class="center"><%= f.button :submit, 'Close' %></div>
 
-<%= f.button :submit, 'Close' %>
 <% end %>
+</div>
 </div>
 </div>

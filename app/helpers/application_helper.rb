@@ -20,19 +20,20 @@ module ApplicationHelper
 # Used to show Employees Overview
    def employees_work_overview(status_id, employee_number = nil)
      if employee_number.present?
-      WorkOrder.where("assigned_to_id = #{employee_number} ").where("status_id = #{status_id}")
+      WorkOrder.where("assigned_to_id = ?", "#{employee_number}").where("status_id = ?","#{status_id}")
       else
-      WorkOrder.where("status_id = #{status_id}")
+      WorkOrder.where("status_id = ?","#{status_id}")
      end
    end
 #  Used to Show Clients Overview
   def clients_overview(status_id, client_number)
-      WorkOrder.where("user_id = #{client_number} ").where("status_id = #{status_id}")
+      WorkOrder.where("user_id = ?","#{client_number}").where("status_id = ?","#{status_id}")
   end
 
 #  TEXT Helpers
   # Returns a textarea opening and closing tag set tailored for accessing a specified attribute
       # ==== Examples
+      #   <%= ckeditor_tag 'work_order[description]', @work_order.description , :cols => 60, :rows => 40, :class => 'ckeditor' %>
       #   ckeditor_tag(:post, :body, :cols => 20, :rows => 40)
       #   # => <textarea cols="20" rows="40" id="post_body" name="post[body]">
       #   #      #{@post.body}
@@ -43,13 +44,14 @@ module ApplicationHelper
         "<div class='ckeditor_layout'>#{text_area_tag(name, content, options)}</div>".html_safe
  end
 
-#  # Returns a textarea opening and closing tag set tailored for accessing a specified attribute
-#      # ==== Examples
-#      #   textile_tag(content)
-#      #   # => RedCloth3.new(content).to_html).html_safe
-#      #
-# def textile_tag(content)
-#   (RedCloth3.new(content).to_html).html_safe
-# end
+  # Returns a textarea opening and closing tag set tailored for accessing a specified attribute
+      # ==== Examples
+      #   textile_tag(content)
+      #   # => RedCloth3.new(content).to_html).html_safe
+      #
+def textile_tag(content)
+   (RedCloth3.new(content).to_html).html_safe
+end
+
 end
 

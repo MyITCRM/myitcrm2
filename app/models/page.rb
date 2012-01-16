@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
     page_category.name if page_category
   end
   def page_category_name=(name)
-    self.category_id = PageCategory.find_or_create_by_name(name) unless name.blank?
+    self.page_category_id = PageCategory.find_or_create_by_name(name) unless name.blank?
 
 end
 

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 include Authentication
+require 'redcloth3'
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

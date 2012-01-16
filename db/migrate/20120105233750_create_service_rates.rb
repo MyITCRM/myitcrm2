@@ -3,9 +3,9 @@ class CreateServiceRates < ActiveRecord::Migration
     create_table :service_rates do |t|
       t.string :sku
       t.string :description
-      t.decimal :rate
+      t.decimal :rate, :null => false, :default => 0, :limit => 10, :precision => 10, :scale => 2
       t.boolean :taxable
-      t.decimal :tax_rate
+      t.decimal :tax_rate, :null => false, :default => 0, :limit => 10, :precision => 10, :scale => 3
       t.boolean :active
 
       t.timestamps

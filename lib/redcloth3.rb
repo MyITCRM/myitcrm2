@@ -167,7 +167,8 @@
 class RedCloth3 < String
 
     VERSION = '3.0.4'
-    DEFAULT_RULES = [:textile, :markdown]
+    #DEFAULT_RULES = [:textile, :markdown]
+    DEFAULT_RULES = [:textile]
 
     #
     # Two accessor for setting security restrictions.

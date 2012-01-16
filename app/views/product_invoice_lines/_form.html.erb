@@ -1,0 +1,29 @@
+<%= simple_form_for(@product_invoice_line) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :invoice_id %>
+
+    <%= f.input :product_id %>
+
+    <%= f.input :qty %>
+
+    <%= f.input :tax_rate %>
+
+    <%= f.input :tax %>
+
+    <%= f.input :price %>
+
+    <%= f.input :sub_total %>
+
+    <%= f.input :total_price %>
+
+    <%= f.input :line_comment %>
+
+  </div>
+
+  <div class="center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

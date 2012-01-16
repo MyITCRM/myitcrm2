@@ -113,6 +113,8 @@ en_AU:
     edit_priority_list: "Edit Priority list Name"
     priority_name: "Priority List Name"
     not_logged_in: "You must first log in or sign up before accessing this page."
+    username: "Username"
+    password: "Password"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -581,3 +583,5 @@ en_AU:
     message: "Reply Message"
     internal: "Internal Reply"
     internal_hint: "These replies marked as 'Internal' will not been seen by the client"
+  login:
+    new_user_account: "New User? Register here."

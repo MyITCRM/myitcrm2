@@ -14,6 +14,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/1.xml
   def show
     @invoice = Invoice.find(params[:id])
+    #@client = User.where("id = ?",@invoice.client_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +27,7 @@ class InvoicesController < ApplicationController
   def new
     @title = "Creating New Invoice for XXXXXXXX"
     @invoice = Invoice.new
-    invoice_line = @invoice.invoice_lines.build
+    service_invoice_line = @invoice.service_invoice_lines.build
 
     #@invoice_line = InvoiceLine
 
@@ -40,6 +41,7 @@ class InvoicesController < ApplicationController
   def edit
     @title = "Edit Invoice"
     @invoice = Invoice.find(params[:id])
+     service_invoice_line = @invoice.service_invoice_lines.build
   end
 
   # POST /invoices

@@ -11,7 +11,7 @@
   <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>
-    <% if current_user.client = false and cannot? :manage, @work_orders %>
+    <% if can? :manage, @work_orders %>
     <li><a href="#<%= t "workorder.tab_menu_resolution" %>" rel="tab2"><%= (t "workorder.tab_menu_resolution") %></a>
       <% end %>
     </li>
@@ -33,14 +33,13 @@
             <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
             <%= f.input :assigned_to_username,:label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
         <% end %>
-        <%= f.input :description, :label => (t "workorder.details"), :input_html => {:cols => 60} %>
-        <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
+        <%= f.input :description, :label => (t "workorder.details"), :input_html => { :cols => 60, :rows => 12 } %>
         <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
         <div class="clear"></div>
         <div class="center"><%= f.submit %></div>
 
   </div>
-  <% if current_user.client = false and cannot? :manage, @work_orders %>
+  <% if can? :manage, @work_orders %>
   <div id="tab2" class="tabcontent">
         <div class="simple_form label">
           <label><%= t "workorder.resolution" %></label>
@@ -52,8 +51,6 @@
         <div>
         <%= f.input :closed, :as => :radio, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
         </div>
-
-        <%= f.input :updated_at, :as => :hidden, :input_html => {:value => Time.now} %>
         <div class="clear"></div>
         <div class="center"><%= f.submit %></div>
         <div class="clear"></div>

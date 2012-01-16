@@ -8,7 +8,7 @@
        <% if can? :destroy, WorkOrder %>
             <% if @work_order.closed? %>
             <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
-            <li class="print"><%= link_to (t "global.invoice"), new_invoice_path(:work_order_id => @work_order.id, :client_id => @work_order.user_id) %></li>
+            <li class="print"><%= link_to (t "global.invoice"), new_work_order_invoice_path(:work_order_id => @work_order.id, :client_id => @work_order.user_id) %></li>
             <% else %>
             <li class="close"><%= link_to (t "global.close"), close_path(@work_order.id)%> </li>
             <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
@@ -40,11 +40,11 @@
     <label><%= t "workorder.status" %>:</label><div class="field"><%= @work_order.status.name %></div>
     <div>
       <label><%= t "workorder.details" %>:</label>
-      <div class="html_area"><%= simple_format(@work_order.description) %> </div>
+      <div class="html_area"><%= textile_tag(@work_order.description) %> </div>
     </div>
      <% if @work_order.closed.blank? %>
     <div class="center">
-      <input type="submit" value="Add a Reply" id="button" />
+      <input type="submit" value="Add a Reply" id="button" class="add_comment" />
     </div>
   <div id="effect" class="hide">
      <h3 align="left">Leave a Reply</h3>
