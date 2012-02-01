@@ -3,6 +3,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.xml
   def index
+    @title = t 'global.invoices'
     @invoices = Invoice.all
     @open_invoices = Invoice.where("paid = ?",false)
     @paid_invoices = Invoice.where("paid = ?",true)

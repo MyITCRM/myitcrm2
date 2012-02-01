@@ -115,6 +115,7 @@ en_AU:
     not_logged_in: "You must first log in or sign up before accessing this page."
     username: "Username"
     password: "Password"
+    invoices: "Invoices"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"

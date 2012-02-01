@@ -24,8 +24,8 @@ MyITCRM2::Application.configure do
   # Use a different logger for distributed setups
 #  config.logger = SyslogLogger.new
 
-  config.logger = Logger.new(config.paths.log.first, 10, 1048576)
-  config.logger.level = Logger::INFO
+  config.logger = Logger.new(config.paths.log.first, shift_age = 7, shift_size = 1048576)
+  #config.logger.level = Logger::INFO
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store

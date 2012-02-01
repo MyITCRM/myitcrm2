@@ -7,6 +7,8 @@ MyITCRM2::Application.routes.draw do
   #resources :pages
   resources :statuses
   resources :priority_lists
+  #resources :replies
+
 
   resources :work_orders do
     collection do
@@ -41,6 +43,7 @@ MyITCRM2::Application.routes.draw do
   resources :suppliers
   resources :products
   resources :service_rates
+  resources :replies, :only => [:show, :edit, :update]
 
 
 
