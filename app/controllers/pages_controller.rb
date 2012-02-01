@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+   load_and_authorize_resource
 # GET /invoices
   # GET /invoices.xml
   def index

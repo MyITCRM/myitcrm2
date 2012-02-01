@@ -8,7 +8,11 @@
        <% if can? :destroy, WorkOrder %>
             <% if @work_order.closed? %>
             <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
-            <li class="print"><%= link_to (t "global.invoice"), new_work_order_invoice_path(:work_order_id => @work_order.id, :client_id => @work_order.user_id) %></li>
+              <% if invoicing_required(params[:id]).present? %>
+            <li class="print"><%= link_to (t "invoice.show"), invoice_path(@invoiced.id) %></li>
+              <% else %>
+                   <li class="print"><%= link_to (t "invoice.create"), new_work_order_invoice_path(:work_order_id => @work_order.id, :client_id => @work_order.user_id) %></li>
+                  <% end %>
             <% else %>
             <li class="close"><%= link_to (t "global.close"), close_path(@work_order.id)%> </li>
             <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
@@ -62,15 +66,15 @@
           <%= reply.user.name %>
         </div>
         <div class="reply_message">
-           <strong> Message:</strong> <%= simple_format reply.content %>
+           <strong> Message:</strong> <%= textile_tag(reply.content) %>
 
         <span style="font-size:10px">
           <% if reply.updated_at > reply.created_at %><%= image_tag('comment_edit.png') %>[ Edited <%= localize reply.updated_at, :format => :medium %> ]<% end %>
           <%= time_ago_in_words(reply.created_at) %> ago (<%= localize reply.created_at, :format => :medium %>)
         </span>
         <% if @work_order.closed.blank? %>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_reply_url(reply.id)) %>&nbsp;
-        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), reply_path(reply.id), :confirm => [t 'alert.destroy'], :method => :delete ) %>
+        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_reply_path(reply.id)) %>&nbsp;
+        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_reply_path(reply.id), :confirm => [t 'alert.destroy'], :method => :delete ) %>
         <% end %>
         </div>
     </div>

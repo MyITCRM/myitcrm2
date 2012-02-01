@@ -11,10 +11,10 @@
 
         <%= f.input :taxable %>
 
-        <% if @service_rate.tax_rate.blank? %>
-            <%= f.input :tax_rate, :input_html => {:value => Setting::tax_rate} %>
+        <% if @service_rate.tax_rate.present? %>
+            <%= f.input :tax_rate %>
         <% else %>
-           <%= f.input :tax_rate %>
+           <%= f.input :tax_rate, :hint => [t "products.hint_tax_rate"] , :input_html => {:value => Setting::tax_rate} %>
         <% end %>
 
         <%= f.input :active %>

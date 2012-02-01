@@ -20,9 +20,10 @@
 <div id="sc2" class="tabcontent">
 
 <% simple_form_for(@work_order) do |f| %>
-        <%= f.input :resolution, :label => (t "workorder.resolution") %>
+        <%= ckeditor_tag 'work_order[resolution]', @work_order.resolution, :class => 'ckeditor' %>
         <%= f.input :closed, :input_html => {:checked =>  true} %>
         <%= f.input :closed_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+        <%= f.input :closed_at, :as => :hidden, :input_html => {:value =>  current_user.username} %>
  <div class="center"><%= f.button :submit, 'Close' %></div>
 
 <% end %>

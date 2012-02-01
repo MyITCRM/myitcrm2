@@ -51,8 +51,9 @@ class WorkOrdersController < ApplicationController
   def show
     @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
+    @invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
     @reply = Reply.new(:work_order_id => @work_order.id)
-    @replies = Reply.where("work_order_id = #{params[:id]}").order("id DESC").paginate(:per_page => 4, :page => params[:page])
+    @replies = Reply.where("work_order_id = ?","#{params[:id]}").order("id DESC").paginate(:per_page => 4, :page => params[:page])
 
   end
 
@@ -134,7 +135,7 @@ class WorkOrdersController < ApplicationController
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
     if @work_order.assigned_to_id.blank?
-      redirect_to(work_orders_url)
+      redirect_to(:back)
       flash[:alert] = "Work Order needs to be assigned to an Employee first before closing."
     #else
     #respond_to do |format|

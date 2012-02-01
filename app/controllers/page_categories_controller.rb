@@ -1,4 +1,5 @@
 class PageCategoriesController < ApplicationController
+   load_and_authorize_resource
 
   def new
     @page_category = PageCategory.new

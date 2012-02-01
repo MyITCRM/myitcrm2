@@ -69,7 +69,6 @@ class User < ActiveRecord::Base
 # DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
       ROLES = %w[administrator manager technician accountant assistant client]
-#      ROLES = %w[client assistant accountant technician manager administrator]
 #
 # DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 

@@ -1,0 +1,243 @@
+body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align:baseline;}
+#header {text-align:center; padding-bottom:2px;}
+#container {padding: 5px 20px 5px 20px;}
+#conatiner a {color: #0000FF;}
+#yield {margin: 0 auto;}
+#center_col {padding:0 15px 15px 15px;}
+.no_right_sidebar {margin-right:0 !important}
+#user_info_menu { font-size:10px; float:right;color: white;padding-top: 6px;padding-right: 13px;}
+#sidebar_left, #sidebar_right {display:none;}
+.module_header {margin:0}
+.first {margin-right:15px;padding-right:15px;}
+.float_right{float:right;display:inline-block;}
+.float_left{float:left;display:inline-block;}
+.ckeditor_layout {margin-left:27% !important;}
+#header {width:100%}
+.logo {width:33%}
+.slogan {width:66%}
+.reply_author {width:6em;display:inline-block;float: left;}
+#reply_container {margin: 0 auto;}
+#reply {max-width: 100%; min-width:60%; padding:10px;}
+.reply_message {margin-left: 6.2em;}
+
+
+/*Typography*/
+body {font:13px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; }
+acronym {text-decoration:underline}
+acronym:hover {cursor:help;}
+.content {background-color:#ffffff;padding:5px;border-radius:10px;}
+#container, #footer, body {background:url(/images/content.jpg) top left repeat;}
+#container {text-align:left;}
+#page_title {margin-left:160px;margin-right:160px;text-align:center;}
+#reply {outline: 1px black solid; line-height: normal !important; font-size: 12px;}
+.reply_author {font: 10px bold}
+.reply_author img { padding:3px; outline: 1px black solid}
+.reply_edited {font: 13px italic bold;color:#ff9900; }
+.reply_edited {font: 13px italic bold;color:#ff9900; }
+/*My Overview styling*/
+#my_overview {display: inline-block;width: 100%;overflow: hidden;text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:14px;color:#666666; }
+#my_overview a {color: #0000FF; font-style: normal;font-size: inherit;text-decoration: none }
+.col_name {width: 50%;text-align: right;float: left;}
+.col_value {padding-left:10px;width: 30%; text-align: left;float: left;}
+.col_value_new { color: #990000 !important; text-decoration: blink !important;}
+
+
+/*Pages Typo...*/
+.created_on {margin-top: 0; padding-top: 0; font: italic; color: #707070; }
+.page_name {color:#ff9900;font:25px/2.0 Impact,Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif ;text-decoration: underline;padding-top: 0;}
+.page_name ul {position: relative;display: inline-block;list-style-type: none;}
+.page_name ul li {display: inline-block;}
+.page_name li a {font:16px normal Tahoma ;color: #B7B7B7;}
+.page_name li:hover {visibility: visible;}
+
+
+#sidebar_left h2, #sidebar_right h2 {display:block;font-size:12px;padding-right:0;text-align:center;font-weight:bold;}
+a img {border: none;}
+h1 {font-size:25px;color:#ff9900;}
+h2 {font:15px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; ;color: #fffefe;}
+h3 {font:15px/1.5 "Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif; ;color: #64a2b8;}
+h4 {}
+h5 {font-size:14px;color: #010101; text-decoration: underline;padding: 0;margin: 0}
+h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
+.logo {text-align:right;}
+.slogan {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 22px;text-align:left;vertical-align:middle;}
+.email_icon {background:url(/images/user_suit_black.png) 8px no-repeat;}
+.module_header {text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:20px;padding:5px;color:#fffefe;background-color:#707070;border-radius:10px 10px 0 0;border:1px 1px 0 1px solid silver;}
+.module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 5px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
+    .module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
+    .module a {color:#666666;text-decoration:none;}
+    .module ul {margin:0px;padding:0px;display:list-item;list-style-type:none;}
+    .module li {font-size:1.2em;line-height:1.5em;}
+    .module ul li a{width:100%;}
+    .module ul li a{display: inline-block;}
+    .module li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
+.menu_module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 38px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
+    .menu_module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
+    .menu_module a {color:#666666;text-decoration:none;}
+    .menu_module ul {margin:10px 0 10px -35px;}
+    .menu_module li {padding-left:10px;font-size:1.2em;line-height:1.5em;display:list-item;list-style-image:url(/images/bullet_right.png);}
+    .menu_module li:hover {list-style-image:url(/images/bullet_hover.png);background-color:#a9a9a9;font-weight:bold;padding-left:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
+    .menu_module li a.selected {list-style-image:url(/images/bullet_hover.png);background-color:#a9a9a9;font-weight:bold;padding-left:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
+
+.clear {clear:both;height: 0;overflow: hidden;margin-bottom:0.5em;padding-top:20px;}
+.hide {display:none; !important}
+.text_left{text-align:left;}
+.text_right{text-align:right;}
+.light_fill {background:#ceeeda}
+.links a {color:#0000ff;text-decoration:underline;font-style:italic;font-size:smaller;}
+.create, .delete, .exit, .home, .back, .edit, .print, .close, .wrench {padding: 4px 30px 4px 25px;}
+.create {background: url(/images/add.png) 8px 5px no-repeat;}
+.delete {background: url(/images/delete.png) 8px 5px no-repeat;}
+.exit {background: url(/images/exit.png) 8px 5px no-repeat;}
+.edit {background: url(/images/edit.png) 8px 5px no-repeat;}
+.home {background: url(/images/home.gif) 8px 5px no-repeat;}
+.back {background: url(/images/back.png) 8px 5px no-repeat;}
+.print {background: url(/images/printer.png) 8px 5px no-repeat;}
+.close {background: url(/images/tick.png) 8px 5px no-repeat;}
+.wrench {background: url(/images/wrench.png) 8px 5px no-repeat;}
+.add_comment {padding: 4px 30px 4px 30px;background: url(/images/comment_add.png) 8px 5px no-repeat buttonface;}
+.border {background-color:silver; -moz-box-shadow:#6495ed;border-radius:10px; padding:5px;}
+.text_shadow {text-shadow: 0 1px 2px #333;}
+#user_info_menu a {color: white;}
+
+/*Flash Notices*/
+#flash_notice, #flash_alert, #flash_info {display:none;}
+
+/*Menu */
+#menu_tabs {display: none;}
+#menu{display: none;}
+
+
+/*SimpleForm CSS*/
+input.title {font-size:1.5em;}
+.simple_form {margin-bottom:0;}
+.simple_form div.input, div.textarea, div.textile {font-size:100%; margin-bottom: 5px;width:100%;clear:left; display:inline-block;}
+.simple_form label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;width:auto;min-width:25%;vertical-align:top;}
+.simple_form input[type='submit'] {text-transform:capitalize;display:inline;}
+.simple_form div.boolean {text-transform:none;}
+.simple_form button {position:relative;}
+.simple_form label.collection_radio {margin-right: 10px;vertical-align:-2px; margin-left:2px; display:table-row;text-align:left;float:none;width:0;}
+.error_notification {padding: 4px 30px 4px 30px;background: url(/images/exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
+.simple_form .error, .hint {clear:left;display:block;margin-left:27%;padding-left:20px;font-style:italic;}
+.simple_form .error {color: #ff3333;font-size:0.9em;font-weight:bold;text-transform:capitalize;}
+.simple_form .hint {font-size:0.8em;color: #555;}
+input.radio { vertical-align: -3px;}
+input.check_boxes { margin-left: 3px; vertical-align: -3px;}
+label.collection_check_boxes { margin:2px 0; vertical-align: -2px;}
+input.required, input.optional, textarea.optional, textarea.required, {display:block;}
+input.required, textarea.required, .select_required {border: 2px solid #8b0000; background-color:#ffffcc;font-size:inherit;}
+input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-size:inherit;}
+.select_required {padding:0.4em;}
+/*Form Tab CSS Styling*/
+.tabcontainer {background-color:#fffefe;border-radius:0 0 10px 10px;border:none}
+.tabcontent {display: none;overflow:hidden;padding:10px 10px 10px 10px;}
+.basictab {background-color:#bfbebe;border-radius:10px 10px 0 0}
+.basictab ul { margin: 0; padding: 13px 0 5px 4px; font-weight: bold; list-style-type: none; text-align: left;}
+.basictab ul li{position: relative; display: inline;}
+.basictab li a {border-radius:7px 7px 0 0; }
+.basictab li a {text-decoration: none;padding:6px 6px 7px 6px;background-color: #4B7399; color: #ffffff; }
+.basictab li a:visited {}
+.basictab li a:hover, .basictab li a.current { background-color:#fffefe; color: black;}
+.basictab li a:active {color: black;}
+
+
+/*Pagination CSS styles*/
+.pagination {margin: 20px 0;line-height:normal !important;}
+.pagination a, .pagination span {display: inline-block; float: left; margin-right: 1px; padding: 2px; }
+.pagination em {visibility: hidden;}
+.pagination span.disabled { color: #999; border: 1px solid #DDD; }
+.pagination prev { color: #999; border: 1px solid #DDD; }
+.pagination span.current {font-weight: bold; background: #4B7399; color: white; border: 1px solid #2E6AB1; }
+.pagination a { text-decoration: none; color: #105CB6; border: 1px solid #9AAFE5;background: #ccccff;}
+.pagination a:hover, .pagination a:focus {color: #003; border-color: #003; }
+.pagination:after {content: "."; display: block; height: 0;visibility: hidden; }
+
+
+
+/*Normal Table CSS*/
+#index_table {border-collapse:collapse;}
+#index_table td {border: 1px solid #000066;padding:3px 7px 2px 7px;}
+#index_table th {color: #ffffff;background-color: #4B7399;border: 1px solid #000066;padding:3px 7px 2px 7px;}
+#index_table td {color: #000000;}
+#index_table th a {color:#ccccff;}
+#index_table th .current {padding-right:14px;background: right center no-repeat;}
+#index_table th .ASC {background-image:url("/images/arrow_up.png");}
+#index_table th .DESC {background-image:url("/images/arrow_down.png");}
+#show_view {border: 1px solid #999999;background-color: #edf2f6;padding:10px 10px 10px 10px;}
+#show_view table {width:100%;padding-left:1%;border:none;}
+.even td {background-color: #E3E6FF;}
+.odd td {background-color: #ffffff;}
+.even {background-color: #E3E6FF;}
+.odd {background-color: #afdeff;}
+.priority_main_1 td {background-color: #ccffcc;}
+.priority_main_2 td {background-color: #ffff99;}
+.priority_main_3 td {background-color: #ffcc00;}
+.priority_main_4 td {background-color: #ff9999; font-weight:bold;}
+.priority_main_5 td {background-color: #cc0033; font-weight:bolder;}
+
+/*Invoice Line Items Table CSS*/
+#invoice_line_items {border-collapse:collapse;line-height: normal;font-size:0.9em;}
+#invoice_line_items td {border: 1px solid #000066;padding:3px 7px 2px 7px;}
+#invoice_line_items td .no_border {border: none !important;}
+#invoice_line_items th {color: #ffffff;background-color: #4B7399;border: 1px solid #000066;padding:3px 7px 2px 7px;}
+#invoice_line_items td {color: #000000;}
+#invoice_line_items th a {color:#ccccff;}
+#invoice_line_items th a {color:#ccccff;}
+#invoice_line_items th .current {padding-right:14px;background: right center no-repeat;}
+.clean input {border: none;background: none;}
+
+
+/*Display Nice Table Labels and Fields and Field sets Headers*/
+#show_layout {line-height:2.5em; }
+#show_layout label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;width:auto;min-width:25%;font-weight:bold;}
+#show_layout div.field {font-size:100%;display:block;margin-left:27%;width:60%}
+#show_layout .html_area {line-height:normal;display:block;margin-left:27%;width:55%;background-color:#dfdede;padding:0 10px 10px 10px;outline: 1px solid #666666}
+#show_layout div.fieldsets {font-size:80%;display:inline-block;margin-left:27%;}
+.tbl_labels { width:25%; text-align:right; vertical-align:top;}
+.tbl_fields { text-align:left; vertical-align:top; text-decoration:underline; width:50%;}
+.tbl_textarea { text-align:left; background-color:white; border:black solid thin}
+.priority_1 {background-color: #ccffcc; font-weight:bold; text-transform:uppercase;}
+.priority_2 {background-color: #ffff99; font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_3 {background-color: #ffcc00; font-weight:bold; text-transform:uppercase ; border-collapse:collapse;padding:4px;text-decoration:blink;}
+.priority_4 {background-color: #ff9999; font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+.priority_5 {background-color: #cc0033; font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
+
+
+/*Invoice Typo*/
+#invoice {display: inline-block;}
+.bill_header {font-size: 1.2em; text-transform: uppercase;color: #000000; font-weight: bold;}
+.bill_from, .bill_to {font-size:.8em;width:27em;padding: 10px; line-height: 0.8em}
+.bill_to {float:left;}
+.bill_from {float:right;}
+.invoice_label, .invoice_fields {display: inline-table;}
+.invoice_label {text-align: right;}
+.invoice_fields {text-align: left;font-weight: bold;}
+
+
+
+/*This Styling is to be confirmed were used and moved to typography */
+caption {background:#eee;}
+.small {font-size:.9em;margin-bottom:1.875em;line-height:1.875em;}
+.large {font-size:1.2em;line-height:2.5em;margin-bottom:1.25em;}
+
+.quiet {color:#666;}
+.loud {color:#000;}
+.highlight {background:#ff0;}
+.added {background:#060;color:#fff;}
+.removed {background:#900;color:#fff;}
+
+.last {margin-right:0;padding-right:0;}
+.top {margin-top:0;padding-top:0;}
+.bottom {margin-bottom:0;padding-bottom:0;}
+.center {margin-bottom:0.5em;padding-top:0.5em; width:100%; text-align:center;}
+.round {border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;}
+legend {}
+fieldset, #IE8#HACK {padding-top:1.4em;}
+legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
+
+
+
+
+
+/*Footer Styling*/
+#footer {display: none}

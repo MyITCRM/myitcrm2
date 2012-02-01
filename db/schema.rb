@@ -15,11 +15,19 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
   create_table "invoices", :force => true do |t|
     t.integer  "user_id"
     t.integer  "work_order_id"
+    t.decimal  "sub_total",      :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "tax_total",      :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "total",          :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "tax_rate",       :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "shipping",       :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "discount",       :precision => 12, :scale => 2, :default => 0.0
     t.text     "invoice_note"
     t.boolean  "paid"
+    t.boolean  "paid_partially"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "due_date"
+    t.datetime "paid_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,14 +62,16 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
   end
 
   create_table "product_invoice_lines", :force => true do |t|
-    t.integer  "invoice_id"
-    t.integer  "product_id"
-    t.decimal  "qty",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "tax_rate",     :precision => 10, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "tax",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "price",        :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "sub_total",    :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "total_price",  :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.integer  "invoice_id",                                  :default => 0,   :null => false
+    t.integer  "product_id",                                  :default => 0,   :null => false
+    t.string   "sku",                                                          :null => false
+    t.string   "description",                                                  :null => false
+    t.decimal  "qty",          :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax_rate",     :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax",          :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "price",        :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sub_total",    :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "total_price",  :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.string   "line_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -114,12 +124,14 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
   create_table "service_invoice_lines", :force => true do |t|
     t.integer  "invoice_id",                                  :default => 0,   :null => false
     t.integer  "service_id",                                  :default => 0,   :null => false
-    t.decimal  "qty",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "tax_rate",     :precision => 10, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "tax",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "price",        :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "sub_total",    :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "total_price",  :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.string   "sku",                                                          :null => false
+    t.string   "description",                                                  :null => false
+    t.decimal  "qty",          :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax_rate",     :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax",          :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "price",        :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sub_total",    :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "total_price",  :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.string   "line_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -128,17 +140,19 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
   create_table "service_rates", :force => true do |t|
     t.string   "sku"
     t.string   "description"
-    t.decimal  "rate",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "rate",        :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.boolean  "taxable"
-    t.decimal  "tax_rate",    :precision => 10, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "tax_rate",    :precision => 12, :scale => 3
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "settings", :force => true do |t|
-    t.string "name",  :limit => 30, :default => "", :null => false
-    t.text   "value"
+    t.string   "name",       :limit => 30, :default => "", :null => false
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "statuses", :force => true do |t|

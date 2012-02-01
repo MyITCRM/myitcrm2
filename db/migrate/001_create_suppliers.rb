@@ -1,4 +1,5 @@
 class CreateSuppliers < ActiveRecord::Migration
+  class Supplier < ActiveRecord::Base; end
   def self.up
       create_table :suppliers do |t|
         t.string :company_name
@@ -21,7 +22,21 @@ class CreateSuppliers < ActiveRecord::Migration
 
         t.timestamps
       end
-    end
+      # create default Supplier account
+     @supplier = Supplier.create :company_name => "Example",
+                         :address => "Unit 4/49 Fake Road",
+                        :city => "Sydney",
+                        :state => "NSW",
+                        :zip => "2001",
+                        :email => "purchasing@example.com",
+                        :phone => "02 9998 9996",
+                        :contact_phone => "02 9998 9996",
+                        :contact_name => "Fred Smith",
+                        :fax => "02 9998 9998",
+                        :date_created => Time.now,
+                        :active => true
+  end
+
 
     def self.down
       drop_table :suppliers

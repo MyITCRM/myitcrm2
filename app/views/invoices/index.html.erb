@@ -1,35 +1,27 @@
-<h1>Listing invoices</h1>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+    <li class="back"><%= link_to (t "global.back"), :back %></li>
+  </ul>
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
+</div>
 
-<table>
-  <tr>
-    <th>Id</th>
-    <th>User</th>
-    <th>Client</th>
-    <th>Invoice line</th>
-    <th>Invoice note</th>
-    <th>Payment</th>
-    <th>Paid</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="center_col" class="no_right_sidebar">
+  <div id="ddtabs1" class="basictab">
+    <ul>
+      <li><a href="#open" rel="open"><%= t "invoices.tab_menu_open" %>&nbsp;(<% if @open_invoices.count > 0 %><span style="color:red;"><%= @open_invoices.count %></span><% else %><%= @open_invoices.count %><% end %>)</a></li>
+      <li><a href="#paid" rel="paid"><%= t "invoices.tab_menu_paid" %>&nbsp;(<% if @paid_invoices.count > 0 %><span style="color:#00ff00;"><%= @paid_invoices.count %></span><% else %><%= @paid_invoices.count %><% end %>)</a></li>
+     </ul>
+  </div>
+  <div id="index_table">
+    <div class="tabcontainer">
 
-<% @invoices.each do |invoice| %>
-  <tr>
-    <td><%= invoice.id %></td>
-    <td><%= invoice.user_id %></td>
-    <td><%= invoice.client_id %></td>
-    <td><%= invoice.invoice_line_id %></td>
-    <td><%= invoice.invoice_note %></td>
-    <td><%= invoice.payment_id %></td>
-    <td><%= invoice.paid %></td>
-    <td><%= link_to 'Show', invoice %></td>
-    <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
-    <td><%= link_to 'Destroy', invoice, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+      <div id="open" class="tabcontent"><%= render(:partial => 'invoices/open_tab') %></div>
+      <div id="paid" class="tabcontent" ><%= render(:partial => 'invoices/paid_tab') %></div>
+    </div>
+  </div>
+  <div class="clear"></div>
 
-<br />
-
-<%= link_to 'New Invoice', new_invoice_path %>
+</div>

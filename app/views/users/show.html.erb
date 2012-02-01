@@ -6,6 +6,9 @@
         <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
       <% end %>
       <li class="edit"><%= link_to (t "global.edit"), edit_user_path %></li>
+      <hr />
+      <li class="wrench"><%= link_to ( t "global.workorder"), :controller => "work_orders", :action => "new", :client_id => params[:id] %> </li>
+      <hr />
       <li class="exit"><%= link_to (t "global.exit"), users_path %></li>
     </ul>
   </div>

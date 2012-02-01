@@ -1,22 +1,28 @@
 <%= simple_form_for(@invoice) do |f| %>
   <%= f.error_notification %>
+    <h3 align="center">Service/Labour Charges</h3>
     <table id="invoice_line_items" width="100%">
       <th>Qty</th>
-      <th>Service Description</th>
-      <th>Rate</th>
-      <th>Tax Amnt</th>
-      <th>Sub Total</th>
-      <th>Line Total</th>
-      <th>Line Comment</th>
-      <th>Remove Rate</th>
-<% f.simple_fields_for :service_invoice_lines do |builder| %>
+      <th>Service Charges</th>
+      <th>Line Comments</th>
+      <th>Add/Remove Line(s)</th>
+<%= f.simple_fields_for :service_invoice_lines do |builder| %>
     <%= render "invoice_lines_labour_form", :f => builder %>
+  <% end %>
+    </table>
+    <h3 align="center">Parts Charges</h3>
+    <table id="invoice_line_items" width="100%">
+      <th>Qty</th>
+      <th>Product Charges</th>
+      <th>Line Comments</th>
+      <th>Add/Remove Line(s)</th>
+<%= f.simple_fields_for :product_invoice_lines do |builder| %>
+    <%= render "invoice_lines_product_form", :f => builder %>
   <% end %>
     </table>
     <HR>
     <%= f.input :invoice_note, :input_html => { :cols => 40, :rows => 3 } %>
-    <%= f.input :payment_id %>
-    <%= f.input :paid, :as => :radio %>
+    <%= f.input :paid %>
     <% if  params[:client_id].present? %>
     <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:client_id] } %>
     <% end %>

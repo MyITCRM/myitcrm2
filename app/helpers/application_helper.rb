@@ -17,6 +17,7 @@ module ApplicationHelper
      end
      "<div class='module_header text_shadow #{module_class}'>#{title}</div>".html_safe
    end
+
 # Used to show Employees Overview
    def employees_work_overview(status_id, employee_number = nil)
      if employee_number.present?

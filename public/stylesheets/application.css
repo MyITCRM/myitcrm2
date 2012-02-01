@@ -52,6 +52,8 @@ acronym:hover {cursor:help;}
 .page_name ul li {display: inline-block;}
 .page_name li a {font:16px normal Tahoma ;color: #B7B7B7;}
 .page_name li:hover {visibility: visible;}
+
+
 #sidebar_left h2, #sidebar_right h2 {display:block;font-size:12px;padding-right:0;text-align:center;font-weight:bold;}
 a img {border: none;}
 h1 {font-size:25px;color:#ff9900;}
@@ -67,8 +69,10 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 .module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 5px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
     .module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
     .module a {color:#666666;text-decoration:none;}
-    .module ul {margin-left:-40px;display:list-item;list-style-type:none;}
+    .module ul {margin:0px;padding:0px;display:list-item;list-style-type:none;}
     .module li {font-size:1.2em;line-height:1.5em;}
+    .module ul li a{width:100%;}
+    .module ul li a{display: inline-block;}
     .module li:hover {background-color:#a9a9a9;font-weight:bold;padding-left:25px;-moz-border-radius:10px;-webkit-border-radius:10px}
 .menu_module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 38px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
     .menu_module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
@@ -84,7 +88,7 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 .text_right{text-align:right;}
 .light_fill {background:#ceeeda}
 .links a {color:#0000ff;text-decoration:underline;font-style:italic;font-size:smaller;}
-.create, .delete, .exit, .home, .back, .edit, .print, .close {padding: 4px 30px 4px 25px;}
+.create, .delete, .exit, .home, .back, .edit, .print, .close, .wrench {padding: 4px 30px 4px 25px;}
 .create {background: url(/images/add.png) 8px 5px no-repeat;}
 .delete {background: url(/images/delete.png) 8px 5px no-repeat;}
 .exit {background: url(/images/exit.png) 8px 5px no-repeat;}
@@ -93,6 +97,7 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 .back {background: url(/images/back.png) 8px 5px no-repeat;}
 .print {background: url(/images/printer.png) 8px 5px no-repeat;}
 .close {background: url(/images/tick.png) 8px 5px no-repeat;}
+.wrench {background: url(/images/wrench.png) 8px 5px no-repeat;}
 .add_comment {padding: 4px 30px 4px 30px;background: url(/images/comment_add.png) 8px 5px no-repeat buttonface;}
 .border {background-color:silver; -moz-box-shadow:#6495ed;border-radius:10px; padding:5px;}
 .text_shadow {text-shadow: 0 1px 2px #333;}
@@ -187,8 +192,9 @@ input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-
 .priority_main_5 td {background-color: #cc0033; font-weight:bolder;}
 
 /*Invoice Line Items Table CSS*/
-#invoice_line_items {border-collapse:collapse;line-height: normal;}
+#invoice_line_items {border-collapse:collapse;line-height: normal;font-size:0.9em;}
 #invoice_line_items td {border: 1px solid #000066;padding:3px 7px 2px 7px;}
+#invoice_line_items td .no_border {border: none !important;}
 #invoice_line_items th {color: #ffffff;background-color: #4B7399;border: 1px solid #000066;padding:3px 7px 2px 7px;}
 #invoice_line_items td {color: #000000;}
 #invoice_line_items th a {color:#ccccff;}
@@ -213,11 +219,21 @@ input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-
 .priority_5 {background-color: #cc0033; font-weight:bold; text-transform:uppercase; border-collapse:collapse;}
 
 
+/*Invoice Typo*/
+#invoice {display: inline-block;}
+.bill_header {font-size: 1.2em; text-transform: uppercase;color: #000000; font-weight: bold;}
+.bill_from, .bill_to {font-size:.8em;width:27em;padding: 10px; line-height: 0.5em}
+.bill_to {float:left;}
+.bill_from {float:right;}
+.invoice_label, .invoice_fields {display: inline-table;}
+.invoice_label {text-align: right;}
+.invoice_fields {text-align: left;font-weight: bold;}
+
 
 
 /*This Styling is to be confirmed were used and moved to typography */
 caption {background:#eee;}
-.small {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}
+.small {font-size:.9em;margin-bottom:1.875em;line-height:1.875em;}
 .large {font-size:1.2em;line-height:2.5em;margin-bottom:1.25em;}
 
 .quiet {color:#666;}
@@ -246,13 +262,13 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 
 
 /* CKeditor */
-input, textarea, select, option, optgroup, button, td, th {	font-size: 100%; }
+/*input, textarea, select, option, optgroup, button, td, th {	font-size: 100%; }*/
 pre,code,kbd,samp,tt{font-family: monospace,monospace;font-size: 1em;}
 h1.samples { color:#0782C1; font-size:200%; font-weight:normal; margin: 0; padding: 0;}
 h2.samples { color:#000000; font-size:130%; margin: 0; padding: 0;}
 p, blockquote, address, form, pre, dl, h1.samples, h2.samples {margin-bottom:15px;}
 ul.samples {margin-bottom:15px;}
-.clear {clear:both;}
+/*.clear {clear:both;}*/
 fieldset{margin: 0;	padding: 10px;}
 a.samples {color:#189DE1;text-decoration:none;}
 a.samples:hover {text-decoration: underline;}

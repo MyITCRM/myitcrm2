@@ -19,7 +19,7 @@ en_AU:
       html: '<abbr title="Required">*</abbr>'
     error_notification:
       default_message: "There were some errors reported in your submission. Please check that all information is correct."
-      login_error: "Username and/or Password are incorrect"
+#      login_error: "Username and/or Password are incorrect"
     # Labels and hints examples
     # labels:
     #   password: 'Password'
@@ -197,6 +197,7 @@ en_AU:
        cancel_account: "Please call us to have you account deactivated."
      cancel_account_button: "Cancel Account"
      t_employees: "Employee's"
+     login_incorrect: "Username and/or Password incorrect. Please try again."
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
@@ -420,7 +421,7 @@ en_AU:
     manufacturer: "Manufacturer"
     t_title: "Products"
     t_add_new: "Add New Product"
-    hint_tax_rate: "Tax %. eg 10 would be 10% tax"
+    hint_tax_rate: "Tax as a %. eg; 10 would be 10%"
     cost: "Cost Price"
     sell: "Sell Price"
     qoh: "QOH"
@@ -585,3 +586,11 @@ en_AU:
     internal_hint: "These replies marked as 'Internal' will not been seen by the client"
   login:
     new_user_account: "New User? Register here."
+  invoice:
+    show: "Show Invoice"
+    create: "Create Invoice"
+    billing_account: "Account ID:"
+    billing_name: "Bill To:"
+  invoices:
+    tab_menu_open: "Unpaid Invoices"
+    tab_menu_paid: "Paid Invoices"

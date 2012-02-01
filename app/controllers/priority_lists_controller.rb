@@ -1,5 +1,6 @@
 class PriorityListsController < ApplicationController
    # myTODO - Add cancan auth here and in ability model
+   load_and_authorize_resource
   def index
     @title = t 'global.priority_list'
     @priority_lists = PriorityList.all

@@ -1,44 +1,36 @@
 MyITCRM2::Application.routes.draw do
-  resources :product_invoice_lines
 
-  resources :service_rates
-  resources :service_invoice_lines
-
-  resources :invoices
-
-
-#  resources :replies, :only => [:show, :index, :edit]
-  resources :replies
-
-  resources :page_categories
-  resources :page_categories do
-    get :page_category_name, :on => :collection
-  end
-
-  resources :pages
+  #resources :page_categories do
+  #  get :page_category_name, :on => :collection
+  #end
+  #
+  #resources :pages
   resources :statuses
   resources :priority_lists
+
   resources :work_orders do
-    resources :replies
     collection do
       put :close
       put :assign
     end
-    resources :invoices
+    resources :replies, :invoices
   end
+  resources :invoices do
+     resources :product_invoice_lines, :service_invoice_lines
+    end
+
   resources :settings do
     collection do
       get :index
       put :edit
     end
   end
-  resources :product_categories
-   resources :product_categories do
-      get :product_category_name, :on => :collection
-      end
+
+  resources :product_categories do
+    get :product_category_name, :on => :collection
+  end
 
   resources :user_sessions
-  resources :users
   resources :users do
     collection do
       put :edit_profile
@@ -48,30 +40,26 @@ MyITCRM2::Application.routes.draw do
     end
   resources :suppliers
   resources :products
+  resources :service_rates
 
 
 
-#  map.login "login", :controller => "user_sessions", :action => "new"
+
   match '/login' => 'user_sessions#new', :as => :login
-#  map.logout "logout", :controller => "user_sessions", :action => "destroy"
   match '/logout' => 'user_sessions#destroy', :as => :logout
-#  map.register "register", :controller => "users", :action => "new"
   match '/register' =>'users#register', :as => :register
   match '/clients' =>'users#clients', :as => :clients
   match '/employees' =>'users#employees', :as => :employees
-#  map.profile "profile/:id", :controller => "users", :action => "edit_profile"
   match 'profile/:id' => 'users#edit_profile', :as => :my_account
-#  map.close_workorder "work_order/:id/close", :controller => "work_orders", :action => "close"
   match 'work_orders/:id/close' => 'work_orders#close', :as => :close
-#  map.assign_workorder "work_order/:id/assign", :controller => "work_orders", :action => "assign"
   match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign
   match 'settings/edit' => 'settings#edit', :as => :edit
 
 #  Ensure these are last in this list and before the root route
-  match '/article/:permalink' => 'pages#show'
-  match '/article/:category/:permalink' => 'pages#show'
-  match '/:category/:permalink' => 'pages#show'
-  match '/home' => 'pages#home'
+#  match '/article/:permalink' => 'pages#show'
+#  match '/article/:category/:permalink' => 'pages#show'
+#  match '/:category/:permalink' => 'pages#show'
+#  match '/home' => 'pages#home'
 #  match '/faq/:permalink' => 'pages#show'
 #  match '/faq/:category/:permalink' => 'pages#show'
 

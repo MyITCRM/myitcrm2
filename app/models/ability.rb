@@ -19,6 +19,7 @@ class Ability
     can :read, Page, :private => false
     can :create, WorkOrder
     can [:update, :read], WorkOrder, :user_id => @user.id
+    can :read, Invoice, :user_id => @user.id
 
   end
 #
@@ -35,6 +36,10 @@ class Ability
     can :manage, Product
     can :manage, ProductCategory
     can :manage, Page
+    can :manage, Invoice
+    can :manage, ServiceInvoiceLine
+    can :manage, ProductInvoiceLine
+    can :manage, ServiceRate
     can [:read, :clients, :employees], User
     can :update, User, :id => @user.id
 #    can :update, User,["client = ?", true] do |user|
@@ -46,6 +51,7 @@ class Ability
   def manager
     technician
     can :manage, User
+    can :manage, PriorityList
   end
 #
   def administrator

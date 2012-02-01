@@ -13,6 +13,7 @@ class UserSessionsController < ApplicationController
         flash[:notice] = t("user.login_success")
         redirect_to_target_or_default work_orders_url
       else
+        flash[:alert] = t "user.login_incorrect"
         redirect_to_target_or_default login_path
       end
     end

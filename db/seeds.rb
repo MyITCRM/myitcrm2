@@ -5,5 +5,6 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+# class Page < ActiveRecord::Base; end
+@page = Page.create([{:name => 'home', :content => 'This is the default content for the home page of your MyITCRM installation. This page can only be edited by Administrators of this installation in the pages menu section. The name of this page is "home". Do not change this title, otherwise you will get errors.'}])
 
-pages = Page.create([{:name => 'home', :content => 'This is the default content for the home page of your MyITCRM installation. This page can only be edited by Administrators of this installation in the pages menu section. The name of this page is "home". Do not change this title, otherwise you will get errors.'}])

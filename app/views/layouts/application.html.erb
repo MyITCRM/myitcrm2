@@ -3,7 +3,8 @@
 <head>
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
   <meta name="keywords" content="<%= Setting::meta_tags %>"/>
-  <%= stylesheet_link_tag 'jquery-ui-1.8.11.custom','application' %>
+  <%= stylesheet_link_tag 'jquery-ui-1.8.11.custom','application'  %>
+  <%= stylesheet_link_tag 'print', :media => "print"  %>
   <%= javascript_include_tag 'jquery-1.5.1.min', 'jquery-ui-1.8.2.custom.min', 'jquery.effects.core.min','jquery.effects.slide.min', 'rails', 'autocomplete-rails', 'ckeditor/ckeditor','application' %>
   <%= csrf_meta_tag %>
 </head>

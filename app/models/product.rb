@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :product_category
-  has_many :invoice_lines
+  has_many :product_invoice_lines
 
 # Validations on inputs
   validates_presence_of :supplier, :description, :cost_price, :manufacturer, :model, :sell_price, :our_sku, :supplier_sku
@@ -27,5 +27,11 @@ class Product < ActiveRecord::Base
   def product_category_name=(name)
     self.product_category_id = ProductCategory.find_or_create_by_name(name) unless name.blank?
 
-end
+  end
+
+
+  def product_lookup
+     # mytodo - Add currency symbol if possible.....
+     "[#{our_sku}] - #{description} -#{I18n.t 'number.currency.format.unit'}#{sell_price}"
+  end
 end

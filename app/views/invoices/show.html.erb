@@ -1,41 +1,212 @@
-<p id="notice"><%= notice %></p>
+<div id="sidebar_left">
+  <% if can? :manage, Invoice %>
+      <%= module_header %>
+      <div class="module">
+        <ul>
+            <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) %></li>
 
-<p>
-  <b>Id:</b>
-  <%= @invoice.id %>
-</p>
+       <% if can? :manage, Invoice %>
+            <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+       <% end %>
+       <% if can? :edit, WorkOrder %>
+            <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path %></li>
+       <% end %>
+      <li class="exit"><%= link_to (t "global.exit"), invoices_path %></li>
+        </ul>
+      </div>
+      <!--
+  <% end %>-->
+  <%= render 'layouts/left_sidebar_modules' %>
+</div>
+<div id="center_col" class="content">
+  <div id="invoice">
+    <h1 align="center">INVOICE #<%= @invoice.id %></h1>
 
-<p>
-  <b>User:</b>
-  <%= @invoice.user_id %>
-
-</p>
-
-<p>
-  <b>Client:</b>
-  <%= @invoice.client_id %>
-</p>
-
-<p>
-  <b>Invoice line:</b>
-  <%= @invoice.invoice_line_id %>
-</p>
-
-<p>
-  <b>Invoice note:</b>
-  <%= @invoice.invoice_note %>
-</p>
-
-<p>
-  <b>Payment:</b>
-  <%= @invoice.payment_id %>
-</p>
-
-<p>
-  <b>Paid:</b>
-  <%= @invoice.paid %>
-</p>
+    <div class="bill_to">
+     <div class="bill_header">Bill To:</div>
+      <div class="invoice_label">
+        <p><%= t "invoice.billing_account" %></p>
+        <p><%= t "invoice.billing_name" %></p>
+        <% if @client_info.address.present? then %>
+            <p><%= t "global.address" %></p>
+        <% end %>
 
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+
+      </div>
+       <div class="invoice_fields">
+          <p><%= @invoice.user_id %></p>
+
+      <p><%= @client_info.name %></p>
+      <%if @client_info.address.present? then %>
+        <p><%= @client_info.address %></p>
+        <p><%= @client_info.state %> <%= @client_info.city %> <%= @client_info.zip %> </p>
+      <% end %>
+       </div>
+
+    </div>
+    <div class="bill_from">
+      <div class="bill_header">Bill From:</div>
+      <div class="invoice_label">
+        <p>Name:</p>
+
+        <p>Phone:</p>
+
+        <p>Fax:</p>
+
+        <p>Toll free:</p>
+
+        <p>Email:</p>
+
+        <p>Address:</p>
+      </div>
+       <div class="invoice_fields">
+         <p><%= Setting::business_name %></p>
+
+        <p><%= Setting::business_phone %></p>
+
+        <p><%= Setting::business_fax %></p>
+
+        <p><%= Setting::business_toll_free %></p>
+
+        <p><%= Setting::business_email %></p>
+
+        <p><%= Setting::business_address %></p>
+    </div>
+    </div>
+
+    <div id="invoice_lines" style="clear: both;">
+      <% if @service_invoice_lines.present? %>
+          <h4 align="center">Service/Labour Charges</h4>
+          <table id="invoice_line_items" style="width: 100%;">
+
+            <th width="5%">QTY</th>
+            <th width="15%">SKU</th>
+            <th width="40%">DESC</th>
+            <th width="15%">PRICE</th>
+            <th width="15%">SUB TOTAL</th>
+            <th width="15%">TAX</th>
+            <th width="15%">TOTAL</th>
+
+
+            <% @service_invoice_lines.each do |lines| %>
+                <tr class="<%= cycle :odd, :even %>">
+                  <td><%= lines.qty %></td>
+                  <td><%= lines.sku %></td>
+                  <td><%= lines.description %>
+                    <br/>
+                    <em style="font-size: 0.8em"><%= lines.line_comment %></em>
+                  </td>
+                  <td align="right"><%= number_to_currency lines.price %></td>
+                  <td align="right"><%= number_to_currency lines.sub_total %></td>
+                  <td align="right"><%= number_to_currency lines.tax %> </td>
+                  <td align="right"><%= number_to_currency lines.total_price %></td>
+                </tr>
+
+            <% end %>
+          </table>
+
+      <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
+        <div style="display: inline-block;">
+          <p>SUB TOTAL:</p>
+
+          <p><%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+
+          <p>SERVICE TOTAL:</p>
+        </div>
+        <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
+          <p><%= number_to_currency @invoice.srv_sub_totals %></p>
+
+          <p><%= number_to_currency @invoice.srv_tax_totals %> </p>
+
+          <p><%= number_to_currency @invoice.srv_price_totals %></p>
+        </div>
+
+      </div>
+       <% end %>
+      <div style="clear: right"></div>
+      <% if @product_invoice_lines.present? %>
+          <h4 align="center">Parts Charges</h4>
+          <table id="invoice_line_items" style="width: 100%;">
+
+            <th width="5%">QTY</th>
+            <th width="15%">SKU</th>
+            <th width="40%">DESC</th>
+            <th width="15%">PRICE</th>
+            <th width="15%">SUB TOTAL</th>
+            <th width="15%">TAX</th>
+            <th width="15%">TOTAL</th>
+
+
+            <% @product_invoice_lines.each do |lines| %>
+                <tr class="<%= cycle :odd, :even %>">
+                  <td><%= lines.qty %></td>
+                  <td><%= lines.sku %></td>
+                  <td><%= lines.description %>
+                    <br/>
+                    <em style="font-size: 0.8em"><%= lines.line_comment %></em>
+                  </td>
+                  <td align="right"><%= number_to_currency lines.price %></td>
+                  <td align="right"><%= number_to_currency lines.sub_total %></td>
+                  <td align="right"><%= number_to_currency lines.tax %> </td>
+                  <td align="right"><%= number_to_currency lines.total_price %></td>
+                </tr>
+
+            <% end %>
+          </table>
+
+      <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
+        <div style="display: inline-block;">
+          <p>SUB TOTAL:</p>
+
+          <p><%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+
+          <p>PARTS TOTAL:</p>
+        </div>
+        <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
+          <p><%= number_to_currency @invoice.prod_sub_totals %></p>
+
+          <p><%= number_to_currency @invoice.prod_tax_totals %> </p>
+
+          <p><%= number_to_currency @invoice.prod_price_totals %></p>
+        </div>
+
+
+    </div>
+           <div style="clear: right"></div>
+      <% end %>
+    </div>
+    <!--Invoice Totals here-->
+          <div style="float:right; text-align:right;line-height: .6em">
+        <div style="display: inline-block;">
+          <p>INVOICE SUB TOTAL:</p>
+
+          <p><%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+
+          <p>INVOICE TOTAL:</p>
+        </div>
+        <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
+          <p><%= number_to_currency @invoice.inv_sub_totals %></p>
+
+          <p><%= number_to_currency @invoice.inv_tax_totals %> </p>
+
+          <p><%= number_to_currency @invoice.inv_price_totals %></p>
+        </div>
+    </div>
+     <div style="clear: right"></div>
+
+
+    <p>
+      <b>Invoice note:</b>
+      <%= @invoice.invoice_note %>
+    </p>
+
+    <p>
+      <b>Paid:</b>
+      <%= @invoice.paid %>
+    </p>
+
+
+  </div>
+</div>
+

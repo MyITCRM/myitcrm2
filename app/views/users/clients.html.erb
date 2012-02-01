@@ -52,6 +52,7 @@
                 <%= link_to(image_tag('view.png', :title => [t "global.view"]), user) %>
                 <% if can? :update, @user %>
                     &nbsp;<%= link_to(image_tag('edit.png', :title => [t "global.edit"]), :controller => "users", :action => "edit", :id => user.id) %>
+                    &nbsp;<%= link_to(image_tag('invoice.png', :title => [t "invoice.create"]), :controller => "invoices", :action => "new", :client_id => user.id) %>
                 <% end %>
                 <% if user.client? then %>
                     <% if can? :create, WorkOrder %>
