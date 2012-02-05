@@ -3,6 +3,7 @@ class ServiceInvoiceLine < ActiveRecord::Base
   belongs_to :service_rate
 
   accepts_nested_attributes_for  :service_rate
+  validates_presence_of :service_id
   #validates_format_of :qty
 
   before_create :calculate

@@ -3,7 +3,7 @@
   <div class="module">
     <ul>
     <% if current_user.client == true %>
-        <li class="create"><%= link_to [t "workorder.t_add_new"], "work_orders/new?client_id=#{current_user.id}"%></li>
+        <li class="create"><%= link_to [t "workorder.t_add_new"], new_user_work_order_path(:user_id => current_user.id) %></li>
      <% else %>
         <li class="create"><%= link_to [t "workorder.t_add_new"], clients_path %></li>
     <% end %>

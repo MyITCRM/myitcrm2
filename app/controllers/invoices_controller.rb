@@ -5,8 +5,6 @@ class InvoicesController < ApplicationController
   def index
     @title = t 'global.invoices'
     @invoices = Invoice.all
-    @open_invoices = Invoice.where("paid = ?",false)
-    @paid_invoices = Invoice.where("paid = ?",true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,9 +16,6 @@ class InvoicesController < ApplicationController
   # GET /invoices/1.xml
   def show
     @invoice = Invoice.find(params[:id])
-    @service_invoice_lines = ServiceInvoiceLine.where("invoice_id = ? ","#{params[:id]}")
-    @product_invoice_lines = ProductInvoiceLine.where("invoice_id = ? ","#{params[:id]}")
-    @client_info = User.find(@invoice.user_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,14 +26,10 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   # GET /invoices/new.xml
   def new
-    @title = "Creating New Invoice for XXXXXXXX"
+    @title = "Creating New Invoice"
     @invoice = Invoice.new
     service_invoice_line = @invoice.service_invoice_lines.build
-    2.times do
-     product_invoice_line = @invoice.product_invoice_lines.build
-    end
-
-    #@invoice_line = InvoiceLine
+    product_invoice_line = @invoice.product_invoice_lines.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -50,11 +41,8 @@ class InvoicesController < ApplicationController
   def edit
     @title = "Edit Invoice"
     @invoice = Invoice.find(params[:id])
-
     service_invoice_line = @invoice.service_invoice_lines.build
-    2.times do
-     product_invoice_line = @invoice.product_invoice_lines.build
-    end
+    product_invoice_line = @invoice.product_invoice_lines.build
 
   end
 
@@ -100,5 +88,4 @@ class InvoicesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
-end
+  end

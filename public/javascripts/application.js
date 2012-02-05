@@ -6,6 +6,7 @@
 
 //Only 2 configuration variables below:
 
+
 var ddtabmenu={
 	disabletablinks: true, //Disable hyperlinks in 1st level tabs with sub contents (true or false)?
 	snap2original: [false, 300], //Should tab revert back to default selected when mouse moves out of menu? ([true/false, delay_millisec]
@@ -101,6 +102,18 @@ var menuitems=document.getElementById(tabid).getElementsByTagName("a");
 //initialize Tab Menu with ID "ddtabs1" and select 1st tab by default
 ddtabmenu.definemenu("ddtabs1", 0);
 
+function remove_fields(link) {
+       $(link).prev("input[type=hidden]").val("1");
+       $(link).closest(".fields").hide();
+       }
+
+       function add_fields(link, association, content) {
+       var new_id = new Date().getTime();
+       var regexp = new RegExp("new_" + association, "g")
+       $(link).parent().before(content.replace(regexp, new_id));
+       }
+
+
 /* Used for JQuery Toggle effect to show or hide a div with the id of "effect". Class of hide make the div hidden by default*/
 // EXAMPLE::
 // <input type="submit" value="Post a Reply" id="button" />
@@ -132,7 +145,20 @@ function runEffect() {
                   runEffect();
                   return false;
               });
-    });
+
+
+function remove_fields(link) {
+       $(link).prev("input[type=hidden]").val("1");
+       $(link).closest("#fields").hide();
+       }
+
+       function add_fields(link, association, content) {
+       var new_id = new Date().getTime();
+       var regexp = new RegExp("new_" + association, "g")
+       $(link).parent().before(content.replace(regexp, new_id));
+       }
+
+     });
 
 
 

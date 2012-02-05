@@ -20,66 +20,50 @@
 </div>
 <div id="center_col" class="content">
   <div id="invoice">
-    <h1 align="center">INVOICE #<%= @invoice.id %></h1>
-
+<h1 align="center">INVOICE #<%= @invoice.id %></h1>
+    <div class="printed_logo"><%= image_tag('logo.png', :height => '64', :alt => Setting::business_slogan) %></div>
+    <div style="clear: right"></div>
     <div class="bill_to">
      <div class="bill_header">Bill To:</div>
       <div class="invoice_label">
         <p><%= t "invoice.billing_account" %></p>
         <p><%= t "invoice.billing_name" %></p>
-        <% if @client_info.address.present? then %>
+        <% if client_info.address.present? then %>
             <p><%= t "global.address" %></p>
         <% end %>
-
-
-
       </div>
        <div class="invoice_fields">
           <p><%= @invoice.user_id %></p>
-
-      <p><%= @client_info.name %></p>
-      <%if @client_info.address.present? then %>
-        <p><%= @client_info.address %></p>
-        <p><%= @client_info.state %> <%= @client_info.city %> <%= @client_info.zip %> </p>
+      <p><%= client_info.name %></p>
+      <%if client_info.address.present? then %>
+        <p><%= client_info.address %></p>
+        <p><%= client_info.state %> <%= client_info.city %> <%= client_info.zip %> </p>
       <% end %>
        </div>
-
     </div>
     <div class="bill_from">
       <div class="bill_header">Bill From:</div>
       <div class="invoice_label">
         <p>Name:</p>
-
         <p>Phone:</p>
-
         <p>Fax:</p>
-
         <p>Toll free:</p>
-
         <p>Email:</p>
-
         <p>Address:</p>
       </div>
        <div class="invoice_fields">
          <p><%= Setting::business_name %></p>
-
         <p><%= Setting::business_phone %></p>
-
         <p><%= Setting::business_fax %></p>
-
         <p><%= Setting::business_toll_free %></p>
-
         <p><%= Setting::business_email %></p>
-
         <p><%= Setting::business_address %></p>
     </div>
     </div>
-
     <div id="invoice_lines" style="clear: both;">
-      <% if @service_invoice_lines.present? %>
-          <h4 align="center">Service/Labour Charges</h4>
+      <% if service_invoice_lines.present? %>
+          <h4 align="center">Service's</h4>
           <table id="invoice_line_items" style="width: 100%;">
-
             <th width="5%">QTY</th>
             <th width="15%">SKU</th>
             <th width="40%">DESC</th>
@@ -87,9 +71,7 @@
             <th width="15%">SUB TOTAL</th>
             <th width="15%">TAX</th>
             <th width="15%">TOTAL</th>
-
-
-            <% @service_invoice_lines.each do |lines| %>
+            <% service_invoice_lines.each do |lines| %>
                 <tr class="<%= cycle :odd, :even %>">
                   <td><%= lines.qty %></td>
                   <td><%= lines.sku %></td>
@@ -102,33 +84,25 @@
                   <td align="right"><%= number_to_currency lines.tax %> </td>
                   <td align="right"><%= number_to_currency lines.total_price %></td>
                 </tr>
-
             <% end %>
           </table>
-
       <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
         <div style="display: inline-block;">
           <p>SUB TOTAL:</p>
-
           <p><%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
-
           <p>SERVICE TOTAL:</p>
         </div>
         <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
           <p><%= number_to_currency @invoice.srv_sub_totals %></p>
-
           <p><%= number_to_currency @invoice.srv_tax_totals %> </p>
-
           <p><%= number_to_currency @invoice.srv_price_totals %></p>
         </div>
-
       </div>
        <% end %>
       <div style="clear: right"></div>
-      <% if @product_invoice_lines.present? %>
-          <h4 align="center">Parts Charges</h4>
+      <% if product_invoice_lines.present? %>
+          <h4 align="center">Parts</h4>
           <table id="invoice_line_items" style="width: 100%;">
-
             <th width="5%">QTY</th>
             <th width="15%">SKU</th>
             <th width="40%">DESC</th>
@@ -136,10 +110,8 @@
             <th width="15%">SUB TOTAL</th>
             <th width="15%">TAX</th>
             <th width="15%">TOTAL</th>
-
-
-            <% @product_invoice_lines.each do |lines| %>
-                <tr class="<%= cycle :odd, :even %>">
+            <% product_invoice_lines.each do |lines| %>
+                <tr class="<%= cycle :even, :odd %>">
                   <td><%= lines.qty %></td>
                   <td><%= lines.sku %></td>
                   <td><%= lines.description %>
@@ -159,7 +131,7 @@
         <div style="display: inline-block;">
           <p>SUB TOTAL:</p>
 
-          <p><%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+          <p>Invoice Tax <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
 
           <p>PARTS TOTAL:</p>
         </div>
@@ -177,6 +149,7 @@
       <% end %>
     </div>
     <!--Invoice Totals here-->
+    <hr/>
           <div style="float:right; text-align:right;line-height: .6em">
         <div style="display: inline-block;">
           <p>INVOICE SUB TOTAL:</p>
@@ -193,14 +166,19 @@
           <p><%= number_to_currency @invoice.inv_price_totals %></p>
         </div>
     </div>
-     <div style="clear: right"></div>
 
 
+
+    <div style="width:80%; display: inline-block;">
+      <% if @invoice.invoice_note.present? then %>
     <p>
       <b>Invoice note:</b>
       <%= @invoice.invoice_note %>
     </p>
+    <% end %>
+    </div>
 
+    <div style="clear: both"></div><hr/>
     <p>
       <b>Paid:</b>
       <%= @invoice.paid %>

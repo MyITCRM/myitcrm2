@@ -12,7 +12,7 @@
 <% @open_invoices.each do |open| %>
     <tr>
         <td align="center"><%= link_to(open.id, invoice_path(open.id)) %></td>
-        <td align="center"><%= link_to(open.user_id, user_path(open.user_id) )%></td>
+        <td align="center"><%= link_to(open.user.name, user_path(open.user_id) )%></td>
         <td align="center"><%= number_to_currency(open.sub_total) %></td>
         <td align="center"><%= number_to_currency(open.tax_total) %></td>
         <td align="center"><%= number_to_currency(open.total) %></td>

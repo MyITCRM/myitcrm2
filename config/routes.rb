@@ -1,5 +1,13 @@
 MyITCRM2::Application.routes.draw do
 
+   resources :users do
+    collection do
+      put :edit_profile
+      put :update_profile
+      put :register
+    end
+      resources :invoices, :work_orders
+  end
   #resources :page_categories do
   #  get :page_category_name, :on => :collection
   #end
@@ -33,13 +41,7 @@ MyITCRM2::Application.routes.draw do
   end
 
   resources :user_sessions
-  resources :users do
-    collection do
-      put :edit_profile
-      put :update_profile
-      put :register
-    end
-    end
+
   resources :suppliers
   resources :products
   resources :service_rates

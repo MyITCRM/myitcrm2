@@ -1,6 +1,0 @@
-<tr align="center">
-      <td><%= f.number_field :qty, :size => 2 %></td>
-      <td align="left">Product: <%= f.collection_select :product_id, Product.where("active = ?",true).order('description'), :id, :product_lookup, :include_blank => true  %></td>
-      <td align="left">Comment: <%= f.text_field :line_comment, :size => 50 %></td>
-       <td> <%= f.check_box :_destroy, :size => 3%></td>
-    </tr>

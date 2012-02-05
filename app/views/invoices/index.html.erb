@@ -11,8 +11,8 @@
 <div id="center_col" class="no_right_sidebar">
   <div id="ddtabs1" class="basictab">
     <ul>
-      <li><a href="#open" rel="open"><%= t "invoices.tab_menu_open" %>&nbsp;(<% if @open_invoices.count > 0 %><span style="color:red;"><%= @open_invoices.count %></span><% else %><%= @open_invoices.count %><% end %>)</a></li>
-      <li><a href="#paid" rel="paid"><%= t "invoices.tab_menu_paid" %>&nbsp;(<% if @paid_invoices.count > 0 %><span style="color:#00ff00;"><%= @paid_invoices.count %></span><% else %><%= @paid_invoices.count %><% end %>)</a></li>
+      <li><a href="#open" rel="open"><%= t "invoices.tab_menu_open" %>&nbsp;(<% if open_invoices.count > 0 %><span style="color:red;"><%= open_invoices.count %></span><% else %><%= open_invoices.count %><% end %>)</a></li>
+      <li><a href="#paid" rel="paid"><%= t "invoices.tab_menu_paid" %>&nbsp;(<% if paid_invoices.count > 0 %><span style="color:#00ff00;"><%= paid_invoices.count %></span><% else %><%= paid_invoices.count %><% end %>)</a></li>
      </ul>
   </div>
   <div id="index_table">

@@ -1,34 +1,35 @@
+
 <%= simple_form_for(@invoice) do |f| %>
   <%= f.error_notification %>
     <h3 align="center">Service/Labour Charges</h3>
-    <table id="invoice_line_items" width="100%">
+    <table id="invoice_line_items" >
       <th>Qty</th>
       <th>Service Charges</th>
       <th>Line Comments</th>
-      <th>Add/Remove Line(s)</th>
+      <th>Remove</th>
 <%= f.simple_fields_for :service_invoice_lines do |builder| %>
-    <%= render "invoice_lines_labour_form", :f => builder %>
+    <%= render "invoices/service_invoice_line", :f => builder %>
   <% end %>
+ <%= link_to_add_fields image_tag('add.png', :title => [t "invoice.add_new_line"]), f, :service_invoice_lines  %>
     </table>
     <h3 align="center">Parts Charges</h3>
-    <table id="invoice_line_items" width="100%">
+    <table id="invoice_line_items" >
       <th>Qty</th>
       <th>Product Charges</th>
       <th>Line Comments</th>
-      <th>Add/Remove Line(s)</th>
+      <th>Remove</th>
 <%= f.simple_fields_for :product_invoice_lines do |builder| %>
-    <%= render "invoice_lines_product_form", :f => builder %>
+    <%= render "invoices/product_invoice_line", :f => builder %>
   <% end %>
+      <%= link_to_add_fields image_tag('add.png', :title => [t "invoice.add_new_line"]), f, :product_invoice_lines %>
     </table>
     <HR>
     <%= f.input :invoice_note, :input_html => { :cols => 40, :rows => 3 } %>
     <%= f.input :paid %>
-    <% if  params[:client_id].present? %>
-    <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:client_id] } %>
-    <% end %>
-    <% if params[:work_order_id].present? %>
-    <%= f.input :work_order_id, :as => :hidden, :input_html => { :value => params[:work_order_id] } %>
-    <% end %>
+
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:client_id] } if  params[:client_id].present? %>
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } if  params[:user_id].present? %>
+    <%= f.input :work_order_id, :as => :hidden, :input_html => { :value => params[:work_order_id] } if params[:work_order_id].present? %>
 
   <div class="center">
     <%= f.button :submit %>

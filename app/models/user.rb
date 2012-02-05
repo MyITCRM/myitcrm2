@@ -19,7 +19,6 @@
 class User < ActiveRecord::Base
 # This allows/connects the Users to many Work Orders
   has_many :work_orders
-  has_many :pages
   has_many :replies
 
 # Mass Assignment Protection
@@ -78,7 +77,6 @@ class User < ActiveRecord::Base
 
   def self.search_users(search_users, sort_column, sort_direction)
        User.where('name LIKE  ?', "%#{search_users}%").order(sort_column+ " "+sort_direction)
-
   end
 
   def default_role

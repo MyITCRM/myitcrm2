@@ -63,7 +63,7 @@ class WorkOrdersController < ApplicationController
     @client = User.find(params[:client_id])
     @title = (t "workorder.creating_wo_for")+@client.name.camelcase
     end
-    if params[:client_id].blank?
+    if params[:client_id].blank? & current_user.employee
       redirect_to clients_url
       flash[:info] = "You MUST select a client first before creating a new Work Order"
     else
@@ -83,11 +83,6 @@ class WorkOrdersController < ApplicationController
 
   def create
     @title = t "workorder.t_workorders"
-#    Defines the current users id if they are a client only.
-    if current_user.client == true
-      @work_order.user_id ||= current_user.id
-    end
-
     respond_to do |format|
       if @work_order.save
         flash[:notice] = 'Work Order was successfully created.'

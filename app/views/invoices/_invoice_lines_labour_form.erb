@@ -1,8 +1,0 @@
-
-    <tr align="center">
-      <td><%= f.number_field :qty, :size => 2 %></td>
-      <td align="left">Rate: <%= f.collection_select :service_id, ServiceRate.where("active = ?",true).order('description'), :id, :rate_lookup, :include_blank => true %>
-      <td  align="left">Comment: <%= f.text_field :line_comment, :size => 50 %></td>
-       <td> <%= f.check_box :_destroy, :size => 3%></td>
-    </tr>
-

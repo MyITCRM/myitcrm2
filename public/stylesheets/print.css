@@ -40,6 +40,7 @@ acronym:hover {cursor:help;}
 .col_name {width: 50%;text-align: right;float: left;}
 .col_value {padding-left:10px;width: 30%; text-align: left;float: left;}
 .col_value_new { color: #990000 !important; text-decoration: blink !important;}
+.printed_logo {float: right; padding: 5px}
 
 
 /*Pages Typo...*/
