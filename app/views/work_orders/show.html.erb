@@ -8,15 +8,15 @@
        <% if can? :destroy, WorkOrder %>
             <% if @work_order.closed? %>
             <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
-              <% if invoicing_required(params[:id]).present? %>
-            <li class="print"><%= link_to (t "invoice.show"), invoice_path(@invoiced.id) %></li>
+              <% if invoice(params[:id]).present? %>
+            <li class="print"><%= link_to (t "invoice.show"), invoice_path(@invoiced.id)  %></li>
               <% else %>
-                   <li class="print"><%= link_to (t "invoice.create"), new_work_order_invoice_path(:work_order_id => @work_order.id, :client_id => @work_order.user_id) %></li>
+                   <li class="print"><%= link_to (t "invoice.create"), new_work_order_invoice_path(:work_order_id => @work_order.id) %></li>
                   <% end %>
             <% else %>
             <li class="close"><%= link_to (t "global.close"), close_path(@work_order.id)%> </li>
             <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
-       <% end %>
+        <% end %>
        <% end %>
 
       <li class="exit"><%= link_to (t "global.exit"), work_orders_path %></li>
@@ -56,8 +56,8 @@
   </div>
   <% end %>
     <div class="clear"></div>
-  <%= will_paginate @replies %>
-  <% @replies.each do |reply|  %>
+  <%= will_paginate replies %>
+  <% replies.each do |reply|  %>
     <div id="reply_container">
       <div id="reply" class="<%= cycle :odd, :even %>" >
       <div>
@@ -82,7 +82,7 @@
   </div>
     </div>
  <% end %>
-    <%= will_paginate @replies %>
+    <%= will_paginate replies %>
   <div class="clear"></div>
   <fieldset style="text-align:center;">
     <legend><%= t "global.activity_log" %></legend>

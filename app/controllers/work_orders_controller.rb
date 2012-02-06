@@ -18,6 +18,7 @@
 class WorkOrdersController < ApplicationController
 #  Used by CanCan to restrict controller access
   load_and_authorize_resource
+  helper_method :sort_column, :sort_direction
 
 #  Used as a starting pint for PDF documents generation.
   prawnto :prawn => {:top_margin => 20}
@@ -26,21 +27,19 @@ class WorkOrdersController < ApplicationController
     @title = t "workorder.t_workorders"
     @work_orders = WorkOrder.all
     if current_user.client == true
-
-      @new_work_orders = WorkOrder.where("status_id = 1").where('user_id = ?', current_user.id)
-      @assigned_work_orders = WorkOrder.where("status_id = 2").where('user_id = ?', current_user.id)
-      @on_hold_work_orders = WorkOrder.where("status_id = 3").where('user_id = ?', current_user.id)
-      @pending_work_orders = WorkOrder.where("status_id = 4").where('user_id = ?', current_user.id)
-      @re_opened_work_orders = WorkOrder.where("status_id = 5").where('user_id = ?', current_user.id)
-      @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC").where('user_id = ?', current_user.id)
+      @new_work_orders = WorkOrder.where("status_id = 1 AND user_id = ?", current_user.id)
+      @assigned_work_orders = WorkOrder.where("status_id = 2 AND user_id = ?", current_user.id)
+      @on_hold_work_orders = WorkOrder.where("status_id = 3 AND user_id = ?", current_user.id)
+      @pending_work_orders = WorkOrder.where("status_id = 4 AND user_id = ?", current_user.id)
+      @re_opened_work_orders = WorkOrder.where("status_id = 5 AND user_id = ?", current_user.id)
+      @closed_work_orders = WorkOrder.where("status_id = 6 AND user_id = ?", current_user.id).order("closed_date DESC")
     else
-    @new_work_orders = WorkOrder.where("status_id = 1" )
-    @assigned_work_orders = WorkOrder.where("status_id = 2")
-    @on_hold_work_orders = WorkOrder.where("status_id = 3")
-    @pending_work_orders = WorkOrder.where("status_id = 4")
-    @re_opened_work_orders = WorkOrder.where("status_id = 5")
-    @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC")
-
+      @new_work_orders = WorkOrder.where("status_id = 1" )
+      @assigned_work_orders = WorkOrder.where("status_id = 2")
+      @on_hold_work_orders = WorkOrder.where("status_id = 3")
+      @pending_work_orders = WorkOrder.where("status_id = 4")
+      @re_opened_work_orders = WorkOrder.where("status_id = 5")
+      @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC")
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -52,8 +51,7 @@ class WorkOrdersController < ApplicationController
     @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
     @invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
-    @reply = Reply.new(:work_order_id => @work_order.id)
-    @replies = Reply.where("work_order_id = ?","#{params[:id]}").order("id DESC").paginate(:per_page => 4, :page => params[:page])
+
 
   end
 
@@ -175,5 +173,16 @@ class WorkOrdersController < ApplicationController
       format.html { redirect_to(work_orders_url) }
       format.xml { head :ok }
     end
+  end
+
+
+   private
+
+  def sort_column
+   Product.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
+
+  def sort_direction
+   %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "ASC"
   end
 end

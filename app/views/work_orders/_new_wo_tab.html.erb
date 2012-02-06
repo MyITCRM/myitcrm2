@@ -8,7 +8,6 @@
     <th><%= t "global.updated_at" %></th>
     <th><%= t "global.actions" %></th>
   </tr>
-
 <% @new_work_orders.each do |new_wo| %>
     <tr align="left" valign="top" class="priority_main_<%= new_wo.priority_list.id %>">
     <td align="center"><%= link_to(new_wo.id, new_wo) %></td>

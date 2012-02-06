@@ -1,6 +1,7 @@
 <table width="100%" cellspacing="0">
   <tr>
     <th>Invoice #</th>
+    <th>WO #</th>
     <th>Clients Name</th>
     <th>Sub Total</th>
     <th>Tax Total</th>
@@ -12,6 +13,7 @@
 <% @open_invoices.each do |open| %>
     <tr>
         <td align="center"><%= link_to(open.id, invoice_path(open.id)) %></td>
+        <td align="center"><%= open.work_order_id %></td>
         <td align="center"><%= link_to(open.user.name, user_path(open.user_id) )%></td>
         <td align="center"><%= number_to_currency(open.sub_total) %></td>
         <td align="center"><%= number_to_currency(open.tax_total) %></td>

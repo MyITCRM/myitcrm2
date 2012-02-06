@@ -10,9 +10,8 @@ class WorkOrder < ActiveRecord::Base
   attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by, :status_id, :resolution, :closed_by, :closed_date, :closed
 
   # Before filters go here.
-  before_create :workorder_created, :check_user
-  before_update :workorder_updated, :change_assignment, :lookup_assigned_username, :change_status, :check_user
-  before_update :check_user
+  before_create :workorder_created
+  before_update :workorder_updated, :change_assignment, :lookup_assigned_username, :change_status
 
   # These are the defaults for all new Work Orders
   def workorder_created
@@ -70,12 +69,13 @@ class WorkOrder < ActiveRecord::Base
       end
     end
 
-  #    Defines the current users id if they are a client only.
-  def check_user
-    if current_user.client == true
-      self.user_id ||= current_user.id
-    end
-  end
+  ##    Defines the current users id if they are a client only.
+  #def check_user
+  #  permitted = User.where("id = ?", self.user_id )
+  #  if permitted.client == true
+  #    self.user_id ||= current_user.id
+  #  end
+  #end
 
 end
 

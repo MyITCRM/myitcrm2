@@ -1,22 +1,25 @@
 <div id="sidebar_left">
-  <% if can? :manage, Invoice %>
       <%= module_header %>
       <div class="module">
         <ul>
-            <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) %></li>
-
-       <% if can? :manage, Invoice %>
-            <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete %> </li>
-       <% end %>
-       <% if can? :edit, WorkOrder %>
-            <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path %></li>
-       <% end %>
-      <li class="exit"><%= link_to (t "global.exit"), invoices_path %></li>
+            <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path if can? :edit, Invoice %></li>
+            <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) if can? :read, Invoice %></li>
+            <hr>
+            <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete  if can? :manage, Invoice %> </li>
+            <hr>
+          <li class="exit"><%= link_to (t "global.exit"), invoices_path if can? :read, Invoice %></li>
         </ul>
       </div>
-      <!--
-  <% end %>-->
   <%= render 'layouts/left_sidebar_modules' %>
+</div>
+<div id="sidebar_right">
+      <%= module_header "Invoice Log" %>
+      <div class="module">
+          <p>Created <%= l @invoice.created_at, :format => :short %> <%= t "global.by" %> <%= @invoice.created_by %></p>
+          <p>Updated <%= time_ago_in_words @invoice.updated_at %> <%= t "global.ago" %> <%= t "global.by" %> <%= @invoice.updated_by if present? %><%= @invoice.created_by if @invoice.updated_by.blank? %></p>
+          <%= payment_status @invoice.paid? %>
+
+      </div>
 </div>
 <div id="center_col" class="content">
   <div id="invoice">
@@ -89,7 +92,7 @@
       <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
         <div style="display: inline-block;">
           <p>SUB TOTAL:</p>
-          <p><%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+          <p>SERVICES TAX <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
           <p>SERVICE TOTAL:</p>
         </div>
         <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
@@ -131,7 +134,7 @@
         <div style="display: inline-block;">
           <p>SUB TOTAL:</p>
 
-          <p>Invoice Tax <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+          <p>PARTS TAX <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
 
           <p>PARTS TOTAL:</p>
         </div>
@@ -154,7 +157,7 @@
         <div style="display: inline-block;">
           <p>INVOICE SUB TOTAL:</p>
 
-          <p><%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+          <p>INVOICE <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
 
           <p>INVOICE TOTAL:</p>
         </div>

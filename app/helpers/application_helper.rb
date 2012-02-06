@@ -2,6 +2,7 @@
 
 module ApplicationHelper
 
+
   def sortable(column, title = nil)
     title ||= column.titleize                       
     css_class = column == sort_column ? "current #{sort_direction}" : nil
@@ -65,5 +66,6 @@ end
     end
     link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')" )
   end
+
 end
 

@@ -27,9 +27,11 @@
     <%= f.input :invoice_note, :input_html => { :cols => 40, :rows => 3 } %>
     <%= f.input :paid %>
 
-    <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:client_id] } if  params[:client_id].present? %>
-    <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } if  params[:user_id].present? %>
+
     <%= f.input :work_order_id, :as => :hidden, :input_html => { :value => params[:work_order_id] } if params[:work_order_id].present? %>
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } if params[:user_id].present? %>
+    <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username} if @invoice.created_by.blank? %>
+    <%= f.input :updated_by, :as => :hidden, :input_html => { :value => current_user.username} %>
 
   <div class="center">
     <%= f.button :submit %>
