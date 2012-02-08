@@ -63,10 +63,10 @@
         <p><%= Setting::business_address %></p>
     </div>
     </div>
-    <div id="invoice_lines" style="clear: both;">
+    <div class="invoice_lines" style="clear: both;">
       <% if service_invoice_lines.present? %>
           <h4 align="center">Service's</h4>
-          <table id="invoice_line_items" style="width: 100%;">
+          <table class="invoice_line_items" style="width: 100%;">
             <th width="5%">QTY</th>
             <th width="15%">SKU</th>
             <th width="40%">DESC</th>
@@ -105,7 +105,7 @@
       <div style="clear: right"></div>
       <% if product_invoice_lines.present? %>
           <h4 align="center">Parts</h4>
-          <table id="invoice_line_items" style="width: 100%;">
+          <table class="invoice_line_items" style="width: 100%;">
             <th width="5%">QTY</th>
             <th width="15%">SKU</th>
             <th width="40%">DESC</th>

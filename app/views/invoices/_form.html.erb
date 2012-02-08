@@ -1,39 +1,49 @@
-
-<%= simple_form_for(@invoice) do |f| %>
-  <%= f.error_notification %>
+<%= form_for @invoice do |f| %>
     <h3 align="center">Service/Labour Charges</h3>
-    <table id="invoice_line_items" >
-      <th>Qty</th>
-      <th>Service Charges</th>
-      <th>Line Comments</th>
-      <th>Remove</th>
-<%= f.simple_fields_for :service_invoice_lines do |builder| %>
-    <%= render "invoices/service_invoice_line", :f => builder %>
-  <% end %>
- <%= link_to_add_fields image_tag('add.png', :title => [t "invoice.add_new_line"]), f, :service_invoice_lines  %>
-    </table>
+    <div class="invoice_line_items">
+      <div class="header">
+        <div class="inline w70 centered_text">QTY</div>
+        <div class="inline w390 ">Service Rate</div>
+        <div class="inline w390 ">Line Comments</div>
+        <div class="inline w30 centered_text">Actions</div>
+      </div>
+    </div>
+    <div class="boxed">
+      <%= f.fields_for :service_invoice_lines do |builder| %>
+          <%= render "invoices/service_invoice_line", :f => builder %>
+      <% end %>
+      <p class="w870"><%= link_to_add_fields [t "invoice.add_new_line"], f, :service_invoice_lines %></p>
+    </div>
     <h3 align="center">Parts Charges</h3>
-    <table id="invoice_line_items" >
+    <table class="invoice_line_items">
+      <tbody>
       <th>Qty</th>
       <th>Product Charges</th>
       <th>Line Comments</th>
       <th>Remove</th>
-<%= f.simple_fields_for :product_invoice_lines do |builder| %>
-    <%= render "invoices/product_invoice_line", :f => builder %>
-  <% end %>
-      <%= link_to_add_fields image_tag('add.png', :title => [t "invoice.add_new_line"]), f, :product_invoice_lines %>
+      <%= f.simple_fields_for :product_invoice_lines do |builder| %>
+          <%= render "invoices/product_invoice_line", :f => builder %>
+      <% end %>
+      <b><%= link_to_add_fields image_tag('add.png', :title => [t "invoice.add_new_line"]), f, :product_invoice_lines %></b>
+      <script>
+          var parentEls = $("b").parent()
+                  .map(function () {
+                      return this.tagName;
+                  })
+                  .get().join(", ");
+          $("b").append("<strong>" + parentEls + "</strong>");
+
+      </script>
+      </tbody>
     </table>
     <HR>
-    <%= f.input :invoice_note, :input_html => { :cols => 40, :rows => 3 } %>
-    <%= f.input :paid %>
+    <%= f.text_area :invoice_note, :cols => 40, :rows => 3 %>
+    <%= f.hidden_field :work_order_id, :value => params[:work_order_id] if params[:work_order_id].present? %>
+    <%= f.hidden_field :user_id, :value => params[:user_id] if params[:user_id].present? %>
+    <%= f.hidden_field :created_by, :value => current_user.username if @invoice.created_by.blank? %>
+    <%= f.hidden_field :updated_by, :value => current_user.username %>
 
-
-    <%= f.input :work_order_id, :as => :hidden, :input_html => { :value => params[:work_order_id] } if params[:work_order_id].present? %>
-    <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } if params[:user_id].present? %>
-    <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username} if @invoice.created_by.blank? %>
-    <%= f.input :updated_by, :as => :hidden, :input_html => { :value => current_user.username} %>
-
-  <div class="center">
-    <%= f.button :submit %>
-  </div>
+    <div class="center">
+      <%= f.submit "Submit" %>
+    </div>
 <% end %>

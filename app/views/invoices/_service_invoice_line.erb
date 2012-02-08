@@ -1,10 +1,13 @@
+<div class="fields">
+  <p>
+    <div class="inline w70 centered_text"><%= f.number_field :qty, :size => 2 %></div>
+        <div class="inline w390"><%= f.collection_select :service_id, ServiceRate.where("active = ?", true).order('description'), :id, :rate_lookup, :include_blank => true %></div>
+        <div class="inline w390"><%= f.text_field :line_comment, :size => 50 %></div>
+        <div class="inline w30 centered_text"><%= link_to_remove_fields f %></div>
 
-        <tr align="center" class="fields" >
-            <td><%= f.number_field :qty, :size => 2 %></td>
-            <td align="left"><%= f.collection_select :service_id, ServiceRate.where("active = ?",true).order('description'), :id, :rate_lookup, :include_blank => true %>
-            <td  align="left"><%= f.text_field :line_comment, :size => 50 %></td>
-            <td><%= link_to_remove_fields f %></td>
-        </tr>
+  </p>
+    </div>
+
 
 
 

@@ -592,7 +592,7 @@ en_AU:
     create: "Create Invoice"
     billing_account: "Account ID:"
     billing_name: "Bill To:"
-    add_new_line: "Add a new line to the invoice"
+    add_new_line: "Add a New Line"
   invoices:
     tab_menu_open: "Unpaid Invoices"
     tab_menu_paid: "Paid Invoices"

@@ -195,20 +195,53 @@ input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-
 .priority_main_4 td {background-color: #ff9999; font-weight:bold;}
 .priority_main_5 td {background-color: #cc0033; font-weight:bolder;}
 
-/*Invoice Line Items Table CSS*/
-#invoice_line_items {border-collapse:collapse;line-height: normal;font-size:0.9em;width: 100%;overflow: hidden;padding:0.2em;}
-#invoice_line_items td {border: 1px solid #000066;padding:3px 7px 2px 7px;}
-#invoice_line_items td .no_border {border: none !important;}
-#invoice_line_items th {color: #ffffff;background-color: #4B7399;border: 1px solid #000066;padding:3px 7px 2px 7px;}
-#invoice_line_items td {color: #000000;}
-#invoice_line_items th a {color:#ccccff;}
-#invoice_line_items th a {color:#ccccff;}
-#invoice_line_items th .current {padding-right:14px;background: right center no-repeat;}
-#invoice_line_items tr td input[type='text']{width:auto; min-width: 10px;}
+/*Invoice Line Items Tables and DIVs CSS*/
+.invoice_line_items {font-size:0.9em;width: 100%;overflow: hidden;padding:0;}
+.header {width: 100%;color: #ffffff;background-color: #4B7399;}
+.inline {display:inline-block;}
+.centered_text {text-align: center;}
+.fields {line-height:0.5em; padding: 0; margin:0;}
+.boxed {border: 1px #cccccc groove}
+.w10 {width:10px}
+.w30 {width:30px}
+.w70 {width:70px}
+.w110 {width:110px}
+.w150 {width:150px}
+.w190 {width:190px}
+.w230 {width:230px}
+.w270 {width:270px}
+.w310 {width:310px}
+.w350 {width:350px}
+.w390 {width:390px}
+.w430 {width:430px}
+.w470 {width:470px}
+.w510 {width:510px}
+.w550 {width:550px}
+.w590 {width:590px}
+.w630 {width:630px}
+.w670 {width:670px}
+.w710 {width:710px}
+.w750 {width:750px}
+.w790 {width:790px}
+.w830 {width:830px}
+.w870 {width:870px}
+.w910 {width:910px}
+.w950 {width:950px; margin-right:0;}
+
+
+
+.invoice_line_items td {border: none;padding:3px 7px 2px 7px;}
+.invoice_line_items td .no_border {border: none !important;}
+.invoice_line_items th {color: #ffffff;background-color: #4B7399;border: 1px solid #000066;padding:3px 7px 2px 7px;}
+.invoice_line_items td {color: #000000;}
+.invoice_line_items th a {color:#ccccff;}
+.invoice_line_items th a {color:#ccccff;}
+.invoice_line_items th .current {padding-right:14px;background: right center no-repeat;}
+.invoice_line_items tr td input[type='text']{width:auto; min-width: 10px;}
 .clean input {border: none;background: none;}
 
 
-/*Display Nice Table Labels and Fields and Field sets Headers*/
+/*Display Nice Table Labels, Fields, Field sets and Headers*/
 #show_layout {line-height:2.5em; }
 #show_layout label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;width:auto;min-width:25%;font-weight:bold;}
 #show_layout div.field {font-size:100%;display:block;margin-left:27%;width:60%}
@@ -271,7 +304,7 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 pre,code,kbd,samp,tt{font-family: monospace,monospace;font-size: 1em;}
 h1.samples { color:#0782C1; font-size:200%; font-weight:normal; margin: 0; padding: 0;}
 h2.samples { color:#000000; font-size:130%; margin: 0; padding: 0;}
-p, blockquote, address, form, pre, dl, h1.samples, h2.samples {margin-bottom:15px;}
+/*p, blockquote, address, form, pre, dl, h1.samples, h2.samples {margin-bottom:15px;}*/
 ul.samples {margin-bottom:15px;}
 /*.clear {clear:both;}*/
 fieldset{margin: 0;	padding: 10px;}
