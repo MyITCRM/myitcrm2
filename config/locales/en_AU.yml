@@ -477,6 +477,8 @@ en_AU:
       taxation_information: "Taxation Information"
       misc_url: "Misc"
       misc: "Misc"
+      invoice_defaults_url: "Invoice_Defaults"
+      invoice_defaults: "Invoice Defaults"
     hint:
       business_number: "eg: ACN, ABN, etc"
       transaction_fee: "eg: 3% of total invoice amount"
@@ -596,3 +598,5 @@ en_AU:
   invoices:
     tab_menu_open: "Unpaid Invoices"
     tab_menu_paid: "Paid Invoices"
+  invoice_paid: "PAID"
+  invoice_overdue: "OVERDUE"

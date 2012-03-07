@@ -13,8 +13,8 @@
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
     <li><a href="#<%= t "settings.tab.taxation_info" %>" rel="sc2"><%= t "settings.tab.taxation_information" %></a></li>
-    <!--<li><a href="#<%= t "settings.tab.payment_options_url" %>" rel="sc3"><%= t "settings.tab.payment_options" %></a></li>-->
-    <!--<li><a href="#<%= t "settings.tab.priority_fields_url" %>" rel="sc4"><%= t "settings.tab.priority_fields_options" %></a></li>-->
+    <li><a href="#<%= t "settings.tab.payment_options_url" %>" rel="sc3"><%= t "settings.tab.payment_options" %></a></li>
+    <li><a href="#<%= t "settings.tab.invoice_defaults_url" %>" rel="sc4"><%= t "settings.tab.invoice_defaults" %></a></li>
     <!--<li><a href="#<%= t "settings.tab.localisation_url" %>" rel="sc5"><%= t "settings.tab.localisation_url" %></a></li>-->
     <li><a href="#<%= t "settings.tab.misc" %>" rel="sc6"><%= t "settings.tab.misc_url" %></a></li>
   </ul>
@@ -32,7 +32,7 @@
         <p><%= setting_text_field(:business_fax, :size => 20)%></p>
         <p><%= setting_text_field(:business_mobile, :size => 20)%></p>
         <p><%= setting_text_field(:business_email, :size => 50)%></p>
-        <p><%= setting_text_area(:business_address, :cols => 10 , :rows => 5, :cols => 20 )%></p>
+        <p><%= setting_text_area(:business_address, :cols => 35 , :rows => 8)%></p>
          <div class="center">
             <%= submit_tag t "global.apply" %>
          </div>
@@ -60,7 +60,16 @@
   </div>
 
   <div id="sc4" class="tabcontent">
+     <div class="simple_form">
+        <%= form_tag({:action => 'edit'}) do %>
+            <p><%= setting_select(:default_invoice_terms, [["7 Days NETT", '7'],["14 Days NETT",'14'], ["Cash On Delivery",'0']]) %></p>
+            <p><%= setting_text_area(:default_invoice_note, :cols => 70 , :rows => 8) %></p>
+             <div class="center">
+                <%= submit_tag t "global.apply" %>
+             </div>
+            <% end %>
 
+        </div>
   </div>
 <div id="sc5" class="tabcontent">
 

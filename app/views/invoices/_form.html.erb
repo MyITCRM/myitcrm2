@@ -1,4 +1,7 @@
-<%= form_for @invoice do |f| %>
+<%= simple_form_for @invoice do |f| %>
+    <%= f.input :due_date, :as => :date %>
+    <a>Payment Terms:<%= Setting::default_invoice_terms %> Days NETT</a>
+    <%= f.input :invoice_note, :input_html => {:rows => 5, :cols => 70, :value => Setting::default_invoice_note }  %>
     <h3 align="center">Service/Labour Charges</h3>
     <div class="invoice_line_items">
       <div class="header">
@@ -12,7 +15,7 @@
       <%= f.fields_for :service_invoice_lines do |builder| %>
           <%= render "invoices/service_invoice_line", :f => builder %>
       <% end %>
-      <p class="w870"><%= link_to_add_fields [t "invoice.add_new_line"], f, :service_invoice_lines %></p>
+      <p class="w870"><%= link_to_add_fields image_tag('add.png', :height => '16', :alt => "Add New Line"), f, :service_invoice_lines %></p>
     </div>
     <h3 align="center">Parts Charges</h3>
     <table class="invoice_line_items">
@@ -37,7 +40,8 @@
       </tbody>
     </table>
     <HR>
-    <%= f.text_area :invoice_note, :cols => 40, :rows => 3 %>
+
+    <%= f.input :paid %>
     <%= f.hidden_field :work_order_id, :value => params[:work_order_id] if params[:work_order_id].present? %>
     <%= f.hidden_field :user_id, :value => params[:user_id] if params[:user_id].present? %>
     <%= f.hidden_field :created_by, :value => current_user.username if @invoice.created_by.blank? %>

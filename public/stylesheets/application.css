@@ -10,7 +10,7 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 #sidebar_left, #sidebar_right {width:17em;line-height:1.5em;height:auto;display:block;}
 #sidebar_left {float:left;}
 #sidebar_right {float:right;}
-.module_header {margin:0}
+.centered {margin:0 auto}
 .first {margin-right:15px;padding-right:15px;}
 .float_right{float:right;display:inline-block;}
 .float_left{float:left;display:inline-block;}
@@ -22,6 +22,8 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 #reply_container {margin: 0 auto;}
 #reply {max-width: 100%; min-width:60%; padding:10px;}
 .reply_message {margin-left: 6.2em;}
+#invoice_description {margin: 0 auto; width:100%; text-align:center;}
+
 
 
 /*Typography*/
@@ -44,9 +46,9 @@ acronym:hover {cursor:help;}
 .col_value {padding-left:10px;width: 30%; text-align: left;float: left;}
 .col_value_new { color: #990000 !important; text-decoration: blink !important;}
 .printed_logo {float: right; padding: 5px}
-.paid, .unpaid {font-weight: bolder;}
+.paid, .unpaid, .overdue {font-weight: bolder;}
 .paid {color:#66CC66;}
-.unpaid {color:#cd0a0a;}
+.unpaid, .overdue {color:#cd0a0a;}
 
 
 /*Pages Typo...*/
@@ -197,11 +199,17 @@ input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-
 
 /*Invoice Line Items Tables and DIVs CSS*/
 .invoice_line_items {font-size:0.9em;width: 100%;overflow: hidden;padding:0;}
-.header {width: 100%;color: #ffffff;background-color: #4B7399;}
+.invoice_lines_even {background-color: #cedeed;}
+.invoice_lines_odd {background-color: #a4bacf;}
+.header {width: 100%;color: #ffffff;background-color:#4B7399 ;}
 .inline {display:inline-block;}
+.invoice_stamp {width:100%;position: absolute; font:55px monospace; text-transform: uppercase; }
+.overdue {color: #cc0033;}
+
 .centered_text {text-align: center;}
 .fields {line-height:0.5em; padding: 0; margin:0;}
-.boxed {border: 1px #cccccc groove}
+.fields p {line-height:0.5em; padding: 1px; margin:0;}
+.boxed {border: 1px #cccccc solid}
 .w10 {width:10px}
 .w30 {width:30px}
 .w70 {width:70px}

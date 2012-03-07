@@ -17,7 +17,7 @@
     <td><%= l new_wo.created_at, :format => :medium %> by <%=h new_wo.created_by %></td>
     <td><%= l new_wo.updated_at, :format => :medium %> by <%=h new_wo.edited_by %></td>
 
-    <td class="w110" align="center">
+    <td class="w140" align="center">
         <%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(new_wo.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(new_wo.id)) %>&nbsp;
       <% if can? :manage, @work_orders %>

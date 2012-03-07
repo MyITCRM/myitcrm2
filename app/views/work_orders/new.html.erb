@@ -24,23 +24,12 @@
     <div id="sc1" class="tabcontent">
       <%= simple_form_for(@work_order) do |f| %>
           <%= f.error_notification %>
-          <% if current_user.employee == true %>
-              <% if params[:client_id].present?  %>
-              <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:client_id] } %>
-              <% else %>
-                  <div style="margin-bottom:5px" >
-                    <label>* <%= t "global.client" %></label>
-              <%= f.collection_select(:user_id, User.where("client = ?",true).order('client'),:id, :name, :include_blank => true)%>
-                    <%= f.input :user_name, :url => user_name_users_path, :as => :autocomplete %>
-                  </div>
-
-                  <% end %>
-          <% end %>
           <%= f.input :subject, :label => (t "workorder.subject"), :input_html => { :size => 60 } %>
           <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
          <%= f.input :description, :label => (t "workorder.details"),  :input_html => { :cols => 60, :rows => 12  } %>
 
           <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
+          <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } %>
           <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
           <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now } %>
 

@@ -7,9 +7,12 @@ module WorkOrdersHelper
     @replies = Reply.where("work_order_id = ?","#{params[:id]}").order("id DESC").paginate(:per_page => 10, :page => params[:page])
   end
 
+  def reply
+    @reply = Reply.new
+  end
 
     #@invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
-    #@reply = Reply.new(:work_order_id => @work_order.id)
+
     #@replies = Reply.where("work_order_id = ?","#{params[:id]}").order("id DESC").paginate(:per_page => 4, :page => params[:page])
 
 

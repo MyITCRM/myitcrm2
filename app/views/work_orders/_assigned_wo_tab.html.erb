@@ -20,7 +20,7 @@
     <td><%= l assigned_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.created_by %></td>
     <td><%= l assigned_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.edited_by %></td>
     <td><%= assigned_wo.assigned_to_username %></td>
-    <td width="120" align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(assigned_wo.id) )%>&nbsp;
+    <td width="w140" align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(assigned_wo.id) )%>&nbsp;
         <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(assigned_wo.id)) %>&nbsp;
       <% if can? :manage, @work_orders %>
        <%= link_to(image_tag('printer.png', :title => [t "global.print"]), work_order_path(assigned_wo.id,:format => 'pdf'))%>&nbsp;

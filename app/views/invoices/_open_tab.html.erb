@@ -14,7 +14,7 @@
     <tr>
         <td align="center"><%= link_to(open.id, invoice_path(open.id)) %></td>
         <td align="center"><%= open.work_order_id %></td>
-        <td align="center"><%= link_to(open.user.name, user_path(open.user_id) )%></td>
+        <td align="center"><%= link_to(open.user.name, user_path(open.user_id)) if open.user_id.present? %></td>
         <td align="center"><%= number_to_currency(open.sub_total) %></td>
         <td align="center"><%= number_to_currency(open.tax_total) %></td>
         <td align="center"><%= number_to_currency(open.total) %></td>

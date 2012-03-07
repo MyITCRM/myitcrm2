@@ -2,7 +2,9 @@
       <%= module_header %>
       <div class="module">
         <ul>
-            <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path if can? :edit, Invoice %></li>
+            <% if @invoice.paid.blank? %>
+            <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path if can? :edit, Invoice  %></li>
+            <% end %>
             <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) if can? :read, Invoice %></li>
             <hr>
             <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete  if can? :manage, Invoice %> </li>
@@ -24,6 +26,7 @@
 <div id="center_col" class="content">
   <div id="invoice">
 <h1 align="center">INVOICE #<%= @invoice.id %></h1>
+    <div class="invoice_stamp inline"><%= invoice_stamp(@invoice.paid) %></div>
     <div class="printed_logo"><%= image_tag('logo.png', :height => '64', :alt => Setting::business_slogan) %></div>
     <div style="clear: right"></div>
     <div class="bill_to">
@@ -63,21 +66,43 @@
         <p><%= Setting::business_address %></p>
     </div>
     </div>
-    <div class="invoice_lines" style="clear: both;">
+    <div style="clear: both;">
+      <div id="invoice_description">
+       <div class="invoice_fields">
+        <% if @invoice.work_order_id.present? %>
+        <h4 align="center">Work Order Details</h4>
+            <div class="invoice_line_items center">
+                <div class="header">
+                    <div class="inline w70 centered_text"><%= t "workorder.pdf.t_workorder" %></div>
+                    <div class="inline w230">Description</div>
+                    <div class="inline w230 centered_text ">Completed</div>
+                </div>
+                <div class="boxed">
+                    <div class="inline w70 centered_text">#<%= @invoice.work_order_id %></div>
+                    <div class="inline w230"><%= wo_details.subject %></div>
+                    <div class="inline w230 centered_text "><%= l wo_details.closed_date, :format => :short %> <%= t "global.by" %> <%= wo_details.assigned_to_username  %></div>
+                </div>
+            </div>
+          <% end %>
+    </div>
+        </div>
       <% if service_invoice_lines.present? %>
           <h4 align="center">Service's</h4>
-          <table class="invoice_line_items" style="width: 100%;">
-            <th width="5%">QTY</th>
-            <th width="15%">SKU</th>
+          <table class="invoice_line_items" cellspacing="1">
+            <thead>
+            <th>QTY</th>
+            <th>SKU</th>
             <th width="40%">DESC</th>
             <th width="15%">PRICE</th>
             <th width="15%">SUB TOTAL</th>
             <th width="15%">TAX</th>
             <th width="15%">TOTAL</th>
+            </thead>
+
             <% service_invoice_lines.each do |lines| %>
-                <tr class="<%= cycle :odd, :even %>">
-                  <td><%= lines.qty %></td>
-                  <td><%= lines.sku %></td>
+                <tr class="<%= cycle :invoice_lines_even, :invoice_lines_odd %>">
+                  <td class="w30"><%= lines.qty %></td>
+                  <td  class="w150"><%= lines.sku %></td>
                   <td><%= lines.description %>
                     <br/>
                     <em style="font-size: 0.8em"><%= lines.line_comment %></em>
@@ -90,7 +115,7 @@
             <% end %>
           </table>
       <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
-        <div style="display: inline-block;">
+        <div class="inline float_left">
           <p>SUB TOTAL:</p>
           <p>SERVICES TAX <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
           <p>SERVICE TOTAL:</p>
@@ -105,7 +130,7 @@
       <div style="clear: right"></div>
       <% if product_invoice_lines.present? %>
           <h4 align="center">Parts</h4>
-          <table class="invoice_line_items" style="width: 100%;">
+          <table class="invoice_line_items" cellspacing="1">
             <th width="5%">QTY</th>
             <th width="15%">SKU</th>
             <th width="40%">DESC</th>
@@ -114,7 +139,7 @@
             <th width="15%">TAX</th>
             <th width="15%">TOTAL</th>
             <% product_invoice_lines.each do |lines| %>
-                <tr class="<%= cycle :even, :odd %>">
+                <tr class="<%= cycle :invoice_lines_even, :invoice_lines_odd %>">
                   <td><%= lines.qty %></td>
                   <td><%= lines.sku %></td>
                   <td><%= lines.description %>
@@ -131,7 +156,7 @@
           </table>
 
       <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
-        <div style="display: inline-block;">
+        <div class="inline float_left">
           <p>SUB TOTAL:</p>
 
           <p>PARTS TAX <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
@@ -154,7 +179,7 @@
     <!--Invoice Totals here-->
     <hr/>
           <div style="float:right; text-align:right;line-height: .6em">
-        <div style="display: inline-block;">
+        <div style="display: inline-block;" class="float_left">
           <p>INVOICE SUB TOTAL:</p>
 
           <p>INVOICE <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>

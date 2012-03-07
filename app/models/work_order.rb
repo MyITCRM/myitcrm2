@@ -5,7 +5,7 @@ class WorkOrder < ActiveRecord::Base
   has_many :replies, :dependent => :destroy  # Destroy's the associated replies if a Work Order is deleted
 
 # Validate presence of Input information when creating or editing
-  validates_presence_of :subject, :description, :user_id
+  validates_presence_of :subject, :description
 
   attr_accessible :description, :subject, :priority_list_id, :edited_by, :updated_at, :assigned_to_username, :user_id, :created_by, :status_id, :resolution, :closed_by, :closed_date, :closed
 

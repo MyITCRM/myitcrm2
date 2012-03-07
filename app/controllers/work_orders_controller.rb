@@ -51,26 +51,26 @@ class WorkOrdersController < ApplicationController
     @title = t "workorder.t_viewing_workorder_details"
     @work_order = WorkOrder.find(params[:id])
     @invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
-
+    @reply = Reply.new(:work_order_id => @work_order.id)
 
   end
 
   def new
 
     if params[:client_id].present?
-    @client = User.find(params[:client_id])
+    @client = User.find(params[:user_id])
     @title = (t "workorder.creating_wo_for")+@client.name.camelcase
     end
-    if params[:client_id].blank? & current_user.employee
-      redirect_to clients_url
-      flash[:info] = "You MUST select a client first before creating a new Work Order"
-    else
+    #if params[:client_id].blank? & current_user.employee
+    #  redirect_to clients_url
+    #  flash[:info] = "You MUST select a client first before creating a new Work Order"
+    #else
     @work_order = WorkOrder.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml { render :xml => @work_order }
-    end
+    #end
     end
   end
 

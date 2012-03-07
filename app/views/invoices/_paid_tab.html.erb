@@ -1,0 +1,33 @@
+<table width="100%" cellspacing="0">
+  <tr>
+    <th>Invoice #</th>
+    <th>WO #</th>
+    <th>Clients Name</th>
+    <th>Sub Total</th>
+    <th>Tax Total</th>
+    <th>Invoice Total</th>
+    <th>Invoice Note</th>
+    <th>Actions</th>
+  </tr>
+
+<% @paid_invoices.each do |closed| %>
+    <tr>
+        <td align="center"><%= link_to(closed.id, invoice_path(closed.id)) %></td>
+        <td align="center"><%= closed.work_order_id %></td>
+        <td align="center"><%= link_to(closed.user.name, user_path(closed.user_id)) if closed.user_id.present? %></td>
+        <td align="center"><%= number_to_currency(closed.sub_total) %></td>
+        <td align="center"><%= number_to_currency(closed.tax_total) %></td>
+        <td align="center"><%= number_to_currency(closed.total) %></td>
+        <td><%= truncate(closed.invoice_note, :length => 75) %></td>
+
+        <td width="120" align="center">
+            <%= link_to(image_tag('view.png', :title => [t "global.view"]), invoice_path(closed.id) )%>&nbsp;
+            <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_invoice_path(closed.id)) %>&nbsp;
+         <% if can? :manage, @work_orders %>
+            <%= link_to(image_tag('printer.png', :title => [t "global.print"]), invoice_path(closed.id,:format => 'pdf'))%>&nbsp;
+            <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), invoice_path(closed.id), :confirm => [t 'alert.destroy'], :method => :delete ) %>&nbsp;
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
