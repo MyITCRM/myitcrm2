@@ -6,7 +6,7 @@ class Invoice < ActiveRecord::Base
 
   attr_accessible :service_id, :product_id, :invoice_note, :user_id, :work_order_id,
                   :paid, :service_invoice_lines_attributes, :product_invoice_lines_attributes,
-                  :created_by, :updated_by
+                  :created_by, :updated_by, :due_date
 
   validates_uniqueness_of :work_order_id, :allow_blank => true
 

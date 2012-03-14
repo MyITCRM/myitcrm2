@@ -26,7 +26,9 @@
 <div id="center_col" class="content">
   <div id="invoice">
 <h1 align="center">INVOICE #<%= @invoice.id %></h1>
-    <div class="invoice_stamp inline"><%= invoice_stamp(@invoice.paid) %></div>
+    <p>Invoice Date: <%= l @invoice.created_at, :format => :short  %></p>
+    <p>Invoice Due Date: <%= l @invoice.due_date, :format => :short if @invoice.due_date.present?  %></p>
+    <div class="invoice_stamp inline"><%= invoice_stamp(@invoice.paid, @invoice.due_date) %></div>
     <div class="printed_logo"><%= image_tag('logo.png', :height => '64', :alt => Setting::business_slogan) %></div>
     <div style="clear: right"></div>
     <div class="bill_to">

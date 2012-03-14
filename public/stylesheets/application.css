@@ -48,7 +48,8 @@ acronym:hover {cursor:help;}
 .printed_logo {float: right; padding: 5px}
 .paid, .unpaid, .overdue {font-weight: bolder;}
 .paid {color:#66CC66;}
-.unpaid, .overdue {color:#cd0a0a;}
+.overdue {color:#cd0a0a;}
+.unpaid {color: #0000FF;}
 
 
 /*Pages Typo...*/

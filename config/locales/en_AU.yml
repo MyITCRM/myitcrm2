@@ -595,8 +595,10 @@ en_AU:
     billing_account: "Account ID:"
     billing_name: "Bill To:"
     add_new_line: "Add a New Line"
+    paid: "PAID"
+    overdue: "OVERDUE"
+    unpaid: "UNPAID"
   invoices:
     tab_menu_open: "Unpaid Invoices"
     tab_menu_paid: "Paid Invoices"
-  invoice_paid: "PAID"
-  invoice_overdue: "OVERDUE"
+
