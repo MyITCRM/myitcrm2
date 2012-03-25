@@ -26,7 +26,7 @@ class WorkOrdersController < ApplicationController
   def index
     @title = t "workorder.t_workorders"
     @work_orders = WorkOrder.all
-    if current_user.client == true
+    if current_user.client.present?
       @new_work_orders = WorkOrder.where("status_id = 1 AND user_id = ?", current_user.id)
       @assigned_work_orders = WorkOrder.where("status_id = 2 AND user_id = ?", current_user.id)
       @on_hold_work_orders = WorkOrder.where("status_id = 3 AND user_id = ?", current_user.id)
@@ -41,10 +41,6 @@ class WorkOrdersController < ApplicationController
       @re_opened_work_orders = WorkOrder.where("status_id = 5")
       @closed_work_orders = WorkOrder.where("status_id = 6").order("closed_date DESC")
     end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render :xml => @work_orders }
-    end
   end
 
   def show
@@ -57,20 +53,20 @@ class WorkOrdersController < ApplicationController
 
   def new
 
-    if params[:client_id].present?
+    if params[:user_id].present?
     @client = User.find(params[:user_id])
     @title = (t "workorder.creating_wo_for")+@client.name.camelcase
     end
-    #if params[:client_id].blank? & current_user.employee
-    #  redirect_to clients_url
-    #  flash[:info] = "You MUST select a client first before creating a new Work Order"
-    #else
+    if params[:user_id].blank? & current_user.employee
+      redirect_to clients_url
+      flash[:info] = "You MUST select a client first before creating a new Work Order"
+    else
     @work_order = WorkOrder.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml { render :xml => @work_order }
-    #end
+    end
     end
   end
 

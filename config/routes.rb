@@ -46,15 +46,11 @@ MyITCRM2::Application.routes.draw do
   resources :products
   resources :service_rates
   resources :replies, :only => [:show, :edit, :update]
-
-
-
-
   match '/login' => 'user_sessions#new', :as => :login
   match '/logout' => 'user_sessions#destroy', :as => :logout
-  match '/register' =>'users#register', :as => :register
-  match '/clients' =>'users#clients', :as => :clients
-  match '/employees' =>'users#employees', :as => :employees
+  match '/register' => 'users#register', :as => :register
+  match '/clients' => 'users#clients', :as => :clients
+  match '/employees' => 'users#employees', :as => :employees
   match 'profile/:id' => 'users#edit_profile', :as => :my_account
   match 'work_orders/:id/close' => 'work_orders#close', :as => :close
   match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign

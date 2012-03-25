@@ -1,6 +1,7 @@
 <table width="100%" cellspacing="0">
   <tr>
     <th>Invoice #</th>
+    <th>Due Date</th>
     <th>WO #</th>
     <th>Clients Name</th>
     <th>Sub Total</th>
@@ -13,19 +14,24 @@
 <% @open_invoices.each do |open| %>
     <tr>
         <td align="center"><%= link_to(open.id, invoice_path(open.id)) %></td>
+      <% if open.due_date < Time.now %>
+        <td align="center" class="overdue_highlight"><%= l open.due_date, :format => :short %></td>
+      <% else %>
+          <td align="center"><%= l open.due_date, :format => :short %></td>
+      <% end %>
         <td align="center"><%= open.work_order_id %></td>
         <td align="center"><%= link_to(open.user.name, user_path(open.user_id)) if open.user_id.present? %></td>
         <td align="center"><%= number_to_currency(open.sub_total) %></td>
         <td align="center"><%= number_to_currency(open.tax_total) %></td>
         <td align="center"><%= number_to_currency(open.total) %></td>
-        <td><%= truncate(open.invoice_note, :length => 75) %></td>
+        <td><%= truncate(open.invoice_note, :length => 45) %></td>
 
         <td width="120" align="center">
-            <%= link_to(image_tag('view.png', :title => [t "global.view"]), invoice_path(open.id) )%>&nbsp;
-            <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_invoice_path(open.id)) %>&nbsp;
+            <%= link_to(image_tag('view.png', :title => (t "global.view")), invoice_path(open.id) )%>&nbsp;
+            <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_invoice_path(open.id)) %>&nbsp;
          <% if can? :manage, @work_orders %>
-            <%= link_to(image_tag('printer.png', :title => [t "global.print"]), invoice_path(open.id,:format => 'pdf'))%>&nbsp;
-            <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), invoice_path(open.id), :confirm => [t 'alert.destroy'], :method => :delete ) %>&nbsp;
+            <%= link_to(image_tag('printer.png', :title => (t "global.print")), invoice_path(open.id,:format => 'pdf'))%>&nbsp;
+            <%= link_to(image_tag('delete.png', :title => (t "global.delete")), invoice_path(open.id), :confirm => (t "alert.destroy"), :method => :delete ) %>&nbsp;
       <% end %>
     </td>
   </tr>

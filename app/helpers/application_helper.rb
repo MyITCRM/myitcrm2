@@ -1,22 +1,19 @@
 # Methods added to this helper will be available to all templates in the application.
-
 module ApplicationHelper
 
-
+  # Adds a sortable column to the header of the table
   def sortable(column, title = nil)
-    title ||= column.titleize                       
+    title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = column == sort_column && sort_direction == "ASC" ? "DESC" : "ASC"
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
+   # This is the module
    def module_header(title = nil, module_class = nil)
-     if title.present?
-       title
-       else
-       title = [t "global.quick_links"]
-     end
-     "<div class='module_header text_shadow #{module_class}'>#{title}</div>".html_safe
+     title.present? ? title : title = t('global.quick_links')
+     css_class = module_class
+     "<div class='module_header text_shadow #{css_class}'>#{title}</div>".html_safe
    end
 
 # Used to show Employees Overview
@@ -56,7 +53,8 @@ def textile_tag(content)
 end
   # Used to add and remove fields through JQuery in Invoice Service and Product Lines
   def link_to_remove_fields(f)
-    f.hidden_field(:_destroy) + link_to_function(image_tag('delete.png', :title => [t "global.delete"]), "remove_fields(this)")
+    image_title = t "global.delete"
+    f.hidden_field(:_destroy) + link_to_function(image_tag('delete.png', :title => "#{image_title}" ), "remove_fields(this)")
   end
 
   def link_to_add_fields(name, f, association)
@@ -65,7 +63,6 @@ end
       render(association.to_s.singularize, :f => builder)
     end
     link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')" )
-    #link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
 
   end
 

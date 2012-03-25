@@ -39,16 +39,16 @@ module InvoicesHelper
   def invoice_stamp(paid, due_date)
     # If this invoice is paid in full, then display the PAID stamp
     if paid == true
-      text = [t "invoice.paid"]
+      text = t "invoice.paid"
       "<a class='paid'>#{text}</a>".html_safe
     else
         # If we have a due_date, lets use that to see if the invoice is OVERDUE, if not stamp it with UNPAID
         if due_date.present?
           if due_date + 86399 < Time.now
-          text = [t "invoice.overdue"]
+          text = t "invoice.overdue"
           "<a class='overdue'>#{text}</a>".html_safe
           else
-           text = [t "invoice.unpaid"]
+           text = t "invoice.unpaid"
           "<a class='unpaid'>#{text}</a>".html_safe
         end
         end

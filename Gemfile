@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails'
+gem 'rails', '3.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'          Y
@@ -9,8 +9,10 @@ gem 'rails'
 gem 'simple-navigation'
 # PDF Writer
 gem 'prawn'
+gem 'prawnto'
 # Permissions GEM
 gem 'cancan'
+#gem 'cantango'
 # Multiple Language Support
 #gem 'i18n'
 # Easily generate nice forms with advanced features like hints, inline errors, etc
@@ -18,7 +20,7 @@ gem 'simple_form'
 # User Authentication GEM
 gem 'authlogic'
 # SQLite Database gem
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'sqlite3'
 
 # Adds Pagination to this app
 #gem 'kaminari'
@@ -27,27 +29,18 @@ gem 'will_paginate'
 # Add Autocomplete to specific fields using JQuery
 gem 'rails3-jquery-autocomplete'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
+  gem 'uglifier', '>= 1.0.3'
+end
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+gem 'jquery-rails'
 
 

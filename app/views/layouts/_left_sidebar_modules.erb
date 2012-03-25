@@ -1,18 +1,18 @@
 <div id="sidebar_left">
   <% if not logged_in? %>
-      <%= module_header([t "global.module.menu"]) %>
+      <%= module_header(t "global.module.menu") %>
             <div class="menu_module">
                 <ul>
                   <li><%= link_to 'Home', root_url %></li>
                    <li><%= link_to 'Login', login_url %></li>
                 </ul>
             </div>
-      <%= module_header([t "global.module.contact_us"], 'email_icon') %>
+      <%= module_header(t "global.module.contact_us" ) %>
             <div class="module">
               <p>
-                  <% if Setting::business_phone.present? %><p><img src="/images/telephone.png" hspace="8"><%= Setting::business_phone %><% end %>
-                  <% if Setting::business_mobile.present? %><p><img src="/images/mobile_phone.png" hspace="8"><%= Setting::business_mobile %><% end %>
-                  <% if Setting::business_email.present? %><p><img src="/images/email.png" hspace="8"><%= Setting::business_email %><% end %>
+                  <% if Setting::business_phone.present? %><p><%= image_tag "telephone.png", :hspace => 8 %><%= Setting::business_phone %><% end %>
+                  <% if Setting::business_mobile.present? %><p><%= image_tag "mobile_phone.png", :hspace => 8 %><%= Setting::business_mobile %><% end %>
+                  <% if Setting::business_email.present? %><p><%= image_tag "email.png", :hspace => 8 %><%= Setting::business_email %><% end %>
               </p>
 
             </div>
@@ -78,7 +78,7 @@
                 </p>
               </div>
       <% if current_user.client == true %>
-            <%= module_header([t "global.module.contact_us"], 'email_icon') %>
+            <%= module_header(t "global.module.contact_us", email_icon ) %>
             <div class="module">
               <p>
                   <% if Setting::business_phone.present? %><p><img src="/images/telephone.png" hspace="8"><%= Setting::business_phone %><% end %>

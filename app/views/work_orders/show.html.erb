@@ -6,9 +6,10 @@
             <li class="edit"><%= link_to (t "global.edit"), edit_work_order_path %></li>
         <% end %>
        <% if can? :destroy, WorkOrder %>
+          <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
             <% if @work_order.closed? %>
-            <li class="print"><%= link_to (t "global.print"), work_order_path(@work_order.id,:format => 'pdf') %></li>
-              <% if invoice(params[:id]).present? %>
+
+              <% if @invoiced %>
             <li class="print"><%= link_to (t "invoice.show"), invoice_path(@invoiced.id)  %></li>
               <% else %>
                    <li class="print"><%= link_to (t "invoice.create"), new_work_order_invoice_path(:work_order_id => @work_order.id) %></li>
@@ -69,12 +70,12 @@
            <strong> Message:</strong> <%= textile_tag(reply.content) %>
 
         <span style="font-size:10px">
-          <% if reply.updated_at > reply.created_at %><%= image_tag('comment_edit.png') %>[ Edited <%= localize reply.updated_at, :format => :medium %> ]<% end %>
+          <% if reply.updated_at > reply.created_at %><%= image_tag('comment_edit.png') %>( Edited <%= localize reply.updated_at, :format => :medium %> )<% end %>
           <%= time_ago_in_words(reply.created_at) %> ago (<%= localize reply.created_at, :format => :medium %>)
         </span>
         <% if @work_order.closed.blank? %>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_reply_path(reply.id)) %>&nbsp;
-        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_reply_path(reply.id), :confirm => [t 'alert.destroy'], :method => :delete ) %>
+        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_reply_path(reply.id)) %>&nbsp;
+        <%= link_to(image_tag('delete.png', :title => (t "global.delete")), work_order_reply_path(reply.id), :confirm => (t 'alert.destroy'), :method => :delete ) %>
         <% end %>
         </div>
     </div>

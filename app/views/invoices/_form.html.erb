@@ -27,7 +27,7 @@
       <%= f.simple_fields_for :product_invoice_lines do |builder| %>
           <%= render "invoices/product_invoice_line", :f => builder %>
       <% end %>
-      <b><%= link_to_add_fields image_tag('add.png', :title => [t "invoice.add_new_line"]), f, :product_invoice_lines %></b>
+      <b><%= link_to_add_fields image_tag('add.png', :title => (t "invoice.add_new_line")), f, :product_invoice_lines %></b>
       <script>
           var parentEls = $("b").parent()
                   .map(function () {
