@@ -7,7 +7,9 @@ class Ability
     if @user.role.nil?
       @user.role = "guest"
     else
-      @user.role.each { |role| send(role) }
+      @user.role.each_line do |role|
+        send(role)
+      end
     end
     can [:register, :create], User
     can [:read, :home], Page, :private => false

@@ -58,13 +58,13 @@
             <% if can? :manage, :all %>
               <div id="attributes" class="tabcontent simple_form">
 
-                  <% if current_user.employee == true %>
-                      <%= f.input :client, :as => :radio, :checked => true, :label =>(t "user.client") %>
-                      <%= f.input :employee, :as => :radio, :checked => [true, false], :label =>(t "user.employed") %>
-                      <%= f.input :workorder_assignability, :as => :radio, :checked => [true, false], :label =>(t "user.assignable") %>
+                  <% if current_user.employee %>
+                      <%= f.input :client, :as => :radio_buttons, :checked => true, :label =>(t "user.client") %>
+                      <%= f.input :employee, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.employed") %>
+                      <%= f.input :workorder_assignability, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.assignable") %>
                   <% end %>
                   <label class="string required" for="user_role"><abbr title="Required">*</abbr>Role</label>
-                  <%= f.collection_select :role, User::ROLES, :to_s, :humanize, :include_blank => true %>
+                  <%= f.collection_select :role, User::ROLES, :id,  :include_blank => true %>
 
 
               <div class="center">

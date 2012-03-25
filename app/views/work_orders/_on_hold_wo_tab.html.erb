@@ -20,9 +20,9 @@
     <td><%= l on_hold.created_at, :format => :medium %><%= t "global.by" %><%= on_hold.created_by %></td>
     <td><%= l on_hold.updated_at, :format => :medium %><%= t "global.by" %><%= on_hold.edited_by %></td>
     <td><%= on_hold.assigned_to_username %></td>
-    <td width="w140" align="center"><%= link_to(image_tag('view.png', :title => [t "global.view"]), work_order_path(on_hold.id) )%>&nbsp;
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_work_order_url(on_hold.id)) %>&nbsp;
-        <%= link_to(image_tag('delete.png', :title => [t "global.delete"]), work_order_path(on_hold.id), :confirm => [t 'alert.destroy'], :method => :delete ) %>
+    <td width="w140" align="center"><%= link_to(image_tag('view.png', :title => (t "global.view")), work_order_path(on_hold.id) )%>&nbsp;
+        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_url(on_hold.id)) %>&nbsp;
+        <%= link_to(image_tag('delete.png', :title => (t "global.delete")), work_order_path(on_hold.id), :confirm => (t 'alert.destroy'), :method => :delete ) %>
     </td>
   </tr>
 <% end %>

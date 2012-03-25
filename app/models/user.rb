@@ -60,14 +60,14 @@ class User < ActiveRecord::Base
     end
   end
 
-#  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
+##  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
   acts_as_authentic do |c|
     c.logged_in_timeout 10.minutes # default is 10 minutes. Change this value and restart server to take effect of new value
- end
+end
 
 # DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
-      ROLES = %w[administrator manager technician accountant assistant client]
+      ROLES = "%w[administrator manager technician accountant assistant client]"
 #
 # DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 

@@ -15,7 +15,6 @@ SimpleNavigation::Configuration.run do |navigation|
           end
         end
         if can? :update, WorkOrder
-
             if current_user.client.present?
               primary.item :users, 'My Account',my_account_path(:id=> current_user), :highlights_on => /\/my account/ do |sub_nav|
                sub_nav.item :users, 'Edit Profile', my_account_path(:id=> current_user)
@@ -31,14 +30,14 @@ SimpleNavigation::Configuration.run do |navigation|
         end
         if can? :manage, Supplier
           primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/ do |sub_nav|
-            sub_nav.item :suppliers, "Suppliers #{[t 'global.index']}", suppliers_path
-            sub_nav.item :suppliers, [t 'global.create'], new_supplier_path
+            sub_nav.item :suppliers, "Suppliers #{t 'global.index'}", suppliers_path
+            sub_nav.item :suppliers, "#{t 'global.create'}", new_supplier_path
           end
           end
         if can? :manage, Product
           primary.item :products, 'Products', products_path, :highlights_on => /\/products/  do |sub_nav|
-            sub_nav.item :products, "Products #{[t 'global.index']}", products_path
-            sub_nav.item :products, [t 'global.create'], new_product_path
+            sub_nav.item :products, "Products #{t 'global.index'}", products_path
+            sub_nav.item :products, "#{t 'global.create'}", new_product_path
           end
         end
         if can? :manage, :all

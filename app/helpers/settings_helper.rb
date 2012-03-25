@@ -46,6 +46,6 @@ module SettingsHelper
 
   def setting_label(setting, options={})
     label = options.delete(:label)
-    label != false ? content_tag("label", t(label || "setting_#{setting}")) : ''
+    label ? content_tag("label", t(label || "setting_#{setting}")) : ''
   end
 end

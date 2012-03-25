@@ -55,7 +55,7 @@ pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
 
 #pdf.text "#{t "workorder.pdf.t_workorder"} : #{@work_order.id}", :size => 26, :align => :center
 #pdf.move_down(5)
-pad = 5
+
 pdf.bounding_box([0, pdf.cursor], :width => 560, :height => 25, :fill_color => 'ffeeee') do
   pdf.stroke_bounds
 pdf.pad_top(5) {pdf.text("#{t "workorder.pdf.t_workorder"} : #{@work_order.id}", :size => 18, :align => :center) }

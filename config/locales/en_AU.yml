@@ -215,6 +215,10 @@ en_AU:
     id: "Role #"
     clerk: "Clerk"
   date:
+    order:
+     -  :day
+     -  :month
+     -  :year
     formats:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
@@ -254,16 +258,12 @@ en_AU:
 
       default: "%d/%m/%Y"
       short: "%d %m %y"
-      long: "%B %d, %Y"
-
+      long: "%B %d %Y"
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
-
-    # Don't forget the nil at the beginning; there's no such thing as a 0th month
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    # Used in date_select and datetime_select.
-    order: [:day, :month, :year ]
+
 
   time:
     formats:
@@ -601,4 +601,4 @@ en_AU:
   invoices:
     tab_menu_open: "Unpaid Invoices"
     tab_menu_paid: "Paid Invoices"
-
+  ROLES: "%w[administrator manager technician accountant assistant client]"

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
 
     end
-    if current_user.employee = true
+    if current_user.employee
       @users = User.where('client = 1').order(:name)
     end
     if can? :manage, @users
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:notice] = [t "user.flash_new_success"]
+        flash[:notice] = t "user.flash_new_success"
         format.html { redirect_to(@user) }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
 #    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice =>[t "user.flash_update_user"]) }
+        format.html { redirect_to(@user, :notice => (t "user.flash_update_user") ) }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }
