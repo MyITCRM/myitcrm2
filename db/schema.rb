@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112063317) do
+ActiveRecord::Schema.define(:version => 20120326020205) do
 
   create_table "invoices", :force => true do |t|
     t.integer  "user_id"
@@ -28,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.string   "updated_by"
     t.datetime "due_date"
     t.datetime "paid_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "page_categories", :force => true do |t|
@@ -44,21 +45,33 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.string   "page_category_id"
     t.boolean  "published"
     t.boolean  "private"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.string  "name"
+    t.string  "action"
+    t.string  "subject_class"
+    t.integer "subject_id"
+  end
+
+  create_table "permittables", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "permission_id"
   end
 
   create_table "priority_lists", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "product_categories", :force => true do |t|
     t.string   "name"
     t.integer  "sub_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "product_invoice_lines", :force => true do |t|
@@ -73,8 +86,8 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.decimal  "sub_total",    :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.decimal  "total_price",  :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.string   "line_comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   create_table "products", :force => true do |t|
@@ -90,26 +103,26 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.decimal  "tax_rate",            :default => 0.0, :null => false
-    t.decimal  "cost_price",          :default => 0.0, :null => false
-    t.decimal  "sell_price",          :default => 0.0, :null => false
-    t.decimal  "mark_up",             :default => 0.0, :null => false
+    t.decimal  "tax_rate",            :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "cost_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sell_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "mark_up",             :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "active"
-    t.decimal  "weight",              :default => 0.0, :null => false
+    t.decimal  "weight",              :precision => 10, :scale => 3, :default => 0.0, :null => false
     t.boolean  "discountable"
-    t.decimal  "disc_percent",        :default => 0.0, :null => false
-    t.decimal  "disc_amount",         :default => 0.0, :null => false
+    t.decimal  "disc_percent",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "disc_amount",         :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.decimal  "qty_on_hand",         :default => 0.0, :null => false
-    t.decimal  "qty_allocated",       :default => 0.0, :null => false
-    t.decimal  "qty_available",       :default => 0.0, :null => false
-    t.decimal  "qty_ordered",         :default => 0.0, :null => false
-    t.decimal  "stocking_qty",        :default => 0.0, :null => false
+    t.decimal  "qty_on_hand",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_allocated",       :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_available",       :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_ordered",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "stocking_qty",        :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.boolean  "stocked_product"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
   end
 
   create_table "replies", :force => true do |t|
@@ -117,8 +130,16 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.integer  "work_order_id"
     t.text     "content"
     t.boolean  "private"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.boolean  "enabled"
+    t.integer  "list_position"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "service_invoice_lines", :force => true do |t|
@@ -133,8 +154,8 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.decimal  "sub_total",    :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.decimal  "total_price",  :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.string   "line_comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   create_table "service_rates", :force => true do |t|
@@ -144,21 +165,21 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.boolean  "taxable"
     t.decimal  "tax_rate",    :precision => 12, :scale => 3
     t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
   end
 
   create_table "settings", :force => true do |t|
     t.string   "name",       :limit => 30, :default => "", :null => false
     t.text     "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "statuses", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "suppliers", :force => true do |t|
@@ -179,8 +200,8 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.datetime "date_created"
     t.datetime "date_updated"
     t.integer  "parts_leadtime_days"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "user_id"
     t.string   "created_by"
     t.string   "edited_by"
@@ -199,7 +220,7 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "role"
+    t.integer  "role_id"
     t.boolean  "employee"
     t.boolean  "workorder_assignability"
     t.boolean  "client"
@@ -221,8 +242,8 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.boolean  "active",                  :default => true
     t.datetime "edited_at"
     t.string   "edited_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "created_by"
   end
 
@@ -240,8 +261,8 @@ ActiveRecord::Schema.define(:version => 20120112063317) do
     t.integer  "status_id",            :default => 1, :null => false
     t.string   "created_by"
     t.string   "edited_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
 end

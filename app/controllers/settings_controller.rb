@@ -3,12 +3,14 @@ class SettingsController < ApplicationController
   load_and_authorize_resource
 
   def index
+	  #unauthourized! if cannot? :edit, Setting
     @title = "Settings"
         edit
         render :action => 'edit'
   end
 
   def edit
+	  #unauthourized! if cannot? :edit, Setting
      @title = "Settings"
      @priority_list = PriorityList.all
     if request.post? && params[:settings] && params[:settings].is_a?(Hash)
@@ -20,7 +22,6 @@ class SettingsController < ApplicationController
       end
       flash[:notice] = "All Good!"
       redirect_to :action => 'index'
-      return
 
  end
  end

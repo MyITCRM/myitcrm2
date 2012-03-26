@@ -20,9 +20,10 @@ class User < ActiveRecord::Base
 # This allows/connects the Users to many Work Orders
   has_many :work_orders
   has_many :replies
+  belongs_to :role
 
 # Mass Assignment Protection
-  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role, :updated_by,
+  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role_id, :updated_by,
                   :created_by, :password_confirmation, :mobile, :fax, :password, :employee, :client,
                   :workorder_assignability, :notes, :edited_by, :edited_at
 
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :username, :email, :phone
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 #  validates_length_of :password, :password_confirmation
-  before_save :define_permissions
+#  before_save :define_permissions
   before_create :new_user
 
 # Used to set New Users to defaults
@@ -67,20 +68,19 @@ end
 
 # DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
-      ROLES = "%w[administrator manager technician accountant assistant client]"
+#      ROLES = "%w[administrator manager technician accountant assistant client]"
+##
+## DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
 #
-# DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
-
-  def roles
-    User::ROLES.to_a
-  end
+#  def roles
+#    User::ROLES.to_a
+#  end
 
   def self.search_users(search_users, sort_column, sort_direction)
        User.where('name LIKE  ?', "%#{search_users}%").order(sort_column+ " "+sort_direction)
   end
-
-  def default_role
-     User::ROLES.client
-  end
+#def default_role
+#     User::ROLES.client
+#  end
 
 end

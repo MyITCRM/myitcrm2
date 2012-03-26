@@ -1,0 +1,2 @@
+module PermittablesHelper
+end

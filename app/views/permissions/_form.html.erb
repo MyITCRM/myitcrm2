@@ -1,0 +1,14 @@
+<%= simple_form_for(@permission) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :action, :collection => %W(manage update edit create show index) %>
+    <%= f.input :subject_class, :collection => %W(WorkOrder User Invoice User_Session Setting Product Supplier) %>
+    <%= f.input :subject_id %>
+  </div>
+
+  <div class="center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

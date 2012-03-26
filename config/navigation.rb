@@ -4,7 +4,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     navigation.auto_highlight = true
     primary.item :home, 'Home', root_path do |sub_nav|
-      sub_nav.item :logout, 'Logout', logout_path, :if => Proc.new { logged_in? }
+      sub_nav.item :logout, 'Logout', logout_path
     end
     if logged_in?
         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
@@ -14,7 +14,7 @@ SimpleNavigation::Configuration.run do |navigation|
             sub_nav.item :work_orders, 'New Work Order', "/work_orders/new?client_id=#{current_user.id}"
           end
         end
-        if can? :update, WorkOrder
+        if can? :create, User
             if current_user.client.present?
               primary.item :users, 'My Account',my_account_path(:id=> current_user), :highlights_on => /\/my account/ do |sub_nav|
                sub_nav.item :users, 'Edit Profile', my_account_path(:id=> current_user)
@@ -40,15 +40,18 @@ SimpleNavigation::Configuration.run do |navigation|
             sub_nav.item :products, "#{t 'global.create'}", new_product_path
           end
         end
-        if can? :manage, :all
+        if can? :manage, Invoice
           primary.item :invoices, "Invoices", invoices_path, :highlights_on => /\/invoices/
-          primary.item :settings, 'Rates & Settings', settings_path, :highlights_on => /\/settings/ do |sub_nav|
-            sub_nav.item :service_rates, 'Service Rates', service_rates_path, :highlights_on => /\/service_rates/ || /\/settings/
-            sub_nav.item :settings, 'Business Settings', settings_path, :highlights_on => /\/settings/
-            sub_nav.item :priority_lists, 'Priority List', priority_lists_path, :highlights_on => /\/priority_lists/ || /\/settings/
-          end
         end
-
+	      if can? :update, Setting
+		      primary.item :settings, 'Rates & Settings', settings_path, :highlights_on => /\/settings/ do |sub_nav|
+		                  sub_nav.item :service_rates, 'Service Rates', service_rates_path, :highlights_on => /\/service_rates/ || /\/settings/
+		                  sub_nav.item :settings, 'Business Settings', settings_path, :highlights_on => /\/settings/
+		                  sub_nav.item :priority_lists, 'Priority List', priority_lists_path, :highlights_on => /\/priority_lists/ || /\/settings/
+		                  sub_nav.item :roles, 'Roles', roles_path, :highlights_on => /\/roles/ || /\/settings/
+		                  sub_nav.item :permissions, 'Permissions', permissions_path, :highlights_on => /\/permissions/ || /\/settings/
+		                end
+	      end
     else
       primary.item :register, 'Register', register_path, :highlights_on => /\/register/
     end

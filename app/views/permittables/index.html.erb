@@ -1,0 +1,25 @@
+<h1>Listing permittables</h1>
+
+<table>
+  <tr>
+    <th>Role</th>
+    <th>Permission</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @permittables.each do |permittable| %>
+  <tr>
+    <td><%= permittable.role_id %></td>
+    <td><%= permittable.permission_id %></td>
+    <td><%= link_to 'Show', permittable %></td>
+    <td><%= link_to 'Edit', edit_permittable_path(permittable) %></td>
+    <td><%= link_to 'Destroy', permittable, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Permittable', new_permittable_path %>

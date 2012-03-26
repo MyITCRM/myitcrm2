@@ -86,7 +86,7 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
     .menu_module li a.selected {list-style-image:url(/images/bullet_hover.png);background-color:#a9a9a9;font-weight:bold;padding-left:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
 
 .clear {clear:both;height: 0;overflow: hidden;margin-bottom:0.5em;padding-top:20px;}
-.hide {display:none; !important}
+.hide {display:none !important;}
 .text_left{text-align:left;}
 .text_right{text-align:right;}
 .light_fill {background:#ceeeda}

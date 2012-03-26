@@ -17,7 +17,7 @@
 
 class WorkOrdersController < ApplicationController
 #  Used by CanCan to restrict controller access
-  load_and_authorize_resource
+#  load_and_authorize_resource
   helper_method :sort_column, :sort_direction
 
 #  Used as a starting pint for PDF documents generation.

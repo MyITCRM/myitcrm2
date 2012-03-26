@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :crypted_password
       t.string :password_salt
       t.string :persistence_token
-      t.string :role
+      t.integer :role_id
       t.boolean :employee
       t.boolean :workorder_assignability
       t.boolean :client
@@ -41,10 +41,9 @@ class CreateUsers < ActiveRecord::Migration
                         :password_salt => "3t3Xc_YhQ6AeTlUde-Om",
                         :email => "admin@example.net",
                         :employee => true,
-
                         :client => false,
                         :workorder_assignability => true,
-                        :role => "administrator"
+                        :role_id => "1"
   end
 
 

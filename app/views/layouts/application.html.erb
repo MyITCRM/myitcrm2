@@ -12,7 +12,7 @@
 <%= render 'layouts/header' %>
 <% if logged_in?  %>
 <div id="menu">
-  <%= render_navigation(:expand_all => true) %>
+ <%= render_navigation(:expand_all => true) %>
     <div id="user_info_menu">
         <%= t "global.welcome_back" %>&nbsp;<a href="<%= my_account_path(:id=> current_user)%>"><%= current_user.name %></a>
     </div>

@@ -1,0 +1,14 @@
+<%= simple_form_for(@role) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :enabled %>
+    <%= f.input :list_position %>
+    <%= f.association :permissions, :as => :check_boxes %>
+  </div>
+
+  <div class="center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

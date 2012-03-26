@@ -64,7 +64,7 @@
                       <%= f.input :workorder_assignability, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.assignable") %>
                   <% end %>
                   <label class="string required" for="user_role"><abbr title="Required">*</abbr>Role</label>
-                  <%= f.collection_select :role, User::ROLES, :id,  :include_blank => true %>
+                  <%= f.input :role, :collection => [User::ROLES].to_a %>
 
 
               <div class="center">

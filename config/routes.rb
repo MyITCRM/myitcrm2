@@ -1,6 +1,12 @@
 MyITCRM2::Application.routes.draw do
 
-   resources :users do
+
+
+  resources :roles
+  resources :permissions
+  resources :permittables
+
+  resources :users do
     collection do
       put :edit_profile
       put :update_profile

@@ -1,6 +1,5 @@
 class UserSessionsController < ApplicationController
   before_filter :logged_in?, :only => :destroy
-  #ssl_enabled if ENV = "Production"
 
   def new
     @title = t "global.login"
