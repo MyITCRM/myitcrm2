@@ -2,7 +2,7 @@ class PermissionsController < ApplicationController
   # GET /permissions
   # GET /permissions.json
   def index
-    @permissions = Permission.all
+    @permissions = Permission.order(:name).all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,4 +1,5 @@
 class RepliesController < ApplicationController
+	load_and_authorize_resource
   # GET /replies
   # GET /replies.xml
   def index

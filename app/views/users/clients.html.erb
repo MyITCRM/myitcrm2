@@ -1,6 +1,6 @@
 <% if logged_in? %>
     <div id="sidebar_left">
-      <% if can? :manage, @users %>
+      <% if can? :manage, User %>
           <%= module_header %>
           <div class="module">
             <ul>
@@ -21,7 +21,7 @@
               </p>
           <% end %>
       <% end %>
-      <% if can? :manage, @users %>
+      <% if can? :manage, User %>
           <%= will_paginate @users %>
       <% end %>
       <table id="index_table">
@@ -44,29 +44,28 @@
               <td align="center"><%= active_work_order_count(user.id).count %></td>
               <td><%= user.username %></td>
               <td><%= user.email %></td>
-              <td style="text-transform:capitalize;"><%= user.role %></td>
+              <td style="text-transform:capitalize;"><%= user.role.name %></td>
               <td><%= user.phone %></td>
               <td><%= user.mobile %></td>
               <td><%= user.active %></td>
               <td>
                 <%= link_to(image_tag('view.png', :title => (t "global.view")), user) %>
-                <% if can? :update, @user %>
+                <% if can? :update, User %>
                     &nbsp;<%= link_to(image_tag('edit.png', :title => (t "global.edit")), :controller => "users", :action => "edit", :id => user.id) %>
                     &nbsp;<%= link_to(image_tag('invoice.png', :title => (t "invoice.create")), new_user_invoice_path(:user_id => user.id) )%>
                 <% end %>
-                <% if user.client? then %>
                     <% if can? :create, WorkOrder %>
                         &nbsp;<%= link_to(image_tag('wrench.png', :title => (t "global.workorder")), new_user_work_order_path(:user_id => user.id)) %>
+
                     <% end %>
-                <% end %>
-                <% if can? :destroy, @user %>
+                <% if can? :destroy, User %>
                     &nbsp;<%= link_to(image_tag('delete.png', :title => (t "global.delete")), user, :confirm => 'Are you sure?', :method => :delete) %>
                 <% end %>
               </td>
             </tr>
         <% end %>
       </table>
-      <% if can? :manage, @users %>
+      <% if can? :manage, User %>
           <%= will_paginate @users %>
       <% end %>
 <% end %>

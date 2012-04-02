@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
+#	 Ensures that all users have restrictions based on roles throughout the entire application via CanCan
+#	check_authorization
+
 include Authentication
 require 'redcloth3'
+
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

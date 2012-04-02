@@ -4,7 +4,7 @@ class CreatePermissions < ActiveRecord::Migration
       t.string :name
       t.string :action
       t.string :subject_class
-      t.integer :subject_id
+      t.string :subject_id
     end
   end
 end

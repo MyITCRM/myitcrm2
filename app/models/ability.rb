@@ -4,15 +4,28 @@ class Ability
     # Here you can define custom aliases
     alias_action :index, :show, :clients, :employees, :to => :read
     alias_action :new, :register, :to => :create
-    alias_action :edit, :edit_profile, :update_profile, :to => :update
+    alias_action :edit, :edit_profile, :update_profile, :to => :modify
+    alias_action :show, :index, :new, :update, :destroy, :edit, :create, :employees, :clients, :to => :manage
 
-      # Now lets lookup what the you can do based on there role
+    # If the user is idle for the set amount of time, we need to assign a default user role
+    # so that we redirect back to the root URL and display the correct notification message.
+    # If the user is still active, then this function continues to lookup the users role and permissions
+    @user = user || User.new
+    if @user.role_id.blank?
+	    @user.role_id = 985695958446
+	    guest = 985695958446
+	    def guest
+	      can [:register, :create], User
+	      can [:read, :home], Page, :private => false
+      end
+    else
 			can do |action, subject_class, subject|
 				user.role.permissions.find_all_by_action(aliases_for_action(action)).any? do |permission|
 					permission.subject_class == subject_class.to_s &&
 							(subject.nil? || permission.subject_id.nil? || permission.subject_id == subject.id)
 				end
 			end
+		end
 		end
 end
 

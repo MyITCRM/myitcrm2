@@ -21,7 +21,9 @@ Permittable.create(
 	:role_id => '1',
 	:permission_id => '1'
 )
-PriorityList.create(
-	:name => %W(Low Normal High Urgent Critical)
-)
+PriorityList.create(:name => 'Low')
+PriorityList.create(:name => 'Normal')
+PriorityList.create(:name => 'High')
+PriorityList.create(:name => 'Urgent')
+PriorityList.create(:name => 'Critical')
 

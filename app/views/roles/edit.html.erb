@@ -1,6 +1,16 @@
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="create"><%= link_to (t "global.create"), new_role_path %></li>
+
+    </ul>
+  </div>
+   <%= render 'layouts/left_sidebar_modules' %>
+  </div>
+
+<div id=center_col>
 <h1>Editing role</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @role %> |
-<%= link_to 'Back', roles_path %>
+</div>

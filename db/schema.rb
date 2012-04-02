@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(:version => 20120326020205) do
   end
 
   create_table "permissions", :force => true do |t|
-    t.string  "name"
-    t.string  "action"
-    t.string  "subject_class"
-    t.integer "subject_id"
+    t.string "name"
+    t.string "action"
+    t.string "subject_class"
+    t.string "subject_id"
   end
 
   create_table "permittables", :id => false, :force => true do |t|

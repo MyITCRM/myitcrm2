@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2011  Glen Vanderhel
+# Copyright (C) 2009-2012  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,7 +17,7 @@
 
 class UsersController < ApplicationController
   #  Used by CanCan to restrict controller access
-  #load_and_authorize_resource
+  load_and_authorize_resource
   helper_method :sort_column, :sort_direction
 
   def new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     if current_user.employee
       @users = User.where('client = 1').order(:name)
     end
-    if can? :manage, @users
+    if can? :manage, User
       @users = User.order(:id).paginate(:per_page => 30, :page => params[:page])
     end
       respond_to do |format|
@@ -88,7 +88,6 @@ class UsersController < ApplicationController
   def update
     @title = t "user.t_update_user"
     @user = User.find(params[:id])
-#    authorize! :update, @user
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => (t "user.flash_update_user") ) }

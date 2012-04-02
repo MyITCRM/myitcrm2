@@ -1,6 +1,9 @@
 class UserSessionsController < ApplicationController
   before_filter :logged_in?, :only => :destroy
 
+  # Lets a guest user access the new and create actions for the login page of this application
+  skip_authorization_check :only => [:new, :create]
+
   def new
     @title = t "global.login"
     @user_session = UserSession.new

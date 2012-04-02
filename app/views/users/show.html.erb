@@ -50,7 +50,7 @@
                   <strong><%= t "global.email" %>:</strong>
                 </td>
                 <td align="left">
-                 <%= auto_link_email_addresses( @user.email ).html_safe %>
+                 <%=  @user.email.html_safe %>
                 </td>
               </tr>
             <tr>
@@ -58,7 +58,7 @@
                   <strong><%= t "global.role" %>:</strong>
                 </td>
                 <td align="left" style="text-transform:capitalize;">
-                 <%= @user.role %>
+                 <%= @user.role.name %>
                 </td>
             </tr>
             <tr>

@@ -214,6 +214,9 @@ en_AU:
     t_name: "Role Type"
     id: "Role #"
     clerk: "Clerk"
+    tab:
+      basic: "Basic Role Info"
+      permissions: "Permissions"
   date:
     order:
      -  :day

@@ -146,8 +146,9 @@ input.title {font-size:1.5em;}
 .simple_form .error {color: #ff3333;font-size:0.9em;font-weight:bold;text-transform:capitalize;}
 .simple_form .hint {font-size:0.8em;color: #555;}
 input.radio { vertical-align: -3px;}
-input.check_boxes { margin-left: 3px; vertical-align: -3px;}
-label.collection_check_boxes { margin:2px 0; vertical-align: -2px;}
+input.check_boxes {float: right}
+span.checkbox {display:table-row-group;}
+label.collection_check_boxes {float: right;text-align:left;display:inline;}
 input.required, input.optional, textarea.optional, textarea.required, {display:block;}
 input.required, textarea.required, .select_required {border: 2px solid #8b0000; background-color:#ffffcc;font-size:inherit;}
 input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-size:inherit;}

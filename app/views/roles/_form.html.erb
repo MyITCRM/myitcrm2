@@ -1,14 +1,24 @@
-<%= simple_form_for(@role) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="inputs">
-    <%= f.input :name %>
-    <%= f.input :enabled %>
-    <%= f.input :list_position %>
-    <%= f.association :permissions, :as => :check_boxes %>
+<div id="ddtabs1" class="basictab">
+  <ul>
+    <li><a href="#<%= t "role.tab.basic" %>" rel="basic"><%= (t "workorder.tab_menu_basic") %></a></li>
+    <li><a href="#<%= t "role.tab.permissions" %>" rel="Permissions">Permissions</a></li>
+  </ul>
+</div>
+<div class="tabcontainer">
+  <div id="basic" class="tabcontent">
+    <%= simple_form_for(@role) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name %>
+        <%= f.input :enabled %>
+        <%= f.input :list_position %>
+        <div class="clear"></div>
+               <div class="center"><%= f.submit %></div>
   </div>
+  <div id="Permissions" class="tabcontent">
 
-  <div class="center">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+            <%= f.association :permissions, :as => :check_boxes, :collection => Permission.all(:order => 'name') %>
+    <div class="clear"></div>
+           <div class="center"><%= f.submit %></div>
+    <% end %>
+    </div>
+</div>

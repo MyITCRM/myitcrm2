@@ -2,8 +2,8 @@
   <%= module_header %>
   <div class="module">
     <ul>
-      <% if current_user.client == true %>
-      <li class="delete"><%= link_to (t "user.cancel_account_button"),@user, :confirm => [t 'user.msg.cancel_account'], :href => '#' %></li>
+      <% if current_user.client %>
+      <li class="delete"><%= link_to (t ("user.cancel_account_button")),@user, :confirm =>(t ('user.msg.cancel_account')), :href => '#' %></li>
      <% end %>
       <li class="exit"><%= link_to (t "global.exit"), root_url %></li>
       <% if can? :manage, @users %>

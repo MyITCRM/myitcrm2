@@ -2,7 +2,7 @@
 
 <div id="center_col" class="content">
 
-  <div class="center"> <h1><%= @title %></h1></div>
+ <div class="center"><% unless logged_in? %> <h1><%= @title %></h1><% end %></div>
   <div style="width: 45%; margin-left:27.5%; padding: 10px;border:#999999 solid 2px;background-color: #dff1ff;" >
   <%= simple_form_for(UserSession.new ) do |f| %>
             <%= f.error_notification %>

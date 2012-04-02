@@ -7,12 +7,14 @@ SimpleNavigation::Configuration.run do |navigation|
       sub_nav.item :logout, 'Logout', logout_path
     end
     if logged_in?
-        primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
+	      if can? :create, WorkOrder
+         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
           if can? :manage, WorkOrder
             sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           else
             sub_nav.item :work_orders, 'New Work Order', "/work_orders/new?client_id=#{current_user.id}"
           end
+        end
         end
         if can? :create, User
             if current_user.client.present?
