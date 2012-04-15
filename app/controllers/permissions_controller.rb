@@ -1,4 +1,5 @@
 class PermissionsController < ApplicationController
+  skip_authorization_check
   # GET /permissions
   # GET /permissions.json
   def index

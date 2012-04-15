@@ -17,7 +17,7 @@
 
 class WorkOrdersController < ApplicationController
 #  Used by CanCan to restrict controller access
-#  load_and_authorize_resource
+  authorize_resource
   helper_method :sort_column, :sort_direction
 
 #  Used as a starting pint for PDF documents generation.
@@ -25,7 +25,7 @@ class WorkOrdersController < ApplicationController
 
   def index
     @title = t "workorder.t_workorders"
-    @work_orders = WorkOrder.all
+    #@work_orders = WorkOrder.all
     if current_user.client.present?
       @new_work_orders = WorkOrder.where("status_id = 1 AND user_id = ?", current_user.id)
       @assigned_work_orders = WorkOrder.where("status_id = 2 AND user_id = ?", current_user.id)
@@ -45,14 +45,13 @@ class WorkOrdersController < ApplicationController
 
   def show
     @title = t "workorder.t_viewing_workorder_details"
-    @work_order = WorkOrder.find(params[:id])
+    #@work_order = WorkOrder.find(params[:id])
     @invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
     @reply = Reply.new(:work_order_id => @work_order.id)
 
   end
 
   def new
-
     if params[:user_id].present?
     @client = User.find(params[:user_id])
     @title = (t "workorder.creating_wo_for")+@client.name.camelcase
@@ -61,8 +60,8 @@ class WorkOrdersController < ApplicationController
       redirect_to clients_url
       flash[:info] = "You MUST select a client first before creating a new Work Order"
     else
-    @work_order = WorkOrder.new
-
+    #@work_order = WorkOrder.new
+      authorize! :new, @work_order
     respond_to do |format|
       format.html # new.html.erb
       format.xml { render :xml => @work_order }

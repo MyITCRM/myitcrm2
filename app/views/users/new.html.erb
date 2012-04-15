@@ -16,9 +16,7 @@
       <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="required"><%= (t "products.tab_menu_basic") %></a>
       </li>
       <li><a href="#<%= t "users.tab.contact_info" %>" rel="contact"><%= (t "users.tab.contact_info") %></a></li>
-      <% if can? :manage, User %>
         <li><a href="#<%= t "users.tab.attributes" %>" rel="attributes"><%= (t "users.tab.attributes") %></a></li>
-      <% end %>
 
     </ul>
   </div>
@@ -32,12 +30,6 @@
           <%= f.input :password_confirmation, :label => (t "user.password_confirmation"), :required => true %>
           <%= f.input :email, :label => (t "global.email") %>
           <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
-          <% if current_user == nil %>
-              <%= hidden_field_tag "user[created_by]", "SELF" %>
-              <%= hidden_field_tag "user[client]", 1 %>
-          <% else %>
-              <%= hidden_field_tag "user[created_by]", current_user.username %>
-          <% end %>
           <div class="center">
             <%= f.button :submit %>
           </div>
@@ -47,7 +39,6 @@
             <%= f.input :city, :label => (t "global.city") %>
             <%= f.input :zip, :label =>(t "global.zip") %>
             <%= f.input :state, :label => (t "global.state") %>
-
             <%= f.input :mobile, :input_html => {:size => 30}, :label => (t "global.mobile") %>
             <%= f.input :fax, :input_html => {:size => 30}, :label => (t "global.fax") %>
 
@@ -55,14 +46,12 @@
               <%= f.button :submit %>
             </div>
     </div>
-            <% if can? :destroy, User %>
               <div id="attributes" class="tabcontent simple_form">
                   <% if current_user.employee? %>
                       <%= f.input :client, :as => :radio_buttons, :checked => true, :label =>(t "user.client") %>
                       <%= f.input :employee, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.employed") %>
                       <%= f.input :workorder_assignability, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.assignable") %>
                   <% end %>
-                  <label class="string required" for="user_role"><abbr title="Required">*</abbr>Role</label>
                   <%= f.association :role %>
 
 
@@ -71,6 +60,5 @@
               </div>
             </div>
           <% end %>
-      <% end %>
       </div>
 </div>

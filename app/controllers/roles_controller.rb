@@ -1,4 +1,5 @@
 class RolesController < ApplicationController
+  skip_authorization_check
 	#load_and_authorize_resource
   # GET /roles
   # GET /roles.json

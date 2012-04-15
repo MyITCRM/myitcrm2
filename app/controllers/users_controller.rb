@@ -17,14 +17,17 @@
 
 class UsersController < ApplicationController
   #  Used by CanCan to restrict controller access
-  load_and_authorize_resource
+  authorize_resource
+  #authorize_resource
   helper_method :sort_column, :sort_direction
+
 
   def new
     @title = t "user.t_new_user"
     @user = User.new
 
   end
+
 
   def index
     @title = t "user.t_title"
@@ -82,6 +85,7 @@ class UsersController < ApplicationController
   def register
     @title = t "user.t_new_user"
     @user = User.new
+    authorize! :register, @user
      render :action => "register"
   end
 
@@ -112,11 +116,13 @@ class UsersController < ApplicationController
     @title = t "user.t_edit_user"
     #@user = current_user
     #@user = User.find(params[:id])
+    #authorize! :edit_profile, @user
   end
 
   def update_profile
     @title = t "user.t_update_user"
     if @user.update_attributes(params[:user])
+      authorize! :update_profile, @user
       flash[:notice] = t "user.flash_update_user"
       redirect_to root_url
     else
@@ -128,6 +134,7 @@ class UsersController < ApplicationController
   def clients
     @title = t "user.t_clients"
     @users = User.where("client = ?", true).search_users(params[:search_users], sort_column, sort_direction ).paginate(:per_page => 20, :page => params[:page])
+    #authorize! :clients, @user
   end
   def employees
     @title = t "user.t_employees"

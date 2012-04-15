@@ -3,8 +3,8 @@
 
   <div class="inputs">
     <%= f.input :name %>
-    <%= f.input :action, :collection => %W(manage update edit create show index destroy new modify) %>
-    <%= f.input :subject_class, :collection => %W(ALL Invoice Permission PriorityList Product Reply Role ServiceRate Setting Supplier User User_Session WorkOrder ) %>
+    <%= f.input :action, :collection => %W(read create update destroy administer manage) %>
+    <%= f.input :subject_class, :collection => %W(Invoice Permission PriorityList Product Reply Role ServiceRate Setting Supplier User Users User_Session WorkOrder WorkOrders Employees Clients Profile) %>
     <%= f.input :subject_id %>
   </div>
 

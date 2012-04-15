@@ -1,31 +1,33 @@
 class Ability
 	include CanCan::Ability
 	def initialize(user)
-    # Here you can define custom aliases
-    alias_action :index, :show, :clients, :employees, :to => :read
-    alias_action :new, :register, :to => :create
-    alias_action :edit, :edit_profile, :update_profile, :to => :modify
-    alias_action :show, :index, :new, :update, :destroy, :edit, :create, :employees, :clients, :to => :manage
+    ## Here you can define custom aliases
+    #alias_action(:clients, :to => :access_clients)
+    #alias_action(:employees, :to => :access_employees)
+    #alias_action(:new, :register, :to => :create)
+    #alias_action(:edit_profile, :update_profile, :to => :update_profile)
+    alias_action(:update, :read, :create, :destroy, :sort_column, :sort_direction, :assign, :close, :clients, :employees,  :to => :manage )
+
 
     # If the user is idle for the set amount of time, we need to assign a default user role
     # so that we redirect back to the root URL and display the correct notification message.
     # If the user is still active, then this function continues to lookup the users role and permissions
-    @user = user || User.new
-    if @user.role_id.blank?
-	    @user.role_id = 985695958446
-	    guest = 985695958446
-	    def guest
-	      can [:register, :create], User
-	      can [:read, :home], Page, :private => false
-      end
-    else
+    #@user = user || User.new
+    #if @user.role_id.blank?
+	   # @user.role_id = 985695958446
+	   # guest = 985695958446
+	   # def guest
+	   #   can [:register, :create, :new], User
+	   #   #can [:read, :home], Page, :private => false
+    #  end
+    #else
 			can do |action, subject_class, subject|
 				user.role.permissions.find_all_by_action(aliases_for_action(action)).any? do |permission|
 					permission.subject_class == subject_class.to_s &&
 							(subject.nil? || permission.subject_id.nil? || permission.subject_id == subject.id)
 				end
 			end
-		end
+		#end
 		end
 end
 

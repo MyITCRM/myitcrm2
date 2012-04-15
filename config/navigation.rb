@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
       sub_nav.item :logout, 'Logout', logout_path
     end
     if logged_in?
-	      if can? :create, WorkOrder
+	      if can? :create, User
          primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
           if can? :manage, WorkOrder
             sub_nav.item :work_orders, 'New Work Order', new_work_order_path
@@ -25,24 +25,26 @@ SimpleNavigation::Configuration.run do |navigation|
               primary.item :users, 'User Accounts',users_path, :highlights_on => /\/user accounts/ || /\/clients/ || /\/employees/ || /\/new user/ do |sub_nav|
                 sub_nav.item :user, 'Employees', employees_path
                 sub_nav.item :user, 'Clients', clients_path
+                if can? :new, User
                 sub_nav.item :users, 'New User', new_user_path
-          end
+                end
+             end
           end
 
         end
-        if can? :manage, Supplier
+        if can? :create, Supplier
           primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/ do |sub_nav|
             sub_nav.item :suppliers, "Suppliers #{t 'global.index'}", suppliers_path
             sub_nav.item :suppliers, "#{t 'global.create'}", new_supplier_path
           end
           end
-        if can? :manage, Product
+        if can? :create, Product
           primary.item :products, 'Products', products_path, :highlights_on => /\/products/  do |sub_nav|
             sub_nav.item :products, "Products #{t 'global.index'}", products_path
             sub_nav.item :products, "#{t 'global.create'}", new_product_path
           end
         end
-        if can? :manage, Invoice
+        if can? :create, Invoice
           primary.item :invoices, "Invoices", invoices_path, :highlights_on => /\/invoices/
         end
 	      if can? :update, Setting

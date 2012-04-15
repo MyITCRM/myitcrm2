@@ -12,15 +12,16 @@ Role.find_or_create_by_name(
 		:enabled => true,
 		:list_position => '1'
 )
-Permission.find_or_create_by_name(
-	:name => 'All Permissions',
-	:action => :manage,
-	:subject_class => :all
-)
-Permittable.find_or_create_by_role_id(
-	:role_id => '1',
-	:permission_id => '1'
-)
+permissions = %w[User - Manage, manage, user, ,
+                 Work Order - Manage, manage, WorkOrder, ,
+                 Setting - Manage, manage, Setting, ,
+                ]
+Permission.find_or_create_by_name(permissions)
+
+Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '1')
+Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '2')
+Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '3')
+
 PriorityList.find_or_create_by_name(:name => 'Low')
 PriorityList.find_or_create_by_name(:name => 'Normal')
 PriorityList.find_or_create_by_name(:name => 'High')
