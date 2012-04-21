@@ -37,11 +37,11 @@ module ApplicationHelper
       #   # => <textarea cols="20" rows="40" id="post_body" name="post[body]">
       #   #      #{@post.body}
       #   #    </textarea>
-      #
-      def ckeditor_tag(name, content = nil, options = {})
-#        content_tag :div, text_area_tag(name, content, options), :class => "ckeditor_layout"
-        "<div class='ckeditor_layout'>#{text_area_tag(name, content, options)}</div>".html_safe
- end
+#      #
+#      def ckeditor_tag(name, content = nil, options = {})
+##        content_tag :div, text_area_tag(name, content, options), :class => "ckeditor_layout"
+#        "<div class='ckeditor_layout'>#{text_area_tag(name, content, options)}</div>".html_safe
+# end
 
   # Returns a textarea opening and closing tag set tailored for accessing a specified attribute
       # ==== Examples
