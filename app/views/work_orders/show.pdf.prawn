@@ -26,7 +26,7 @@ else
 end
 # Logo
 # mytodo - add if statement to include user supplied logo instead of default logo
-pdf.image "public/images/logo.png", :at => [200, 720], :height => 40
+#pdf.image "", :at => [200, 720], :height => 40
 # Business information
  pdf.bounding_box([450,720], :width => 400, :align => :right ) do
     pdf.text t "setting_details"

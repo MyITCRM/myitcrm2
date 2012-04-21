@@ -60,6 +60,8 @@ class RolesController < ApplicationController
   # PUT /roles/1.json
   def update
     @role = Role.find(params[:id])
+    @role.dynamic_attributes = :all
+    #@role.dynamic_attributes :all if can? :manage, Role
 
     respond_to do |format|
       if @role.update_attributes(params[:role])

@@ -58,7 +58,7 @@
                         <% end %>
                         <% if user.client? then %>
                             <% if can? :create, WorkOrder %>
-                                &nbsp;<%= link_to(image_tag('wrench.png', :title => (t "global.workorder")), :controller => "work_orders", :action => "new", :client_id => user.id) %>
+                                &nbsp;<%= link_to(image_tag('wrench.png', :title => (t "global.workorder")), new_user_work_order_path(:user_id => user.id)) %>
                             <% end %>
                         <% end %>
                         <% if can? :destroy, User %>

@@ -6,13 +6,7 @@ class CreateStatuses < ActiveRecord::Migration
 
       t.timestamps
     end
-    # create default statuses (MyTODO :Translation required for values and move to SEEDS file)
-     @status = Status.create :name => "New"
-     Status.create :name => "Assigned"
-     Status.create :name => "On Hold"
-     Status.create :name => "Pending"
-     Status.create :name => "Re-opened"
-     Status.create :name => "Closed"
+
   end
 
   def self.down

@@ -7,24 +7,26 @@ SimpleNavigation::Configuration.run do |navigation|
       sub_nav.item :logout, 'Logout', logout_path
     end
     if logged_in?
-	      if can? :create, User
+	      if can? :create, WorkOrder
          primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
           if can? :manage, WorkOrder
             sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           else
-            sub_nav.item :work_orders, 'New Work Order', "/work_orders/new?client_id=#{current_user.id}"
+            if can? :create, WorkOrder
+            sub_nav.item :work_orders, 'New Work Order', new_user_work_order_path(:user_id => current_user.id)
+          end
           end
         end
         end
-        if can? :create, User
+        if can? :update, User
             if current_user.client.present?
-              primary.item :users, 'My Account',my_account_path(:id=> current_user), :highlights_on => /\/my account/ do |sub_nav|
-               sub_nav.item :users, 'Edit Profile', my_account_path(:id=> current_user)
-               end
+              primary.item :users, 'My Account',my_account_path(:id=> current_user), :highlights_on => /\/profile/
             else
               primary.item :users, 'User Accounts',users_path, :highlights_on => /\/user accounts/ || /\/clients/ || /\/employees/ || /\/new user/ do |sub_nav|
                 sub_nav.item :user, 'Employees', employees_path
+                if can? :access_clients, User
                 sub_nav.item :user, 'Clients', clients_path
+                end
                 if can? :new, User
                 sub_nav.item :users, 'New User', new_user_path
                 end

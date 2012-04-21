@@ -24,8 +24,7 @@ class User < ActiveRecord::Base
 
 # Mass Assignment Protection
   attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role_id, :updated_by,
-                  :created_by, :password_confirmation, :mobile, :fax, :password, :employee, :client,
-                  :workorder_assignability, :notes, :edited_by, :edited_at
+                  :created_by, :password_confirmation, :mobile, :fax, :password, :edited_by, :edited_at
 
 # Validations for Users
   validates_presence_of :name, :username, :email, :phone
@@ -45,36 +44,14 @@ class User < ActiveRecord::Base
     end
   end
 
-#  Used to define permission and roles if they don't exist for this user
-  def define_permissions
-    if self.client.nil?
-      self.client = 1
-    end
-    if self.employee.nil?
-      self.employee = 0
-    end
-  end
 
-##  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
-  acts_as_authentic do |c|
-    c.logged_in_timeout 10.minutes # default is 10 minutes. Change this value and restart server to take effect of new value
-end
-
-# DON'T CHANGE THESE BELOW VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
-#
-#      ROLES = "%w[administrator manager technician accountant assistant client]"
-##
-## DON'T CHANGE THESE ABOVE VALUES OR THERE ORDER UNLESS YOU HAVE BEEN INSTRUCTED TO OR KNOW WHAT YOU ARE DOING.
-#
-#  def roles
-#    User::ROLES.to_a
-#  end
+###  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
+#  acts_as_authentic do |c|
+#    c.logged_in_timeout 10.minutes # default is 10 minutes. Change this value and restart server to take effect of new value
+#end
 
   def self.search_users(search_users, sort_column, sort_direction)
        User.where('name LIKE  ?', "%#{search_users}%").order(sort_column+ " "+sort_direction)
   end
-#def default_role
-#     User::ROLES.client
-#  end
 
 end

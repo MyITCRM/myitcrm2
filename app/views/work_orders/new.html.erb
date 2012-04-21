@@ -1,7 +1,7 @@
 <!--mytodo - heaps to fix up here....add tabs and all fields required.-->
 
 <div id="sidebar_left">
-    <% if logged_in? and can? :manage, @users %>
+    <% if logged_in? and can? :edit, WorkOrder %>
      <%= module_header %>
         <div class="module">
           <ul>
@@ -31,7 +31,6 @@
           <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
           <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } %>
           <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
-          <%= f.input :updated_at, :as => :hidden, :input_html => { :value => Time.now } %>
 
           <div class="center">
             <%= f.submit %>

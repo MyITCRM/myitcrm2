@@ -2,12 +2,12 @@
   <%= module_header %>
   <div class="module">
     <ul>
-      <% if current_user.client == true %>
-      <li class="delete"><%= link_to (t "user.cancel_account_button"),@user, :confirm => [t 'user.msg.cancel_account'], :href => '#' %></li>
+      <% if current_user.client %>
+      <li class="delete"><%= link_to t("user.cancel_account_button"),@user, :confirm => t('user.msg.cancel_account'), :href => '#' %></li>
      <% end %>
-      <li class="exit"><%= link_to (t "global.exit"), :back %></li>
-      <% if can? :manage, @users %>
-        <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
+      <li class="exit"><%= link_to t( "global.exit"), :back %></li>
+      <% if can? :manage, User %>
+        <li class="delete"><%= link_to t( "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
       <% end %>
     </ul>
   </div>
@@ -48,26 +48,24 @@
           <%= f.input :zip, :input_html => {:size => 30}, :label => (t "global.zip") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <div class="center"><%= f.submit %></div>
+          <div class="center"><%= f.button :submit %></div>
   </div>
 <div id="tab3" class="tabcontent">
           <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <div class="center"><%= f.submit %></div>
+          <div class="center"><%= f.button :submit %></div>
   </div>
-  <% if can? :manage, :all %>
+  <% if can? :manage, User %>
   <div id="tab4" class="tabcontent">
-        <div class="input">
-                <label class="string optional" for="user_role">Role</label>
-                <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
-              </div>
+          <%= f.association :role %>
+
           <%= f.input :employee, :as => :radio, :hint => (t "user.hint.employed" ),  :label => (t "user.employed")   %>
           <%= f.input :client, :as => :radio, :hint => (t "user.hint.client" ),:label => (t "user.client")  %>
           <%= f.input :workorder_assignability, :as => :radio, :hint => (t "user.hint.assignable" ),:label => (t "user.assignable") %>
           <%= hidden_field_tag "user[edited_at]", Time.now %>
           <%= hidden_field_tag "user[edited_by]", current_user.username %>
-          <div class="center"><%= f.submit %></div>
+          <div class="center"><%= f.button :submit %></div>
   </div>
   <% end %>
   <% end %>

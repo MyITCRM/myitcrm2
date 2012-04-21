@@ -3,9 +3,10 @@ class Ability
 	def initialize(user)
     ## Here you can define custom aliases
     #alias_action(:clients, :to => :access_clients)
+    #alias_action(:index, :show, :to => :read)
     #alias_action(:employees, :to => :access_employees)
     #alias_action(:new, :register, :to => :create)
-    #alias_action(:edit_profile, :update_profile, :to => :update_profile)
+    #alias_action(:edit_profile, :update_profile, :to => :manage_profile)
     alias_action(:update, :read, :create, :destroy, :sort_column, :sort_direction, :assign, :close, :clients, :employees,  :to => :manage )
 
 
@@ -21,14 +22,21 @@ class Ability
 	   #   #can [:read, :home], Page, :private => false
     #  end
     #else
-			can do |action, subject_class, subject|
-				user.role.permissions.find_all_by_action(aliases_for_action(action)).any? do |permission|
-					permission.subject_class == subject_class.to_s &&
-							(subject.nil? || permission.subject_id.nil? || permission.subject_id == subject.id)
-				end
-			end
-		#end
-		end
+    user.role.permissions.each do |permission|
+        if permission.subject_id.nil?
+          can permission.action.to_sym, permission.subject_class.constantize
+        else
+          can permission.action.to_sym, permission.subject_class.constantize, :id => permission.subject_id
+        end
+      end
+			#can do |action, subject_class, subject|
+			#	user.role.permissions.find_all_by_action(aliases_for_action(action)).any? do |permission|
+			#		permission.subject_class == subject_class.to_s &&
+			#				(subject.nil? || permission.subject_id.nil? || permission.subject_id == subject.id)
+			#	end
+			#end
+    ##end
+    end
 end
 
 #    @user = user || User.new
@@ -46,7 +54,7 @@ end
 #
 ##
 #  def client
-#    can [:read, :update, :edit_profile, :update_profile], User, :id => @user.id
+#    can [:read, :update, :edit_profile, :update_profile], User, :id => user.id
 #    can :read, Page, :private => false
 #    can :create, WorkOrder
 #    can [:update, :read], WorkOrder, :user_id => @user.id

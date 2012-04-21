@@ -35,7 +35,7 @@
      <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><%= render(:partial => "work_orders/assign") %>
   <% else %>
    <% if @work_order.assigned_to_username.blank? %>
-     <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= t "workorder.not_assigned_message" %></div>
+     <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= t("workorder.not_assigned_message") %></div>
    <% else %>
      <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= @work_order.assigned_to_username %> </div>
    <% end %>
@@ -47,7 +47,7 @@
       <label><%= t "workorder.details" %>:</label>
       <div class="html_area"><%= textile_tag(@work_order.description) %> </div>
     </div>
-     <% if @work_order.closed.blank? %>
+     <% if @work_order.closed %>
     <div class="center">
       <input type="submit" value="Add a Reply" id="button" class="add_comment" />
     </div>

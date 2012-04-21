@@ -17,5 +17,4 @@
 //= require jquery.effects.slide.min
 //= require jquery.ui.autocomplete.min
 //= require jquery.ui.widget.min
-//= require ckeditor/ckeditor
 //= require myitcrm

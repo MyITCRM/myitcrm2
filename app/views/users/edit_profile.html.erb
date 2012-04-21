@@ -6,7 +6,7 @@
       <li class="delete"><%= link_to (t ("user.cancel_account_button")),@user, :confirm =>(t ('user.msg.cancel_account')), :href => '#' %></li>
      <% end %>
       <li class="exit"><%= link_to (t "global.exit"), root_url %></li>
-      <% if can? :manage, @users %>
+      <% if can? :manage, User %>
         <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
       <% end %>
     </ul>
@@ -19,7 +19,7 @@
   <ul>
     <li><a href="#<%= t "products.tab_menu_basic_name" %>" rel="tab1"><%= (t "products.tab_menu_basic") %></a></li>
     <li><a href="#<%= t "users.tab.contact_info" %>" rel="tab2"><%= t "users.tab.contact_info" %></a></li>
-    <% if can? :manage, :all %>
+    <% if can? :manage, User %>
         <li><a href="#<%= t "users.tab.permissions" %>" rel="tab3"><%= t "users.tab.permissions" %></a></li>
     <% end %>
   </ul>
@@ -28,15 +28,17 @@
 <div class="tabcontainer">
   <div id="tab1" class="tabcontent">
       <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
               <%= f.input :username ,:input_html => {:autocomplete => 'off'}, :label => (t "user.username") %>
               <%= f.input :name , :label =>(t "user.name_eg") %>
               <%= f.input :phone, :input_html => {:size => 30}, :label => (t "global.phone") %>
-              <%= f.input :password,:input_html => {:autocomplete => 'off'}, :required => true %>
-              <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation"), :required => true %>
+              <%= f.input :password,:input_html => {:autocomplete => 'off'} %>
+              <%= f.input :password_confirmation, :input_html => {:autocomplete => 'off'}, :label => (t "user.password_confirmation")%>
               <%= f.input :email, :label => (t "global.email") %>
-              <div class="center"><%= f.submit  %></div>
+              <div class="center"><%= f.button :submit  %></div>
   </div>
   <div id="tab2" class="tabcontent">
+    <%= f.error_notification %>
               <%= f.input :address, :input_html => {:rows => 5}, :label => (t "global.address") %>
               <%= f.input :city, :input_html => {:size => 30}, :label => (t "global.city") %>
               <%= f.input :state, :input_html => {:size => 30}, :label => (t "global.state") %>
@@ -46,19 +48,17 @@
               <%= f.input :notes, :input_html => {:rows => 15}, :label => (t "global.notes") %>
               <%= hidden_field_tag "user[edited_at]", Time.now %>
               <%= hidden_field_tag "user[edited_by]", current_user.username %>
-             <div class="center"><%= f.submit  %></div>
+             <div class="center"><%= f.button :submit  %></div>
   </div>
-  <% if can? :manage, :all %>
+  <% if can? :manage, User %>
   <div id="tab3" class="tabcontent">
-        <div class="input">
-                <label class="string optional" for="user_role">Role</label>
-                <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
-              </div>
+    <%= f.error_notification %>
+    <%= f.association :role %>
           <%= f.input :employee, :as => :radio, :hint => (t "user.hint.employed" ),  :label => (t "user.employed")   %>
           <%= f.input :client, :as => :radio, :hint => (t "user.hint.client" ),:label => (t "user.client")  %>
           <%= f.input :workorder_assignability, :as => :radio, :hint => (t "user.hint.assignable" ),:label => (t "user.assignable") %>
 
-          <div class="center"><%= f.submit  %></div>
+          <div class="center"><%= f.button :submit  %></div>
   </div>
       <% end %>
       <% end %>

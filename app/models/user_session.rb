@@ -1,5 +1,5 @@
 # MyIT CRM - Repair's Business CRM Software
-# Copyright (C) 2009-2011  Glen Vanderhel
+# Copyright (C) 2009-2012  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,6 +17,7 @@
 #
 
 class UserSession < Authlogic::Session::Base
+
 #  myTODO - Feature #68 - Need to re-enable when near completion of Public Release
   if Setting::logout_limit = 1
     logout_on_timeout true

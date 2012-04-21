@@ -1,37 +1,9 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
-# class Page < ActiveRecord::Base; end
-#Page.create([{:name => 'home', :content => 'This is the default content for the home page of your MyITCRM installation. This page can only be edited by Administrators of this installation in the pages menu section. The name of this page is "home". Do not change this title, otherwise you will get errors.'}])
-Role.find_or_create_by_name(
-		:name => 'Super User',
-		:enabled => true,
-		:list_position => '1'
-)
-permissions = %w[User - Manage, manage, user, ,
-                 Work Order - Manage, manage, WorkOrder, ,
-                 Setting - Manage, manage, Setting, ,
-                ]
-Permission.find_or_create_by_name(permissions)
 
-Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '1')
-Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '2')
-Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '3')
-
-PriorityList.find_or_create_by_name(:name => 'Low')
-PriorityList.find_or_create_by_name(:name => 'Normal')
-PriorityList.find_or_create_by_name(:name => 'High')
-PriorityList.find_or_create_by_name(:name => 'Urgent')
-PriorityList.find_or_create_by_name(:name => 'Critical')
-
-class User < ActiveRecord::Base
-
-end
 # create default administrator account
+class User < ActiveRecord::Base; end
 @user = User.find_or_create_by_name(
     :username => "admin",
     :name => "Company Admin",
@@ -43,4 +15,35 @@ end
     :workorder_assignability => true,
     :role_id => "1"
     )
+
+Role.find_or_create_by_name(
+		:name => 'Super User',
+		:enabled => true,
+		:list_position => '1'
+)
+# Adding Some default Permissions to get you started and assigning them to the default Admin account created above.
+permissions = %w[User - Manage, manage, user, ,
+                 Work Order - Manage, manage, WorkOrder, ,
+                 Setting - Manage, manage, Setting, ,
+                ]
+Permission.find_or_create_by_name(permissions)
+
+Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '1')
+Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '2')
+Permittable.find_or_create_by_role_id(:role_id => '1',:permission_id => '3')
+
+# create default vaules for Priority List (MyTODO :Translation required for values)
+PriorityList.find_or_create_by_name(:name => 'Low')
+PriorityList.find_or_create_by_name(:name => 'Normal')
+PriorityList.find_or_create_by_name(:name => 'High')
+PriorityList.find_or_create_by_name(:name => 'Urgent')
+PriorityList.find_or_create_by_name(:name => 'Critical')
+
+# create default statuses (MyTODO :Translation required for values)
+Status.find_or_create_by_name(:name => "New")
+Status.find_or_create_by_name(:name => "Assigned")
+Status.find_or_create_by_name(:name => "On Hold")
+Status.find_or_create_by_name(:name => "Pending")
+Status.find_or_create_by_name(:name => "Re-Opened")
+Status.find_or_create_by_name(:name => "Closed")
 

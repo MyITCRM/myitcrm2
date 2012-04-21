@@ -17,8 +17,9 @@
 
 class UsersController < ApplicationController
   #  Used by CanCan to restrict controller access
+  #load_resource
   authorize_resource
-  #authorize_resource
+  skip_authorize_resource :only => [:edit_profile, :update_profile]
   helper_method :sort_column, :sort_direction
 
 
@@ -31,8 +32,8 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-#    mytodo - Fix pagination issues
-#    @clients = User.where('client = 1').where('active = 1').order(:name).page :page
+
+    #@clients = User.where('client = 1').where('active = 1').order(:name).page :page
 
     if params[:deactivate].present?
       flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
@@ -48,26 +49,23 @@ class UsersController < ApplicationController
       format.html
       format.js
     end
+
   end
 
   def show
     @title = t "user.t_view"
-    @user = User.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @user }
-    end
+    #@user = User.find(params[:id])
   end
 
 
   def edit
     @title = t "user.t_edit_user"
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
   end
 
   def create
     @title = t "user.t_new_user"
-    @user = User.new(params[:user])
+    #@user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
@@ -85,7 +83,7 @@ class UsersController < ApplicationController
   def register
     @title = t "user.t_new_user"
     @user = User.new
-    authorize! :register, @user
+    #authorize! :register, @user
      render :action => "register"
   end
 
@@ -114,15 +112,15 @@ class UsersController < ApplicationController
 
   def edit_profile
     @title = t "user.t_edit_user"
-    #@user = current_user
+    @user = current_user
     #@user = User.find(params[:id])
-    #authorize! :edit_profile, @user
+
   end
 
   def update_profile
     @title = t "user.t_update_user"
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      authorize! :update_profile, @user
       flash[:notice] = t "user.flash_update_user"
       redirect_to root_url
     else
@@ -142,6 +140,7 @@ class UsersController < ApplicationController
 
   end
    private
+
 
   def sort_column
    User.column_names.include?(params[:sort]) ? params[:sort] : "name"

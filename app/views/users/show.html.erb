@@ -2,13 +2,15 @@
   <%= module_header %>
   <div class="module">
     <ul>
-      <% if can? :manage, :all %>
+      <% if can? :manage, User %>
         <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
       <% end %>
       <li class="edit"><%= link_to (t "global.edit"), edit_user_path %></li>
+      <% if can? :create, WorkOrder %>
       <hr />
-      <li class="wrench"><%= link_to ( t "global.workorder"), :controller => "work_orders", :action => "new", :client_id => params[:id] %> </li>
+      <li class="wrench"><%= link_to t("global.workorder"),  new_user_work_order_path() %> </li>
       <hr />
+       <% end %>
       <li class="exit"><%= link_to (t "global.exit"), users_path %></li>
     </ul>
   </div>
@@ -22,7 +24,6 @@
       <li><a href="#address" rel="address_info"><%= t "users.tab.address_info" %></a></li>
       <li><a href="#notes" rel="notes"><%= t "users.tab.notes" %></a></li>
       <li><a href="#log" rel="log"><%= t "users.tab.log" %></a></li>
-      <li><a href="#new" rel="tab1"><%= t "workorder.tab_menu_new" %>&nbsp;(<% if clients_workorders(@user.id,1).count > 0 %><span style="color:red;"><%= @clients_workorders.count %></span><% else %><%= @clients_workorders.count%><% end %>)</a></li>
     </ul>
   </div>
     <div class="tabcontainer">
@@ -50,7 +51,7 @@
                   <strong><%= t "global.email" %>:</strong>
                 </td>
                 <td align="left">
-                 <%=  @user.email.html_safe %>
+                 <%=  mail_to @user.email, :encode => "javascript" %>
                 </td>
               </tr>
             <tr>
@@ -66,7 +67,7 @@
                   <strong><%= t "global.active" %>:</strong>
                 </td>
                 <td align="left">
-                 <% if @user.active == true  %>
+                 <% if @user.active %>
                   <%= image_tag("tick.png", :title => (t "global.active")) %>
                  <% else %>
                   <%= image_tag("delete.png", :title => (t "global.disabled")) %>
@@ -99,9 +100,6 @@
               </tr>
 
               </table>
-
-
-
       </div>
 
       <div id="address_info" class="tabcontent">
@@ -129,7 +127,7 @@
                   <%= time_ago_in_words(@user.created_at) %> <%= t "global.ago" %> (<%= localize @user.created_at, :format => :short  %>) <%= t "global.by" %> <%= @user.created_by %>.
                 </td>
               </tr>
-              <% if @user.edited_at == nil %>
+              <% if @user.edited_at.nil? %>
                   <% else %>
               <tr>
                 <td align="right">
@@ -178,7 +176,6 @@
             </table><br>
             </fieldset>
       </div>
-      <div id="tab1" class="tabcontent"></div>
     </div>
   </div>
   <div class="clear"></div>

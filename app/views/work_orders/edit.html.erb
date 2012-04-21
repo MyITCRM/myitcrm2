@@ -2,8 +2,9 @@
   <%= module_header %>
   <div class="module">
     <ul>
-      <li class="exit"><%= link_to([t "global.cancel"], work_orders_path) %></li>
-      <li class="close"><%= link_to([t "global.close"], close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put) %></li>
+      <li class="exit"><%= link_to t("global.cancel"), work_orders_path %></li>
+      <li class="close"><%= link_to t("global.close"), close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put %></li>
+      <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
     </ul>
   </div>
  </div>
@@ -11,7 +12,7 @@
   <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>
-    <% if can? :manage, @work_orders %>
+    <% if can? :manage, WorkOrder %>
     <li><a href="#<%= t "workorder.tab_menu_resolution" %>" rel="tab2"><%= (t "workorder.tab_menu_resolution") %></a>
       <% end %>
     </li>
@@ -34,18 +35,18 @@
             <%= f.input :assigned_to_username,:label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
         <% end %>
         <%= f.input :description, :label => (t "workorder.details"), :input_html => { :cols => 60, :rows => 12 } %>
-        <%= f.input :edited_by, :as => :hidden, :input_html => {:value => current_user.username} %>
+
         <div class="clear"></div>
         <div class="center"><%= f.submit %></div>
 
   </div>
-  <% if can? :manage, @work_orders %>
+  <% if can? :manage, WorkOrder %>
   <div id="tab2" class="tabcontent">
         <div class="simple_form label">
           <label><%= t "workorder.resolution" %></label>
         </div>
         <div class="span-670">
-          <%= ckeditor_tag 'work_order[resolution]', @work_order.resolution, :class => 'ckeditor' %>
+          <%= f.input :resolution %>
         </div>
         <div class="clear"></div>
         <div>
