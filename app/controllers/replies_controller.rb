@@ -41,8 +41,12 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.xml
   def create
-    @reply = Reply.new(params[:reply])
-
+    if can? :create, Reply
+      @reply = Reply.new(params[:reply])
+      @reply.work_order_id = params[:id]
+      @reply.user_id = current_user.id
+      @reply.dynamic_attributes[:private] if current_user.employee
+    end
     respond_to do |format|
       if @reply.save
         format.html { redirect_to( :back, :notice => 'Reply was successfully created.') }
@@ -57,8 +61,12 @@ class RepliesController < ApplicationController
   # PUT /replies/1
   # PUT /replies/1.xml
   def update
-    @reply = Reply.find(params[:id])
-
+    if can? :update, Reply
+      @reply = Reply.find(params[:id])
+      @reply.work_order_id = params[:id]
+      @reply.user_id = current_user.id
+      @reply.dynamic_attributes[:private] if current_user.employee
+    end
     respond_to do |format|
       if @reply.update_attributes(params[:reply])
         format.html { redirect_to( work_order_path(@reply.work_order_id), :notice => 'Reply was successfully updated.') }

@@ -18,12 +18,12 @@
 
 class User < ActiveRecord::Base
 # This allows/connects the Users to many Work Orders
-  has_many :work_orders
-  has_many :replies
+  has_many :work_orders # MyTODO protection for mass-assignment
+  has_many :replies  # MyTODO protection for mass-assignment
   belongs_to :role
 
 # Mass Assignment Protection
-  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :role_id, :updated_by,
+  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :updated_by,
                   :created_by, :password_confirmation, :mobile, :fax, :password, :edited_by, :edited_at
 
 # Validations for Users
@@ -46,9 +46,9 @@ class User < ActiveRecord::Base
 
 
 ###  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
-#  acts_as_authentic do |c|
-#    c.logged_in_timeout 10.minutes # default is 10 minutes. Change this value and restart server to take effect of new value
-#end
+  acts_as_authentic do |c|
+    c.logged_in_timeout 15.minutes # default is 15 minutes. Change this value and restart server to take effect of new value
+end
 
   def self.search_users(search_users, sort_column, sort_direction)
        User.where('name LIKE  ?', "%#{search_users}%").order(sort_column+ " "+sort_direction)

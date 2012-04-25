@@ -11,10 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
-//= require autocomplete-rails
 //= require jquery.effects.core.min
-//= require jquery.effects.slide.min
-//= require jquery.ui.autocomplete.min
-//= require jquery.ui.widget.min
+//= require jquery-ui
+//= require jquery_ujs
 //= require myitcrm

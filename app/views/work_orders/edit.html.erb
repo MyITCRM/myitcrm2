@@ -2,9 +2,13 @@
   <%= module_header %>
   <div class="module">
     <ul>
-      <li class="exit"><%= link_to t("global.cancel"), work_orders_path %></li>
-      <li class="close"><%= link_to t("global.close"), close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put %></li>
-      <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+      <li class="exit"><%= link_to t("global.exit"), work_orders_path %></li>
+      <% if can? :close, WorkOrder %>
+        <li class="close"><%= link_to t("global.close"), close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put %></li>
+      <% end %>
+      <% if can? :destroy, WorkOrder %>
+        <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+      <% end %>
     </ul>
   </div>
  </div>
@@ -12,7 +16,7 @@
   <div id="ddtabs1" class="basictab">
   <ul>
     <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>
-    <% if can? :manage, WorkOrder %>
+    <% if can? :close, WorkOrder %>
     <li><a href="#<%= t "workorder.tab_menu_resolution" %>" rel="tab2"><%= (t "workorder.tab_menu_resolution") %></a>
       <% end %>
     </li>
@@ -40,7 +44,7 @@
         <div class="center"><%= f.submit %></div>
 
   </div>
-  <% if can? :manage, WorkOrder %>
+  <% if can? :close, WorkOrder %>
   <div id="tab2" class="tabcontent">
         <div class="simple_form label">
           <label><%= t "workorder.resolution" %></label>

@@ -51,6 +51,8 @@ module ApplicationHelper
 def textile_tag(content)
    (RedCloth3.new(content).to_html).html_safe
 end
+
+
   # Used to add and remove fields through JQuery in Invoice Service and Product Lines
   def link_to_remove_fields(f)
     image_title = t "global.delete"

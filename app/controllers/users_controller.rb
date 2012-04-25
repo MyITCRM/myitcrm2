@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   #  Used by CanCan to restrict controller access
   #load_resource
   authorize_resource
-  skip_authorize_resource :only => [:edit_profile, :update_profile]
+  #skip_authorize_resource :only => [:edit_profile, :update_profile]
   helper_method :sort_column, :sort_direction
 
 
@@ -54,18 +54,19 @@ class UsersController < ApplicationController
 
   def show
     @title = t "user.t_view"
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id]) if current_user.employee and can? :read, User
+    @user = User.find(current_user.id) if current_user.client and can? :read, User
   end
 
 
   def edit
     @title = t "user.t_edit_user"
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def create
     @title = t "user.t_new_user"
-    #@user = User.new(params[:user])
+    @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
@@ -83,7 +84,6 @@ class UsersController < ApplicationController
   def register
     @title = t "user.t_new_user"
     @user = User.new
-    #authorize! :register, @user
      render :action => "register"
   end
 

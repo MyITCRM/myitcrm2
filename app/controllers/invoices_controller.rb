@@ -1,5 +1,7 @@
 class InvoicesController < ApplicationController
-   load_and_authorize_resource
+  # mytodo - Add full language support.
+  # mytodo - Add Mass Assignment restrictions.
+  authorize_resource
   # GET /invoices
   # GET /invoices.xml
   def index

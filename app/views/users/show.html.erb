@@ -8,7 +8,7 @@
       <li class="edit"><%= link_to (t "global.edit"), edit_user_path %></li>
       <% if can? :create, WorkOrder %>
       <hr />
-      <li class="wrench"><%= link_to t("global.workorder"),  new_user_work_order_path() %> </li>
+      <li class="wrench"><%= link_to t("global.workorder"),  new_user_work_order_path(@user) %> </li>
       <hr />
        <% end %>
       <li class="exit"><%= link_to (t "global.exit"), users_path %></li>
@@ -51,7 +51,7 @@
                   <strong><%= t "global.email" %>:</strong>
                 </td>
                 <td align="left">
-                 <%=  mail_to @user.email, :encode => "javascript" %>
+                 <%=  mail_to @user.email %>
                 </td>
               </tr>
             <tr>

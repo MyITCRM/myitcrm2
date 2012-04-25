@@ -47,7 +47,7 @@
       <label><%= t "workorder.details" %>:</label>
       <div class="html_area"><%= textile_tag(@work_order.description) %> </div>
     </div>
-     <% if @work_order.closed %>
+     <% if not @work_order.closed %>
     <div class="center">
       <input type="submit" value="Add a Reply" id="button" class="add_comment" />
     </div>

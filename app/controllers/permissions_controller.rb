@@ -42,6 +42,7 @@ class PermissionsController < ApplicationController
   # POST /permissions.json
   def create
     @permission = Permission.new(params[:permission])
+    @permission.dynamic_attributes = [:name, :action, :subject_class, :subject_id] if can? :manage, User
 
     respond_to do |format|
       if @permission.save
@@ -58,7 +59,7 @@ class PermissionsController < ApplicationController
   # PUT /permissions/1.json
   def update
     @permission = Permission.find(params[:id])
-
+    @permission.dynamic_attributes = [:name, :action, :subject_class, :subject_id] if can? :manage, User
     respond_to do |format|
       if @permission.update_attributes(params[:permission])
         format.html { redirect_to @permission, notice: 'Permission was successfully updated.' }

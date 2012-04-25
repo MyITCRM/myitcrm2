@@ -16,17 +16,13 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class WorkOrdersController < ApplicationController
-#  Used by CanCan to restrict controller access
-  authorize_resource
-
-  helper_method :sort_column, :sort_direction
-
-#  Used as a starting pint for PDF documents generation.
-  prawnto :prawn => {:top_margin => 20}
+  before_filter :login_required # User must be logged in first
+  authorize_resource  # Used by CanCan to restrict controller access
+  helper_method :sort_column, :sort_direction # Used for sorting columns
+  prawnto :prawn => {:top_margin => 20} #  Used as a starting pint for PDF documents generation.
 
   def index
     @title = t "workorder.t_workorders"
-    #@work_orders = WorkOrder.all
     if current_user.client
       @new_work_orders = WorkOrder.where("status_id = 1 AND user_id = ?", current_user.id)
       @assigned_work_orders = WorkOrder.where("status_id = 2 AND user_id = ?", current_user.id)
@@ -54,13 +50,21 @@ class WorkOrdersController < ApplicationController
 
   def new
     @work_order = WorkOrder.new
-    @client = User.find(current_user.id) if current_user.client
-    @client = User.find(params[:user_id]) if can? :manage, WorkOrder && current_user.employee
-    @title = (t "workorder.creating_wo_for")+@client.name.camelcase
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @work_order }
+    if can? :create, WorkOrder
+      if params[:user_id].present? and current_user.client
+          @client = User.find(current_user.id)
+          @title = (t "workorder.creating_wo_for")+@client.name.camelcase
+      else
+        if params[:user_id].present? and current_user.employee
+          @client = User.find(params[:user_id])
+          @title = (t "workorder.creating_wo_for")+@client.name.camelcase
+        end
+      end
+    if params[:user_id].blank? and current_user.employee
+      redirect_to clients_url
+      flash[:info] = "Please Select a Client first"
     end
+  end
   end
 
   def edit
@@ -71,11 +75,18 @@ class WorkOrdersController < ApplicationController
   def create
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.new(params[:work_order])
-    @work_order.created_at = Time.now
-    @work_order.status_id = 1
-    @work_order.closed = 1
-    @work_order.user_id = current_user.id if current_user.client
-    @work_order.user_id = current_user.id if can? :manage, WorkOrder &&  current_user.client
+    if can? :create, WorkOrder
+      #if current_user.client
+      #  @work_order.user_id = current_user.id
+      #  else
+      #  @work_order.user_id = params[:user_id] if current_user.employee
+      #end
+      @work_order.created_at = Time.now
+      @work_order.status_id = 1 # Applies a status of "NEW" by default
+      @work_order.closed = 1 # Work Order is not "closed" by default
+      @work_order.created_by = current_user.username
+    end
+
     respond_to do |format|
       if @work_order.save
         format.html { redirect_to @work_order, notice: 'Work Order was successfully created.' }
@@ -93,11 +104,11 @@ class WorkOrdersController < ApplicationController
     @work_order.dynamic_attributes = [:status_id, :resolution, :assigned_to_username, :closed] if can? :manage, WorkOrder
     invoicing_enabled = true
 
-    if invoicing_enabled.present? and @work_order.closed.present?
+    if invoicing_enabled.present? and @work_order.closed
        respond_to do |format|
       if @work_order.update_attributes(params[:work_order])
         flash[:notice] = 'Work Order was successfully updated.'
-        format.html { redirect_to( new_work_order_invoice_path(:work_order_id => @work_order.id) ) }
+        format.html { redirect_to new_work_order_invoice_path(:work_order_id => @work_order.id)  }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }
@@ -121,24 +132,24 @@ class WorkOrdersController < ApplicationController
   def close
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
+    @work_order.edited_by = current_user.username
+    @work_order.closed_by = current_user.username
+    @work_order.dynamic_attributes = [:status_id, :resolution, :assigned_to_username, :closed] if can? :manage, WorkOrder
+    invoicing_enabled = true
     if @work_order.assigned_to_id.blank?
       redirect_to(:back)
       flash[:alert] = "Work Order needs to be assigned to an Employee first before closing."
-    #else
-    #respond_to do |format|
-    #  if @work_order.update_attribute(:status_id, "6")
-    #    @work_order.update_attribute(:closed, true)
-    #    @work_order.update_attribute(:closed_date, Time.now)
-    #    @work_order.update_attribute(:closed_by, current_user.username)
-    #    flash[:notice] = 'WorkOrder was successfully Closed.'
-    #    format.html { redirect_to( Invoice.new) }
-    #    format.xml { head :ok }
-    #  else
-    #    format.html { render :action => "index" }
-    #    format.xml { render :xml => @work_order.errors, :status => :unprocessable_entity }
-    #  end
-    #end
-    end
+      respond_to do |format|
+            if @work_order.update_attributes(params[:work_order])
+              flash[:notice] = 'Work Order was successfully closed.'
+              format.html { redirect_to(@work_order) }
+              format.xml { head :ok }
+            else
+              format.html { render :action => "close" }
+              format.xml { render :xml => @work_order.errors, :status => :unprocessable_entity }
+            end
+            end
+          end
   end
 
   def assign

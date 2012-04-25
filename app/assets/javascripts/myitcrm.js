@@ -1,11 +1,3 @@
-/**
- * Created by JetBrains RubyMine.
- * User: vanderg
- * Date: 23/03/12
- * Time: 3:21 PM
- * To change this template use File | Settings | File Templates.
- */
-
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
@@ -122,14 +114,13 @@ function remove_fields(link) {
        }
 
 
-/* Used for JQuery Toggle effect to show or hide a div with the id of "effect". Class of hide make the div hidden by default*/
+/* Used for JQuery Toggle effect to show or hide a div with the id of "effect". Class of hide make the div hidden by default */
 // EXAMPLE::
 // <input type="submit" value="Post a Reply" id="button" />
 //  <div id="effect" class="hide">
 //    <%= render :partial => 'replies/form' %>
 //  </div>
 
-$(function() {
               // run the currently selected effect
 function runEffect() {
                   // get effect type from
@@ -153,22 +144,21 @@ function runEffect() {
                   runEffect();
                   return false;
               });
+//
+//
+//function remove_fields(link) {
+//       $(link).prev("input[type=hidden]").val("1");
+//       $(link).closest("#fields").hide();
+//       }
+//
+//function add_fields(link, association, content) {
+//       var new_id = new Date().getTime();
+//       var regexp = new RegExp("new_" + association, "g");
+//       $(link).parent().before(content.replace(regexp, new_id));
+////        $(link).after(content.replace(regexp, new_id));
+//       }
 
 
-function remove_fields(link) {
-       $(link).prev("input[type=hidden]").val("1");
-       $(link).closest("#fields").hide();
-       }
-
-function add_fields(link, association, content) {
-       var new_id = new Date().getTime();
-       var regexp = new RegExp("new_" + association, "g");
-       $(link).parent().before(content.replace(regexp, new_id));
-//        $(link).after(content.replace(regexp, new_id));
-       }
-
-
- });
 
 
 

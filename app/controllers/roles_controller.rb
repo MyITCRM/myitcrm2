@@ -16,6 +16,7 @@ class RolesController < ApplicationController
   # GET /roles/1
   # GET /roles/1.json
   def show
+    @title = Model.name
     @role = Role.find(params[:id])
 
     respond_to do |format|
@@ -60,7 +61,7 @@ class RolesController < ApplicationController
   # PUT /roles/1.json
   def update
     @role = Role.find(params[:id])
-    @role.dynamic_attributes = :all
+    @role.dynamic_attributes = [:name, :enabled, :list_position, :permission_ids, :permission_id]
     #@role.dynamic_attributes :all if can? :manage, Role
 
     respond_to do |format|

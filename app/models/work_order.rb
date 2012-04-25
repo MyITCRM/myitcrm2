@@ -12,14 +12,12 @@ class WorkOrder < ActiveRecord::Base
   before_update :workorder_updated, :change_assignment, :lookup_assigned_username, :change_status
 
 
-  private
+
      def workorder_updated
-      self.updated_at ||= Time.now
       if self.closed == 1
         self.status_id = 4
         self.closed_by = edited_by
       end
-
       # When updating occurs, lets check to see if the status
       # has changed to new and if so lets remove the assigned user details
       if self.status_id == 1
@@ -50,7 +48,7 @@ class WorkOrder < ActiveRecord::Base
         end
       end
 
-
+  private
 # Used to obtain the Assigned Users name from the database on Work Order saving,
 # instead of making a separate call each time it's displayed in the table
   def lookup_assigned_username

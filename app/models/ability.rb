@@ -13,15 +13,15 @@ class Ability
     # If the user is idle for the set amount of time, we need to assign a default user role
     # so that we redirect back to the root URL and display the correct notification message.
     # If the user is still active, then this function continues to lookup the users role and permissions
-    #@user = user || User.new
-    #if @user.role_id.blank?
-	   # @user.role_id = 985695958446
-	   # guest = 985695958446
-	   # def guest
-	   #   can [:register, :create, :new], User
-	   #   #can [:read, :home], Page, :private => false
-    #  end
-    #else
+    @user = user || User.new
+    if @user.role_id.blank?
+	   @user.role_id = 985695958446
+	   guest = 985695958446
+	   def guest
+	      can [:register, :create, :new], User
+	      #can [:read, :home], Page, :private => false
+      end
+    else
     user.role.permissions.each do |permission|
         if permission.subject_id.nil?
           can permission.action.to_sym, permission.subject_class.constantize
@@ -35,7 +35,7 @@ class Ability
 			#				(subject.nil? || permission.subject_id.nil? || permission.subject_id == subject.id)
 			#	end
 			#end
-    ##end
+    end
     end
 end
 
