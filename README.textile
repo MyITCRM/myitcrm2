@@ -1,5 +1,7 @@
 !http://myitcrm.com/images/logo.png!
 
+h2. Build Status: !https://secure.travis-ci.org/myitcrm/myitcrm2.png?branch=master(Build Status)!:http://travis-ci.org/myitcrm/myitcrm2
+
 h1. Welcome to MyIT CRM2 - The Next Stage!
 
 
