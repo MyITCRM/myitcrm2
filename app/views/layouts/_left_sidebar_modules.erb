@@ -79,14 +79,14 @@
               </div>
       <% if current_user.client %>
             <%= module_header(t "global.module.contact_us" ) %>
-            <div class="module">
-              <p>
-                  <% if Setting::business_phone.present? %><p><img src="/images/telephone.png" hspace="8"><%= Setting::business_phone %><% end %>
-                  <% if Setting::business_mobile.present? %><p><img src="/images/mobile_phone.png" hspace="8"><%= Setting::business_mobile %><% end %>
-                  <% if Setting::business_email.present? %><p><img src="/images/email.png" hspace="8"><%= Setting::business_email %><% end %>
-              </p>
+          <div class="module">
+                       <p>
+                           <% if Setting::business_phone.present? %><p><%= image_tag "telephone.png", :hspace => 8 %><%= Setting::business_phone %><% end %>
+                           <% if Setting::business_mobile.present? %><p><%= image_tag "mobile_phone.png", :hspace => 8 %><%= Setting::business_mobile %><% end %>
+                           <% if Setting::business_email.present? %><p><%= image_tag "email.png", :hspace => 8 %><%=  Setting::business_email %><% end %>
+                       </p>
 
-            </div>
+                     </div>
                 <% end %>
 
       <%= module_header(t "global.logout") %>
