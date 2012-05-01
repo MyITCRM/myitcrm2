@@ -31,8 +31,8 @@
         <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= @work_order.assigned_to_username %> </div>
         <% else %>
 
-  <% if current_user.workorder_assignability == true %>
-     <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><%= render(:partial => "work_orders/assign") %>
+  <% if current_user.workorder_assignability %>
+     <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><%= render :partial => "assign" %>
   <% else %>
    <% if @work_order.assigned_to_username.blank? %>
      <label class="simple_form select required"><%= t "workorder.assigned_to" %>:</label><div class="field"><%= t("workorder.not_assigned_message") %></div>

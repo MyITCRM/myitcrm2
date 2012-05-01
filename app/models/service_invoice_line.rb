@@ -2,14 +2,13 @@ class ServiceInvoiceLine < ActiveRecord::Base
   belongs_to :invoice
   belongs_to :service_rate
 
-  accepts_nested_attributes_for  :service_rate
+  attr_accessible :qty, :service_id, :line_comment
   validates_presence_of :service_id
-  #validates_format_of :qty
+
+  accepts_nested_attributes_for  :service_rate
 
   before_create :calculate
   before_update :calculate
-
-
 
   def calculate
     srv = ServiceRate.find(service_id)

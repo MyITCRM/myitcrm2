@@ -8,18 +8,17 @@
    <%= render 'layouts/left_sidebar_modules' %>
   </div>
 
-<div id=center_col>
+<div id="center_col">
 <div id="ddtabs1" class="basictab">
 <ul>
-<li><a href="#<%= t "workorder.tab_menu_resolution"  %>" rel="sc2"><%= (t "workorder.tab_menu_resolution") %></a></li>
+<li><a href="#<%= t "workorder.tab_menu_resolution"  %>" rel="sc1"><%= (t "workorder.tab_menu_resolution") %></a></li>
 </ul>
 </div>
 
 <div class="tabcontainer">
 
-<div id="sc2" class="tabcontent">
-
-<% simple_form_for(@work_order) do |f| %>
+<div id="sc1" class="tabcontent">
+<%= simple_form_for @work_order do |f| %>
         <%= f.input :resolution %>
         <%= f.input :closed, :input_html => {:checked =>  true} %>
  <div class="center"><%= f.button :submit, 'Close' %></div>

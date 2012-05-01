@@ -67,6 +67,8 @@ class UsersController < ApplicationController
   def create
     @title = t "user.t_new_user"
     @user = User.new(params[:user])
+      @user.dynamic_attributes = [:client, :employee, :workorder_assignability, :role_id] if can? :manage, User
+
 
     respond_to do |format|
       if @user.save

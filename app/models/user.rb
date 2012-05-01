@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
 
 # Mass Assignment Protection
   attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :updated_by,
-                  :created_by, :password_confirmation, :mobile, :fax, :password, :edited_by, :edited_at
+                  :created_by, :password_confirmation, :mobile, :fax, :password, :edited_by, :edited_at,
+                  :client, :employee, :workorder_assignability, :role_id
 
 # Validations for Users
   validates_presence_of :name, :username, :email, :phone

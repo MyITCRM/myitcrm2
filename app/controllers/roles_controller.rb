@@ -16,7 +16,7 @@ class RolesController < ApplicationController
   # GET /roles/1
   # GET /roles/1.json
   def show
-    @title = Model.name
+    #@title = Model.name
     @role = Role.find(params[:id])
 
     respond_to do |format|

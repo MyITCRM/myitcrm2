@@ -1,4 +1,5 @@
 class ServiceRatesController < ApplicationController
+  authorize_resource
   # GET /service_rates
   # GET /service_rates.xml
   def index

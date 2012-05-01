@@ -74,19 +74,16 @@ class WorkOrdersController < ApplicationController
 
   def create
     @title = t "workorder.t_workorders"
-    @work_order = WorkOrder.new(params[:work_order])
+    @work_order = WorkOrder.new
     if can? :create, WorkOrder
-      #if current_user.client
-      #  @work_order.user_id = current_user.id
-      #  else
-      #  @work_order.user_id = params[:user_id] if current_user.employee
-      #end
+      @work_order.user_id = params[:user_id] if current_user.employee?
+      @work_order.user_id = current_user.id if current_user.client?
       @work_order.created_at = Time.now
       @work_order.status_id = 1 # Applies a status of "NEW" by default
-      @work_order.closed = 1 # Work Order is not "closed" by default
+      @work_order.closed = 0 # Work Order is not "closed" by default
       @work_order.created_by = current_user.username
     end
-
+    @work_order.attributes = params[:work_order]
     respond_to do |format|
       if @work_order.save
         format.html { redirect_to @work_order, notice: 'Work Order was successfully created.' }
@@ -132,10 +129,10 @@ class WorkOrdersController < ApplicationController
   def close
     @title = t "workorder.t_workorders"
     @work_order = WorkOrder.find(params[:id])
-    @work_order.edited_by = current_user.username
-    @work_order.closed_by = current_user.username
-    @work_order.dynamic_attributes = [:status_id, :resolution, :assigned_to_username, :closed] if can? :manage, WorkOrder
-    invoicing_enabled = true
+    #@work_order.edited_by = current_user.username
+    #@work_order.closed_by = current_user.username
+    #@work_order.dynamic_attributes = [:status_id, :resolution, :assigned_to_username, :closed] if can? :manage, WorkOrder
+    #invoicing_enabled = true
     if @work_order.assigned_to_id.blank?
       redirect_to(:back)
       flash[:alert] = "Work Order needs to be assigned to an Employee first before closing."
