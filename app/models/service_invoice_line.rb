@@ -16,7 +16,7 @@ class ServiceInvoiceLine < ActiveRecord::Base
       self.tax_rate = 1 / srv.tax_rate  #  Tax Rate as a decimal = 1 / 10 = 0.1
       self.sku = srv.sku   # Now the Item(s)) Price from the Rate column
       self.description = srv.description   # Now the Item(s)) Price from the Rate column
-      self.price = srv.rate   # Now the Item(s)) Price from the Rate column
+      self.price = srv.rate   # Now the Item(s) Price from the Rate column
       self.sub_total = srv.rate * self.qty    #Now calculate the Rate * Line Qty
       self.tax = self.sub_total * self.tax_rate   # Now Calculate the Tax Rate
       self.total_price = self.sub_total + self.tax  # Now Calculate the Subtotal + Tax Rate

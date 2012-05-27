@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2011  Glen Vanderhel
+# Copyright (C) 2009-2012  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License

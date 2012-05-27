@@ -1,4 +1,4 @@
-<% simple_form_for([@work_order,@reply]) do |f| %>
+<%= simple_form_for([@work_order,@reply]) do |f| %>
     <%= f.input :content,:label => (t 'reply.message')  , :input_html => { :rows => 6 } %>
     <%= f.input :private, :label => (t 'reply.internal'), :hint => (t 'reply.internal_hint') if current_user.employee? %>
 

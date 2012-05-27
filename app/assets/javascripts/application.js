@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.effects.core.min
+//= require jquery
 //= require jquery-ui
 //= require jquery_ujs
 //= require myitcrm

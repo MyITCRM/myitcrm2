@@ -544,7 +544,7 @@ en_AU:
       client: "Name :"
       t_customer_details: "Customer Details"
     message_assigned_success: "Work Order Assigned Successfully!"
-    creating_wo_for: "Creating New Work Order Request for "
+    creating_wo_for: "New Work Order for "
     tab_menu_pending: "Pending"
     index:
       t_wo: "WO #"

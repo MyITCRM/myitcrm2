@@ -1,7 +1,24 @@
+# MyITCRM - Repairs Business CRM Software
+# Copyright (C) 2009-2012  Glen Vanderhel
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
 class RepliesController < ApplicationController
-	load_and_authorize_resource
-  # GET /replies
-  # GET /replies.xml
+  before_filter :login_required # User must be logged in first
+  authorize_resource  # Used by CanCan to restrict controller access
+
   def index
     @replies = Reply.all
 
@@ -41,12 +58,13 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.xml
   def create
-    if can? :create, Reply
-      @reply = Reply.new(params[:reply])
-      @reply.work_order_id = params[:id]
+    @reply = Reply.new
+    if can? :manage, WorkOrder
+      @reply.work_order_id = params[:work_order_id]
       @reply.user_id = current_user.id
-      @reply.dynamic_attributes[:private] if current_user.employee
+      @reply.dynamic_attributes = [:private] if can? :manage, WorkOrder
     end
+    @reply.attributes = params[:reply]
     respond_to do |format|
       if @reply.save
         format.html { redirect_to( :back, :notice => 'Reply was successfully created.') }
@@ -65,7 +83,7 @@ class RepliesController < ApplicationController
       @reply = Reply.find(params[:id])
       @reply.work_order_id = params[:id]
       @reply.user_id = current_user.id
-      @reply.dynamic_attributes[:private] if current_user.employee
+      @reply.dynamic_attributes = [:private] if current_user.employee
     end
     respond_to do |format|
       if @reply.update_attributes(params[:reply])
