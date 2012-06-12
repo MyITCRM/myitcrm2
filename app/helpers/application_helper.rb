@@ -30,27 +30,11 @@ module ApplicationHelper
   end
 
 #  TEXT Helpers
-  # Returns a textarea opening and closing tag set tailored for accessing a specified attribute
-      # ==== Examples
-      #   <%= ckeditor_tag 'work_order[description]', @work_order.description , :cols => 60, :rows => 40, :class => 'ckeditor' %>
-      #   ckeditor_tag(:post, :body, :cols => 20, :rows => 40)
-      #   # => <textarea cols="20" rows="40" id="post_body" name="post[body]">
-      #   #      #{@post.body}
-      #   #    </textarea>
-#      #
-#      def ckeditor_tag(name, content = nil, options = {})
-##        content_tag :div, text_area_tag(name, content, options), :class => "ckeditor_layout"
-#        "<div class='ckeditor_layout'>#{text_area_tag(name, content, options)}</div>".html_safe
-# end
 
-  # Returns a textarea opening and closing tag set tailored for accessing a specified attribute
-      # ==== Examples
-      #   textile_tag(content)
-      #   # => RedCloth3.new(content).to_html).html_safe
-      #
-def textile_tag(content)
-   (RedCloth3.new(content).to_html).html_safe
-end
+    def markdown(text)
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+      markdown.render(text).html_safe
+      end
 
 
   # Used to add and remove fields through JQuery in Invoice Service and Product Lines

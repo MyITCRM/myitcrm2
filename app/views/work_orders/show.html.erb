@@ -45,7 +45,7 @@
     <label><%= t "workorder.status" %>:</label><div class="field"><%= @work_order.status.name %></div>
     <div>
       <label><%= t "workorder.details" %>:</label>
-      <div class="html_area"><%= textile_tag(@work_order.description) %> </div>
+      <div class="html_area"><%= markdown(@work_order.description) %> </div>
     </div>
      <% if not @work_order.closed %>
     <div class="center">
@@ -67,7 +67,7 @@
           <%= reply.user.name %>
         </div>
         <div class="reply_message">
-           <strong> Message:</strong> <%= textile_tag(reply.content) %>
+           <strong> Message:</strong> <%= markdown(reply.content) %>
 
         <span style="font-size:10px">
           <% if reply.updated_at > reply.created_at %><%= image_tag('comment_edit.png') %>( Edited <%= localize reply.updated_at, :format => :medium %> )<% end %>

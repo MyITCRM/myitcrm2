@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 #	check_authorization
 
 include Authentication
-require 'redcloth3'
 
 
   helper :all # include all helpers, all the time
