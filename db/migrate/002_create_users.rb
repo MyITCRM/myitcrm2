@@ -27,7 +27,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :mobile
       t.string :fax
       t.text :notes
-      t.boolean :active, :default => 1
+      t.boolean :active, :default => true
       t.datetime :edited_at
       t.string :edited_by
 
