@@ -2,7 +2,7 @@
   <%= module_header %>
   <div class="module">
     <ul>
-        <li class="back"><%= link_to (t "global.back"), :back %></li>
+        <li class="back"><%= link_to (t "global.back" ), :back %></li>
     </ul>
   </div>
   <%= render 'layouts/left_sidebar_modules' %>
@@ -19,7 +19,7 @@
 <% @priority_lists.each do |priority_list| %>
   <tr class="<%= cycle :odd, :even %>">
     <td><%= priority_list.name %></td>
-    <td align="center"><%= link_to(image_tag('edit.png', :title => [t "global.edit"]),  edit_priority_list_path(priority_list)) %></td>
+    <td align="center"><%= link_to(image_tag('edit.png', :title => (t "global.edit")),  edit_priority_list_path(priority_list)) %></td>
   </tr>
 <% end %>
 </table>

@@ -1,5 +1,5 @@
 # MyIT CRM - Repair's Business CRM Software
-# Copyright (C) 2009-2011  Glen Vanderhel
+# Copyright (C) 2009-2012  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 # Mass Assignment Protection
   attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :updated_by,
                   :created_by, :password_confirmation, :mobile, :fax, :password, :edited_by, :edited_at,
-                  :client, :employee, :workorder_assignability, :role_id
+                  :client, :employee, :workorder_assignability, :role_id, :notes
 
 # Validations for Users
   validates_presence_of :name, :username, :email, :phone
@@ -42,6 +42,9 @@ class User < ActiveRecord::Base
     end
     if self.employee.nil?
       self.employee = 0
+    end
+    if self.role_id.nil?
+      self.role_id = 3
     end
   end
 

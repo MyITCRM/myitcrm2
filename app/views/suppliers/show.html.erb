@@ -4,12 +4,12 @@
   <div class="module">
     <ul>
       <li class="delete">
-        <% if can? :destroy, @supplier %>
+        <% if can? :destroy, Supplier %>
             <%= link_to (t "global.delete"), @supplier, :confirm => 'Are you sure?', :method => :delete %>
         <% end %>
       </li>
       <li class="edit">
-        <% if can? :edit, @supplier %>
+        <% if can? :edit, Supplier %>
             <%= link_to (t "global.edit"), edit_supplier_path %>
         <% end %>
       </li>
@@ -25,7 +25,7 @@
       <strong><%= t "supplier.company_name" %>:</strong>
     </td>
     <td align="left">
-      <%=h @supplier.company_name %>
+      <%= @supplier.company_name %>
     </td>
   </tr>
   <tr>
@@ -33,7 +33,7 @@
       <strong><%= t "supplier.website" %>:</strong>
     </td>
     <td align="left">
-      <%= auto_link_urls @supplier.website %>
+      <%= @supplier.website %>
     </td>
   </tr>
   <tr>
@@ -41,7 +41,7 @@
       <strong><%= t"supplier.active" %></strong>
     </td>
     <td align="left">
-     <%=h @supplier.active? %>
+     <%= @supplier.active? %>
     </td>
   </tr>
   <tr>
@@ -57,7 +57,7 @@
       <strong><%= t "supplier.city" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.city %>
+     <%= @supplier.city %>
     </td>
   </tr>
  <tr>
@@ -65,7 +65,7 @@
       <strong><%= t "supplier.state" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.state %>
+     <%= @supplier.state %>
     </td>
   </tr>
   <tr>
@@ -73,7 +73,7 @@
       <strong><%= t "supplier.zip" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.zip %>
+     <%= @supplier.zip %>
     </td>
   </tr>
   <tr>
@@ -81,7 +81,7 @@
       <strong><%= t "global.phone" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.phone %>
+     <%= @supplier.phone %>
     </td>
   </tr>
   <tr>
@@ -89,7 +89,7 @@
       <strong><%= t "global.fax" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.fax %>
+     <%= @supplier.fax %>
     </td>
   </tr>
   <tr>
@@ -97,7 +97,7 @@
       <strong><%= t "global.email" %>:</strong>
     </td>
     <td align="left">
-     <%= auto_link_email_addresses( @supplier.email ).html_safe %>
+     <%= link@supplier.email %>
     </td>
   </tr>
     <tr>
@@ -105,7 +105,7 @@
       <strong><%= t "supplier.contact_name" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.contact_name %>
+     <%= @supplier.contact_name %>
     </td>
   </tr>
   <tr>
@@ -113,7 +113,7 @@
       <strong><%= t"supplier.contact_phone" %></strong>
     </td>
     <td align="left" >
-     <%=h @supplier.contact_phone %>
+     <%= @supplier.contact_phone %>
     </td>
   </tr>
   <tr>
@@ -121,7 +121,7 @@
       <strong><%= t "supplier.credit_terms" %>:</strong>
     </td>
     <td align="left">
-     <%=h @supplier.credit_terms %>
+     <%= @supplier.credit_terms %>
     </td>
   </tr>
   <tr>
@@ -129,7 +129,7 @@
       <strong><%= t "supplier.credit_amount" %>:</strong>
     </td>
     <td align="left">
-     <%=h number_to_currency( @supplier.credit_amount ) %>
+     <%= number_to_currency( @supplier.credit_amount ) %>
     </td>
   </tr>
   <tr>
@@ -137,7 +137,7 @@
      <strong><%= t "supplier.leadtime" %>:</strong>
     </td>
     <td>
-     <%=h @supplier.parts_leadtime_days %>
+     <%= @supplier.parts_leadtime_days %>
     </td>
   </tr>
   <tr>
@@ -145,7 +145,7 @@
       <strong><%= t "supplier.notes" %>:</strong>
     </td>
     <td align="left" >
-     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @supplier.notes %></textarea>
+     <textarea rows="6" cols="50" name="contact" readonly="readonly" ><%= @supplier.notes %></textarea>
     </td>
   </tr>
   </table>

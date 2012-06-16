@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   #  Used by CanCan to restrict controller access
   #load_resource
   authorize_resource
-  #skip_authorize_resource :only => [:edit_profile, :update_profile]
+  skip_authorize_resource :only =>  [:register, :create, :edit_profile, :update]
   helper_method :sort_column, :sort_direction
 
 
@@ -91,7 +91,10 @@ class UsersController < ApplicationController
 
   def update
     @title = t "user.t_update_user"
-    @user = User.find(params[:id])
+
+      @user = User.find(params[:id])
+
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => (t "user.flash_update_user") ) }
@@ -115,21 +118,9 @@ class UsersController < ApplicationController
   def edit_profile
     @title = t "user.t_edit_user"
     @user = current_user
-    #@user = User.find(params[:id])
 
   end
 
-  def update_profile
-    @title = t "user.t_update_user"
-    @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
-      flash[:notice] = t "user.flash_update_user"
-      redirect_to root_url
-    else
-      render :action => "edit_profile"
-    end
-
-  end
 
   def clients
     @title = t "user.t_clients"
@@ -141,8 +132,8 @@ class UsersController < ApplicationController
     @users = User.where("employee = ?", true).search_users(params[:search_users], sort_column, sort_direction ).paginate(:per_page => 20, :page => params[:page])
 
   end
-   private
 
+  private
 
   def sort_column
    User.column_names.include?(params[:sort]) ? params[:sort] : "name"

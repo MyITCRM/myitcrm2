@@ -2,7 +2,7 @@
   <%= module_header %>
   <div class="module">
     <ul>
-        <li class="create"><%= link_to [t "workorder.t_add_new"], new_product_path %></li>
+        <li class="create"><%= link_to (t "workorder.t_add_new"), new_product_path %></li>
         <li class="back"><%= link_to (t "global.back"), :back %></li>
     </ul>
   </div>
@@ -23,16 +23,16 @@
 
 <table id="index_table" >
   <tr>
-    <th><%= sortable "our_sku", [t "supplier.our_sku"] %></th>
-    <th><%= sortable "supplier_id", [t "supplier.supplier"] %></th>
-    <th><%= sortable "supplier_sku", [t "supplier.supplier_sku"] %></th>
+    <th><%= sortable "our_sku", (t "supplier.our_sku") %></th>
+    <th><%= sortable "supplier_id", (t "supplier.supplier") %></th>
+    <th><%= sortable "supplier_sku", (t "supplier.supplier_sku") %></th>
     <th><%= t "products.manufacturer" %></th>
     <th><%= t "global.description" %></th>
     <th><%= t "products.model" %></th>
-    <th><%= sortable "cost_price", [t "products.cost"] %></th>
-    <th><%= sortable "sell_price", [t "products.sell_price"] %></th>
-    <th><%= sortable "qty_available", [t "products.available"] %></th>
-    <th><%= sortable "qty_ordered",  [t "products.ordered"] %></th>
+    <th><%= sortable "cost_price", (t "products.cost") %></th>
+    <th><%= sortable "sell_price", (t "products.sell_price") %></th>
+    <th><%= sortable "qty_available", (t "products.available") %></th>
+    <th><%= sortable "qty_ordered",  (t "products.ordered") %></th>
     <th><%= t "supplier.leadtime" %></th>
     <th><%= t "global.actions" %></th>
   </tr>
@@ -50,9 +50,9 @@
     <td><%=h product.qty_available %></td>
     <td><%=link_to(product.qty_ordered, products_path) %></td>
     <td><%=h product.supplier.parts_leadtime_days %></td>
-    <td width="60"><%= link_to(image_tag('view.png', :title => [t "global.view"]), product )%>
-        <%= link_to(image_tag('edit.png', :title => [t "global.edit"]), edit_product_path(product)) %>
-        <%= link_to(image_tag('trash.png', :title => [t "global.delete"]), product, :confirm => 'Are you sure?', :method => :delete ) %>
+    <td width="60"><%= link_to(image_tag('view.png', :title => (t "global.view")), product )%>
+        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_product_path(product)) %>
+        <%= link_to(image_tag('trash.png', :title => (t "global.delete")), product, :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>
 <% end %>

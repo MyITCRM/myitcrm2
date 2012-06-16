@@ -32,7 +32,7 @@
     <td><%= service_rate.active %></td>
     <td width="60"><%= link_to(image_tag('view.png', :title => t("global.view")), service_rate )%>
         <%= link_to(image_tag('edit.png', :title => t("global.edit")), edit_service_rate_path(service_rate)) %>
-        <%= link_to(image_tag('trash.png', :title => t("global.delete")), service_rate, :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('delete.png', :title => t("global.delete")), service_rate, :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>
 <% end %>

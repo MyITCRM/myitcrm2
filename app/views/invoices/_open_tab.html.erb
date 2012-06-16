@@ -29,7 +29,7 @@
         <td width="120" align="center">
             <%= link_to(image_tag('view.png', :title => (t "global.view")), invoice_path(open.id) )%>&nbsp;
             <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_invoice_path(open.id)) %>&nbsp;
-         <% if can? :manage, @work_orders %>
+         <% if can? :manage, Invoice %>
             <%= link_to(image_tag('printer.png', :title => (t "global.print")), invoice_path(open.id,:format => 'pdf'))%>&nbsp;
             <%= link_to(image_tag('delete.png', :title => (t "global.delete")), invoice_path(open.id), :confirm => (t "alert.destroy"), :method => :delete ) %>&nbsp;
       <% end %>

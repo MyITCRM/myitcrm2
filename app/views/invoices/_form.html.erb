@@ -1,21 +1,20 @@
 <%= simple_form_for @invoice do |f| %>
     <%= f.input :due_date, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
-    <a>Payment Terms:<%= Setting::default_invoice_terms %> Days NETT</a>
-    <%= f.input :invoice_note, :input_html => {:rows => 5, :cols => 70, :value => Setting::default_invoice_note }  %>
+
     <h3 align="center">Service/Labour Charges</h3>
     <div class="invoice_line_items">
       <div class="header">
         <div class="inline w70 centered_text">QTY</div>
         <div class="inline w390 ">Service Rate</div>
         <div class="inline w390 ">Line Comments</div>
-        <div class="inline w30 centered_text">Actions</div>
+        <div class="inline w110 centered_text">Remove Line</div>
       </div>
     </div>
     <div class="boxed">
       <%= f.fields_for :service_invoice_lines do |builder| %>
           <%= render "invoices/service_invoice_line", :f => builder %>
       <% end %>
-      <p class="w870"><%= link_to_add_fields image_tag('add.png', :height => '16', :alt => "Add New Line"), f, :service_invoice_lines %></p>
+      <p class="w870"><%= link_to_add_fields image_tag('add.png', :height => '16', :alt => "Add New Line"), f, :service_invoice_lines %>Add New Line</p>
     </div>
     <h3 align="center">Parts Charges</h3>
     <table class="invoice_line_items">
@@ -50,4 +49,5 @@
     <div class="center">
       <%= f.submit "Submit" %>
     </div>
+    <%= f.input :invoice_note, :input_html => {:rows => 5, :cols => 70, :value => Setting::default_invoice_note }  %>
 <% end %>

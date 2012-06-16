@@ -210,7 +210,7 @@ input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-
 .overdue {color: #cc0033;}
 
 .centered_text {text-align: center;}
-.fields {line-height:0.5em; padding: 0; margin:0;}
+.fields {line-height:0.5em; padding: 0; margin:5px;}
 .fields p {line-height:0.5em; padding: 1px; margin:0;}
 .boxed {border: 1px #cccccc solid}
 .w10 {width:10px}
@@ -256,6 +256,7 @@ input.select.required {border: 2px solid #8b0000; background-color:#ffffcc;font-
 #show_layout {line-height:2.5em; }
 #show_layout label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;width:auto;min-width:25%;font-weight:bold;}
 #show_layout div.field {font-size:100%;display:block;margin-left:27%;width:60%}
+#show_layout fields {font-size:100%;display:block;margin-left:27%;width:60%}
 #show_layout .html_area {line-height:normal;display:block;margin-left:27%;width:55%;background-color:#dfdede;padding:0 10px 10px 10px;outline: 1px solid #666666}
 #show_layout div.fieldsets {font-size:80%;display:inline-block;margin-left:27%;}
 .tbl_labels { width:25%; text-align:right; vertical-align:top;}
@@ -299,7 +300,6 @@ caption {background:#eee;}
 legend {}
 fieldset, #IE8#HACK {padding-top:1.4em;}
 legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
-
 
 
 

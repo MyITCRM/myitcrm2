@@ -135,7 +135,7 @@ class WorkOrdersController < ApplicationController
     #invoicing_enabled = true
     if @work_order.assigned_to_id.blank?
       redirect_to(:back)
-      flash[:alert] = "Work Order needs to be assigned to an Employee first before closing."
+      flash[:alert] = "Work Order needs to be assigned to an employee first before closing."
       respond_to do |format|
             if @work_order.update_attributes(params[:work_order])
               flash[:notice] = 'Work Order was successfully closed.'

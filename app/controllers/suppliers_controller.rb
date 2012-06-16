@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2011  Glen Vanderhel
+# Copyright (C) 2009-2012  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -18,7 +18,7 @@
 
 class SuppliersController < ApplicationController
   #  Used by CanCan to restrict controller access
-  load_and_authorize_resource
+  authorize_resource
 
   def index
     @title = t "supplier.t_title"
@@ -26,21 +26,15 @@ class SuppliersController < ApplicationController
 
   end
 
-  # GET /suppliers/1
-  # GET /suppliers/1.xml
   def show
     @title = t "supplier.t_view"
-#    @supplier = Supplier.where(params[:id])
-
-
+    @supplier = Supplier.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @supplier }
     end
   end
 
-  # GET /suppliers/new
-  # GET /suppliers/new.xml
   def new
     @title = t "supplier.t_new"
     @supplier = Supplier.new
@@ -52,11 +46,17 @@ class SuppliersController < ApplicationController
   end
 
   def edit
+
+    @supplier = Supplier.find(params[:id])
+    @title = (t "supplier.t_edit") +@supplier.company_name.camelcase
+
   end
 
   def create
     @title = t "supplier.t_new"
     @supplier = Supplier.new(params[:supplier])
+    @supplier.created_by = current_user.username
+    @supplier.dynamic_attributes = [:created_by,] if can? :edit, Supplier
 
     respond_to do |format|
       if @supplier.save
@@ -74,7 +74,11 @@ class SuppliersController < ApplicationController
 
   def update
     @title = t "supplier.t_new"
-    #@supplier =Supplier.where(params[:id])
+
+
+    @supplier = Supplier.find(params[:id])
+    @supplier.edited_by = current_user.username
+    @supplier.dynamic_attributes = [:active, :credit_terms, :credit_amount, :parts_leadtime_days, :edited_by, :edited_at,] if can? :edit, Supplier
 
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])
@@ -91,6 +95,7 @@ class SuppliersController < ApplicationController
 
   def destroy
     @title = t "supplier.t_new"
+    @supplier = Supplier.find(params[:id])
     @supplier.destroy
 
     respond_to do |format|

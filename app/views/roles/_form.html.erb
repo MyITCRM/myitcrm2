@@ -9,14 +9,14 @@
     <%= simple_form_for(@role) do |f| %>
         <%= f.error_notification %>
         <%= f.input :name %>
-        <%= f.input :enabled %>
+        <%= f.input :enabled  %>
         <%= f.input :list_position %>
         <div class="clear"></div>
                <div class="center"><%= f.submit %></div>
   </div>
   <div id="Permissions" class="tabcontent">
 
-            <%= f.association :permissions, :as => :check_boxes, :collection => Permission.all(:order => 'name') %>
+            <%= f.association :permissions, :as => :check_boxes, :collection => Permission.all(:order => 'subject_class') %>
     <div class="clear"></div>
            <div class="center"><%= f.submit %></div>
     <% end %>

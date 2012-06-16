@@ -1,27 +1,41 @@
-<h1>Listing roles</h1>
+<div id="sidebar_left">
+    <% if logged_in? and can? :edit, Role %>
+     <%= module_header %>
+        <div class="module">
+          <ul>
+            <li class="create"><%= link_to (t "global.create"), new_role_path %></li>
+            <li class="exit"><%= link_to (t "global.exit"), roles_path %></li>
+            <li class="back"><%= link_to (t "global.back"), :back %></li>
+          </ul>
+        </div>
+      <% end %>
+     <%= render 'layouts/left_sidebar_modules' %>
+</div>
 
-<table>
+<div id="center_col" class="no_right_sidebar">
+<table id="index_table">
   <tr>
     <th>Name</th>
     <th>Enabled</th>
     <th>List position</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Action</th>
   </tr>
 
 <% @roles.each do |role| %>
-  <tr>
+  <tr class="<%= cycle :odd, :even %>">
     <td><%= role.name %></td>
     <td><%= role.enabled %></td>
     <td><%= role.list_position %></td>
-    <td><%= link_to 'Show', role %></td>
-    <td><%= link_to 'Edit', edit_role_path(role) %></td>
-    <td><%= link_to 'Destroy', role, confirm: 'Are you sure?', method: :delete %></td>
+    <td>
+      <%= link_to(image_tag('view.png', :title => (t "global.view")), role ) if can? :manage, Role %>&nbsp;
+      <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_role_path(role)) if can? :manage, Role%>&nbsp;
+      <%= link_to(image_tag('delete.png', :title => (t "global.delete")), role, confirm: 'Are you sure?', method: :delete) if can? :manage, Role %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Role', new_role_path %>
+
+</div>
