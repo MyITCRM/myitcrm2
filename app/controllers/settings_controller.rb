@@ -17,7 +17,7 @@
 
 class SettingsController < ApplicationController
   #  Used by CanCan to restrict controller access
- #authorize_resource
+ skip_authorize_resource
 
   def index
 	  #unauthourized! if cannot? :edit, Setting

@@ -46,19 +46,19 @@
               <%= f.button :submit %>
             </div>
     </div>
-              <div id="attributes" class="tabcontent simple_form">
-                  <% if current_user.employee? %>
-                      <%= f.input :client, :as => :radio_buttons, :checked => true, :label =>(t "user.client") %>
-                      <%= f.input :employee, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.employed") %>
-                      <%= f.input :workorder_assignability, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.assignable") %>
-                  <% end %>
-                  <%= f.association :role %>
-
-
-              <div class="center">
-                <%= f.button :submit %>
-              </div>
-            </div>
+          <% if logged_in?  %>
+              <% if current_user.employee %>
+                <div id="attributes" class="tabcontent simple_form">
+                    <%= f.input :client, :as => :radio_buttons, :checked => true, :label =>(t "user.client") %>
+                    <%= f.input :employee, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.employed") %>
+                    <%= f.input :workorder_assignability, :as => :radio_buttons, :checked => [true, false], :label =>(t "user.assignable") %>
+                    <%= f.association :role %>
+                  <div class="center">
+                    <%= f.button :submit %>
+                  </div>
+                </div>
+              <% end %>
           <% end %>
-      </div>
+          <% end %>
+  </div>
 </div>

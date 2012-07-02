@@ -23,11 +23,7 @@ class Ability
       end
     else
     user.role.permissions.each do |permission|
-        if permission.subject_id.nil?
           can permission.action.to_sym, permission.subject_class.constantize
-        else
-          can permission.action.to_sym, permission.subject_class.constantize, :id => permission.subject_id
-        end
       end
 			#can do |action, subject_class, subject|
 			#	user.role.permissions.find_all_by_action(aliases_for_action(action)).any? do |permission|

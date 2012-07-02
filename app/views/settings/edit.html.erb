@@ -24,14 +24,19 @@
 
   <div id="sc1" class="tabcontent">
     <div class="simple_form">
-
-      <%= simple_form_for(@setting) do |f| %>
-        <%= f.input :business_name %>
-
-      <div class="center">
-                  <%= f.input :submit %>
+      <%= form_tag({:action => 'edit'}) do %>
+              <p><%= setting_text_field :business_name, :size => 40 %></p>
+              <p><%= setting_text_field :business_slogan, :size => 80 %></p>
+              <p><%= setting_text_field :business_phone, :size => 20 %></p>
+              <p><%= setting_text_field :business_toll_free, :size => 20 %></p>
+              <p><%= setting_text_field :business_fax, :size => 20 %></p>
+              <p><%= setting_text_field :business_mobile, :size => 20 %></p>
+              <p><%= setting_text_field :business_email, :size => 50 %></p>
+              <p><%= setting_text_area :business_address, :cols => 35 , :rows => 8 %></p>
+               <div class="center">
+                  <%= submit_tag t "global.apply" %>
                </div>
-      <% end %>
+               <% end %>
     </div>
 
   </div>
@@ -57,7 +62,7 @@
   <div id="sc4" class="tabcontent">
      <div class="simple_form">
         <%= form_tag({:action => 'edit'}) do %>
-            <p><%= setting_select(:default_invoice_terms, [["7 Days NETT", '7'],["14 Days NETT",'14'], ["Cash On Delivery",'0']]) %></p>
+            <p><%= setting_select(:default_invoice_terms, [['HTTP', 'http'], ['HTTPS', 'https']]) %></p>
             <p><%= setting_text_area(:default_invoice_note, :cols => 70 , :rows => 8) %></p>
              <div class="center">
                 <%= submit_tag t "global.apply" %>

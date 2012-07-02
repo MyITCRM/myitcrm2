@@ -1,144 +1,144 @@
 class Setting < ActiveRecord::Base
   attr_accessible :name, :value
 
-#  validates_presence_of :address,:business_name,:city,:state,:zip,:phone,:email
-#  validates_format_of  :email,:billing_email,:business_contact_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on =>  :create
+  #  validates_presence_of :address,:business_name,:city,:state,:zip,:phone,:email
+  #  validates_format_of  :email,:billing_email,:business_contact_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on =>  :create
 
-  DATE_FORMATS = [
-	'%Y-%m-%d',
-	'%d/%m/%Y',
-	'%d.%m.%Y',
-	'%d-%m-%Y',
-	'%m/%d/%Y',
-	'%d %b %Y',
-	'%d %B %Y',
-	'%b %d, %Y',
-	'%B %d, %Y'
-    ]
+    DATE_FORMATS = [
+  	'%Y-%m-%d',
+  	'%d/%m/%Y',
+  	'%d.%m.%Y',
+  	'%d-%m-%Y',
+  	'%m/%d/%Y',
+  	'%d %b %Y',
+  	'%d %B %Y',
+  	'%b %d, %Y',
+  	'%B %d, %Y'
+      ]
 
-  TIME_FORMATS = [
-    '%H:%M',
-    '%I:%M %p'
-    ]
+    TIME_FORMATS = [
+      '%H:%M',
+      '%I:%M %p'
+      ]
 
-  ENCODINGS = %w(US-ASCII
-                  windows-1250
-                  windows-1251
-                  windows-1252
-                  windows-1253
-                  windows-1254
-                  windows-1255
-                  windows-1256
-                  windows-1257
-                  windows-1258
-                  windows-31j
-                  ISO-2022-JP
-                  ISO-2022-KR
-                  ISO-8859-1
-                  ISO-8859-2
-                  ISO-8859-3
-                  ISO-8859-4
-                  ISO-8859-5
-                  ISO-8859-6
-                  ISO-8859-7
-                  ISO-8859-8
-                  ISO-8859-9
-                  ISO-8859-13
-                  ISO-8859-15
-                  KOI8-R
-                  UTF-8
-                  UTF-16
-                  UTF-16BE
-                  UTF-16LE
-                  EUC-JP
-                  Shift_JIS
-                  GB18030
-                  GBK
-                  ISCII91
-                  EUC-KR
-                  Big5
-                  Big5-HKSCS
-                  TIS-620)
+    ENCODINGS = %w(US-ASCII
+                    windows-1250
+                    windows-1251
+                    windows-1252
+                    windows-1253
+                    windows-1254
+                    windows-1255
+                    windows-1256
+                    windows-1257
+                    windows-1258
+                    windows-31j
+                    ISO-2022-JP
+                    ISO-2022-KR
+                    ISO-8859-1
+                    ISO-8859-2
+                    ISO-8859-3
+                    ISO-8859-4
+                    ISO-8859-5
+                    ISO-8859-6
+                    ISO-8859-7
+                    ISO-8859-8
+                    ISO-8859-9
+                    ISO-8859-13
+                    ISO-8859-15
+                    KOI8-R
+                    UTF-8
+                    UTF-16
+                    UTF-16BE
+                    UTF-16LE
+                    EUC-JP
+                    Shift_JIS
+                    GB18030
+                    GBK
+                    ISCII91
+                    EUC-KR
+                    Big5
+                    Big5-HKSCS
+                    TIS-620)
 
-  cattr_accessor :available_settings
-  @@available_settings = YAML::load(File.open("#{Rails.root}/config/config.yml"))
+    cattr_accessor :available_settings
+    @@available_settings = YAML::load(File.open("#{Rails.root}/config/config.yml"))
 
 
-  validates_uniqueness_of :name
-  validates_inclusion_of :name, :in => @@available_settings.keys
-  validates_numericality_of :value, :only_integer => true, :if => Proc.new { |setting| @@available_settings[setting.name]['format'] == 'int' }
+    validates_uniqueness_of :name
+    validates_inclusion_of :name, :in => @@available_settings.keys
+    validates_numericality_of :value, :only_integer => true, :if => Proc.new { |setting| @@available_settings[setting.name]['format'] == 'int' }
 
-  # Hash used to cache setting values
-  @cached_settings = {}
-  @cached_cleared_on = Time.now
+    # Hash used to cache setting values
+    @cached_settings = {}
+    @cached_cleared_on = Time.now
 
-  def value
-    v = read_attribute(:value)
-    # Unserialize serialized settings
-    v = YAML::load(v) if @@available_settings[name]['serialized'] && v.is_a?(String)
-    v = v.to_sym if @@available_settings[name]['format'] == 'symbol' && !v.blank?
-    v
-  end
-
-  def value=(v)
-    v = v.to_yaml if v && @@available_settings[name]['serialized']
-    write_attribute(:value, v.to_s)
-  end
-
-  # Returns the value of the setting named name
-  def self.[](name)
-    v = @cached_settings[name]
-    v ? v : (@cached_settings[name] = find_or_default(name).value)
-  end
-
-  def self.[]=(name, v)
-    setting = find_or_default(name)
-    setting.value = (v ? v : "")
-    @cached_settings[name] = nil
-    setting.save
-    setting.value
-  end
-
-  # Defines getter and setter for each setting
-  # Then setting values can be read using: Setting.some_setting_name
-  # or set using Setting.some_setting_name = "some value"
-  @@available_settings.each do |name, params|
-    src = <<-END_SRC
-    def self.#{name}
-      self[:#{name}]
+    def value
+      v = read_attribute(:value)
+      # Unserialize serialized settings
+      v = YAML::load(v) if @@available_settings[name]['serialized'] && v.is_a?(String)
+      v = v.to_sym if @@available_settings[name]['format'] == 'symbol' && !v.blank?
+      v
     end
 
-    def self.#{name}?
-      self[:#{name}].to_i > 0
+    def value=(v)
+      v = v.to_yaml if v && @@available_settings[name]['serialized']
+      write_attribute(:value, v.to_s)
     end
 
-    def self.#{name}=(value)
-      self[:#{name}] = value
+    # Returns the value of the setting named name
+    def self.[](name)
+      v = @cached_settings[name]
+      v ? v : (@cached_settings[name] = find_or_default(name).value)
     end
-    END_SRC
-    class_eval src, __FILE__, __LINE__
-  end
 
-
-  # Checks if settings have changed since the values were read
-  # and clears the cache hash if it's the case
-  # Called once per request
-  def self.check_cache
-    settings_updated_on = Setting.maximum(:updated_on)
-    if settings_updated_on && @cached_cleared_on <= settings_updated_on
-      @cached_settings.clear
-      @cached_cleared_on = Time.now
-      logger.info "Settings cache cleared." if logger
+    def self.[]=(name, v)
+      setting = find_or_default(name)
+      setting.value = (v ? v : "")
+      @cached_settings[name] = nil
+      setting.save
+      setting.value
     end
-  end
 
-private
-  # Returns the Setting instance for the setting named name
-  # (record found in database or new record with default value)
-  def self.find_or_default(name)
-    name = name.to_s
-    raise "There's no setting named #{name}" unless @@available_settings.has_key?(name)
-    setting = find_by_name(name)
-    setting ||= new(:name => name, :value => @@available_settings[name]['default']) if @@available_settings.has_key? name
-  end
+    # Defines getter and setter for each setting
+    # Then setting values can be read using: Setting.some_setting_name
+    # or set using Setting.some_setting_name = "some value"
+    @@available_settings.each do |name, params|
+      src = <<-END_SRC
+      def self.#{name}
+        self[:#{name}]
+      end
+
+      def self.#{name}?
+        self[:#{name}].to_i > 0
+      end
+
+      def self.#{name}=(value)
+        self[:#{name}] = value
+      end
+      END_SRC
+      class_eval src, __FILE__, __LINE__
+    end
+
+
+    # Checks if settings have changed since the values were read
+    # and clears the cache hash if it's the case
+    # Called once per request
+    def self.check_cache
+      settings_updated_on = Setting.maximum(:updated_on)
+      if settings_updated_on && @cached_cleared_on <= settings_updated_on
+        @cached_settings.clear
+        @cached_cleared_on = Time.now
+        logger.info "Settings cache cleared." if logger
+      end
+    end
+
+  private
+    # Returns the Setting instance for the setting named name
+    # (record found in database or new record with default value)
+    def self.find_or_default(name)
+      name = name.to_s
+      raise "There's no setting named #{name}" unless @@available_settings.has_key?(name)
+      setting = find_by_name(name)
+      setting ||= new(:name => name, :value => @@available_settings[name]['default']) if @@available_settings.has_key? name
+    end
 end

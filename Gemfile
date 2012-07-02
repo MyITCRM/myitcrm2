@@ -15,16 +15,9 @@ gem 'simple_form'
 gem 'authlogic'
 # SQLite Database gem
 gem 'sqlite3'
-# HTTP Server
-gem 'unicorn'
-
 
 # Adds Pagination to this app
-#gem 'kaminari'
 gem 'will_paginate'
-
-# Add Autocomplete to specific fields using JQuery
-#gem 'rails3-jquery-autocomplete'
 
 # Gems used only for assets and not required
 # in production environments by default.

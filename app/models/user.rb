@@ -28,15 +28,13 @@ class User < ActiveRecord::Base
                   :client, :employee, :workorder_assignability, :role_id, :notes
 
 # Validations for Users
-  validates_presence_of :name, :username, :email, :phone
+  validates_presence_of :name, :username, :email
   validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-#  validates_length_of :password, :password_confirmation
-#  before_save :define_permissions
   before_create :new_user
 
-# Used to set New Users to defaults
+# Used to set New Users defaults
   def new_user
-    validates_length_of :password, :password_confirmation, :minimum => 8
+    #validates_length_of :password, :password_confirmation, :minimum => 8
     if self.client.nil?
       self.client = 1
     end

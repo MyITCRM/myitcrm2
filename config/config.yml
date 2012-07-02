@@ -28,6 +28,8 @@ version:
   default: 'v2.0.0'
 default_invoice_note:
   default: 'Thankyou for your support and Business. All work is Guaranteed for up to 14 days from date of completion.'
+default_invoice_terms:
+  default: '25,50,100'
 
 
 
