@@ -9,22 +9,13 @@ MyITCRM2::Application.configure do
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
-  # Specifies the header that your server uses for sending files
-  config.action_dispatch.x_sendfile_header = "X-Sendfile"
-
-  # For nginx:
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
-
-  # If you have no front-end server that supports something like X-Sendfile,
-  # just comment this out and Rails will serve the files
-
-  # See everything in the log (default is :info)
+   # See everything in the log (default is :info)
 #  config.log_level = :info
 
   # Use a different logger for distributed setups
 #  config.logger = SyslogLogger.new
 
-  config.logger = Logger.new(config.paths.log.first, shift_age = 7, shift_size = 1048576)
+  config.logger = Logger.new("log/production.log", shift_age = 7, shift_size = 1048576)
   #config.logger.level = Logger::INFO
 
   # Use a different cache store in production
@@ -63,8 +54,8 @@ MyITCRM2::Application.configure do
 	  # config.assets.manifest = YOUR_PATH
 
 	  # Specifies the header that your server uses for sending files
-	  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-	  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+	  config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
+	  #config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
 	  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
 	  # config.force_ssl = true
