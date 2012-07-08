@@ -3,34 +3,15 @@
 #
 
 # create default administrator account
-User.create({
+User.create!({
     :username => "admin",
     :name => "Company Admin",
-    :crypted_password => "1b9b040d838f59c16a843e9b49a8cd23a02c3945d27af80dfa68d208712d696a1cf22858cd91b76865869299aa3b4e2bd495cf97532168fddfdb20e59519aa35",
-    :password_salt => "3t3Xc_YhQ6AeTlUde-Om",
-    :persistence_token => "",
+    :email => "admin@example.com",
+    :password => "password",
+    :password_confirmation => "password",
     :employee => true,
     :workorder_assignability => true,
     :client => false,
-    :login_count => "0",
-    :failed_login_count => "0",
-    :last_login_at => Time.now,
-    :last_request_at => Time.now,
-    :created_at => Time.now,
-    :updated_at => Time.now,
-    :edited_at => Time.now,
-    :edited_by => "Initial Config",
-    :current_login_ip => "127.0.0.1",
-    :last_login_ip => "127.0.0.1",
-    :address => "14 Corporate Avenue",
-    :city => "Sydney",
-    :state => "NSW",
-    :zip => "2000",
-    :phone => "02 9999 0001",
-    :mobile => "0409 999 001",
-    :fax => "02 9999 0002",
-    :active => true,
-    :notes => "None",
     :role_id => "1"},
     :without_protection => true )
 
