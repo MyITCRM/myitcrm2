@@ -2,7 +2,7 @@ language: ruby
 
 before_script:
   - mysql -e 'create database myitcrm_test;'
-  - "script/setup"
+  - script/setup
 
 rvm:
   - 1.9.3
