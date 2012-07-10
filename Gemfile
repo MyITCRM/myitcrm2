@@ -13,11 +13,17 @@ gem 'cancan'
 gem 'simple_form'
 # User Authentication GEM
 gem 'authlogic'
-# SQLite Database gem
-gem 'sqlite3'
 
 # Adds Pagination to this app
 gem 'will_paginate'
+
+group :test do
+  gem "mysql2"
+end
+group :development do
+  gem "sqlite3"
+end
+
 
 # Gems used only for assets and not required
 # in production environments by default.
