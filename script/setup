@@ -2,7 +2,7 @@
 require 'fileutils'
 
 # copy config files
-Dir['config/examples/*'].each do |source|
+Dir['config/examples/database.yml'].each do |source|
   destination = "config/#{File.basename(source)}"
   unless File.exist? destination
     FileUtils.cp(source, destination)
