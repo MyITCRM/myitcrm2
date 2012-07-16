@@ -3,6 +3,11 @@ language: ruby
 before_script:
   - mysql -e 'create database myitcrm_test;'
   - script/setup
+  
+script: "bundle exec rake spec"
+
+env:
+  - DB=mysql
 
 rvm:
   - 1.9.3
