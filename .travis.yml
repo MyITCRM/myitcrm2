@@ -11,4 +11,4 @@ rvm:
   - 1.9.3
   - ruby-head
   
-#script: bundle exec
+script: bundle exec rake
