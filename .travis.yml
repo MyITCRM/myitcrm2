@@ -4,7 +4,6 @@ before_script:
   - mysql -e 'create database myitcrm_test;'
   - ruby script/setup
   
-script: "bundle exec rake spec"
 
 env:
   - DB=mysql
