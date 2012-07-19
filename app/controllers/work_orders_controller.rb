@@ -19,7 +19,6 @@ class WorkOrdersController < ApplicationController
   before_filter :login_required # User must be logged in first
   authorize_resource  # Used by CanCan to restrict controller access
   helper_method :sort_column, :sort_direction # Used for sorting columns
-  prawnto :prawn => {:top_margin => 20} #  Used as a starting pint for PDF documents generation.
 
   def index
     @title = t "workorder.t_workorders"
