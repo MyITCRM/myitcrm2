@@ -22,7 +22,7 @@
 #  password: password
 #  encoding: utf8
 
-mysql:
+test:
   adapter: mysql2
   database: myitcrm_test
   username: root
