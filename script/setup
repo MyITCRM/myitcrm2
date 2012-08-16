@@ -14,5 +14,5 @@ end
 system "bundle"
 system "bundle exec rake db:create:all"
 system "bundle exec rake db:migrate --trace"
-system "bundle exec rake db:seed"
-system "bundle exec rake assets:precompile"
+# system "bundle exec rake db:seed"
+# system "bundle exec rake assets:precompile"
