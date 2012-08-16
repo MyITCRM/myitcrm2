@@ -6,21 +6,21 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 
-production:
-  adapter: mysql2
-  database: myitcrm_production
-  host: localhost
-  username: root
-  password: password
-  encoding: utf8
+#production:
+#  adapter: mysql2
+#  database: myitcrm_production
+#  host: localhost
+#  username: root
+#  password: password
+#  encoding: utf8
 
-development:
-  adapter: mysql2
-  database: myitcrm_development
-  host: localhost
-  username: root
-  password: password
-  encoding: utf8
+#development:
+#  adapter: mysql2
+#  database: myitcrm_development
+#  host: localhost
+#  username: root
+#  password: password
+#  encoding: utf8
 
 test:
   adapter: mysql2

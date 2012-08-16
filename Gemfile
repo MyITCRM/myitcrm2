@@ -27,6 +27,7 @@ end
 
 group :test do
   gem "mysql2"
+  gem "rake"
 end
 group :development do
   gem "sqlite3"
