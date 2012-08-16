@@ -32,36 +32,4 @@ If you like this program, please visit our website and help support it by making
 Regards,
 Glen Vanderhel
 
-MyIT CRM Project Leader,
-aka geevpc in the forum
-
-
-For Developers:
-h2. Setup database.yml file for development
-
-# SQLite3 setup - requires gem install
-development:
-  adapter: sqlite3
-  database: db/dev.sqlite3
-
-production:
-  adapter: sqlite3
-  database: db/pro.sqlite3
-
-  
-# MySQL setup - Fill in your own username and password to access your local database
-production:
-  adapter: mysql
-  database: test_pro
-  host: localhost
-  username:[username]
-  password:[password]
-  encoding: utf8
-
-development:
-  adapter: mysql
-  database: test_dev
-  host: localhost
-  username:[username]
-  password:[password]
-  encoding: utf8
+MyIT CRM Project Leader
