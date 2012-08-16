@@ -137,7 +137,7 @@ function runEffect() {
 
                   // run the effect
                   $( "#effect" ).toggle( slide );
-              };
+              }
 
               // set effect from select menu value
               $( "#button" ).click(function() {

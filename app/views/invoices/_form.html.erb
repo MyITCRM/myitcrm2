@@ -1,5 +1,5 @@
 <%= simple_form_for @invoice do |f| %>
-    <%= f.input :due_date, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
+    <%= f.text_field :due_date %>
 
     <h3 align="center">Service/Labour Charges</h3>
     <div class="invoice_line_items">

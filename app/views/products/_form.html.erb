@@ -1,0 +1,90 @@
+<div id="ddtabs1" class="basictab" >
+  <ul>
+  <li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
+  <li><a href="#<%= t "products.tab_menu_inventory_name" %>" rel="sc2"><%= t "products.tab_menu_inventory_name" %></a></li>
+  <li><a href="#<%= t "products.tab_menu_selling_name" %>" rel="sc3"><%= t "products.tab_menu_selling" %></a></li>
+  <li><a href="#<%= t "products.tab_menu_warranty_name"  %>" rel="sc4"><%= t "products.tab_menu_warranty" %></a></li>
+  </ul>
+  </div>
+
+  <div class="tabcontainer">
+
+  <div id="sc1" class="tabcontent">
+  <%= simple_form_for @product do |f| %>
+                  <%= f.input :our_sku, :label => (t "products.our_sku"), :hint => (t "products.hint.our_sku"), :input_html => {:size => 20} %>
+                  <%= f.input :description, :label => (t "global.description"), :hint => (t "products.hint_desc") %>
+                  <%= f.input :model, :label => (t "products.model"), :hint => (t "products.hint_model") %>
+                  <%= f.input :manufacturer, :label => (t "products.manufacturer"), :hint => (t "products.hint_manuf") %>
+                <div>
+                    <%= f.label(t "products.category")%>
+                    <p><%= f.text_field :product_category_id, data: {autocomplete_source: ProductCategory.order(:name).map(&:name)} %>
+                  <span class="hint"><%= t "products.hint.category" %></span> </p>
+                  </div>
+              <% if params[:supplier_id].present? %>
+              <div>
+                  <%= f.label(t "products.supplier")%>
+                      <p><%= f.text_field :supplier, :value => params[:supplier_name], :disabled => true  %></p>
+                  <%= f.input :supplier_id, :as => :hidden, :input_html => {:value =>  params[:supplier_id]}   %>
+              </div>
+                <% else %>
+            <%= f.association :supplier, :label_method => :company_name, :label => (t "products.supplier"), :disabled => true %>
+            <% end %>
+             <% if @product.supplier_id.nil? %>
+                <div>
+                 <%= f.association :supplier, :label_method => :company_name, :label => (t "products.supplier") %> <%= f.label(t "supplier.t_add_new_supplier") %><%= link_to(image_tag('add.png', :title => (t "global.new")), new_supplier_path) %>
+               </div>
+              <% end %>
+                  <%= f.input :supplier_sku, :label =>(t "products.supplier_sku"),:hint => (t "products.hint.our_sku"), :input_html => {:size => 20} %>
+                  <%= f.input :cost_price, :label =>(t "products.cost_price"), :input_html => {:size => 10} %>
+                  <%= f.input :sell_price, :label =>(t "products.sell_price"), :input_html => {:size => 10} %>
+                  <%= f.input :created_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
+                  <%= f.input :created_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
+
+         <div class='center'>
+          <%= f.button :submit%>
+        </div>
+
+          <% end %>
+  </div>
+
+  <div id="sc2" class="tabcontent">
+  <%= simple_form_for @product do |f| %>
+                  <%= f.input :stocked_product,:label =>(t "products.stocked")%>
+                  <%= f.input :stocking_qty, :label =>(t "products.stocking_qty"), :hint => (t "products.hint.stocking_qty"),:input_html => {:size => 20} %>
+                  <%= f.input :qty_on_hand, :label =>(t "products.qoh"), :input_html => {:size => 20} %>
+                  <%= f.input :qty_allocated, :label =>(t "products.allocated"), :input_html => {:size => 20} %>
+                  <%= f.input :qty_available, :label =>(t "products.available"), :input_html => {:size => 20} %>
+                  <%= f.input :qty_ordered, :label =>(t "products.ordered"), :input_html => {:size => 20} %>
+
+             <div class='center'>
+          <%= f.button :submit%>
+        </div>
+          <% end %>
+  </div>
+
+  <div id="sc3" class="tabcontent">
+  <%= simple_form_for @product do |f| %>
+                  <%= f.input :taxable, :label =>(t "product.taxable") %>
+                  <%= f.input :tax_rate, :label =>(t "products.tax_rate"), :hint => (t "products.hint_tax_rate"),  :input_html => {:value => Setting::tax_rate} %>
+                  <%= f.input :discountable, :label =>(t "products.discountable") %>
+                  <%= f.input :disc_amount, :label =>(t "products.disc_amount"), :input_html => {:size => 5} %>
+                  <%= f.input :disc_percent,:label =>(t "products.disc_percent"), :input_html => {:size => 5} %>
+
+        <div class='center'>
+          <%= f.button :submit%>
+        </div>
+          <% end %>
+  </div>
+  <div id="sc4" class="tabcontent">
+  <%= simple_form_for @product do |f| %>
+                  <%= f.input :warranty_info, :as => :text, :input_html => {:rows => 15},:label =>(t "products.warranty_info") %>
+                  <%= f.input :warranty_length, :input_html => {:size => 20}, :label =>(t "products.warranty_length") %>
+                  <%= f.input :warranty_unit, :as => :select, :collection => [(t "global.days"), (t "global.months"), (t "global.years")],:label =>(t "products.warranty_units") %>
+
+       <div class='center'>
+          <%= f.button :submit%>
+        </div>
+          <% end %>
+  </div>
+
+  </div>

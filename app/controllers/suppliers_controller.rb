@@ -54,9 +54,11 @@ class SuppliersController < ApplicationController
 
   def create
     @title = t "supplier.t_new"
-    @supplier = Supplier.new(params[:supplier])
+    @supplier = Supplier.new
     @supplier.created_by = current_user.username
     @supplier.dynamic_attributes = [:created_by,] if can? :edit, Supplier
+
+    @supplier.attributes = params[:supplier]
 
     respond_to do |format|
       if @supplier.save

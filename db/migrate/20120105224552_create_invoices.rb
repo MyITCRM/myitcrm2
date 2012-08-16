@@ -14,7 +14,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.boolean :paid_partially
       t.string :created_by
       t.string :updated_by
-      t.datetime :due_date
+      t.date :due_date
       t.datetime :paid_date
       t.timestamps
     end

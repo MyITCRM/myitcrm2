@@ -9,6 +9,7 @@ class Invoice < ActiveRecord::Base
                   :created_by, :updated_by, :due_date, :qty, :service_id, :line_comment, :sku
 
   validates_uniqueness_of :work_order_id, :allow_blank => true
+  validates_presence_of :due_date
 
   accepts_nested_attributes_for :service_invoice_lines, :reject_if => lambda { |a| a[:qty].blank? || a[:service_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :product_invoice_lines, :reject_if => lambda { |a| a[:qty].blank? || a[:product_id].blank? }, :allow_destroy => true

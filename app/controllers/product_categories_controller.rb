@@ -16,7 +16,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class ProductCategoriesController < ApplicationController
-  skip_authorization_check
 
   def index
     @product_categories = ProductCategory.order(:name).where("name like ?", "%#{params[:term]}%")

@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   has_many :product_invoice_lines
 
   attr_accessible :our_sku, :description, :model, :manufacturer, :category_name, :supplier_id,
-                  :supplier_sku, :cost_price, :sell_price, :created_by, :created_at, :product_category_id
+                  :supplier_sku, :cost_price, :sell_price, :created_by, :created_at, :product_category_id, :name, :updated_at
 
 # Validations on inputs
   validates_presence_of :supplier, :description, :cost_price, :manufacturer, :model, :sell_price, :our_sku, :supplier_sku
@@ -24,6 +24,7 @@ class Product < ActiveRecord::Base
 
   end
 
+  # Find or Create the ProductCategory for autocomplete
   def product_category_name
     product_category.try(:name)
   end
@@ -31,15 +32,8 @@ class Product < ActiveRecord::Base
   def product_category_name=(name)
     self.product_category_id = ProductCategory.find_or_create_by_name(name) if name.present?
   end
-  #def product_category_name
-  #  product_category.name if product_category
-  #end
-  #def product_category_name=(name)
-  #  self.product_category_id = ProductCategory.find_or_create_by_name(name) unless name.blank?
-  #
-  #end
 
-
+  # Product Lookup Concatenated String for Invoicing
   def product_lookup
      # mytodo - Add currency symbol if possible.....
      "[#{our_sku}] - #{description} -#{I18n.t 'number.currency.format.unit'}#{sell_price}"

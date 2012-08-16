@@ -1,76 +1,14 @@
-<div id="top_float_left">
-  <%= link_to(image_tag('exit.png', :title => [t "global.close"]), products_path) %>&nbsp;<%= link_to([t "global.close"], products_path) %>
+<div id="sidebar_left">
+  <%= module_header %>
+  <div class="module">
+    <ul>
+        <li class="exit"><%= link_to (t "global.exit"), products_path %></li>
+    </ul>
+  </div>
+  <%= render 'layouts/left_sidebar_modules' %>
 </div>
+<div id="center_col">
 
-<div id="ddtabs1" class="basictab">
-<ul>
-<li><a href="#<%= t "products.tab_menu_basic_name"  %>" rel="sc1"><%= (t "products.tab_menu_basic") %></a></li>
-<li><a href="#<%= t "products.tab_menu_inventory_name" %>" rel="sc2"><%= t "products.tab_menu_inventory_name" %></a></li>
-<li><a href="#<%= t "products.tab_menu_selling_name" %>" rel="sc3"><%= t "products.tab_menu_selling" %></a></li>
-<li><a href="#<%= t "products.tab_menu_warranty_name"  %>" rel="sc4"><%= t "products.tab_menu_warranty" %></a></li>
-</ul>
-</div>
-
-<div class="tabcontainer">
-
-<div id="sc1" class="tabcontent">
-<% simple_form_for @product do |f| %>
-                <%= f.error_notification %>
-                <%= f.input :active, :label => (t "global.active")%>
-                <%= f.input :our_sku, :input_html => {:size => 20}, :label => (t "products.our_sku") %>
-                <%= f.input :description, :hint => (t "products.hint_desc"), :label => (t "global.description") %>
-                <%= f.input :model, :label => (t "products.model") %>
-                <%= f.input :manufacturer, :label => (t "products.manufacturer") %>
-                <%= f.input :product_category_name, :url => product_category_name_product_categories_path, :as => :autocomplete, :label =>([t "products.category"]), :hint => ([t "products.hint.category"]) %>
-                <%= f.association :supplier, :label_method => :company_name, :label => (t "products.supplier") %>
-                <%= f.input :supplier_sku, :input_html => {:size => 20}, :label => (t "products.supplier_sku")%>
-                <%= f.input :cost_price, :input_html => {:size => 10}, :label => (t "products.cost_price") %>
-                <%= f.input :sell_price, :input_html => {:size => 10}, :label => (t "products.sell_price") %>
-                <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-                <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-
-       <%= f.submit  %>
-        <% end %>
-</div>
-
-<div id="sc2" class="tabcontent">
-<% simple_form_for @product do |f| %>
-                <%= f.input :stocked_product, :hint => (t "products.stocked") %>
-                <%= f.input :stocking_qty, :input_html => {:size => 20} %>
-                <%= f.input :qty_on_hand, :input_html => {:size => 20} %>
-                <%= f.input :qty_allocated, :input_html => {:size => 20} %>
-                <%= f.input :qty_available, :input_html => {:size => 20} %>
-                <%= f.input :qty_ordered, :input_html => {:size => 20} %>
-                <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-                <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-
-           <%= f.submit %>
-        <% end %>
-</div>
-
-<div id="sc3" class="tabcontent">
-<% simple_form_for @product do |f| %>
-                <%= f.input :taxable %>
-                <%= f.input :tax_rate, :hint => (t "products.hint_tax_rate") %>
-                <%= f.input :discountable %>
-                <%= f.input :disc_amount, :input_html => {:size => 5} %>
-                <%= f.input :disc_percent, :input_html => {:size => 5} %>
-                <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-                <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-
-      <%= f.submit %>
-        <% end %>
-</div>
-<div id="sc4" class="tabcontent">
-<% simple_form_for @product do |f| %>
-                <%= f.input :warranty_info, :as => :text, :input_html => {:rows => 15} %>
-                <%= f.input :warranty_length, :input_html => {:size => 20} %>
-                <%= f.input :warranty_unit, :as => :select, :collection => [(t "global.days"), (t "global.months"), (t "global.years")] %>
-                <%= f.input :edited_by, :as => :hidden, :input_html => {:value =>  current_user.username} %>
-                <%= f.input :edited_at, :as => :hidden, :input_html => {:value =>  Time.now} %>
-
-      <%= f.submit %>
-        <% end %>
-</div>
+  <%= render 'form' %>
 
 </div>

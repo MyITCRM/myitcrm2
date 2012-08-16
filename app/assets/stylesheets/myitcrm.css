@@ -4,7 +4,7 @@ body {min-width:960px;height:auto;margin:0.9px;padding:0;border:0;vertical-align
 #container {padding: 5px 20px 5px 20px;}
 #conatiner a {color: #0000FF;}
 #yield {margin: 0 auto;}
-#center_col {margin-left:18em;margin-right:18em; padding:0 15px 15px 15px;}
+#center_col {margin: 0 18em 0 18em; padding:0 15px 15px 15px;}
 .no_right_sidebar {margin-right:0 !important}
 #user_info_menu { font-size:10px; float:right;color: white;padding-top: 6px;padding-right: 13px;}
 #sidebar_left, #sidebar_right {width:17em;line-height:1.5em;height:auto;display:block;}
@@ -49,7 +49,7 @@ acronym:hover {cursor:help;}
 .paid {color:#66CC66;}
 .overdue {color:#cd0a0a;}
 .unpaid {color: #0000FF;}
-.overdue_highlight {padding: 4px 30px 4px 25px; font: bold ; background: url(exclamation.png) 8px 5px no-repeat;}
+.overdue_highlight {padding: 4px 30px 4px 25px !important; font: bold ; background: url(exclamation.png) 8px 5px no-repeat; }
 
 
 /*Pages Typo...*/
@@ -72,7 +72,7 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 .logo {text-align:right;}
 .slogan {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 22px;text-align:left;vertical-align:middle;}
 .email_icon {background:url(user_suit_black.png) 8px no-repeat;}
-.module_header {text-align:center;text-transform:uppercase;font-family:impact,fantasy;font-size:20px;padding:5px;color:#fffefe;background-color:#707070;border-radius:10px 10px 0 0;border:1px 1px 0 1px solid silver;}
+.module_header {text-align:center;text-transform:uppercase;font-family:Helvetica,fantasy;font-size:20px;padding:5px;color:#fffefe;background-color:#707070;border-radius:10px 10px 0 0;border:1px 1px 0 1px solid silver;}
 .module {background-color:#c3c2bf;border-radius:0 0 10px 10px;padding:0 5px 5px 5px;overflow:hidden;text-align:left !important;margin-bottom:15px;}
     .module h2 {background-color:#820a0a;color:#ffffff !important;text-align:center;text-transform:uppercase;}
     .module a {color:#666666;text-decoration:none;}
@@ -136,11 +136,11 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 input.title {font-size:1.5em;}
 .simple_form {margin-bottom:0;}
 .simple_form div.input, div.textarea, div.textile {font-size:100%; margin-bottom: 5px;width:100%;clear:left; display:inline-block;}
-.simple_form label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;width:auto;min-width:25%;vertical-align:top;}
+.simple_form label {float:left;text-align:right; margin: 0 10px 0 10px;display:block;min-width:25%;vertical-align:top;}
 .simple_form input[type='submit'] {text-transform:capitalize;display:inline;}
 .simple_form div.boolean {text-transform:none;}
 .simple_form button {position:relative;}
-.simple_form label.collection_radio {margin-right: 10px;vertical-align:-2px; margin-left:2px; display:table-row;text-align:left;float:none;width:0;}
+.simple_form label.collection_radio_buttons {margin-right: 10px;vertical-align:-2px; margin-left:2px; display:table-row;text-align:left;float:none;}
 .error_notification {padding: 4px 30px 4px 30px;background: url(exclamation.png) 8px 5px no-repeat #FCC;border: solid 2px #C66;}
 .simple_form .error, .hint {clear:left;display:block;margin-left:27%;padding-left:20px;font-style:italic;}
 .simple_form .error {color: #ff3333;font-size:0.9em;font-weight:bold;text-transform:capitalize;}

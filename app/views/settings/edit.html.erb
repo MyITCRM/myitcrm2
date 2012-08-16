@@ -25,14 +25,14 @@
   <div id="sc1" class="tabcontent">
     <div class="simple_form">
       <%= form_tag({:action => 'edit'}) do %>
-              <p><%= setting_text_field :business_name, :size => 40 %></p>
-              <p><%= setting_text_field :business_slogan, :size => 80 %></p>
-              <p><%= setting_text_field :business_phone, :size => 20 %></p>
-              <p><%= setting_text_field :business_toll_free, :size => 20 %></p>
-              <p><%= setting_text_field :business_fax, :size => 20 %></p>
-              <p><%= setting_text_field :business_mobile, :size => 20 %></p>
-              <p><%= setting_text_field :business_email, :size => 50 %></p>
-              <p><%= setting_text_area :business_address, :cols => 35 , :rows => 8 %></p>
+              <p><%= setting_text_field :business_name, :size => 40, :label => :business_name %></p>
+              <p><%= setting_text_field :business_slogan, :size => 80, :label => :business_slogan %></p>
+              <p><%= setting_text_field :business_phone, :size => 20, :label => :business_phone %></p>
+              <p><%= setting_text_field :business_toll_free, :size => 20,:label => :business_toll_free %></p>
+              <p><%= setting_text_field :business_fax, :size => 20, :label => :business_fax %></p>
+              <p><%= setting_text_field :business_mobile, :size => 20, :label => :business_mobile%></p>
+              <p><%= setting_text_field :business_email, :size => 50, :label => :business_email %></p>
+              <p><%= setting_text_area :business_address, :cols => 35 , :rows => 8, :label => :business_address %></p>
                <div class="center">
                   <%= submit_tag t "global.apply" %>
                </div>
@@ -44,8 +44,8 @@
   <div id="sc2" class="tabcontent">
     <div class="simple_form">
         <%= form_tag({:action => 'edit'}) do %>
-            <p><%= setting_text_field(:tax_type, :size => 10)%></p>
-            <p><%= setting_text_field(:tax_rate, :size => 10)%></p>
+            <p><%= setting_text_field(:tax_type, :size => 10, :label => :tax_type)%></p>
+            <p><%= setting_text_field(:tax_rate, :size => 10, :label => :tax_rate)%></p>
              <div class="center">
                 <%= submit_tag t "global.apply" %>
              </div>
@@ -62,8 +62,8 @@
   <div id="sc4" class="tabcontent">
      <div class="simple_form">
         <%= form_tag({:action => 'edit'}) do %>
-            <p><%= setting_select(:default_invoice_terms, [['HTTP', 'http'], ['HTTPS', 'https']]) %></p>
-            <p><%= setting_text_area(:default_invoice_note, :cols => 70 , :rows => 8) %></p>
+            <p><%= setting_select(:default_invoice_terms, [['HTTP', 'http'], ['HTTPS', 'https']], :label => :default_invoice_terms) %></p>
+            <p><%= setting_text_area(:default_invoice_note, :cols => 70 , :rows => 8, :label => :default_invoice_note) %></p>
              <div class="center">
                 <%= submit_tag t "global.apply" %>
              </div>
@@ -77,7 +77,7 @@
 <div id="sc6" class="tabcontent">
       <div class="simple_form">
         <%= form_tag({:action => 'edit'}) do %>
-            <p><%= setting_check_box(:logout_limit) %></p>
+            <p><%= setting_check_box(:logout_limit, :label => :logout_limit) %></p>
              <div class="center">
                 <%= submit_tag t "global.apply" %>
              </div>

@@ -11,8 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery
 //= require jquery-ui
 //= require jquery_ujs
 //= require products
+//= require work_orders
+//= require invoices
 //= require myitcrm

@@ -58,8 +58,10 @@ class PermissionsController < ApplicationController
   # POST /permissions
   # POST /permissions.json
   def create
-    @permission = Permission.new(params[:permission])
+    @permission = Permission.new
     @permission.dynamic_attributes = [:name, :action, :subject_class, :subject_id] if can? :manage, User
+
+    @permission.attributes = params[:permission]
 
     respond_to do |format|
       if @permission.save
