@@ -2,6 +2,8 @@ class Page < ActiveRecord::Base
   belongs_to :page_category
   belongs_to :user
 
+  attr_accessible :name, :permalink, :content, :page_category_name, :user_id
+
 
     validates_presence_of :name, :content, :permalink
     validates_uniqueness_of :name, :permalink

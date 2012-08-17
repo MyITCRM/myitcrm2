@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class PagesController < ApplicationController
-   load_and_authorize_resource
+   skip_authorize_resource
 # GET /invoices
   # GET /invoices.xml
   def index
@@ -47,7 +47,7 @@ class PagesController < ApplicationController
   # GET /invoices/new
   # GET /invoices/new.xml
   def new
-    @title = "Creating New Page for XXXXXXXX"
+    @title = "Creating New Page"
     @page = Page.new
 
     #@invoice_line = InvoiceLine
@@ -67,7 +67,14 @@ class PagesController < ApplicationController
   # POST /invoices
   # POST /invoices.xml
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new
+    if can? :manage, WorkOrder
+      @page.permalink = params[:permalink] if current_user.employee?
+
+    end
+
+    @page.attributes = params[:page]
+
 
     respond_to do |format|
       if @page.save
@@ -106,5 +113,13 @@ class PagesController < ApplicationController
       format.html { redirect_to(root_path) }
       format.xml  { head :ok }
     end
+  end
+
+  def home
+    if params[:permalink]
+          @page = Page.find_by_permalink(params[:permalink])
+        else
+          @page = Page.first
+        end
   end
 end

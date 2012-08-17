@@ -2,9 +2,11 @@
 
 <div id="center_col" class="content">
 
- <div class="center"><% unless logged_in? %> <h1><%= @title %></h1><% end %></div>
-  <div style="width: 45%; margin-left:27.5%; padding: 10px;border:#999999 solid 2px;background-color: #dff1ff;" >
-  <%= simple_form_for(UserSession.new ) do |f| %>
+ <div class="center">
+   <div class="module_header text_shadow" style="width: 365px; margin-left:27.5%;"><%= @title %></div>
+
+  <div style="width: 355px; margin-left:27.5%; padding: 10px;" class=" module_menu" >
+  <%= simple_form_for( UserSession.new ) do |f| %>
             <%= f.error_notification %>
             <%= f.input :username, :placeholder => 'Username', :input_html => {:size => 27} %>
             <%= f.input :password, :placeholder => 'Password', :input_html => {:size => 28} %>
@@ -15,5 +17,6 @@
 
  <% end %>
 
+</div>
 </div>
 </div>
