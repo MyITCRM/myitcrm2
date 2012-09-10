@@ -73,6 +73,7 @@ Permittable.create({:role_id => '1',:permission_id => '7'}, :without_protection 
 Permittable.create({:role_id => '1',:permission_id => '8'}, :without_protection => true)
 Permittable.create({:role_id => '1',:permission_id => '9'}, :without_protection => true)
 Permittable.create({:role_id => '1',:permission_id => '10'}, :without_protection => true)
+Permittable.create({:role_id => '1',:permission_id => '11'}, :without_protection => true)
 Permittable.create({:role_id => '2',:permission_id => '1'}, :without_protection => true)
 Permittable.create({:role_id => '2',:permission_id => '2'}, :without_protection => true)
 Permittable.create({:role_id => '3',:permission_id => '1'}, :without_protection => true)

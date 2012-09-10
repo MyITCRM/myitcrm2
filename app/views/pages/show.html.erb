@@ -2,7 +2,7 @@
 <div id="center_col" class="content">
   <div class="page_info">
     <div class="page_name"><%= @title = @page.name %>
-      <% if can? :manage, @page %>
+      <% if can? :manage, User %>
       <ul>
         <li><%= link_to 'Edit', edit_page_path(@page) %> </li>
         <li><%= link_to 'New', new_page_path %></li>
@@ -18,7 +18,7 @@
 
 
 
-    <%= @page.content.html_safe%>
+    <%= markdown(@page.content) %>
 
 </div>
 

@@ -3,8 +3,8 @@
   <%= module_header %>
   <div class="module">
     <ul>
-      <% if can? :read, @products %><li class="delete"><%= link_to (t "global.delete"), @product, :confirm => 'Are you sure?', :method => :delete %></li> <% end %>
-      <% if can? :edit, @products %><li class="edit"><%= link_to (t "global.edit"), edit_product_path %></li> <% end %>
+      <% if can? :read, Product %><li class="delete"><%= link_to (t "global.delete"), @product, :confirm => 'Are you sure?', :method => :delete %></li> <% end %>
+      <% if can? :edit, Product %><li class="edit"><%= link_to (t "global.edit"), edit_product_path %></li> <% end %>
       <li class="exit"><%= link_to (t "global.exit"), products_path %></li>
     </ul>
   </div>

@@ -114,51 +114,5 @@ function remove_fields(link) {
        }
 
 
-/* Used for JQuery Toggle effect to show or hide a div with the id of "effect". Class of hide make the div hidden by default */
-// EXAMPLE::
-// <input type="submit" value="Post a Reply" id="button" />
-//  <div id="effect" class="hide">
-//    <%= render :partial => 'replies/form' %>
-//  </div>
-
-              // run the currently selected effect
-function runEffect() {
-                  // get effect type from
-                  // var selectedEffect = $( "#effectTypes" ).val();
-
-                  // most effect types need no options passed by default
-                  // var options = {};
-                  // some effects have required parameters
-                 //  if ( selectedEffect === "scale" ) {
-                  //    options = { percent: 0 };
-                 //  } else if ( selectedEffect === "size" ) {
-                 //     options = { to: { width: 200, height: 60 } };
-                  //}
-
-                  // run the effect
-                  $( "#effect" ).toggle( slide );
-              }
-
-              // set effect from select menu value
-              $( "#button" ).click(function() {
-                  runEffect();
-                  return false;
-              });
-//
-//
-//function remove_fields(link) {
-//       $(link).prev("input[type=hidden]").val("1");
-//       $(link).closest("#fields").hide();
-//       }
-//
-//function add_fields(link, association, content) {
-//       var new_id = new Date().getTime();
-//       var regexp = new RegExp("new_" + association, "g");
-//       $(link).parent().before(content.replace(regexp, new_id));
-////        $(link).after(content.replace(regexp, new_id));
-//       }
-
-
-
 
 

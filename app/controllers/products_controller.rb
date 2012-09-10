@@ -28,7 +28,6 @@ class ProductsController < ApplicationController
 #    @products = Product.order(:id).page params[:page]
     @products = Product.search_products(params[:search_products], sort_column, sort_direction ).paginate :per_page => 50, :page => params[:page]
 
-    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }

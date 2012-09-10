@@ -17,7 +17,7 @@
                   <%= f.input :manufacturer, :label => (t "products.manufacturer"), :hint => (t "products.hint_manuf") %>
                 <div>
                     <%= f.label(t "products.category")%>
-                    <p><%= f.text_field :product_category_id, data: {autocomplete_source: ProductCategory.order(:name).map(&:name)} %>
+                    <p><%= f.text_field :product_category_name, data: {autocomplete_source: ProductCategory.order(:name).map(&:name)} %>
                   <span class="hint"><%= t "products.hint.category" %></span> </p>
                   </div>
               <% if params[:supplier_id].present? %>
@@ -26,13 +26,12 @@
                       <p><%= f.text_field :supplier, :value => params[:supplier_name], :disabled => true  %></p>
                   <%= f.input :supplier_id, :as => :hidden, :input_html => {:value =>  params[:supplier_id]}   %>
               </div>
-                <% else %>
-            <%= f.association :supplier, :label_method => :company_name, :label => (t "products.supplier"), :disabled => true %>
-            <% end %>
+            <% else %>
              <% if @product.supplier_id.nil? %>
                 <div>
                  <%= f.association :supplier, :label_method => :company_name, :label => (t "products.supplier") %> <%= f.label(t "supplier.t_add_new_supplier") %><%= link_to(image_tag('add.png', :title => (t "global.new")), new_supplier_path) %>
                </div>
+              <% end %>
               <% end %>
                   <%= f.input :supplier_sku, :label =>(t "products.supplier_sku"),:hint => (t "products.hint.our_sku"), :input_html => {:size => 20} %>
                   <%= f.input :cost_price, :label =>(t "products.cost_price"), :input_html => {:size => 10} %>

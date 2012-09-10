@@ -11,5 +11,6 @@
  *= require_self
  *= require jquery.ui.datepicker
  *= require jquery.ui.autocomplete
+ *= require jquery.ui.dialog
  *= require myitcrm
 */

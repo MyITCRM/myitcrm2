@@ -1,14 +1,15 @@
-<%= simple_form_for(@page) do |f| %>
-    <%= f.error_notification %>
 
-   <%= f.input :name %>
-   <%= f.input :permalink, :hint => "Don't use spaces between words. Please insert _ underscores instead" %>
-    <%= f.input :content, :input_html => {:cols => 60, :rows => 15} %>
-     <p>
-      <%= f.input :page_category_name%>
-     </p>
-    <%= content_tag :div, f.submit, :class => "center" %>
+  <%= simple_form_for(@page) do |f| %>
+      <%= f.error_notification %>
 
-    <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+     <%= f.input :name %>
+     <%= f.input :permalink, :hint => "Don't use spaces between words. Please insert _ underscores instead" %>
+      <%= f.input :content, :input_html => {:cols => 60, :rows => 15 } %>
+       <p>
+        <%= f.input :page_category_name%>
+       </p>
+      <%= content_tag :div, f.submit, :class => "center" %>
 
-    <% end %>
+      <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+      <% end %>
+

@@ -74,7 +74,7 @@ module ApplicationHelper
       onclick << (options[:focus] ? "Form.Element.focus('#{options[:focus]}'); " : "this.blur(); ")
       onclick << "return false;"
       link_to(name, "#", :onclick => onclick)
-    end
+  end
 
 
 end
