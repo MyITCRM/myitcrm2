@@ -6,6 +6,6 @@ require 'rake'
 
 MyITCRM2::Application.load_tasks
 
-Rake::Task[:default].clear
+Rake::Task[:default].clear if Rake::Task.task_defined?(:default)
 
 
