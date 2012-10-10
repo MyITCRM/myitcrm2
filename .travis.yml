@@ -9,4 +9,3 @@ env:
 
 rvm:
   - 1.9.3
-  - ruby-head
