@@ -25,13 +25,12 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-group :test do
+group [:test,:development] do
   gem "mysql2"
   gem "rake"
-end
-group :development do
   gem "sqlite3"
 end
+
 
 
 
