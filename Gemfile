@@ -11,6 +11,10 @@ gem 'will_paginate'
 gem 'jquery-rails'
 gem 'redcarpet'
 
+# Database Gem Choices
+gem "mysql2" # Comment out if using sqlite3
+# gem "sqlite3" # Comment out if using mysql2
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -25,9 +29,14 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-group [:test,:development] do
-  gem "mysql2"
+gem "rspec-rails", :group => [:test, :development]
+group :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
   gem "rake"
+end
+group :development do  
   gem "sqlite3"
 end
 
