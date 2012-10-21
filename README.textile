@@ -28,8 +28,3 @@ MyITCRM2 is a Open Source and Free Web Program written in Ruby/Rails. It's relea
 
 If you like this program, please visit our website and help support it by making a donation (any amount) to help the ongoing development of MyIT CRM.
 
-
-Regards,
-Glen Vanderhel
-
-MyIT CRM Project Leader
