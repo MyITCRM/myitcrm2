@@ -35,7 +35,7 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem "rake"
-	#gem "mysql2"
+	gem "mysql2"
 	gem "sqlite3"
 end
 group :development do  
