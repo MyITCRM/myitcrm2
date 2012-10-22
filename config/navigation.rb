@@ -3,7 +3,7 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     navigation.auto_highlight = true
-    primary.item :home, 'Home', root_path do |sub_nav|
+    primary.item :home, t("global.home"), root_path, :class => "menu_home" do |sub_nav|
       sub_nav.item :logout, 'Logout', logout_path
     end
     if logged_in?

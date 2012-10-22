@@ -12,7 +12,7 @@ gem 'jquery-rails'
 gem 'redcarpet'
 
 # Database Gem Choices
-gem "mysql2" # Comment out if using sqlite3
+# gem "mysql2" # Comment out if using sqlite3
 # gem "sqlite3" # Comment out if using mysql2
 
 # Gems used only for assets and not required
@@ -35,6 +35,8 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem "rake"
+	#gem "mysql2"
+	gem "sqlite3"
 end
 group :development do  
   gem "sqlite3"

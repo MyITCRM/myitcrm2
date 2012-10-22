@@ -30,11 +30,11 @@ end
 # Business information
  pdf.bounding_box([450,720], :width => 400, :align => :right ) do
     pdf.text t "setting_details"
-    pdf.text Setting::business_name, :size => 8
-    pdf.text Setting::business_address, :size => 8
-    pdf.text Setting::business_phone, :size => 8
+    pdf.text Setting::business_name, :size => 6
+    pdf.text Setting::business_address, :size => 6
+    pdf.text Setting::business_phone, :size => 6
     if Setting::business_email ||= nil
-      pdf.text Setting::business_email, :size => 8
+      pdf.text Setting::business_email, :size => 6
     end
   end
 # Customer information
@@ -49,7 +49,7 @@ end
   end
 
 # Lets move down the pdf xx points before next object
- pdf.move_down(15)
+ pdf.move_down(20)
 
 # Work Order details start
 

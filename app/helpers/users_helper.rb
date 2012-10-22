@@ -19,7 +19,7 @@ module UsersHelper
 
   def active_work_order_count(id = nil)
     status_id = 6
-    WorkOrder.where("user_id = ? AND status_id IS NOT ?", id, status_id)
+    @active_work_order_count = WorkOrder.where("user_id = ? AND status_id IS NOT ?", id, status_id)
 
   end
 

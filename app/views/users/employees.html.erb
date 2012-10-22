@@ -31,7 +31,6 @@
           <th><%= (t "user.active_wo") %></th>
           <th><%= t "user.username" %></th>
           <th><%= t "global.email" %></th>
-          <th><%= t "global.role" %></th>
           <th><%= t "global.phone" %></th>
           <th><%= t "global.mobile" %></th>
           <th><%= t "global.active" %></th>
@@ -39,12 +38,11 @@
         </tr>
         <% for user in @users do %>
             <tr class="<%= cycle :odd, :even %>">
-              <td><%= user.id %></td>
+              <td><%= link_to user.id, user %></td>
               <td><%= user.name %></td>
               <td align="center"><%= active_work_order_count(user.id).count %></td>
               <td><%= user.username %></td>
-              <td><%= user.email %></td>
-              <td style="text-transform:capitalize;"><%= user.role.name %></td>
+              <td><%= mail_to user.email %></td>
               <td><%= user.phone %></td>
               <td><%= user.mobile %></td>
               <td><%= user.active %></td>

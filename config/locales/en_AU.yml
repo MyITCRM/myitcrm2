@@ -168,7 +168,7 @@ en_AU:
      t_view: "Users Details"
      t_delete_user: "Delete User"
      flash_delete_user: "Successfully Deleted User"
-     number: "Account Number"
+     number: "ID"
      active: "Active?"
      list_users: "List of Users"
      edit_profile: "Edit My Details"

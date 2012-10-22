@@ -1,0 +1,83 @@
+<ul>
+  <li><%= link_to 'Home', root_url %>
+    <ul>
+        <li><%= link_to 'Logout', logout_url %></li>
+    </ul>
+  </li>
+</ul>
+<% if logged_in? %>
+    <% if can? :create, WorkOrder %>
+        <ul>
+          <li><%= link_to 'Work Orders', work_orders_path %></li>
+        </ul>
+    <% end %>
+
+<% end %>
+
+
+
+
+
+
+
+
+<!--primary.item :home, t("global.home"), root_path, :class => "menu_home" do |sub_nav|-->
+      <!--sub_nav.item :logout, 'Logout', logout_path-->
+    <!--end-->
+    <!--if logged_in?-->
+	      <!--if can? :create, WorkOrder-->
+         <!--primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|-->
+          <!--if can? :manage, WorkOrder-->
+            <!--sub_nav.item :work_orders, 'New Work Order', new_work_order_path-->
+          <!--else-->
+            <!--if can? :create, WorkOrder-->
+            <!--sub_nav.item :work_orders, 'New Work Order', new_user_work_order_path(:user_id => current_user.id)-->
+          <!--end-->
+          <!--end-->
+        <!--end-->
+        <!--end-->
+        <!--if can? :update, User-->
+            <!--if current_user.client.present?-->
+              <!--primary.item :users, 'My Account',my_account_path(:id=> current_user), :highlights_on => /\/profile/-->
+            <!--else-->
+              <!--primary.item :users, 'User Accounts',users_path, :highlights_on => /\/user accounts/ || /\/clients/ || /\/employees/ || /\/new user/ do |sub_nav|-->
+                <!--sub_nav.item :user, 'Employees', employees_path-->
+                <!--if can? :access_clients, User-->
+                <!--sub_nav.item :user, 'Clients', clients_path-->
+                <!--end-->
+                <!--if can? :new, User-->
+                <!--sub_nav.item :users, 'New User', new_user_path-->
+                <!--end-->
+             <!--end-->
+          <!--end-->
+
+        <!--end-->
+        <!--if can? :create, Supplier-->
+          <!--primary.item :suppliers, 'Suppliers', suppliers_path, :highlights_on => /\/suppliers/ do |sub_nav|-->
+            <!--sub_nav.item :suppliers, "Suppliers #{t 'global.index'}", suppliers_path-->
+            <!--sub_nav.item :suppliers, "#{t 'global.create'}", new_supplier_path-->
+          <!--end-->
+          <!--end-->
+        <!--if can? :create, Product-->
+          <!--primary.item :products, 'Products', products_path, :highlights_on => /\/products/  do |sub_nav|-->
+            <!--sub_nav.item :products, "Products #{t 'global.index'}", products_path-->
+            <!--sub_nav.item :products, "#{t 'global.create'}", new_product_path-->
+          <!--end-->
+        <!--end-->
+        <!--if can? :create, Invoice-->
+          <!--primary.item :invoices, "Invoices", invoices_path, :highlights_on => /\/invoices/-->
+        <!--end-->
+	      <!--if can? :update, Setting-->
+		      <!--primary.item :settings, 'Rates & Settings', settings_path, :highlights_on => /\/settings/ do |sub_nav|-->
+		                  <!--sub_nav.item :service_rates, 'Service Rates', service_rates_path, :highlights_on => /\/service_rates/ || /\/settings/-->
+		                  <!--sub_nav.item :settings, 'Business Settings', settings_path, :highlights_on => /\/settings/-->
+		                  <!--sub_nav.item :priority_lists, 'Priority List', priority_lists_path, :highlights_on => /\/priority_lists/ || /\/settings/-->
+		                  <!--sub_nav.item :roles, 'Roles', roles_path, :highlights_on => /\/roles/ || /\/settings/-->
+		                  <!--sub_nav.item :permissions, 'Permissions', permissions_path, :highlights_on => /\/permissions/ || /\/settings/-->
+		                <!--end-->
+	      <!--end-->
+    <!--else-->
+      <!--primary.item :register, 'Register', register_path, :highlights_on => /\/register/-->
+    <!--end-->
+  <!--end-->
+  <!--end-->

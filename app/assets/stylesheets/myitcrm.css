@@ -127,10 +127,12 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 #menu ul li:hover ul {visibility: visible;border-radius:10px;}
 #menu ul ul {position: absolute; visibility: hidden }
 #menu ul li a.selected {background:#333333;border-bottom:2px solid red}
+#menu ul li a:active {background:#333333;border-bottom:2px solid red}
 #menu li a.selected:hover{color:white;}
 #menu ul li:hover ul li a:hover {background:#333333;}
 #menu li a:hover {color:white;background-color:#333333;}
 #menu ul:hover {background:#fff;}
+#menu li .home {padding-left: 16px; background: url(menu/users.png) 8px 5px no-repeat}
 
 /*SimpleForm CSS*/
 input.title {font-size:1.5em;}
