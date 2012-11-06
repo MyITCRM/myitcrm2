@@ -29,25 +29,19 @@
           <th><%= t "user.number" %></th>
           <th><%= sortable "name", (t "user.name") %></th>
           <th><%= t "user.active_wo" %></th>
-          <th><%= t "user.username" %></th>
-          <th><%= t "global.email" %></th>
-          <th><%= t "global.role" %></th>
+          <th><%= sortable "username", (t "user.username") %></th>
+          <th><%= sortable "email", (t "global.email") %></th>
           <th><%= t "global.phone" %></th>
-          <th><%= t "global.mobile" %></th>
-          <th><%= t "global.active" %></th>
           <th align="center"><%= t "supplier.actions" %></th>
         </tr>
         <% for user in @users do %>
             <tr class="<%= cycle :odd, :even %>">
-              <td><%= user.id %></td>
+              <td><% if user.active? %><%= image_tag "tick.png", :title => (t "global.currently_active") %>&nbsp;<% end %><%= link_to user.id, user %></td>
               <td><%= user.name %></td>
               <td align="center"><%= active_work_order_count(user.id).count %></td>
               <td><%= user.username %></td>
-              <td><%= user.email %></td>
-              <td style="text-transform:capitalize;"><%= user.role.name %></td>
+              <td><%= mail_to user.email %></td>
               <td><%= user.phone %></td>
-              <td><%= user.mobile %></td>
-              <td><%= user.active %></td>
               <td>
                 <%= link_to(image_tag('view.png', :title => (t "global.view")), user) %>
                 <% if can? :update, User %>

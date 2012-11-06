@@ -1,9 +1,9 @@
 <div class="fields">
   <p>
     <div class="inline centered_text"><%= f.number_field :qty, :style => "width:50px" %></div>
-        <div class="inline w390"><%= f.collection_select :service_id, ServiceRate.where("active = ?", true).order('description'), :id, :rate_lookup, :include_blank => true %></div>
-        <div class="inline w390"><%= f.text_field :line_comment, :size => 50 %></div>
-        <div class="inline w150 centered_text"><%= link_to_remove_fields f %></div>
+        <div class="inline w430"><%= f.collection_select :service_id, ServiceRate.where("active = ?", true).order('description'), :id, :rate_lookup, :include_blank => true %></div>
+        <div class="inline"><%= f.text_field :line_comment, :size => 50 %></div>
+        <div class="inline centered_text"><%= link_to_remove_fields f %></div>
 
   </p>
     </div>

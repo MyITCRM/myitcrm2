@@ -32,9 +32,6 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-
-    #@clients = User.where('client = 1').where('active = 1').order(:name).page :page
-
     if params[:deactivate].present?
       flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
 
@@ -43,7 +40,7 @@ class UsersController < ApplicationController
       @users = User.where('client = 1').order(:name)
     end
     if can? :manage, User
-      @users = User.order(:id).paginate(:per_page => 30, :page => params[:page])
+      @users = User.search_users(params[:search_users], sort_column, sort_direction ).paginate(:per_page => 30, :page => params[:page])
     end
       respond_to do |format|
       format.html

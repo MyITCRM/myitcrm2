@@ -1,43 +1,34 @@
 <%= simple_form_for @invoice do |f| %>
-    <%= f.text_field :due_date %>
+    <%= "Invoice Due Date:" %><%= f.text_field :due_date %>
 
     <h3 align="center">Service/Labour Charges</h3>
     <div class="invoice_line_items">
       <div class="header">
         <div class="inline w70 centered_text">QTY</div>
-        <div class="inline w390 ">Service Rate</div>
-        <div class="inline w390 ">Line Comments</div>
-        <div class="inline w110 centered_text">Remove Line</div>
+        <div class="inline w430 ">Service</div>
+        <div class="inline  ">Line Comments</div>
       </div>
     </div>
     <div class="boxed">
       <%= f.fields_for :service_invoice_lines do |builder| %>
           <%= render "invoices/service_invoice_line", :f => builder %>
       <% end %>
-      <p class="w870"><%= link_to_add_fields image_tag('add.png', :height => '16', :alt => "Add New Line"), f, :service_invoice_lines %>Add New Line</p>
+      <p class="w870 centered_text"><%= link_to_add_fields image_tag('add.png', :height => '16', :alt => "Add New Line"), f, :service_invoice_lines %>New Line</p>
     </div>
-    <h3 align="center">Parts Charges</h3>
-    <table class="invoice_line_items">
-      <tbody>
-      <th>Qty</th>
-      <th>Product Charges</th>
-      <th>Line Comments</th>
-      <th>Remove</th>
-      <%= f.simple_fields_for :product_invoice_lines do |builder| %>
-          <%= render "invoices/product_invoice_line", :f => builder %>
-      <% end %>
-      <b><%= link_to_add_fields image_tag('add.png', :title => (t "invoice.add_new_line")), f, :product_invoice_lines %></b>
-      <script>
-          var parentEls = $("b").parent()
-                  .map(function () {
-                      return this.tagName;
-                  })
-                  .get().join(", ");
-          $("b").append("<strong>" + parentEls + "</strong>");
-
-      </script>
-      </tbody>
-    </table>
+    <h3 align="center">Part/Material Charges</h3>
+    <div class="invoice_line_items">
+          <div class="header">
+            <div class="inline w70 centered_text">QTY</div>
+            <div class="inline w430 ">Part/Material</div>
+            <div class="inline  ">Line Comments</div>
+          </div>
+        </div>
+        <div class="boxed">
+          <%= f.simple_fields_for :product_invoice_lines do |builder| %>
+            <%= render "invoices/product_invoice_line", :f => builder %>
+          <% end %>
+          <p class="w870 centered_text"><%= link_to_add_fields image_tag('add.png', :height => '16', :alt => "Add New Line"), f, :product_invoice_lines %>New Line</p>
+        </div>
     <HR>
 
     <%= f.input :paid %>

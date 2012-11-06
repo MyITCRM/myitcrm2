@@ -2,6 +2,7 @@ class ProductInvoiceLine < ActiveRecord::Base
   belongs_to :invoice
   belongs_to :product
 
+  attr_accessible :qty, :product_id, :line_comment
   accepts_nested_attributes_for  :product
 
 

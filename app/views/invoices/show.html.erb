@@ -92,13 +92,13 @@
           <h4 align="center">Service's</h4>
           <table class="invoice_line_items" cellspacing="1">
             <thead>
-            <th>QTY</th>
-            <th>SKU</th>
+            <th width="5%">QTY</th>
+            <th width="15%">SKU</th>
             <th width="40%">DESC</th>
-            <th width="15%">PRICE</th>
-            <th width="15%">SUB TOTAL</th>
-            <th width="15%">TAX</th>
-            <th width="15%">TOTAL</th>
+            <th width="10%">PRICE</th>
+            <th width="10%">SUB TOTAL</th>
+            <th width="10%">TAX</th>
+            <th width="10%">TOTAL</th>
             </thead>
 
             <% service_invoice_lines.each do |lines| %>
@@ -133,13 +133,15 @@
       <% if product_invoice_lines.present? %>
           <h4 align="center">Parts</h4>
           <table class="invoice_line_items" cellspacing="1">
-            <th width="5%">QTY</th>
-            <th width="15%">SKU</th>
-            <th width="40%">DESC</th>
-            <th width="15%">PRICE</th>
-            <th width="15%">SUB TOTAL</th>
-            <th width="15%">TAX</th>
-            <th width="15%">TOTAL</th>
+            <thead>
+                <th width="5%">QTY</th>
+                <th width="15%">SKU</th>
+                <th width="40%">DESC</th>
+                <th width="10%">PRICE</th>
+                <th width="10%">SUB TOTAL</th>
+                <th width="10%">TAX</th>
+                <th width="10%">TOTAL</th>
+            </thead>
             <% product_invoice_lines.each do |lines| %>
                 <tr class="<%= cycle :invoice_lines_even, :invoice_lines_odd %>">
                   <td><%= lines.qty %></td>

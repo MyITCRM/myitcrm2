@@ -116,6 +116,7 @@ en_AU:
     username: "Username"
     password: "Password"
     invoices: "Invoices"
+    currently_active: "Active"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
