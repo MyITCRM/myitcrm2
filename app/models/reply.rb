@@ -4,4 +4,6 @@ class Reply < ActiveRecord::Base
 
   attr_accessible :content, :work_order_id, :user_id
 
+	validates_presence_of :content, :work_order_id, :user_id
+
 end

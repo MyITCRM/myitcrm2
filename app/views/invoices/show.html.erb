@@ -90,7 +90,7 @@
         </div>
       <% if service_invoice_lines.present? %>
           <h4 align="center">Service's</h4>
-          <table class="invoice_line_items" cellspacing="1">
+          <table class="invoice_line_items">
             <thead>
             <th width="5%">QTY</th>
             <th width="15%">SKU</th>
@@ -119,7 +119,7 @@
       <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
         <div class="inline float_left">
           <p>SUB TOTAL:</p>
-          <p>SERVICES TAX <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+          <p>SERVICES TAX <%= Setting::tax_type %>:</p>
           <p>SERVICE TOTAL:</p>
         </div>
         <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
@@ -132,7 +132,7 @@
       <div style="clear: right"></div>
       <% if product_invoice_lines.present? %>
           <h4 align="center">Parts</h4>
-          <table class="invoice_line_items" cellspacing="1">
+          <table class="invoice_line_items" >
             <thead>
                 <th width="5%">QTY</th>
                 <th width="15%">SKU</th>
@@ -155,7 +155,6 @@
                   <td align="right"><%= number_to_currency lines.tax %> </td>
                   <td align="right"><%= number_to_currency lines.total_price %></td>
                 </tr>
-
             <% end %>
           </table>
 
@@ -163,7 +162,7 @@
         <div class="inline float_left">
           <p>SUB TOTAL:</p>
 
-          <p>PARTS TAX <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+          <p>PARTS TAX <%= Setting::tax_type %>:</p>
 
           <p>PARTS TOTAL:</p>
         </div>
@@ -186,7 +185,7 @@
         <div style="display: inline-block;" class="float_left">
           <p>INVOICE SUB TOTAL:</p>
 
-          <p>INVOICE <%= Setting::tax_type %> @ <%= number_to_percentage Setting::tax_rate %>:</p>
+          <p>INVOICE <%= Setting::tax_type %>:</p>
 
           <p>INVOICE TOTAL:</p>
         </div>

@@ -3,10 +3,10 @@ class Ability
 	def initialize(user)
     ## Here you can define custom aliases
     #alias_action(:clients, :to => :access_clients)
-    #alias_action(:index, :show, :to => :read)
+    alias_action(:index, :show, :to => :read)
     #alias_action(:employees, :to => :access_employees)
     #alias_action(:new, :register, :to => :create)
-    #alias_action(:edit_profile, :update_profile, :to => :manage_profile)
+    alias_action(:edit_profile, :update_profile, :to => :manage_profile)
     alias_action(:update, :read, :create, :destroy, :sort_column, :sort_direction, :assign, :close, :clients, :employees,  :to => :manage )
 
 

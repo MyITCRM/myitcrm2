@@ -16,11 +16,11 @@
  # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class PermissionsController < ApplicationController
-  skip_authorization_check
+  #skip_authorization_check
   # GET /permissions
   # GET /permissions.json
   def index
-    @permissions = Permission.order(:name).all
+    @permissions = Permission.order(:subject_class).all
 
     respond_to do |format|
       format.html # index.html.erb

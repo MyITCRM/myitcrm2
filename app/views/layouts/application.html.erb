@@ -3,8 +3,8 @@
 <head>
   <title><%= Setting::business_name %>-<%= @title || "" %></title>
   <meta name="keywords" content="<%= Setting::meta_tags %>"/>
+  <%= stylesheet_link_tag 'print', :media => "print"  %>
   <%= stylesheet_link_tag 'application', :media => "screen"  %>
- <!--%= stylesheet_link_tag 'print', :media => "print"  %>  -->
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
 </head>

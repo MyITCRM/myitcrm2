@@ -18,8 +18,8 @@
     <td><%= l new_wo.updated_at, :format => :medium %> by <%=h new_wo.edited_by %></td>
 
     <td class="w140" align="center">
-        <%= link_to(image_tag('view.png', :title => (t "global.view")), work_order_path(new_wo.id) )%>&nbsp;
-        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_url(new_wo.id)) %>&nbsp;
+        <%= link_to(image_tag('view.png', :title => (t "global.view")), work_order_path(new_wo.id) ) if can? :read, WorkOrder %>&nbsp;
+        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_url(new_wo.id)) if can? :edit, WorkOrder %>&nbsp;
       <% if can? :manage, WorkOrder %>
        <%= link_to(image_tag('printer.png', :title => (t "global.print")), work_order_path(new_wo.id,:format => 'pdf'))%>&nbsp;
        <%= link_to(image_tag('delete.png', :title => ( "global.delete")), work_order_path(new_wo.id), :confirm => (t 'alert.destroy'), :method => :delete ) %>&nbsp;

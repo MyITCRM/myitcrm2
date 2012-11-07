@@ -95,7 +95,7 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 .text_right{text-align:right;}
 .light_fill {background:#ceeeda}
 .links a {color:#0000ff;text-decoration:underline;font-style:italic;font-size:smaller;}
-.create, .delete, .exit, .home, .back, .edit, .print, .close, .wrench {padding: 4px 30px 4px 25px;}
+.create, .delete, .exit, .home, .back, .edit, .print, .close, .wrench, .view {padding: 4px 30px 4px 25px;}
 .create {background: url(add.png) 8px 5px no-repeat;}
 .delete {background: url(delete.png) 8px 5px no-repeat;}
 .exit {background: url(exit.png) 8px 5px no-repeat;}
@@ -105,6 +105,7 @@ h6 {font-family: Consolas, Helvetica, Arial,fantasy;font-size: 12px;}
 .print {background: url(printer.png) 8px 5px no-repeat;}
 .close {background: url(tick.png) 8px 5px no-repeat;}
 .wrench {background: url(wrench.png) 8px 5px no-repeat;}
+.view {background: url(view.png) 8px 5px no-repeat;}
 .add_comment {padding: 4px 30px 4px 30px;background: url(comment_add.png) 8px 5px no-repeat buttonface;}
 .border {background-color:silver; -moz-box-shadow:#6495ed;border-radius:10px; padding:5px;}
 .text_shadow {text-shadow: 0 1px 2px #333;}

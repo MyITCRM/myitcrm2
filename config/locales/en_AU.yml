@@ -117,6 +117,8 @@ en_AU:
     password: "Password"
     invoices: "Invoices"
     currently_active: "Active"
+    employees: "Employees"
+    transaction_log: "Transaction Log"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -592,6 +594,9 @@ en_AU:
     message: "Reply Message"
     internal: "Internal Reply"
     internal_hint: "These replies marked as 'Internal' will not been seen by the client"
+    notice:
+      successful: "Reply was added to Work Order Successfully"
+      updated: "Reply was updated successfully."
   login:
     new_user_account: "New User? Register here."
   invoice:
@@ -603,6 +608,13 @@ en_AU:
     paid: "PAID"
     overdue: "OVERDUE"
     unpaid: "UNPAID"
+    invoice_id: "Invoice #"
+    clients_name: "Clients Name"
+    wo_id: "WO #"
+    sub_total: "Sub Total"
+    tax_total: "Tax Total"
+    total: "Invoice Total"
+    note: "Invoice Note"
   invoices:
     tab_menu_open: "Unpaid Invoices"
     tab_menu_paid: "Paid Invoices"

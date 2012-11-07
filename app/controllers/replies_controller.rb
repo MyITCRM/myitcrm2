@@ -59,7 +59,7 @@ class RepliesController < ApplicationController
   # POST /replies.xml
   def create
     @reply = Reply.new
-    if can? :manage, WorkOrder
+    if can? :create, WorkOrder
       @reply.work_order_id = params[:work_order_id]
       @reply.user_id = current_user.id
       @reply.dynamic_attributes = [:private] if can? :manage, WorkOrder
@@ -67,7 +67,7 @@ class RepliesController < ApplicationController
     @reply.attributes = params[:reply]
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to( :back, :notice => 'Reply was successfully created.') }
+        format.html { redirect_to( :back, :notice => (t "reply.notice.successful")) }
         format.xml  { render :xml => @reply, :status => :created, :location => @reply }
       else
         format.html { render :action => "new" }
@@ -87,7 +87,7 @@ class RepliesController < ApplicationController
     end
     respond_to do |format|
       if @reply.update_attributes(params[:reply])
-        format.html { redirect_to( work_order_path(@reply.work_order_id), :notice => 'Reply was successfully updated.') }
+        format.html { redirect_to( work_order_path(@reply.work_order_id), :notice => (t "reply.notice.updated")) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

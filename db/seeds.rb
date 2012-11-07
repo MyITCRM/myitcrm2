@@ -52,17 +52,17 @@ Supplier.create({
 
 # Adding Some default Permissions to get you started and assigning them to the default Admin account created above.
 #
-Permission.create({:name => "Users - Manage", :action => "manage", :subject_class => "User"}, :without_protection => true)
-Permission.create({:name => "Work Orders - Manage", :action => "manage", :subject_class => "WorkOrder"}, :without_protection => true)
-Permission.create({:name => "Settings - Manage", :action => "manage", :subject_class => "Setting"}, :without_protection => true)
-Permission.create({:name => "Profiles - Manage", :action => "update", :subject_class => "User"}, :without_protection => true)
-Permission.create({:name => "Invoices - Manage", :action => "manage", :subject_class => "Invoice"}, :without_protection => true)
-Permission.create({:name => "Product Categories - Manage", :action => "manage", :subject_class => "ProductCategory"}, :without_protection => true)
-Permission.create({:name => "Products - Manage", :action => "manage", :subject_class => "Product"}, :without_protection => true)
-Permission.create({:name => "Work Order Replies - Manage", :action => "manage", :subject_class => "Reply"}, :without_protection => true)
-Permission.create({:name => "Roles - Manage", :action => "manage", :subject_class => "Role"}, :without_protection => true)
-Permission.create({:name => "Service Rates  - Manage", :action => "manage", :subject_class => "ServiceRate"}, :without_protection => true)
-Permission.create({:name => "Suppliers  - Manage", :action => "manage", :subject_class => "Supplier"}, :without_protection => true)
+Permission.create({:name => "Manage Users", :action => "manage", :subject_class => "User"}, :without_protection => true)
+Permission.create({:name => "Manage Work Orders", :action => "manage", :subject_class => "WorkOrder"}, :without_protection => true)
+Permission.create({:name => "Manage Settings", :action => "manage", :subject_class => "Setting"}, :without_protection => true)
+Permission.create({:name => "Update Own Profile", :action => "update", :subject_class => "User"}, :without_protection => true)
+Permission.create({:name => "Manage Invoices", :action => "manage", :subject_class => "Invoice"}, :without_protection => true)
+Permission.create({:name => "Manage Product Categories", :action => "manage", :subject_class => "ProductCategory"}, :without_protection => true)
+Permission.create({:name => "Manage Products", :action => "manage", :subject_class => "Product"}, :without_protection => true)
+Permission.create({:name => "Manage Replies", :action => "manage", :subject_class => "Reply"}, :without_protection => true)
+Permission.create({:name => "Manage Roles", :action => "manage", :subject_class => "Role"}, :without_protection => true)
+Permission.create({:name => "Manage Service Rates", :action => "manage", :subject_class => "ServiceRate"}, :without_protection => true)
+Permission.create({:name => "Manage Suppliers", :action => "manage", :subject_class => "Supplier"}, :without_protection => true)
 
 Permittable.create({:role_id => '1',:permission_id => '1'}, :without_protection => true)
 Permittable.create({:role_id => '1',:permission_id => '2'}, :without_protection => true)

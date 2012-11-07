@@ -3,9 +3,9 @@
 
   <div class="inputs">
     <%= f.input :name %>
-    <%= f.input :action, :collection => %W(read create show index update destroy access_clients manage_profile manage) %>
+    <%= f.input :action, :collection => %W(read create show index update destroy access_clients edit_profile manage) %>
     <%= f.input :subject_class, :collection => %W(Invoice Permission PriorityList Product ProductCategory Reply Role ServiceRate Setting Supplier User User_Session WorkOrder WorkOrders Employees Clients Profile) %>
-    <%= f.input :subject_id %>
+
   </div>
 
   <div class="center">

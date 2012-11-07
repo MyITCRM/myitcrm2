@@ -15,8 +15,42 @@
                <div class="center"><%= f.submit %></div>
   </div>
   <div id="Permissions" class="tabcontent">
+    <fieldset>
+        <legend>Invoices</legend>
+        <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Invoice") %>
+    </fieldset>
+    <fieldset>
+            <legend>Permissions</legend>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Permission") %>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Role") %>
+    </fieldset>
+    <fieldset>
+            <legend>Products</legend>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Product") %>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","ProductCatergory") %>
+        </fieldset>
+    <fieldset>
+        <legend>Users</legend>
+        <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","User") %>
+    </fieldset>
+    <fieldset>
+            <legend>Service Rates</legend>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","SerivceRate") %>
+        </fieldset>
+    <fieldset>
+            <legend>Work Orders</legend>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","WorkOrder") %>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Reply") %>
+    </fieldset>
+    <fieldset>
+            <legend>Settings</legend>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Setting") %>
+        </fieldset>
+    <fieldset>
+        <legend>Suppliers</legend>
+        <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Supplier") %>
+    </fieldset>
 
-            <%= f.association :permissions, :as => :check_boxes, :collection => Permission.all(:order => 'subject_class') %>
     <div class="clear"></div>
            <div class="center"><%= f.submit %></div>
     <% end %>

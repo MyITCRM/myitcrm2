@@ -78,6 +78,7 @@ class ProductsController < ApplicationController
   def update
     @title = t "products.t_title"
     @product = Product.find(params[:id])
+    @product.dynamic_attributes = [:taxable, :tax_rate, :discountable, :disc_amount, :disc_percent] if can? :manage, Product
 
     respond_to do |format|
       if @product.update_attributes(params[:product])

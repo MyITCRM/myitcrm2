@@ -18,11 +18,11 @@ SimpleNavigation::Configuration.run do |navigation|
           end
         end
         end
-        if can? :update, User
+        if can? :update_profile, User
             if current_user.client.present?
               primary.item :users, 'My Account',my_account_path(:id=> current_user), :highlights_on => /\/profile/
             else
-              primary.item :users, 'User Accounts',users_path, :highlights_on => /\/user accounts/ || /\/clients/ || /\/employees/ || /\/new user/ do |sub_nav|
+              primary.item :users, 'User Accounts',users_path, :highlights_on => /\/users/ || /\/clients/ || /\/employees/ || /\/new user/ do |sub_nav|
                 sub_nav.item :user, 'Employees', employees_path
                 if can? :access_clients, User
                 sub_nav.item :user, 'Clients', clients_path

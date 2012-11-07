@@ -16,11 +16,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class RolesController < ApplicationController
-  skip_authorization_check
+  #skip_authorization_check
 	#load_and_authorize_resource
   # GET /roles
   # GET /roles.json
   def index
+	  @title = "Roles"
     @roles = Role.order(:list_position).all
 
 
@@ -33,8 +34,9 @@ class RolesController < ApplicationController
   # GET /roles/1
   # GET /roles/1.json
   def show
-    #@title = Model.name
+
     @role = Role.find(params[:id])
+    @title = "Role - #{@role.name}"
 
     respond_to do |format|
       format.html # show.html.erb

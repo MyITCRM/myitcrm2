@@ -23,6 +23,7 @@
       <li class="exit"><%= link_to (t "global.exit"), work_orders_path %></li>
     </ul>
 </div>
+  <%= render 'layouts/left_sidebar_modules' %>
   </div>
 <div id="center_col" class="content">
   <div id="show_layout">
@@ -45,18 +46,19 @@
     <label><%= t "workorder.status" %>:</label><div class="field"><%= @work_order.status.name %></div>
     <div>
       <label><%= t "workorder.details" %>:</label>
-      <div class="html_area"><%= markdown(@work_order.description) %> </div>
+      <div class="html_area"><%= markdown(@work_order.description) %></div>
     </div>
      <% if not @work_order.closed %>
     <div class="centered_text">
-      <input type="submit" value="Add a Reply" id="button"  />
+      <p>
+        <input type="submit" value="Add a Message" id="button"  />
+      </p>
+
     </div>
   <div id="effect" style="display:none;">
-     <h3 align="left">Leave a Reply</h3>
      <%= render :partial => 'replies/form' %>
   </div>
   <% end %>
-    <div class="clear"></div>
   <%= will_paginate replies %>
   <% replies.each do |reply|  %>
     <div id="reply_container">
@@ -73,13 +75,13 @@
           <% if reply.updated_at > reply.created_at %><%= image_tag('comment_edit.png') %>( Edited <%= localize reply.updated_at, :format => :medium %> )<% end %>
           <%= time_ago_in_words(reply.created_at) %> ago (<%= localize reply.created_at, :format => :medium %>)
         </span>
-        <% if @work_order.closed.blank? %>
-        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_reply_path(reply.id)) %>&nbsp;
-        <%= link_to(image_tag('delete.png', :title => (t "global.delete")), work_order_reply_path(reply.id), :confirm => (t 'alert.destroy'), :method => :delete ) %>
+        <% if @work_order.closed.blank? && if can? :edit, Reply %>
+        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_reply_url(@work_order.id,reply.id) )%>&nbsp;
+        <%= link_to(image_tag('delete.png', :title => (t "global.delete")), work_order_reply_path(reply.id), :confirm => (t 'alert.destroy'), :method => :delete ) if can? :manage, Reply %>
+        <% end %>
         <% end %>
         </div>
     </div>
-    <div style="clear:both;"></div>
   </div>
     </div>
  <% end %>

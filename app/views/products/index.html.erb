@@ -52,7 +52,7 @@
     <td><%=h product.supplier.parts_leadtime_days %></td>
     <td width="60"><%= link_to(image_tag('view.png', :title => (t "global.view")), product )%>
         <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_product_path(product)) %>
-        <%= link_to(image_tag('trash.png', :title => (t "global.delete")), product, :confirm => 'Are you sure?', :method => :delete ) %>
+        <%= link_to(image_tag('delete.png', :title => (t "global.delete")), product, :confirm => 'Are you sure?', :method => :delete ) %>
     </td>
   </tr>
 <% end %>
