@@ -133,7 +133,7 @@ class WorkOrdersController < ApplicationController
     #@work_order.dynamic_attributes = [:status_id, :resolution, :assigned_to_username, :closed] if can? :manage, WorkOrder
     #invoicing_enabled = true
     if @work_order.assigned_to_id.blank?
-      redirect_to(:back)
+      redirect_to(@work_order) 
       flash[:alert] = "Work Order needs to be assigned to an employee first before closing."
       respond_to do |format|
             if @work_order.update_attributes(params[:work_order])
