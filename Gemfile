@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.11'
 gem 'simple-navigation'
 gem 'prawn'
 gem 'prawnto'
@@ -10,6 +10,7 @@ gem 'authlogic'
 gem 'will_paginate'
 gem 'jquery-rails'
 gem 'redcarpet'
+#gem 'paperclip'
 
 # Database Gem Choices
 # gem "mysql2" # Comment out if using sqlite3
