@@ -1,0 +1,31 @@
+<h1>Listing tasks</h1>
+
+<table>
+  <tr>
+    <th>Work order</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>User</th>
+    <th>Calendar</th>
+    <th>Completed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= link_to task.work_order_id, work_order_path(task.work_order_id) %></td>
+    <td><%= task.title %></td>
+    <td><%= task.description %></td>
+    <td><%= task.user_id %></td>
+    <td><%= task.calendar_id %></td>
+    <td><%= task.completed %></td>
+    <td><%= link_to 'Show', task %></td>
+    <td><%= link_to 'Edit', edit_task_path(task) %></td>
+    <td><%= link_to 'Destroy', task, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

@@ -54,9 +54,9 @@
   <div id="tab3" class="tabcontent">
     <%= f.error_notification %>
     <%= f.association :role %>
-          <%= f.input :employee, :as => :radio, :hint => (t "user.hint.employed" ),  :label => (t "user.employed")   %>
-          <%= f.input :client, :as => :radio, :hint => (t "user.hint.client" ),:label => (t "user.client")  %>
-          <%= f.input :workorder_assignability, :as => :radio, :hint => (t "user.hint.assignable" ),:label => (t "user.assignable") %>
+          <%= f.input :employee, :as => :radio_buttons, :hint => (t "user.hint.employed" ),  :label => (t "user.employed")   %>
+          <%= f.input :client, :as => :radio_buttons, :hint => (t "user.hint.client" ),:label => (t "user.client")  %>
+          <%= f.input :workorder_assignability, :as => :radio_buttons, :hint => (t "user.hint.assignable" ),:label => (t "user.assignable") %>
 
           <div class="center"><%= f.button :submit  %></div>
   </div>

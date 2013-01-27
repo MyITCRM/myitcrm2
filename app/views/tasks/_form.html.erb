@@ -1,0 +1,13 @@
+<%= simple_form_for([@work_order,@task]) do |f| %>
+    <h3 class="centered_text">Adding new task</h3>
+  <%= f.error_notification %>
+
+    <%= f.input :work_order_id, :as => :hidden %>
+    <%= f.input :title %>
+    <%= f.input :description, :input_html => { :cols => 60, :rows => 12 } %>
+    <%= f.input :completed %>
+
+  <div class="center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

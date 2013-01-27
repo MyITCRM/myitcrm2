@@ -3,11 +3,12 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :status
   belongs_to :user
   has_many :replies, :dependent => :destroy  # Destroy's the associated replies if a Work Order is deleted
+  has_many :tasks, :dependent => :destroy  # Destroy's the associated tasks if a Work Order is deleted
 
 # Validate presence of Input information when creating or editing
   validates_presence_of :subject, :description
 
-  attr_accessible :description, :subject, :priority_list_id, :edited_by, :created_by, :user_id
+  attr_accessible :description, :subject, :priority_list_id, :edited_by, :created_by, :user_id, :task_id
 
   before_update :workorder_updated, :change_assignment, :lookup_assigned_username, :change_status
 

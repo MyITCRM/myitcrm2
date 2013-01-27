@@ -1,67 +1,51 @@
-<div id="sidebar_left">
-  <%= module_header %>
-  <div class="module">
-    <ul>
-      <li class="exit"><%= link_to t("global.exit"), work_orders_path %></li>
-      <% if can? :close, WorkOrder %>
-        <li class="close"><%= link_to t("global.close"), close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put %></li>
-      <% end %>
-      <% if can? :destroy, WorkOrder %>
-        <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
-      <% end %>
-    </ul>
-  </div>
- </div>
-<div id="center_col" class="no_right_sidebar">
-  <div id="ddtabs1" class="basictab">
-  <ul>
-    <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="tab1"><%= (t "workorder.tab_menu_basic") %></a></li>
-    <% if can? :close, WorkOrder %>
-    <li><a href="#<%= t "workorder.tab_menu_resolution" %>" rel="tab2"><%= (t "workorder.tab_menu_resolution") %></a>
-      <% end %>
-    </li>
+<!--EOF WO Edit Form-->
+<div class="row-fluid">
+<div class="span10">
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#<%= t "workorder.tab_menu_basic_name" %>" data-toggle="tab"><%= (t "workorder.tab_menu_basic") %></a></li>
   </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="<%= t "workorder.tab_menu_basic_name" %>">
+      <%= simple_form_for @work_order, :html => {:class => "form-horizontal"} do |f| %>
+             <%= f.input :subject, :label => (t "workorder.subject") %>
+             <% if current_user.workorder_assignability == true then %>
+                 <%= f.association :status, :label => (t "workorder.status"), :include_blank => false %>
+                 <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+                 <%= f.input :assigned_to_username, :label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name %>
+             <% else %>
+                 <%= f.association :status, :label => (t "workorder.status"), :disabled => true, :include_blank => false %>
+                 <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+                 <%= f.input :assigned_to_username,:label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
+             <% end %>
+             <%= f.input :description, :label => (t "workorder.details"), :input_html => { :class => "input-block-level", :rows => "10"} %>
+          <% if can? :close, WorkOrder %>
+              <%= f.input :resolution, :label => (t "workorder.resolution"), :input_html => { :class => "input-block-level", :rows => "10"}  %>
+                <%= f.input :closed, :label => (t "workorder.closed"), :as => :select, :hint => (t "workorder.hint.re_open"), :include_blank => false %>
+              <% end %>
+
+             <div class="form-actions">
+               <%= f.submit nil, :class => "btn btn-primary" %>
+               <%= link_to t("global.cancel"), work_order_path, :class => "btn" %>
+             </div>
+          <% end %>
+          </div>
+  </div>
 </div>
 
-<div class="tabcontainer">
-
-  <div id="tab1" class="tabcontent">
-
-    <%= simple_form_for(@work_order) do |f| %>
-        <%= f.input :subject, :label => (t "workorder.subject") %>
-        <% if current_user.workorder_assignability == true then %>
-            <%= f.association :status, :label => (t "workorder.status"), :include_blank => false %>
-            <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-            <%= f.input :assigned_to_username, :label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name %>
-        <% else %>
-            <%= f.association :status, :label => (t "workorder.status"), :disabled => true, :include_blank => false %>
-            <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-            <%= f.input :assigned_to_username,:label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
+</div>
+<!--EOF WO Edit Form-->
+<!--SOF Sidebar-->
+<div class="span2">
+  <ul class="nav nav-list">
+    <li class="nav-header">Actions</li>
+        <li class="exit"><%= link_to t("global.exit"), work_orders_path %></li>
+        <% if can? :close, WorkOrder %>
+          <li><%= link_to t("global.close"), close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put %></li>
         <% end %>
-        <%= f.input :description, :label => (t "workorder.details"), :input_html => { :cols => 60, :rows => 12 } %>
-
-        <div class="clear"></div>
-        <div class="center"><%= f.submit %></div>
-
-  </div>
-  <% if can? :close, WorkOrder %>
-  <div id="tab2" class="tabcontent">
-        <div class="simple_form label">
-          <label><%= t "workorder.resolution" %></label>
-        </div>
-        <div class="span-670">
-          <%= f.input :resolution %>
-        </div>
-        <div class="clear"></div>
-        <div>
-        <%= f.input :closed, :as => :radio, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
-        </div>
-        <div class="clear"></div>
-        <div class="center"><%= f.submit %></div>
-        <div class="clear"></div>
-    <% end %>
-  </div>
-  <% end %>
+        <% if can? :destroy, WorkOrder %>
+          <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
+        <% end %>
+      </ul>
 </div>
 </div>
-

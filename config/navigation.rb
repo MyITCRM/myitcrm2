@@ -2,13 +2,14 @@
 # Configures your navigation
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
+    primary.dom_class = 'nav nav-pills'
     navigation.auto_highlight = true
-    primary.item :home, t("global.home"), root_path, :class => "menu_home" do |sub_nav|
+    primary.item :home, t("global.home"), root_path, :class => "dropdown" do |sub_nav|
       sub_nav.item :logout, 'Logout', logout_path
     end
     if logged_in?
 	      if can? :create, WorkOrder
-         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/  do |sub_nav|
+         primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/ , :class => "dropdown-toggle"  do |sub_nav|
           if can? :manage, WorkOrder
             sub_nav.item :work_orders, 'New Work Order', new_work_order_path
           else
@@ -105,7 +106,8 @@ SimpleNavigation::Configuration.run do |navigation|
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
     # primary.dom_id = 'menu-id'
-    # primary.dom_class = 'menu-class'
+    #primary.dom_class = 'dropdown'
+    #sub_nav.dom_class = 'dropdown'
 
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false

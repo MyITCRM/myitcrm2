@@ -5,12 +5,10 @@ class UserSessionsController < ApplicationController
   skip_authorization_check :only => [:new, :create]
 
   def new
-    @title = t "global.login"
     @user_session = UserSession.new
   end
 
   def create
-    @title = t "global.login"
     @user_session = UserSession.new(params[:user_session])
       if @user_session.save
         flash[:notice] = t("user.login_success")

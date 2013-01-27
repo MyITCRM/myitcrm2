@@ -33,6 +33,13 @@ module ApplicationHelper
      "<div class='module_header text_shadow #{css_class}'>#{title}</div>".html_safe
    end
 
+  # Menu and Action Icons helper
+  def menu_action(link_action = nil, link_name = nil, icon_class = nil)
+
+    "<a href='#{link_action}'><i class='#{icon_class}'></i> #{link_name}".html_safe
+
+  end
+
 # Used to show Employees Overview
    def employees_work_overview(status_id, employee_number = nil)
      if employee_number.present?
@@ -75,6 +82,7 @@ module ApplicationHelper
       onclick << "return false;"
       link_to(name, "#", :onclick => onclick)
   end
+
 
 
 end

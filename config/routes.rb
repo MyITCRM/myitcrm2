@@ -19,7 +19,6 @@ MyITCRM2::Application.routes.draw do
   resources :pages
   resources :statuses
   resources :priority_lists
-  #resources :replies
 
 
   resources :work_orders do
@@ -27,7 +26,7 @@ MyITCRM2::Application.routes.draw do
       put :close
       put :assign
     end
-    resources :replies, :invoices
+    resources :replies, :invoices, :tasks
   end
   resources :invoices do
      resources :product_invoice_lines, :service_invoice_lines
@@ -50,6 +49,7 @@ MyITCRM2::Application.routes.draw do
   resources :products
   resources :service_rates
   resources :replies, :only => [:show, :edit, :update]
+  resources :tasks, :only => [:index, :show, :edit, :update]
   match '/login' => 'user_sessions#new', :as => :login
   match '/logout' => 'user_sessions#destroy', :as => :logout
   match '/register' => 'users#register', :as => :register

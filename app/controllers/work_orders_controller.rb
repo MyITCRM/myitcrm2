@@ -40,10 +40,12 @@ class WorkOrdersController < ApplicationController
   end
 
   def show
-    @title = t "workorder.t_viewing_workorder_details"
+    @title = (t "workorder.t_viewing_workorder_details") + ' #' + params[:id].to_s
     @work_order = WorkOrder.find(params[:id])
     @invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
     @reply = Reply.new(:work_order_id => @work_order.id)
+    @task = Task.new(:work_order_id => @work_order.id, :user_id => current_user.id)
+    @tasks = Task.find_all_by_work_order_id(params[:id])
 
   end
 
@@ -67,8 +69,9 @@ class WorkOrdersController < ApplicationController
   end
 
   def edit
-    @title = t "workorder.t_edit"
+    @title = (t "workorder.t_edit") + ' #' + params[:id].to_s
     @work_order = WorkOrder.find(params[:id])
+    @task = Task.new(:work_order_id => @work_order.id, :user_id => current_user.id)
   end
 
   def create
@@ -93,7 +96,7 @@ class WorkOrdersController < ApplicationController
   end
 
   def update
-    @title = t "workorder.t_workorders"
+    @title = (t "workorder.t_workorders" ) + ' #' + params[:id].to_s
     @work_order = WorkOrder.find(params[:id])
     @work_order.user_id = current_user.id if current_user.client
     @work_order.edited_by = current_user.username
@@ -126,7 +129,7 @@ class WorkOrdersController < ApplicationController
   end
 
   def close
-    @title = t "workorder.t_workorders"
+    @title = (t "workorder.t_workorders" ) + ' #' + params[:id].to_s
     @work_order = WorkOrder.find(params[:id])
     #@work_order.edited_by = current_user.username
     #@work_order.closed_by = current_user.username
@@ -149,7 +152,7 @@ class WorkOrdersController < ApplicationController
   end
 
   def assign
-    @title = t "workorder.t_workorders"
+    @title = (t "workorder.t_workorders" ) + ' #' + params[:id].to_s
     @work_order = WorkOrder.find(params[:id])
 # Only change status if the status is either NEW or Assigned
     @status = @work_order.status_id = 2 if @work_order.status_id < 3
@@ -166,7 +169,7 @@ class WorkOrdersController < ApplicationController
   end
 
   def destroy
-    @title = t "workorder.t_workorders"
+    @title = (t "workorder.t_workorders" ) + ' #' + params[:id].to_s
     @work_order = WorkOrder.find(params[:id])
     @work_order.destroy
 

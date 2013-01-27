@@ -1,0 +1,21 @@
+<p>
+    <div id="index_table">
+        <table class="w670" style="margin: auto; border: 1px solid black">
+            <h3 class="centered_text">Tasks</h3>
+            <tr>
+            <th>Task Title</th>
+            <th>Task Description</th>
+            <th>Task Due Date</th>
+            <th>Task Completed</th>
+            </tr>
+        <% tasks.each do |task| %>
+            <tr>
+              <td><%= link_to task.title, task_path(task.id) %></td>
+              <td><%= task.description %></td>
+              <td><%= task.calendar_id %></td>
+              <td><%= task.completed %></td>
+            </tr>
+        <% end %>
+        </table>
+    </div>
+</p>

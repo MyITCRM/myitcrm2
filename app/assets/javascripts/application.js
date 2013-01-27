@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require textile_jquery
 //= require products
 //= require work_orders
 //= require invoices
+//= require bootstrap
+//= require bootstrap_additions
 //= require myitcrm

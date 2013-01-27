@@ -1,0 +1,44 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%=  link_to "Work Orders",  work_orders_path %></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <!--if logged_in?
+     	      if can? :create, WorkOrder
+              primary.item :work_orders, 'Work Orders', work_orders_path, :highlights_on => /\/work_orders/ , :class => "dropdown-toggle"  do |sub_nav|
+               if can? :manage, WorkOrder
+                 sub_nav.item :work_orders, 'New Work Order', new_work_order_path
+               else
+                 if can? :create, WorkOrder
+                 sub_nav.item :work_orders, 'New Work Order', new_user_work_order_path(:user_id => current_user.id)
+               end
+               end
+             end
+             end-->
+      <!--<ul class="nav nav-pills">-->
+
+         <!--<li class="dropdown-toggle" id="work_orders">-->
+           <!--<a href="/work_orders">Work Orders</a>-->
+           <!--<ul>-->
+             <!--<li id="work_orders"><a href="/work_orders/new">New Work Order</a></li>-->
+           <!--</ul>-->
+         <!--</li>-->
+         <!--<li class="selected" id="users"><a href="/users" class="selected">User Accounts</a><ul>-->
+           <!--<li class="selected simple-navigation-active-leaf" id="user"><a href="/employees" class="selected">Employees</a></li>-->
+           <!--<li id="user"><a href="/clients">Clients</a></li>-->
+           <!--<li id="users"><a href="/users/new">New User</a></li></ul></li>-->
+         <!--<li id="suppliers"><a href="/suppliers">Suppliers</a>-->
+           <!--<ul>-->
+           <!--<li id="suppliers"><a href="/suppliers">Suppliers List</a></li><li id="suppliers"><a href="/suppliers/new">Create</a></li></ul></li><li id="products"><a href="/products">Products</a><ul><li id="products"><a href="/products">Products List</a></li><li id="products"><a href="/products/new">Create</a></li></ul></li><li id="invoices"><a href="/invoices">Invoices</a></li><li id="settings"><a href="/settings">Rates & Settings</a><ul><li id="service_rates"><a href="/service_rates">Service Rates</a></li><li id="settings"><a href="/settings">Business Settings</a></li><li id="priority_lists"><a href="/priority_lists">Priority List</a></li><li id="roles"><a href="/roles">Roles</a></li><li id="permissions"><a href="/permissions">Permissions</a></li></ul></li></ul>-->
+
+      <a class="btn btn-small" href="<%= logout_url %>"><i class="icon-ban-circle"></i>Logout</a>
+    </div>
+  </div>
+  </div>

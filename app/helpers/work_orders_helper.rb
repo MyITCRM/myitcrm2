@@ -24,6 +24,10 @@ module WorkOrdersHelper
     @replies = Reply.where("work_order_id = ?","#{params[:id]}").order("id DESC").paginate(:per_page => 10, :page => params[:page])
   end
 
+  def tasks
+      @tasks = Task.where("work_order_id = ?","#{params[:id]}").order("id DESC")
+  end
+
   def reply
     @reply = Reply.new
   end

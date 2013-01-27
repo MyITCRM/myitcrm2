@@ -49,7 +49,7 @@ en_AU:
     email: "Email"
     home: "Home"
     submit: "Submit"
-    login: "Login"
+    login: "Sign in"
     logout: "Logout"
     role: "Role"
     restricted: "You don't have permission to view this section or Your session has expired."
@@ -82,7 +82,7 @@ en_AU:
     description: "Description"
     expired_session: "Your session has expired. Please log back in."
     apply: "Apply"
-    workorder: "Create Work Order"
+    workorder: "Work Orders"
     print: "Print"
     activity_log: "Activity Log"
     exit: "Exit"
@@ -619,3 +619,5 @@ en_AU:
     tab_menu_open: "Unpaid Invoices"
     tab_menu_paid: "Paid Invoices"
   ROLES: "%w[administrator manager technician accountant assistant client]"
+  navbar:
+    new_work_order: "New Work Order"

@@ -1,22 +1,19 @@
-<%= render 'layouts/left_sidebar_modules' %>
-
-<div id="center_col" class="content">
-
- <div class="center">
-   <div class="module_header text_shadow" style="width: 365px; margin-left:27.5%;"><%= @title %></div>
-
-  <div style="width: 355px; margin-left:27.5%; padding: 10px;" class=" module_menu" >
+<style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+    </style>
+<div class="form-signin">
+  <h2 class="form-signin-heading">Please sign in</h2>
   <%= simple_form_for( UserSession.new ) do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :username, :placeholder => 'Username', :input_html => {:size => 27} %>
-            <%= f.input :password, :placeholder => 'Password', :input_html => {:size => 28} %>
-            <div class="center">
-              <%= f.submit t 'global.login' %><br />
-              <%= link_to "New User? Register here.", register_path  %>
-            </div>
+              <%= f.input :username, :placeholder => 'Username' %>
+              <%= f.input :password, :placeholder => 'Password' %>
 
- <% end %>
+          <%= f.button :submit, :value => t('global.login'),:class =>"btn btn-primary" %>
 
+   <% end %>
+  <%= link_to "New User? Register here.", register_path  %>
 </div>
-</div>
-</div>
+
