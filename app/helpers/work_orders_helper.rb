@@ -32,6 +32,26 @@ module WorkOrdersHelper
     @reply = Reply.new
   end
 
+  def priority_badge(priority_list_id = nil, priority_list_name = nil)
+    if priority_list_id = "1" then
+      "<span class='label'>#{priority_list_name}</span>".html_safe
+    end
+    if priority_list_id = "2" then
+          "<span class='label label-info'>#{priority_list_name}</span>".html_safe
+    end
+    if priority_list_id = "3" then
+          "<span class='label label-warning'>#{priority_list_name}</span>".html_safe
+    end
+    if priority_list_id = "4" then
+          "<span class='label label-important'>#{priority_list_name}</span>".html_safe
+    end
+    if priority_list_id = "5" then
+          "<span class='label label-inverse'>#{priority_list_name}</span>".html_safe
+    end
+
+
+  end
+
     #@invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
 
     #@replies = Reply.where("work_order_id = ?","#{params[:id]}").order("id DESC").paginate(:per_page => 4, :page => params[:page])

@@ -36,7 +36,7 @@ module ApplicationHelper
   # Menu and Action Icons helper
   def menu_action(link_action = nil, link_name = nil, icon_class = nil)
 
-    "<a href='#{link_action}'><i class='#{icon_class}'></i> #{link_name}".html_safe
+    "<a href='#{link_action}'><i class='#{icon_class}'></i> #{link_name}</a>".html_safe
 
   end
 
