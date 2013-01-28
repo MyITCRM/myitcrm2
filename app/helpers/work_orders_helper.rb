@@ -33,21 +33,28 @@ module WorkOrdersHelper
   end
 
   def priority_badge(priority_list_id = nil, priority_list_name = nil)
-    if priority_list_id = "1" then
+	  priority_list_id = priority_list_id.to_i
+    if priority_list_id == 1 then
       "<span class='label'>#{priority_list_name}</span>".html_safe
-    end
-    if priority_list_id = "2" then
+    else
+    if priority_list_id == 2 then
           "<span class='label label-info'>#{priority_list_name}</span>".html_safe
-    end
-    if priority_list_id = "3" then
+    else
+
+    if priority_list_id == 3 then
           "<span class='label label-warning'>#{priority_list_name}</span>".html_safe
-    end
-    if priority_list_id = "4" then
+    else
+    if priority_list_id == 4 then
           "<span class='label label-important'>#{priority_list_name}</span>".html_safe
-    end
-    if priority_list_id = "5" then
+    else
+    if priority_list_id == 5 then
           "<span class='label label-inverse'>#{priority_list_name}</span>".html_safe
     end
+    end
+    end
+    end
+    end
+
 
 
   end
