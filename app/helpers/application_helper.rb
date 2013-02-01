@@ -83,7 +83,5 @@ module ApplicationHelper
       link_to(name, "#", :onclick => onclick)
   end
 
-
-
 end
 

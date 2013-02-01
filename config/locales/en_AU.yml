@@ -2,11 +2,9 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en_AU:
-  views:
-    pagination:
-      previous: "&lt; Previous"
-      next: "Next &gt;"
-      truncate: "..."
+  will_paginate:
+    previous_label: "Previous"
+    next_label: "Next"
   simple_form:
     "yes": 'Yes'
     "no": 'No'
