@@ -1,14 +1,12 @@
-<%= simple_form_for(@permission) do |f| %>
+<%= simple_form_for @permission, :html => {:class => "form-horizontal"} do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs">
     <%= f.input :name %>
     <%= f.input :action, :collection => %W(read create show index update destroy access_clients edit_profile manage) %>
     <%= f.input :subject_class, :collection => %W(Invoice Permission PriorityList Product ProductCategory Reply Role ServiceRate Setting Supplier User User_Session WorkOrder WorkOrders Employees Clients Profile) %>
-
-  </div>
-
-  <div class="center">
-    <%= f.button :submit %>
-  </div>
+ <div class="form-actions">
+                   <%= f.submit nil, :class => "btn btn-primary" %>
+                   <%= link_to t("global.cancel"), permissions_path, :class => "btn" %>
+                   <%= link_to t("global.delete"), @permission,:class => "btn btn-danger", :confirm => t("alert.destroy"), :method => :delete  %>
+                 </div>
 <% end %>

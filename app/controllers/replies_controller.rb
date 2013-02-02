@@ -103,7 +103,7 @@ class RepliesController < ApplicationController
     @reply.destroy
 
     respond_to do |format|
-      format.html { redirect_to(:back, :notice => 'Reply was successfully deleted.') }
+      format.html { redirect_to( work_order_path(@reply.work_order_id), :notice => 'Reply was successfully deleted.') }
       format.xml  { head :ok }
     end
   end

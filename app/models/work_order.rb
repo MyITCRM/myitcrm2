@@ -15,7 +15,7 @@ class WorkOrder < ActiveRecord::Base
 
 
      def workorder_updated
-      if self.closed == 1
+      if self.closed?
         self.status_id = 4
         self.closed_by = edited_by
       end
@@ -43,9 +43,9 @@ class WorkOrder < ActiveRecord::Base
       # On Update if the closed value is true then we assign it the closed status and
       # add the time as to when it was closed.
       def change_status
-        if self.closed.present?
-          self.status_id=6
-          self.closed_date=Time.now
+        if self.closed?
+          self.status_id = 6
+          self.closed_date = Time.now
         end
       end
 
@@ -58,9 +58,7 @@ class WorkOrder < ActiveRecord::Base
       else
         assigned_user = User.where(["name = ?", assigned_to_username]).first
         self.assigned_to_id = assigned_user.id
-
       end
   end
-
 end
 

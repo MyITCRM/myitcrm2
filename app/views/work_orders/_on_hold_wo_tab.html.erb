@@ -1,29 +1,32 @@
-<table width="100%" cellspacing="0">
-  <tr><!--myTODO: Translation -->
-    <th><%= t "workorder.index.t_wo" %></th>
-    <th><%= t "workorder.priority" %></th>
-    <th><%= t "global.client" %></th>
-    <th><%= t "global.subject" %></th>
-    <th><%= t "global.created_at" %></th>
-    <th><%= t "global.updated_at" %></th>
-    <th><%= t "workorder.assigned_to" %></th>
-    <th><%= t "global.actions" %></th>
-  </tr>
-
-
-<% @on_hold_work_orders.each do |on_hold| %>
-  <tr class="priority_main_<%= on_hold.priority_list.id %>">
-    <td align="center"><%= link_to(on_hold.id, on_hold) %></td>
-    <td align="center"><%= on_hold.priority_list.name %></td>
-    <td align="center"><%= link_to(on_hold.user.name, user_path(on_hold.user_id)) %></td>
-    <td><%= truncate(on_hold.subject , :length => 75) %></td>
-    <td><%= l on_hold.created_at, :format => :medium %><%= t "global.by" %><%= on_hold.created_by %></td>
-    <td><%= l on_hold.updated_at, :format => :medium %><%= t "global.by" %><%= on_hold.edited_by %></td>
-    <td><%= on_hold.assigned_to_username %></td>
-    <td width="w140" align="center"><%= link_to(image_tag('view.png', :title => (t "global.view")), work_order_path(on_hold.id) )%>&nbsp;
-        <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_url(on_hold.id)) %>&nbsp;
-        <%= link_to(image_tag('delete.png', :title => (t "global.delete")), work_order_path(on_hold.id), :confirm => (t 'alert.destroy'), :method => :delete ) %>
-    </td>
-  </tr>
-<% end %>
+<table class="table table-bordered table-hover table table-condensed">
+  <thead>
+      <tr>
+        <th><%= t "workorder.index.t_wo" %></th>
+            <th><%= t "workorder.priority" %></th>
+            <th><%= t "global.client" %></th>
+            <th><%= t "global.subject" %></th>
+            <th><%= t "workorder.assigned_to" %></th>
+            <th><%= t "global.actions" %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @on_hold_work_orders.each do |on_hold| %>
+      <tr>
+        <td><a href="<%= work_order_path(on_hold.id) %>" rel="tooltip" data-placement="right" data-original-title="
+                <%= t "global.created_at" %>:<%= l on_hold.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= on_hold.created_by %>
+                <%= t "global.updated_at" %>:<%= l on_hold.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= on_hold.edited_by %>"><%= on_hold.id %></a></td>
+            <td><%= priority_badge on_hold.priority_list.id,  on_hold.priority_list.name %></td>
+            <td><%= link_to(on_hold.user.name, user_path(on_hold.user_id)) %></td>
+            <td><%= truncate(on_hold.subject, :length => 100) %></td>
+            <td><%= on_hold.assigned_to_username %></td>
+            <td>
+              <% if can? :manage, WorkOrder %>
+              <a class="btn btn-small" href="<%= work_order_url(on_hold.id) %>"><i class="icon-search"></i><%= t("global.view") %></a>
+              <a class="btn btn-small" href="<%= edit_work_order_url(on_hold.id) %>"><i class="icon-pencil"></i><%= t("global.edit") %></a>
+              <a class="btn btn-small" href="<%= work_order_path(on_hold.id,:format => 'pdf') %>"><i class="icon-print"></i><%= t("global.print") %></a>
+              <% end %>
+            </td>
+      </tr>
+    <% end %>
+    </tbody>
 </table>

@@ -32,15 +32,11 @@
   </div>
   </div>
 
-<div class="span2 well">
-  <ul class="nav nav-pills nav-stacked">
-    <li class="nav-header">Actions</li>
+<div class="span2">
     <% if current_user.client? %>
-        <li><%= menu_action new_user_work_order_path(:user_id => current_user.id), t("workorder.t_add_new"), "icon-pencil"  %></li>
-        <% else %>
-        <li><%= menu_action clients_path, "Create", "icon-pencil" %></li>
+        <%= menu_button t("workorder.t_add_new"), new_user_work_order_path(:user_id => current_user.id),  "icon-pencil icon-white"  %>
+    <% else %>
+        <%= menu_button t("global.create"), clients_path, "icon-pencil icon-white" %>
     <% end %>
-    <li><%= menu_action work_orders_path, (t "global.exit"), "icon-arrow-left" %></li>
-  </ul>
   </div>
 </div>

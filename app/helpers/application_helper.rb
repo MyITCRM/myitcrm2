@@ -34,9 +34,12 @@ module ApplicationHelper
    end
 
   # Menu and Action Icons helper
-  def menu_action(link_action = nil, link_name = nil, icon_class = nil)
+  def menu_button( link_name = nil, link_action = nil, icon_class = nil, button_class = nil)
+    if button_class == nil
+      button_class = "btn btn-large btn-inverse btn-block"
+    end
 
-    "<a href='#{link_action}'><i class='#{icon_class}'></i> #{link_name}</a>".html_safe
+    "<p><a href='#{link_action}' class='#{button_class}'><i class='#{icon_class}'></i> #{link_name}</a></p>".html_safe
 
   end
 

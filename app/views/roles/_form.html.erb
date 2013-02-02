@@ -27,7 +27,7 @@
     <fieldset>
             <legend>Products</legend>
             <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Product") %>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","ProductCatergory") %>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","ProductCategory") %>
         </fieldset>
     <fieldset>
         <legend>Users</legend>
@@ -35,7 +35,7 @@
     </fieldset>
     <fieldset>
             <legend>Service Rates</legend>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","SerivceRate") %>
+            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","ServiceRate") %>
         </fieldset>
     <fieldset>
             <legend>Work Orders</legend>

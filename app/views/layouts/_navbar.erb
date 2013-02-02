@@ -22,7 +22,7 @@
                     </li>
         </li>
         <% end %>
-        <% if can? :create, Invoice %>
+        <% if can? :view, Invoice %>
             <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                           <%= t("global.invoices") %>
@@ -33,18 +33,18 @@
                         </ul>
                       </li>
         <% end %>
-        <% if can? :update, Setting %>
+        <% if can? :view, Setting %>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <%= t("settings.t_title") %>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Business Settings", settings_path %></li>
-              <li><%= link_to "Service Rates", service_rates_path %></li>
-              <li><%= link_to "Priority List", priority_lists_path %></li>
-              <li><%= link_to "Permissions", permissions_path %></li>
-              <li><%= link_to "Roles", roles_path %></li>
+              <li><%= link_to "Business Settings", settings_path if can? :view, Setting %></li>
+              <li><%= link_to "Service Rates", service_rates_path if can? :view, ServiceRate %></li>
+              <li><%= link_to "Priority List", priority_lists_path if can? :view, PriorityList %></li>
+              <li><%= link_to "Permissions", permissions_path if can? :view, Permission %></li>
+              <li><%= link_to "Roles", roles_path if can? :view, Role %></li>
             </ul>
           </li>
          <% end %>
@@ -78,7 +78,7 @@
            <!--<ul>-->
            <!--<li id="suppliers"><a href="/suppliers">Suppliers List</a></li><li id="suppliers"><a href="/suppliers/new">Create</a></li></ul></li><li id="products"><a href="/products">Products</a><ul><li id="products"><a href="/products">Products List</a></li><li id="products"><a href="/products/new">Create</a></li></ul></li><li id="invoices"><a href="/invoices">Invoices</a></li><li id="settings"><a href="/settings">Rates & Settings</a><ul><li id="service_rates"><a href="/service_rates">Service Rates</a></li><li id="settings"><a href="/settings">Business Settings</a></li><li id="priority_lists"><a href="/priority_lists">Priority List</a></li><li id="roles"><a href="/roles">Roles</a></li><li id="permissions"><a href="/permissions">Permissions</a></li></ul></li></ul>-->
 
-      <a class="btn btn-small" href="<%= logout_url %>"><i class="icon-ban-circle"></i>Logout</a>
+      <a class="btn btn-small pull-right" href="<%= logout_url %>"><i class="icon-off"></i> <%= t("global.logout") %></a>
     </div>
   </div>
   </div>

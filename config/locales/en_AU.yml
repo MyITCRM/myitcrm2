@@ -117,6 +117,13 @@ en_AU:
     currently_active: "Active"
     employees: "Employees"
     transaction_log: "Transaction Log"
+    edited: "Edited"
+    and: "and"
+    closed: "Closed details"
+    permission: "Permission"
+    editing: "Editing"
+    wrote: "wrote"
+    additional: "Additional"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -531,7 +538,7 @@ en_AU:
     t_log: "Work Order Log"
     t_viewing_workorder_details: "Viewing Work Order Details"
     t_edit: "Editing Work Order"
-    closed: "Re-Open Work Order ?"
+    closed: "Is Work Order closed?"
     hint:
       re_open: "Use this to re-open the Works Order"
     message_close_confirmation: "Are you sure you want to close this Work Order?"
@@ -552,6 +559,8 @@ en_AU:
       t_wo: "WO #"
     tab_menu_re_opened: "Re-Opened"
     reply_posted_by: "Posted by"
+    message_author: "Author"
+    messages: "Messages"
   setting_business_name: "Business Names"
   business_slogan: "Business Slogan"
   business_number: "Business Number"
@@ -589,7 +598,7 @@ en_AU:
   alert:
     destroy: "Are you sure you want to Delete this record?"
   reply:
-    message: "Reply Message"
+    message: "Message"
     internal: "Internal Reply"
     internal_hint: "These replies marked as 'Internal' will not been seen by the client"
     notice:
@@ -619,3 +628,6 @@ en_AU:
   ROLES: "%w[administrator manager technician accountant assistant client]"
   navbar:
     new_work_order: "New Work Order"
+  permission:
+    module_class: "Module/Class"
+    action_type: "Action Type"

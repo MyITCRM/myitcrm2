@@ -30,9 +30,9 @@
       var $b = $.textileEditor.buttons
       
       // only the buttons you want (note: you'll need icons to match)
-      $b.push(new $.textileEditor.Button('te_strong', 'icon-bold', '**', '**', 'Bold'))
-      $b.push(new $.textileEditor.Button('te_emphasis', 'icon-italic', '_', '_', 'Italicize'))
-      $b.push(new $.textileEditor.Button('te_underline', 'icon-text-width', '+', '+', 'Underline'))
+      $b.push(new $.textileEditor.Button('te_strong', 'icon-bold', '__', '__', 'Bold'))
+      $b.push(new $.textileEditor.Button('te_emphasis', 'icon-italic', '*', '*', 'Italicize'))
+//      $b.push(new $.textileEditor.Button('te_underline', 'icon-text-width', '+', '+', 'Underline'))
 //      $b.push(new $.textileEditor.Button('te_strike', 'strikethrough.png', '`', '`', 'Strikethrough'))
       $b.push(new $.textileEditor.Button('te_ol', 'icon-list', '1. ', '\n', 'Numbered List'))
       $b.push(new $.textileEditor.Button('te_ul', 'icon-list', '* ', '\n', 'Bulleted List'))
@@ -77,7 +77,7 @@
     
     if (text.match(/\s$/)) addSpaceToEnd = true
     
-//    if (text === undefined || text == '' || text.length == 0) return ''
+    if (text === undefined || text == '' || text.length == 0) return ''
     
     var startTag = $(button).attr('start'), endTag = $(button).attr('end'), escape = '',
       list = startTag.match(/^(#|\*)/g) && (endTag.match(/\n$/) || endTag.length == 0)

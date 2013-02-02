@@ -11,11 +11,11 @@
     <tbody>
     <% @new_work_orders.each do |new_wo| %>
       <tr>
-        <td style="text-align: left!important;"><a href="<%= work_order_path(new_wo.id) %>" rel="tooltip" data-placement="right" data-original-title="
+        <td><a href="<%= work_order_path(new_wo.id) %>" rel="tooltip" data-placement="right" data-original-title="
                 [<%= t "global.created_at" %>:<%= l new_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= new_wo.created_by %>]&nbsp;&nbsp;&nbsp;
                 [<%= t "global.updated_at" %>:<%= l new_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= new_wo.edited_by %>]"><%= new_wo.id %></a></td>
             <td><%= priority_badge new_wo.priority_list.id,  new_wo.priority_list.name %></td>
-            <td align="center"><%= link_to(new_wo.user.name, user_path(new_wo.user.id) )%></td>
+            <td><%= link_to(new_wo.user.name, user_path(new_wo.user.id) )%></td>
             <td><%= truncate(new_wo.subject, :length => 100 ) %></td>
             <td>
               <% if can? :manage, WorkOrder %>

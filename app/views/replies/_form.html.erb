@@ -1,7 +1,6 @@
 <%= simple_form_for [@work_order,@reply], :html => {:class => "form-horizontal"} do |f| %>
     <%= f.input :content,:label => (t 'reply.message'), :input_html => { :class => "input-block-level", :rows => "10"}  %>
-    <%= f.input :private, :label => (t 'reply.internal'), :hint => (t 'reply.internal_hint') if current_user.employee? %>
-    <%= f.input :work_order_id, :as => :hidden %>
+     <%= f.input :work_order_id, :as => :hidden %>
     <div class="form-actions">
       <%= f.submit nil, :class => "btn btn-primary" %>
       <%= link_to t("global.cancel"), work_order_path, :class => "btn" %>

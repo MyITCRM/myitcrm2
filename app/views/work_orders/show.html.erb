@@ -5,72 +5,44 @@
       <div class="controls">
         <span class="span6 uneditable-input"><%= @work_order.subject %></span>
       </div>
-    </div>
+      </div>
     <% if @work_order.closed? %>
-        <label class="control-label"><%= t "workorder.assigned_to" %>:</label>
+        <label class="control-label"><%= t "workorder.assigned_to" %></label>
         <div class="controls">
           <span class="input-xlarge uneditable-input"><%= @work_order.assigned_to_username %></span>
         </div>
     <% else %>
-        <% if current_user.workorder_assignability? %>
-            <label class="control-label"><%= t "workorder.assigned_to" %>:</label>
+        <label class="control-label"><%= t "workorder.assigned_to" %></label>
             <div class="controls">
-              <%= render :partial => "assign" %>
+                <% if current_user.workorder_assignability? %>
+                    <%= render :partial => "assign" %>
+                <% else %>
+                  <span class="input-xlarge uneditable-input">
+                    <% if @work_order.assigned_to_username.empty? %>
+                        <%= t("workorder.not_assigned_message") %>
+                    <% else %>
+                     <%= @work_order.assigned_to_username %>
+                    <% end %>
+                    </span></div>
+                <% end %>
             </div>
-        <% else %>
-            <% if @work_order.assigned_to_username.blank? %>
-                <label class="control-label"><%= t "workorder.assigned_to" %>:</label>
-                <div class="controls">
-                  <span class="input-xlarge uneditable-input"><%= t("workorder.not_assigned_message") %></span></div>
-            <% else %>
-                <label class="control-label"><%= t "workorder.assigned_to" %>:</label>
-                <div class="controls">
-                  <span class="input-xlarge uneditable-input"><%= @work_order.assigned_to_username %></span></div>
-            <% end %>
-        <% end %>
     <% end %>
     <div class="control-group">
       <label class="control-label"><%= t "workorder.priority" %>/<%= t "workorder.status" %>:</label>
       <div class="controls">
-        <%= priority_badge @work_order.priority_list.id, @work_order.priority_list.name %>
-        <span class="span2"> <%= @work_order.status.name %></span>
+        <%= priority_badge @work_order.priority_list.id, @work_order.priority_list.name %> <%= t("global.and") %> <%= @work_order.status.name %>
       </div>
     </div>
     <div class="control-group">
       <label class="control-label"><%= t "workorder.details" %>:</label>
-      <div class="controls">
-        <span class="uneditable-textarea"><%= markdown(@work_order.description) %></span>
+      <div class="controls" style="border: 2px #f5f5f5 solid;padding: 3px;">
+        <%= markdown(@work_order.description) %>
       </div>
     </div>
-      <!-- BOF Add new message button and partial-->
-      <% if @work_order.closed == false %>
-          <div class="span10">
-            <div class="span12 offset2">
-            <a href="#addTasks" role="button" class="btn" data-toggle="modal">New Task</a>
-            <!-- Modal -->
-            <div id="addTasks" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Adding a Task</h3>
-              </div>
-              <div class="modal-body">
-                <%= render :partial => 'tasks/form' %>
-              </div>
-            </div>
-            </div>
-          <h3>Tasks</h3>
-            <input type="submit" value="Add Task" id="button_task"/>
-          <div id="effect_task" style="display:none;">
-            <%= render :partial => 'tasks/form' %>
-          </div>
-          </div>
-      <% end %>
-      <!-- EOF Add new message button and partial-->
-      <div class="span10">
-
-              <div class="span12 offset2">
-                <div class="pull-left"> <a href="#messages" role="button" class="btn" data-toggle="modal">New Message</a></div>
-                <div class="pull-right pagination-small"><%= will_paginate replies %></div>
+        <div class="control-group">
+              <label class="control-label">Messages</label>
+              <div class="controls">
+                  <div><p><a href="#messages" role="button" class="btn" data-toggle="modal"><i class="icon-comment"></i> Add Message</a><%= will_paginate replies %></p></div>
 
                 <!-- Modal -->
                 <div id="messages" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -82,45 +54,38 @@
                     <%= render :partial => 'replies/form' %>
                   </div>
                   </div>
-                <table class="table table-bordered table-striped">
-                  <thead>
-                    <tr><!--mytodo add translations-->
-                      <th>Messages</th>
-                    </tr>
-                    <tr>
-                      <th>Author</th>
-                      <th>Message</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <ul class="media-list">
+                  <hr/>
                   <% replies.each do |reply| %>
-                  <tr>
-                    <td>
-                      <p><%= image_tag "blank_avatar.png", :size => "32x32" %></p>
-                      <small><%= reply.user.name %></small>
-                    </td>
-                    <td>
-                      <%= markdown(reply.content) %>
-                      <span style="font-size:10px">
-                        <% if reply.updated_at > reply.created_at %><%= image_tag('comment_edit.png') %>
-                            ( Edited <%= localize reply.updated_at, :format => :medium %> )<% end %>
-                        <%= time_ago_in_words(reply.created_at) %> ago (<%= localize reply.created_at, :format => :medium %>
-                        )
-                       </span>
-                      <% if @work_order.closed.blank? && if can? :edit, Reply %>
-                          <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_work_order_reply_url(@work_order.id, reply.id)) if can? :edit, Reply %>
-                          <%= link_to(image_tag('delete.png', :title => (t "global.delete")), work_order_reply_url(@work_order.id, reply.id), :confirm => (t 'alert.destroy'), :method => :delete) if can? :manage, Reply %>
-                       <% end %>
-                            </div>
-                          </div>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <% end %>
-                  </tbody>
-                </table>
+                  <li class="media">
+                    <div class="pull-right muted"><small>#<%= reply.id %></small></div>
+                    <a class="pull-left" href="#">
+                      <%= image_tag "blank_avatar.png", :size => "32x32" %>
+                    </a>
+                    <div class="media-body">
+                      <h6 class="media-heading"><%= reply.user.name %> <%= t("global.wrote") %>:</h6>
+                      <div class="media text-info">
+                        <%= markdown(reply.content) %>
+                        <span class="muted" style="font-size: 10px;">
+                          <small>
+                                                <% if reply.updated_at > reply.created_at %> <i class="icon-edit"></i>
+                                                    ( <%= t("global.edited") %> <%= localize reply.updated_at, :format => :medium %> )<% end %>
+                                                <%= time_ago_in_words(reply.created_at) %> <%= t("global.ago") %> (<%= localize reply.created_at, :format => :medium %>
+                                                )</small>
+                                               </span>
+                                              <% if @work_order.closed.blank? && if can? :edit, Reply %>
+                                                  <%= link_to t("global.edit"), edit_work_order_reply_url(@work_order.id, reply.id), :class => "btn btn-info btn-mini" if can? :edit, Reply %>
+                                                  <%= link_to t("global.delete"), work_order_reply_url(@work_order.id, reply.id), :confirm => t('alert.destroy'), :method => :delete, :class => "btn btn-danger btn-mini" if can? :manage, Reply %>                       <% end %>
+                                              <% end %>
+                     </div>
+                    </div>
+                  </li>
+                      <hr>
+                <% end %>
+                </ul>
+
               </div>
-            </div>
+      </div>
       </div>
       <div class="span10 small">
         <fieldset style="text-align:center;">
@@ -142,23 +107,21 @@
       </div>
       </div>
 
-      <div class="span2 well">
-        <ul class="nav nav-list">
-          <li class="nav-header">Actions</li>
+      <div class="span2">
           <% if @work_order.closed.blank? and can? :edit, WorkOrder %>
-              <li><%= menu_action edit_work_order_path, t("global.edit"), "icon-pencil" %> </li>
+              <%= menu_button t("global.edit"), edit_work_order_path,  "icon-pencil icon-white" %>
           <% end %>
           <% if can? :destroy, WorkOrder %>
-              <li><%= menu_action work_order_path(@work_order.id, :format => 'pdf'), t("global.print"), "icon-print" %>
-                <% if @work_order.closed? %>
+              <%= menu_button t("global.print"), work_order_path(@work_order.id, :format => 'pdf'),  "icon-print icon-white" %>
+                <% if @work_order.closed %>
+                <%= menu_button t("global.edit"), edit_work_order_path,  "icon-pencil icon-white" if can? :manage, WorkOrder%>
                     <% if @invoiced %>
-                      <li><%= menu_action invoice_path(@invoiced.id), (t "invoice.show"), "icon-list-alt" %></li>
-                  <% else %>
-                      <li><%= menu_action new_work_order_invoice_path(:work_order_id => @work_order.id), (t "invoice.create"), "icon-list-alt" %></li>
-                  <% end %>
-              <% else %>
+                      <%= menu_button t("invoice.show"), invoice_path(@invoiced.id),  "icon-list-alt icon-white" %>
+                        <% else %>
+                      <%= menu_button t("invoice.create"), new_work_order_invoice_path(:work_order_id => @work_order.id),  "icon-list-alt icon-white" %>
+                    <% end %>
+                <% else %>
               <% end %>
           <% end %>
-          <li><%= menu_action work_orders_path, (t "global.exit"), "icon-arrow-left" %></li>
-        </ul>
+          <%= menu_button t("global.exit"), work_orders_path, "icon-arrow-left icon-white" %>
       </div>

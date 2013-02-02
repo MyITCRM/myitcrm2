@@ -21,7 +21,7 @@
              <%= f.input :description, :label => (t "workorder.details"), :input_html => { :class => "input-block-level", :rows => "10"} %>
           <% if can? :close, WorkOrder %>
               <%= f.input :resolution, :label => (t "workorder.resolution"), :input_html => { :class => "input-block-level", :rows => "10"}  %>
-                <%= f.input :closed, :label => (t "workorder.closed"), :as => :select, :hint => (t "workorder.hint.re_open"), :include_blank => false %>
+                <%= f.input :closed, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open")%>
               <% end %>
 
              <div class="form-actions">
@@ -37,15 +37,8 @@
 <!--EOF WO Edit Form-->
 <!--SOF Sidebar-->
 <div class="span2">
-  <ul class="nav nav-list">
-    <li class="nav-header">Actions</li>
-        <li class="exit"><%= link_to t("global.exit"), work_orders_path %></li>
-        <% if can? :close, WorkOrder %>
-          <li><%= link_to t("global.close"), close_path, :confirm => (t "workorder.message_close_confirmation"), :method => :put %></li>
-        <% end %>
-        <% if can? :destroy, WorkOrder %>
-          <li class="delete"><%= link_to (t "global.delete"), work_order_path, :confirm => 'Are you sure?', :method => :delete %> </li>
-        <% end %>
-      </ul>
+  <p><%= link_to t("global.close"), close_path, :class => "btn btn-success btn-large btn-block", :confirm => (t "workorder.message_close_confirmation"), :method => :put  %></p>
+  <p><%= link_to (t "global.delete"), work_order_path, :class => "btn btn-danger btn-large btn-block" , :confirm => t("alert.destroy"), :method => :delete %></p>
+  <%= menu_button t("global.exit"), work_orders_path, " icon-arrow-left icon-white" %>
 </div>
 </div>

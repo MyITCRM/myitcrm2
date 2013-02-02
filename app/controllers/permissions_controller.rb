@@ -20,6 +20,7 @@ class PermissionsController < ApplicationController
   # GET /permissions
   # GET /permissions.json
   def index
+    @title = t("role.tab.permissions")
     @permissions = Permission.order(:subject_class).all
 
     respond_to do |format|
@@ -52,6 +53,7 @@ class PermissionsController < ApplicationController
 
   # GET /permissions/1/edit
   def edit
+    @title = t("global.editing")+ "-" + t("global.permission")
     @permission = Permission.find(params[:id])
   end
 

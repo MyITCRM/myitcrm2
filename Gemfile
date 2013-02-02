@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'simple-navigation'
+#gem 'simple-navigation'  Replaced with Bootsrapp navbar
 gem 'prawn'
 gem 'prawnto'
 gem "cancan"
