@@ -30,33 +30,34 @@
       var $b = $.textileEditor.buttons
       
       // only the buttons you want (note: you'll need icons to match)
-      $b.push(new $.textileEditor.Button('te_strong', 'icon-bold', '__', '__', 'Bold'))
-      $b.push(new $.textileEditor.Button('te_emphasis', 'icon-italic', '*', '*', 'Italicize'))
-//      $b.push(new $.textileEditor.Button('te_underline', 'icon-text-width', '+', '+', 'Underline'))
+      $b.push(new $.textileEditor.Button('te_strong', 'bold.png', '**','**', 'Bold'))
+      $b.push(new $.textileEditor.Button('te_emphasis', 'italic.png', '_', '_', 'Italicize'))
+      $b.push(new $.textileEditor.Button('te_block', 'text_indent.png', '> ', '\n', 'Blockquote'))
 //      $b.push(new $.textileEditor.Button('te_strike', 'strikethrough.png', '`', '`', 'Strikethrough'))
-      $b.push(new $.textileEditor.Button('te_ol', 'icon-list', '1. ', '\n', 'Numbered List'))
-      $b.push(new $.textileEditor.Button('te_ul', 'icon-list', '* ', '\n', 'Bulleted List'))
-      /*$b.push(new $.textileEditor.Button('te_h1', 'h1.png', '# ', '\n', 'Header 1'))
-      $b.push(new $.textileEditor.Button('te_h2', 'h2.png', '## ', '\n', 'Header 2'))
-      $b.push(new $.textileEditor.Button('te_h3', 'h3.png', '### ', '\n', 'Header 3'))
-      $b.push(new $.textileEditor.Button('te_h4', 'h4.png', '#### ', '\n', 'Header 4'))
-      $b.push(new $.textileEditor.Button('te_h5', 'h5.png', '##### ', '\n', 'Header 5'))
-      $b.push(new $.textileEditor.Button('te_h6', 'h6.png', '###### ', '\n', 'Header 6'))*/
-//      $b.push(new $.textileEditor.Button('te_p', 'paragraph.png', 'p. ', '\n', 'Paragraph'))
-      $b.push(new $.textileEditor.Button('te_block', ' icon-indent-left', '> ', '\n', 'Blockquote'))
+      $b.push(new $.textileEditor.Button('te_ol', 'list-numeric.png', '1. ', ' ', 'Numbered List'))
+      $b.push(new $.textileEditor.Button('te_ul', 'list-bullet.png', '* ', ' ', 'Bulleted List'))
+      $b.push(new $.textileEditor.Button('te_h1', 'h1.png', '# ', ' ', 'Header 1'))
+      $b.push(new $.textileEditor.Button('te_h2', 'h2.png', '## ', ' ', 'Header 2'))
+      $b.push(new $.textileEditor.Button('te_h3', 'h3.png', '### ', ' ', 'Header 3'))
+      $b.push(new $.textileEditor.Button('te_h4', 'h4.png', '#### ', ' ', 'Header 4'))
+      $b.push(new $.textileEditor.Button('te_h5', 'h5.png', '##### ', ' ', 'Header 5'))
+      $b.push(new $.textileEditor.Button('te_h6', 'h6.png', '###### ', ' ', 'Header 6'))
+      $b.push(new $.textileEditor.Button('te_p', 'link.png', '[', '](http://example.com/) ', 'Link'))
+      $b.push(new $.textileEditor.Button('te_underline', 'code.png', '`', '`', 'Code'))
+
     },
     
     draw: function() {
       var buttons = $.map($.textileEditor.buttons, function(button) {
-//        var img  = '<img src="/assets/toolbar/' + button.img + '" />',
-        var img  = '<i class="' + button.img + '" />',
+        var img  = '<img src="/assets/' + button.img + '" />',
+//        var img  = '<i class="' + button.img + '"></i>',
             link = '<a href="#" title="' + button.title + '" start="' + button.start + '" end="' + button.end + '">' + img + '</a>',
-            span = '<span id="' + button.id + '" class="btn">' + link + '</span>'
+            span = '<span id="' + button.id + '" class="btn btn-mini">' + link + '</span>'
             
         return [span]
       }).join($.textileEditor.settings.buttonSeparator)
       
-      var toolbar = $('<div class="btn-toolbar btn-group" />').append(buttons)
+      var toolbar = $('<div class=" btn-group btn-toolbar" />').append(buttons)
       
       return $.textileEditor.self.before(toolbar)
     },
@@ -77,39 +78,40 @@
     
     if (text.match(/\s$/)) addSpaceToEnd = true
     
-    if (text === undefined || text == '' || text.length == 0) return ''
-    
+//    if (text === undefined || text == '') return ''
+//    if (text === undefined || text == '' || text.length == 0) return ''
+
     var startTag = $(button).attr('start'), endTag = $(button).attr('end'), escape = '',
       list = startTag.match(/^(#|\*)/g) && (endTag.match(/\n$/) || endTag.length == 0)
     
-    if (startTag.match(/\*|\+/)) escape = '\\'
-    
+      if (startTag.match(/\*|\+|\[|\__/)) escape = '\\'
+
     var re_start = new RegExp('^' + escape + startTag), re_end = new RegExp(escape + endTag + '$')
     
     // remove tags if they exist
-    if (list && text.match(re_start)) {
-      return $.map(text.split('\n'), function(line) {
-        return [line.replace(startTag, '')]
-      }).join('\n')
-    } else if (text.match(re_start)) {
-      return text.replace(re_start, '').replace(re_end, '')
-    }
-    
+//    if (list && text.match(re_start)) {
+//      return $.map(text.split('\n'), function(line) {
+//        return [line.replace(startTag, '')]
+//      }).join('\n')
+//    } else if (text.match(re_start)) {
+//      return text.replace(re_start, '').replace(re_end, '')
+//    }
+//
     if (list) {
       // multi-line elements: ul, ol
       return $.map(text.split('\n'), function(line) {
         return [startTag + line]
       }).join('\n')
     }
-    
+
     if (addSpaceToEnd) {
-      text = text.replace(/\s$/, '')
-      endTag = endTag + ' '
-    }
-    
+          text = text.replace(/\s$/, '')
+          endTag = endTag + ' '
+        }
+
     return (startTag + text + endTag)
   }
-  
+//
   $.textileEditor.reconstruct = function(processed) {
     var $ta = $.textileEditor.textarea
         

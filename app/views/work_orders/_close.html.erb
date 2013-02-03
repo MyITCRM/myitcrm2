@@ -1,0 +1,8 @@
+<%= simple_form_for @work_order, :html => {:class => "form-horizontal"} do |f| %>
+    <%= f.input :resolution %>
+    <%= f.input :closed, :input_html => {:checked => true} %>
+    <div class="form-actions">
+      <%= f.submit nil, :class => "btn btn-primary" %>
+      <%= link_to t("global.cancel"), work_order_path, :class => "btn" %>
+    </div>
+<% end %>
