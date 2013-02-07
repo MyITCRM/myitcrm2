@@ -15,7 +15,7 @@ gem 'redcarpet'
 
 group :production do
 	# Database Choices
-	gem "mysql2" # Comment out if using sqlite3
+	#gem "mysql2" # Comment out if using sqlite3
 	gem "sqlite3" # Comment out if using mysql2
 end
 
@@ -39,6 +39,7 @@ group :assets do
 end
 
 gem "rspec-rails", :group => [:test, :development]
+
 group :test do
   gem "factory_girl_rails"
   gem "capybara"
@@ -48,8 +49,8 @@ group :test do
 	gem "mysql2"
 	gem "sqlite3"
 end
-group :development do  
-  gem "sqlite3"
+
+group :development do
   gem "wdm", :platforms => [:mswin, :mingw], :require => false
   gem "win32console", :platforms => [:mswin, :mingw], :require => false
 end
