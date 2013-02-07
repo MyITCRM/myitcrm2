@@ -46,6 +46,7 @@ group :test do
   gem "guard"
   gem "guard-rspec"
   gem "rake"
+  gem "mysql2"
 end
 
 group :development do
