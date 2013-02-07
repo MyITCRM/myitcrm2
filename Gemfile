@@ -45,13 +45,13 @@ group :test do
   gem "guard"
   gem "guard-rspec"
   gem "rake"
-	#gem "mysql2", :platforms => [:mswin, :mingw]
+	gem "mysql2"
 	gem "sqlite3"
 end
 group :development do  
   gem "sqlite3"
   gem "wdm", :platforms => [:mswin, :mingw], :require => false
-  gem "win32console"
+  gem "win32console", :platforms => [:mswin, :mingw], :require => false
 end
 
 
