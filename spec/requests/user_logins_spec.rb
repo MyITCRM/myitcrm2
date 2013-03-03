@@ -3,8 +3,9 @@ require 'spec_helper'
 describe "UserLogins" do
   it "logs ussr into system" do
     user = Factory(:user)
-    visit root_path
-    fill_in "Username", :with => user.username
-    click_button "Sign In"
+    visit login_path
+    fill_in "username", :with => user.username
+    fill_in "password", :with => user.password
+    click_button "sign in"
   end
 end

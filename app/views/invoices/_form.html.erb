@@ -1,21 +1,33 @@
-<%= simple_form_for @invoice do |f| %>
-    <%= "Invoice Due Date:" %><%= f.text_field :due_date %>
+<div class="span10">
+<%= simple_form_for @invoice, :html => {:class => "form-horizontal"} do |f| %>
+      <%= "Invoice Due Date:" %><%= f.text_field :due_date %>
+      <h3 align="center">Service Charges</h3>
+      <table id="lines" class="table table-bordered table-condensed">
 
-    <h3 align="center">Service/Labour Charges</h3>
-    <div class="invoice_line_items">
-      <div class="header">
-        <div class="inline w70 centered_text">QTY</div>
-        <div class="inline w430 ">Service</div>
-        <div class="inline  ">Line Comments</div>
-      </div>
-    </div>
-    <div class="boxed">
-      <%= f.fields_for :service_invoice_lines do |builder| %>
+        <thead>
+        <tr>
+                  <th>Qty</th>
+                  <th>Service</th>
+                  <th>Line Comments</th>
+                  <th></th>
+                </tr>
+        </thead>
+
+        <tbody>
+        <div>
+          <%= f.fields_for :service_invoice_lines do |builder| %>
           <%= render "invoices/service_invoice_line", :f => builder %>
-      <% end %>
-      <p class="w870 centered_text"><%= link_to_add_fields image_tag('add.png', :height => '16', :alt => "Add New Line"), f, :service_invoice_lines %>New Line</p>
-    </div>
-    <h3 align="center">Part/Material Charges</h3>
+          <% end %>
+          <%= link_to_add_fields "Add New Line", f, :service_invoice_lines %>
+
+        </div>
+        </tbody>
+
+      </table>
+
+
+
+   <h3 align="center">Part/Material Charges</h3>
     <div class="invoice_line_items">
           <div class="header">
             <div class="inline w70 centered_text">QTY</div>
@@ -23,7 +35,7 @@
             <div class="inline  ">Line Comments</div>
           </div>
         </div>
-        <div class="boxed">
+        <div class="table">
           <%= f.simple_fields_for :product_invoice_lines do |builder| %>
             <%= render "invoices/product_invoice_line", :f => builder %>
           <% end %>
@@ -37,8 +49,11 @@
     <%= f.hidden_field :created_by, :value => current_user.username if @invoice.created_by.blank? %>
     <%= f.hidden_field :updated_by, :value => current_user.username %>
 
-    <div class="center">
-      <%= f.submit "Submit" %>
-    </div>
+      <div class="form-actions">
+                     <%= f.submit nil, :class => "btn btn-primary" %>
+                     <%= link_to t("global.cancel"), invoices_path, :class => "btn" %>
+                   </div>
     <%= f.input :invoice_note, :input_html => {:rows => 5, :cols => 70, :value => Setting::default_invoice_note }  %>
 <% end %>
+</div>
+

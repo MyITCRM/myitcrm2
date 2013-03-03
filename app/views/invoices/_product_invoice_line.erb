@@ -3,7 +3,7 @@
     <div class="inline centered_text"><%= f.number_field :qty, :style => "width:50px" %></div>
         <div class="inline w430"><%= f.collection_select :product_id, Product.where("active = ?", true).order('description'), :id, :product_lookup, :include_blank => true %></div>
         <div class="inline"><%= f.text_field :line_comment, :size => 50 %></div>
-        <div class="inline centered_text"><%= link_to_remove_fields f %></div>
+  <%= link_to "remove", '#', class: "remove_fields" %>
 
   </p>
     </div>

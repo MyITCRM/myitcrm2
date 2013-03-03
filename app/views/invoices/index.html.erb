@@ -1,27 +1,24 @@
-<div id="sidebar_left">
-  <%= module_header %>
-  <div class="module">
-    <ul>
-    <li class="back"><%= link_to (t "global.back"), :back %></li>
-  </ul>
-  </div>
-  <%= render 'layouts/left_sidebar_modules' %>
-</div>
-
-<div id="center_col" class="no_right_sidebar">
-  <div id="ddtabs1" class="basictab">
-    <ul>
-      <li><a href="#open" rel="open"><%= t "invoices.tab_menu_open" %>&nbsp;(<% if open_invoices.count > 0 %><span style="color:red;"><%= open_invoices.count %></span><% else %><%= open_invoices.count %><% end %>)</a></li>
-      <li><a href="#paid" rel="paid"><%= t "invoices.tab_menu_paid" %>&nbsp;(<% if paid_invoices.count > 0 %><span style="color:#00ff00;"><%= paid_invoices.count %></span><% else %><%= paid_invoices.count %><% end %>)</a></li>
-     </ul>
-  </div>
-  <div id="index_table">
-    <div class="tabcontainer">
-
-      <div id="open" class="tabcontent"><%= render(:partial => 'invoices/open_tab') %></div>
-      <div id="paid" class="tabcontent" ><%= render(:partial => 'invoices/paid_tab') %></div>
+<div class="row-fluid">
+<div class="span10">
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#open" data-toggle="tab"><%= t "invoices.tab_menu_open" %>&nbsp;<% if open_invoices.count > 0 %><span class="badge badge-important"><%= open_invoices.count %></span><% end %></a></li>
+      <li><a href="#paid" data-toggle="tab"><%= t "invoices.tab_menu_paid" %>&nbsp;<% if paid_invoices.count > 0 %><span class="badge badge-success"><%= paid_invoices.count %></span><% end %></a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="open">
+        <p><%= render(:partial => 'invoices/open_tab') %></p>
+      </div>
+      <div class="tab-pane" id="paid">
+        <p><%= render(:partial => 'invoices/paid_tab') %></p>
+      </div>
     </div>
   </div>
-  <div class="clear"></div>
+  </div>
 
+<div class="span2">
+    <% if can? :create, Invoice %>
+            <%= menu_button t("global.create"), new_invoice_path, "icon-pencil icon-white" %>
+    <% end %>
+  </div>
 </div>
