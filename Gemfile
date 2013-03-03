@@ -14,7 +14,7 @@ gem 'redcarpet'
 
 group :production do
 	# Database Choices
-	#gem "mysql2" # Comment out if using sqlite3
+	gem "mysql2" # Comment out if using sqlite3
 	#gem "sqlite3" # Comment out if using mysql2
 end
 
