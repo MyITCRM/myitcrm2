@@ -9,6 +9,7 @@ gem 'authlogic'
 gem 'will_paginate'
 gem 'jquery-rails'
 gem 'redcarpet'
+gem 'mysql2'
 #gem 'paperclip'
 
 
