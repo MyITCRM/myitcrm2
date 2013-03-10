@@ -1,19 +1,5 @@
-<div id="sidebar_left">
-    <% if logged_in? and can? :edit, Role %>
-     <%= module_header %>
-        <div class="module">
-          <ul>
-            <li class="create"><%= link_to (t "global.create"), new_role_path %></li>
-            <li class="exit"><%= link_to (t "global.exit"), roles_path %></li>
-            <li class="back"><%= link_to (t "global.back"), :back %></li>
-          </ul>
-        </div>
-      <% end %>
-     <%= render 'layouts/left_sidebar_modules' %>
-</div>
-
-<div id="center_col" class="no_right_sidebar">
-<table id="index_table">
+<div class="span10">
+<table class="table table-hover table-condensed">
   <tr>
     <th>Name</th>
     <th>Enabled</th>
@@ -27,15 +13,15 @@
     <td><%= role.enabled %></td>
     <td><%= role.list_position %></td>
     <td>
-      <%= link_to(image_tag('view.png', :title => (t "global.view")), role ) if can? :manage, Role %>&nbsp;
-      <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_role_path(role)) if can? :manage, Role%>&nbsp;
-      <%= link_to(image_tag('delete.png', :title => (t "global.delete")), role, confirm: 'Are you sure?', method: :delete) if can? :manage, Role %>
+      <%= menu_button t("global.view"), role_path(role.id), "icon-eye-open", 'btn btn-mini btn-info' if can? :manage, Role %>
+      <%= menu_button t("global.edit"), edit_role_path(role), "icon-pencil", 'btn btn-mini btn-success' if can? :manage, Role %>
     </td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-
 </div>
+<div class="span2">
+  <% if can? :create, Role %>
+        <%= menu_button t("role.t_new"), new_role_path,  "icon-pencil icon-white"  %>
+    <% end %>
+  </div>

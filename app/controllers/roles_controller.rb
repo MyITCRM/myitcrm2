@@ -87,7 +87,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.update_attributes(params[:role])
-        format.html { redirect_to @role, notice: 'Role was successfully updated.' }
+        format.html { redirect_to roles_url, notice: 'Role was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

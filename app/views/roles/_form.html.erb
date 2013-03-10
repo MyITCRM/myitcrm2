@@ -1,20 +1,19 @@
-<div id="ddtabs1" class="basictab">
-  <ul>
-    <li><a href="#<%= t "role.tab.basic" %>" rel="basic"><%= (t "workorder.tab_menu_basic") %></a></li>
-    <li><a href="#<%= t "role.tab.permissions" %>" rel="Permissions">Permissions</a></li>
+<div class="row-fluid">
+<div class="span10">
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+    <li class="active"><a href="#basic" data-toggle="tab"><%= t "role.tab.basic" %></a></li>
   </ul>
 </div>
-<div class="tabcontainer">
-  <div id="basic" class="tabcontent">
-    <%= simple_form_for(@role) do |f| %>
+      <div class="tab-content">
+           <div class="tab-pane active" id="basic">
+    <%= simple_form_for @role, :html => {:class => "form-horizontal"} do |f| %>
         <%= f.error_notification %>
         <%= f.input :name %>
         <%= f.input :enabled  %>
         <%= f.input :list_position %>
-        <div class="clear"></div>
-               <div class="center"><%= f.submit %></div>
-  </div>
-  <div id="Permissions" class="tabcontent">
+
+    <h3>Permissions</h3>
     <fieldset>
         <legend>Invoices</legend>
         <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Invoice") %>
@@ -50,9 +49,12 @@
         <legend>Suppliers</legend>
         <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Supplier") %>
     </fieldset>
-
-    <div class="clear"></div>
-           <div class="center"><%= f.submit %></div>
+                 <div class="form-actions">
+                    <%= f.submit nil, :class => "btn btn-primary" %>
+                    <%= link_to t("global.cancel"), roles_path, :class => "btn" %>
+                 </div>
     <% end %>
     </div>
+</div>
+</div>
 </div>

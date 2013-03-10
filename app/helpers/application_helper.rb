@@ -39,7 +39,7 @@ module ApplicationHelper
       button_class = "btn btn-large btn-inverse btn-block"
     end
 
-    "<p><a href='#{link_action}' class='#{button_class}'><i class='#{icon_class}'></i> #{link_name}</a></p>".html_safe
+    "<a href='#{link_action}' class='#{button_class}'><i class='#{icon_class}'></i> #{link_name}</a>".html_safe
 
   end
 

@@ -19,7 +19,7 @@
             <td><%= truncate(new_wo.subject, :length => 100 ) %></td>
             <td>
               <% if can? :manage, WorkOrder %>
-              <a class="btn btn-small" href="<%= work_order_url(new_wo.id) %>"><i class="icon-search"></i><%= t("global.view") %></a>
+              <a class="btn btn-small" href="<%= work_order_url(new_wo.id) %>"><i class="icon-eye-open"></i><%= t("global.view") %></a>
               <a class="btn btn-small" href="<%= edit_work_order_url(new_wo.id) %>"><i class="icon-pencil"></i><%= t("global.edit") %></a>
               <a class="btn btn-small" href="<%= work_order_path(new_wo.id,:format => 'pdf') %>"><i class="icon-print"></i><%= t("global.print") %></a>
               <% end %>

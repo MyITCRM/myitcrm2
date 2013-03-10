@@ -3,19 +3,18 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'prawn'
 gem 'prawnto'
-gem "cancan"
+gem 'cancan'
 gem 'simple_form'
 gem 'authlogic'
 gem 'will_paginate'
 gem 'jquery-rails'
 gem 'redcarpet'
-gem 'mysql2'
 #gem 'paperclip'
 
 
 group :production do
 	# Database Choices
-	#gem "mysql2" # Comment out if using sqlite3
+	gem 'mysql2' # Comment out if using sqlite3
 	#gem "sqlite3" # Comment out if using mysql2
 end
 
@@ -38,7 +37,7 @@ group :assets do
   gem 'bootstrap-sass'
 end
 
-gem "rspec-rails", :group => [:test, :development]
+gem 'rspec-rails', :group => [:test, :development]
 
 group :test do
   gem "factory_girl_rails"
@@ -46,7 +45,8 @@ group :test do
   gem "guard"
   gem "guard-rspec"
   gem "rake"
-  #gem "mysql2"
+  gem 'mysql2'
+  gem 'activerecord-mysql2-adapter'
 end
 
 group :development do
