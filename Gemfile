@@ -37,7 +37,7 @@ group :test do
   gem "guard"
   gem "guard-rspec"
   gem "rake"
-  gem 'activerecord-mysql2-adapter'
+  gem 'mysql2'
 end
 
 group :development do
