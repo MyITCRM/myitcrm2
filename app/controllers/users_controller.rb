@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
 
 
   def new
-    @title = t "user.t_new_user"
     @user = User.new
 
   end
@@ -64,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @title = t "user.t_new_user"
+    #@title = t "user.t_new_user"
     @user = User.new(params[:user])
    # @user.dynamic_attributes = [:client, :employee, :workorder_assignability, :role_id] if can? :manage, User
 
@@ -75,7 +74,8 @@ class UsersController < ApplicationController
         format.html { redirect_to(@user) }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
-        format.html { render :action => "register" }
+        format.html { render :action => "register"}  if not logged_in?
+        format.html { render :action => "new" } if logged_in?
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
@@ -125,7 +125,7 @@ class UsersController < ApplicationController
   def clients
     @title = t "user.t_clients"
     @users = User.where("client = ?", true).search_users(params[:search_users], sort_column, sort_direction ).paginate(:per_page => 20, :page => params[:page])
-    #authorize! :clients, @user
+
   end
   def employees
     @title = t "user.t_employees"

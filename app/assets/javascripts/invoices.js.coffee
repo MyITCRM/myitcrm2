@@ -7,8 +7,14 @@ jQuery ->
     $(this).closest('tr').hide()
     event.preventDefault()
 
-  $('form').on 'click', '.add_fields', (event) ->
+  $('form').on 'click', '.services', (event) ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $('#lines tr:last').after($(this).data('fields').replace(regexp, time))
+    event.preventDefault()
+
+  $('form').on 'click', '.products', (event) ->
+    time = new Date().getTime()
+    regexp = new RegExp($(this).data('id'), 'g')
+    $('#lines2 tr:last').after($(this).data('fields').replace(regexp, time))
     event.preventDefault()

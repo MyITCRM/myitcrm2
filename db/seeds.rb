@@ -1,6 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
+I18n.locale = ENV['LOCALE'].nil? ? "en_AU" : ENV['LOCALE']  # Define locale
 
 # create default administrator account
 User.create!({
@@ -17,7 +18,7 @@ User.create!({
 
 
 Role.create({
-		:name => "Super User",
+		:name => I18n.t('seeds.role.super'),
 		:enabled => true,
 		:list_position => "1"},
     :without_protection => true )
@@ -61,6 +62,7 @@ Permission.create({:name => "Manage Product Categories", :action => "manage", :s
 Permission.create({:name => "Manage Products", :action => "manage", :subject_class => "Product"}, :without_protection => true)
 Permission.create({:name => "Manage Replies", :action => "manage", :subject_class => "Reply"}, :without_protection => true)
 Permission.create({:name => "Manage Roles", :action => "manage", :subject_class => "Role"}, :without_protection => true)
+Permission.create({:name => "Manage Permissions", :action => "manage", :subject_class => "Permission"}, :without_protection => true)
 Permission.create({:name => "Manage Service Rates", :action => "manage", :subject_class => "ServiceRate"}, :without_protection => true)
 Permission.create({:name => "Manage Suppliers", :action => "manage", :subject_class => "Supplier"}, :without_protection => true)
 
@@ -74,6 +76,7 @@ Permittable.create({:role_id => '1',:permission_id => '8'}, :without_protection 
 Permittable.create({:role_id => '1',:permission_id => '9'}, :without_protection => true)
 Permittable.create({:role_id => '1',:permission_id => '10'}, :without_protection => true)
 Permittable.create({:role_id => '1',:permission_id => '11'}, :without_protection => true)
+Permittable.create({:role_id => '1',:permission_id => '12'}, :without_protection => true)
 Permittable.create({:role_id => '2',:permission_id => '1'}, :without_protection => true)
 Permittable.create({:role_id => '2',:permission_id => '2'}, :without_protection => true)
 Permittable.create({:role_id => '3',:permission_id => '1'}, :without_protection => true)

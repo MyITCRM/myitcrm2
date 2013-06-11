@@ -207,6 +207,7 @@ en_AU:
      cancel_account_button: "Cancel Account"
      t_employees: "Employee's"
      login_incorrect: "Username and/or Password incorrect. Please try again."
+     t_users_account: "Users"
   user_t_edit_user: "Edit User"
   role:
     admin: "Administrator"
@@ -631,3 +632,6 @@ en_AU:
   permission:
     module_class: "Module/Class"
     action_type: "Action Type"
+  seeds:
+    role:
+      super: "Super User"

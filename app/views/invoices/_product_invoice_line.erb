@@ -1,9 +1,6 @@
-<div class="fields">
-  <p>
-    <div class="inline centered_text"><%= f.number_field :qty, :style => "width:50px" %></div>
-        <div class="inline w430"><%= f.collection_select :product_id, Product.where("active = ?", true).order('description'), :id, :product_lookup, :include_blank => true %></div>
-        <div class="inline"><%= f.text_field :line_comment, :size => 50 %></div>
-  <%= link_to "remove", '#', class: "remove_fields" %>
-
-  </p>
-    </div>
+  <tr >
+    <td><%= f.number_field :qty, :style => 'width:50px' %></td>
+    <td><%= f.collection_select :product_id, active_parts_rates, :id, :product_lookup, :include_blank => true,  :style => 'width:90%;' %></td>
+    <td><%= f.text_field :line_comment, :style => 'width:90%;' %></td>
+    <td><%= link_to 'Remove', 'products',  class: 'remove_fields btn btn-small btn-danger' %></td>
+  </tr>

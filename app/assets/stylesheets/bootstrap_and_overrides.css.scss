@@ -192,3 +192,13 @@ body { padding-top: 20px; }
 	color:#FFF;
 	background-color:#3C769D;
 }
+
+.ui-widget {
+  font-size: .9em/*{fsDefault}*/ !important;
+}
+
+input,
+textarea,
+.uneditable-input {
+  width: auto;
+}

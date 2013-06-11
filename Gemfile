@@ -9,14 +9,6 @@ gem 'authlogic'
 gem 'will_paginate'
 gem 'jquery-rails'
 gem 'redcarpet'
-#gem 'paperclip'
-
-
-group :production do
-	# Database Choices
-	gem 'mysql2' # Comment out if using sqlite3
-	#gem "sqlite3" # Comment out if using mysql2
-end
 
 
 # Gems used only for assets and not required
@@ -45,7 +37,6 @@ group :test do
   gem "guard"
   gem "guard-rspec"
   gem "rake"
-  gem 'mysql2'
   gem 'activerecord-mysql2-adapter'
 end
 

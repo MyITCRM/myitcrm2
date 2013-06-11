@@ -33,7 +33,7 @@
   </div>
 
 <div class="span2">
-    <% if current_user.client? %>
+    <% if current_user.client %>
         <%= menu_button t("workorder.t_add_new"), new_user_work_order_path(:user_id => current_user.id),  "icon-pencil icon-white"  %>
     <% else %>
         <%= menu_button t("global.create"), clients_path, "icon-pencil icon-white" %>

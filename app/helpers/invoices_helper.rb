@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013 Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -74,5 +74,13 @@ module InvoicesHelper
 
    def wo_details
     @wo_details = WorkOrder.where("id = ?", @invoice.work_order_id).first
+   end
+
+  def active_service_rates
+    ServiceRate.where('active = ?', true).order('description')
+  end
+
+  def active_parts_rates
+    Product.where('active = ?', true).order('description')
   end
 end

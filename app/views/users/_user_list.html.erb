@@ -1,0 +1,57 @@
+<div class="row-fluid">
+  <div class="span10">
+    <%= form_tag users_path, :method => 'get' do %>
+        <p><%= t "user.search"  %>
+          <%=  text_field_tag('search_users')  %>
+          <%= submit_tag t ("global.submit"), :name => nil %>
+        </p>
+    <% end %>
+    <% if can? :manage, User %>
+        <%= will_paginate @users %>
+    <% end %>
+    <table class="table table-bordered table-hover table table-condensed">
+
+      <thead>
+      <tr>
+        <th><%= t "user.number" %></th>
+        <th><%= sortable "name", (t "user.name") %></th>
+        <th><%= (t "user.active_wo") %></th>
+        <th><%= t "user.username" %></th>
+        <th><%= t "global.email" %></th>
+        <th><%= t "global.role" %></th>
+        <th><%= t "global.phone" %></th>
+        <th><%= t "global.mobile" %></th>
+        <th><%= t "global.active" %></th>
+        <th align="center"><%= t "supplier.actions" %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% for user in @users do %>
+          <tr class="<%= cycle :odd, :even %>">
+            <td><%= link_to user.id, user %></td>
+            <td><%= user.name %></td>
+            <td><%= active_work_order_count(user.id).count %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td style="text-transform:capitalize;"><%= user.role.name %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.mobile %></td>
+            <td><%= user.active %></td>
+            <td>
+              <a class="btn btn-small" href="<%= new_user_work_order_path(:user_id => user.id) %>"><i class="icon-pencil"></i><%= t("navbar.new_work_order") if can? :create, WorkOrder if user.client?  %></a>
+
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% if can? :manage, User %>
+        <%= will_paginate @users %>
+    <% end %>
+  </div>
+
+  <div class="span2">
+    <%= menu_button t("workorder.t_add_new"), new_user_work_order_path(:user_id => current_user.id),  "icon-pencil icon-white" if current_user.client %>
+    <%= menu_button t("global.create"), new_user_path, "icon-pencil icon-white" if can? :create, User %>
+
+  </div>
+</div>
