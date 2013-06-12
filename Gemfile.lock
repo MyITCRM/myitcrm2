@@ -199,7 +199,7 @@ DEPENDENCIES
   cancan
   capybara
   coffee-rails (~> 3.2.1)
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   guard
   guard-rspec
   jquery-rails

@@ -14,7 +14,7 @@ gem 'redcarpet'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   #gem "less-rails"
 
@@ -32,18 +32,18 @@ end
 gem 'rspec-rails', :group => [:test, :development]
 
 group :test do
-  gem "factory_girl_rails"
-  gem "capybara"
-  gem "guard"
-  gem "guard-rspec"
-  gem "rake"
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'capybara'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rake'
   gem 'mysql2'
 end
 
 group :development do
-  gem "sqlite3"
-  gem "wdm", :platforms => [:mswin, :mingw], :require => false
-  gem "win32console", :platforms => [:mswin, :mingw], :require => false
+  gem 'sqlite3'
+  gem 'wdm', :platforms => [:mswin, :mingw], :require => false
+  gem 'win32console', :platforms => [:mswin, :mingw], :require => false
 end
 
 
