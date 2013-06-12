@@ -17,11 +17,11 @@
 
 class RolesController < ApplicationController
   #skip_authorization_check
-	#load_and_authorize_resource
+  #load_and_authorize_resource
   # GET /roles
   # GET /roles.json
   def index
-	  @title = "Roles"
+    @title = "Roles"
     @roles = Role.order(:list_position).all
 
 
@@ -69,7 +69,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        format.html { redirect_to @role, notice: 'Role was successfully created.' }
+        format.html { redirect_to roles_url, notice: 'Role was successfully created.' }
         format.json { render json: @role, status: :created, location: @role }
       else
         format.html { render action: "new" }

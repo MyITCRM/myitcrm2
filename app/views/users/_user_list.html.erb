@@ -1,8 +1,8 @@
 <div class="row-fluid">
   <div class="span10">
     <%= form_tag users_path, :method => 'get' do %>
-        <p><%= t "user.search"  %>
-          <%=  text_field_tag('search_users')  %>
+        <p><%= t "user.search" %>
+          <%= text_field_tag('search_users') %>
           <%= submit_tag t ("global.submit"), :name => nil %>
         </p>
     <% end %>
@@ -38,7 +38,10 @@
             <td><%= user.mobile %></td>
             <td><%= user.active %></td>
             <td>
-              <a class="btn btn-small" href="<%= new_user_work_order_path(:user_id => user.id) %>"><i class="icon-pencil"></i><%= t("navbar.new_work_order") if can? :create, WorkOrder if user.client?  %></a>
+              <a class="btn btn-small" href="<%= new_user_work_order_path(:user_id => user.id) %>"><i class="icon-plus"></i><%= t("navbar.new_work_order") if can? :create, WorkOrder if user.client? %>
+              </a>
+              <a class="btn btn-small" href="<%= new_user_invoice_path(:user_id => user.id) %>"><i class="icon-list-alt"></i><%= t('invoice.create') if can? :create, Invoice %>
+              </a>
 
           </tr>
       <% end %>
@@ -50,7 +53,7 @@
   </div>
 
   <div class="span2">
-    <%= menu_button t("workorder.t_add_new"), new_user_work_order_path(:user_id => current_user.id),  "icon-pencil icon-white" if current_user.client %>
+    <%= menu_button t("workorder.t_add_new"), new_user_work_order_path(:user_id => current_user.id), "icon-pencil icon-white" if current_user.client %>
     <%= menu_button t("global.create"), new_user_path, "icon-pencil icon-white" if can? :create, User %>
 
   </div>

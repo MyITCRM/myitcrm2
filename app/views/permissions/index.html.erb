@@ -7,19 +7,19 @@
       <th><%= t("role.action") %></th>
     </tr>
 
-  <% @permissions.each do |permission| %>
-    <tr>
-      <td><%= permission.subject_class %></td>
-      <td><%= permission.name %></td>
-      <td><%= permission.action %></td>
-      <td>
-        <%= menu_button t("global.view"), permission, "icon-eye-open", 'btn btn-mini btn-info' %>
-        <%= menu_button t("global.edit"), edit_permission_path(permission), "icon-pencil", 'btn btn-mini btn-success' %>
-      </td>
-    </tr>
-  <% end %>
+    <% @permissions.each do |permission| %>
+        <tr>
+          <td><%= permission.subject_class %></td>
+          <td><%= permission.name %></td>
+          <td><%= permission.action %></td>
+          <td>
+            <%= menu_button t("global.view"), permission_url(permission.id), "icon-eye-open", 'btn btn-mini btn-info' %>
+            <%= menu_button t("global.edit"), edit_permission_path(permission), "icon-edit", 'btn btn-mini btn-success' %>
+          </td>
+        </tr>
+    <% end %>
   </table>
 </div>
 <div class="span2">
-  <%= menu_button t("global.new"), new_permission_path, "icon-plus-sign icon-white"  %>
+  <%= menu_button t("global.new"), new_permission_path, "icon-plus-sign icon-white" %>
 </div>

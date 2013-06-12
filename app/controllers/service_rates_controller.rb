@@ -25,7 +25,7 @@ class ServiceRatesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @service_rates }
+      format.xml { render :xml => @service_rates }
     end
   end
 
@@ -37,7 +37,7 @@ class ServiceRatesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @service_rate }
+      format.xml { render :xml => @service_rate }
     end
   end
 
@@ -49,7 +49,7 @@ class ServiceRatesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @service_rate }
+      format.xml { render :xml => @service_rate }
     end
   end
 
@@ -67,11 +67,11 @@ class ServiceRatesController < ApplicationController
 
     respond_to do |format|
       if @service_rate.save
-        format.html { redirect_to(@service_rate, :notice => 'Service rate was successfully created.') }
-        format.xml  { render :xml => @service_rate, :status => :created, :location => @service_rate }
+        format.html { redirect_to service_rates_path, :notice => 'Service rate was successfully created.' }
+        format.xml { render :xml => @service_rate, :status => :created, :location => @service_rate }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @service_rate.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @service_rate.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -83,11 +83,11 @@ class ServiceRatesController < ApplicationController
 
     respond_to do |format|
       if @service_rate.update_attributes(params[:service_rate])
-        format.html { redirect_to(@service_rate, :notice => 'Service rate was successfully updated.') }
-        format.xml  { head :ok }
+        format.html { redirect_to service_rates_path, :notice => 'Service rate was successfully updated.' }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @service_rate.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @service_rate.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -100,7 +100,7 @@ class ServiceRatesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(service_rates_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 end

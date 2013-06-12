@@ -18,16 +18,15 @@
 class InvoicesController < ApplicationController
   # mytodo - Add full language support.
   # mytodo - Add Mass Assignment restrictions.
-  authorize_resource  # Used by CanCan to restrict controller access
-  # GET /invoices
-  # GET /invoices.xml
+  authorize_resource # Used by CanCan to restrict controller access
+
   def index
     @title = t 'global.invoices'
     @invoices = Invoice.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @invoices }
+      format.xml { render :xml => @invoices }
     end
   end
 
@@ -38,7 +37,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @invoice }
+      format.xml { render :xml => @invoice }
     end
   end
 
@@ -47,12 +46,14 @@ class InvoicesController < ApplicationController
   def new
     @title = "Creating New Invoice"
     @invoice = Invoice.new
-    service_invoice_line = @invoice.service_invoice_lines.build
-    product_invoice_line = @invoice.product_invoice_lines.build
+    if can? :create, Invoice
+      service_invoice_line = @invoice.service_invoice_lines.build
+      product_invoice_line = @invoice.product_invoice_lines.build
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @invoice }
+      if params[:user_id].blank? and current_user.employee
+        redirect_to clients_url
+        flash[:info] = "Please select a client first"
+      end
     end
   end
 
@@ -73,10 +74,10 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if @invoice.save
         format.html { redirect_to(@invoice, :notice => 'Invoice was successfully created.') }
-        format.xml  { render :xml => @invoice, :status => :created, :location => @invoice }
+        format.xml { render :xml => @invoice, :status => :created, :location => @invoice }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @invoice.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @invoice.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -88,10 +89,10 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if @invoice.update_attributes(params[:invoice])
         format.html { redirect_to(@invoice, :notice => 'Invoice was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @invoice.errors, :status => :unprocessable_entity }
+        format.html { render :action => 'edit' }
+        format.xml { render :xml => @invoice.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -104,7 +105,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(invoices_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
-  end
+end

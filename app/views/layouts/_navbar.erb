@@ -11,11 +11,11 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Create New", new_user_path if can? :create, User  %></li>
+                <li><%= link_to "Create New", new_user_path if can? :create, User %></li>
                 <li><%= link_to "Employees", employees_path if can? :manage, User %></li>
                 <% if can? :view, User %>
                     <li><%= link_to "Clients", clients_path if current_user.employee %></li>
-                    <li><%= link_to "My Account", my_account_path(:id=> current_user) if current_user.client %></li>
+                    <li><%= link_to "My Account", my_account_path(:id => current_user) if current_user.client %></li>
                 <% end %>
               </ul>
             </li>
@@ -23,52 +23,52 @@
         <% end %>
         <!--WorkOrder Menu-->
         <% if can? :create, WorkOrder %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <%= t("workorder.t_workorders") %>
-                        <b class="caret"></b>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><%= link_to "List All", work_orders_path %></li>
-                        <% if can? :manage, WorkOrder %>
-                            <li><%= link_to "Create New", new_work_order_path %></li>
-                        <% else %>
-                            <% if can? :create, WorkOrder  %>
-                                <li><%= link_to "Create New", new_user_work_order_path(:user_id => current_user.id) %></li>
-                            <% end %>
-                        <% end %>
-                      </ul>
-                    </li>
-        </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= t("workorder.t_workorders") %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "List All", work_orders_path %></li>
+                <% if can? :manage, WorkOrder %>
+                    <li><%= link_to "Create New", new_work_order_path %></li>
+                <% else %>
+                    <% if can? :create, WorkOrder %>
+                        <li><%= link_to "Create New", new_user_work_order_path(:user_id => current_user.id) %></li>
+                    <% end %>
+                <% end %>
+              </ul>
+            </li>
+            </li>
         <% end %>
-       <!--Invoice Menu-->
+        <!--Invoice Menu-->
         <% if can? :view, Invoice %>
             <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <%= t("global.invoices") %>
-                          <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><%= link_to "List All", invoices_path %></li>
-                        </ul>
-                      </li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= t("global.invoices") %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "List All", invoices_path %></li>
+              </ul>
+            </li>
         <% end %>
         <% if can? :view, Setting %>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <%= t("settings.t_title") %>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Business Settings", settings_path if can? :view, Setting %></li>
-              <li><%= link_to "Service Rates", service_rates_path if can? :view, ServiceRate %></li>
-              <li><%= link_to "Product List", products_path if can? :view, ServiceRate %></li>
-              <li><%= link_to "Priority List", priority_lists_path if can? :view, PriorityList %></li>
-              <li><%= link_to "Permissions", permissions_path if can? :view, Permission %></li>
-              <li><%= link_to "Roles", roles_path if can? :view, Role %></li>
-            </ul>
-          </li>
-         <% end %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= t("settings.t_title") %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Business Settings", settings_path if can? :view, Setting %></li>
+                <li><%= link_to "Service Rates", service_rates_path if can? :view, ServiceRate %></li>
+                <li><%= link_to "Product List", products_path if can? :view, Product %></li>
+                <li><%= link_to "Priority List", priority_lists_path if can? :view, PriorityList %></li>
+                <li><%= link_to "Permissions", permissions_path if can? :view, Permission %></li>
+                <li><%= link_to "Roles", roles_path if can? :view, Role %></li>
+              </ul>
+            </li>
+        <% end %>
       </ul>
 
       <!--if logged_in?
@@ -85,21 +85,22 @@
              end-->
       <!--<ul class="nav nav-pills">-->
 
-         <!--<li class="dropdown-toggle" id="work_orders">-->
-           <!--<a href="/work_orders">Work Orders</a>-->
-           <!--<ul>-->
-             <!--<li id="work_orders"><a href="/work_orders/new">New Work Order</a></li>-->
-           <!--</ul>-->
-         <!--</li>-->
-         <!--<li class="selected" id="users"><a href="/users" class="selected">User Accounts</a><ul>-->
-           <!--<li class="selected simple-navigation-active-leaf" id="user"><a href="/employees" class="selected">Employees</a></li>-->
-           <!--<li id="user"><a href="/clients">Clients</a></li>-->
-           <!--<li id="users"><a href="/users/new">New User</a></li></ul></li>-->
-         <!--<li id="suppliers"><a href="/suppliers">Suppliers</a>-->
-           <!--<ul>-->
-           <!--<li id="suppliers"><a href="/suppliers">Suppliers List</a></li><li id="suppliers"><a href="/suppliers/new">Create</a></li></ul></li><li id="products"><a href="/products">Products</a><ul><li id="products"><a href="/products">Products List</a></li><li id="products"><a href="/products/new">Create</a></li></ul></li><li id="invoices"><a href="/invoices">Invoices</a></li><li id="settings"><a href="/settings">Rates & Settings</a><ul><li id="service_rates"><a href="/service_rates">Service Rates</a></li><li id="settings"><a href="/settings">Business Settings</a></li><li id="priority_lists"><a href="/priority_lists">Priority List</a></li><li id="roles"><a href="/roles">Roles</a></li><li id="permissions"><a href="/permissions">Permissions</a></li></ul></li></ul>-->
+      <!--<li class="dropdown-toggle" id="work_orders">-->
+      <!--<a href="/work_orders">Work Orders</a>-->
+      <!--<ul>-->
+      <!--<li id="work_orders"><a href="/work_orders/new">New Work Order</a></li>-->
+      <!--</ul>-->
+      <!--</li>-->
+      <!--<li class="selected" id="users"><a href="/users" class="selected">User Accounts</a><ul>-->
+      <!--<li class="selected simple-navigation-active-leaf" id="user"><a href="/employees" class="selected">Employees</a></li>-->
+      <!--<li id="user"><a href="/clients">Clients</a></li>-->
+      <!--<li id="users"><a href="/users/new">New User</a></li></ul></li>-->
+      <!--<li id="suppliers"><a href="/suppliers">Suppliers</a>-->
+      <!--<ul>-->
+      <!--<li id="suppliers"><a href="/suppliers">Suppliers List</a></li><li id="suppliers"><a href="/suppliers/new">Create</a></li></ul></li><li id="products"><a href="/products">Products</a><ul><li id="products"><a href="/products">Products List</a></li><li id="products"><a href="/products/new">Create</a></li></ul></li><li id="invoices"><a href="/invoices">Invoices</a></li><li id="settings"><a href="/settings">Rates & Settings</a><ul><li id="service_rates"><a href="/service_rates">Service Rates</a></li><li id="settings"><a href="/settings">Business Settings</a></li><li id="priority_lists"><a href="/priority_lists">Priority List</a></li><li id="roles"><a href="/roles">Roles</a></li><li id="permissions"><a href="/permissions">Permissions</a></li></ul></li></ul>-->
 
-      <a class="btn btn-small pull-right" href="<%= logout_url %>"><i class="icon-off"></i> <%= t("global.logout") %></a>
+      <a class="btn btn-small pull-right" href="<%= logout_url %>"><i class="icon-off"></i> <%= t("global.logout") %>
+      </a>
     </div>
   </div>
-  </div>
+</div>

@@ -23,9 +23,11 @@
             <td><%= number_to_percentage(service_rate.tax_rate) %></td>
             <td><%= service_rate.active %></td>
             <td>
-              <a class="btn btn-small" href="<%= service_rate %>"><i class="icon-eye-open"></i><%=  t("global.view") %></a>
-              <a class="btn btn-small" href="<%= edit_service_rate_path(service_rate) %>"><i class="icon-icon-edit"></i><%=  t("global.edit") %></a>
-              </td>
+              <a class="btn btn-small" href="<%= service_rate_path(service_rate) %>"><i class="icon-eye-open"></i><%= t("global.view") %>
+              </a>
+              <a class="btn btn-small" href="<%= edit_service_rate_path(service_rate) %>"><i class="icon-edit"></i><%= t("global.edit") %>
+              </a>
+            </td>
           </tr>
       <% end %>
 
