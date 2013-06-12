@@ -11,8 +11,9 @@ Dir['config/examples/*'].each do |source|
 end
 
 # run rake and setup tasks
-system "bundle"
-system "bundle exec rake db:create:all"
-system "bundle exec rake db:migrate --trace"
-system "bundle exec rake db:seed"
+system 'bundle'
+system 'bundle exec rake db:create:all'
+system 'bundle exec rake db:migrate --trace'
+system 'bundle exec rake db:test:prepare'
+system 'bundle exec rake db:seed'
 # system "bundle exec rake assets:precompile"
