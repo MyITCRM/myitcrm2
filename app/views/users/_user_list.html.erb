@@ -17,11 +17,8 @@
         <th><%= sortable "name", (t "user.name") %></th>
         <th><%= (t "user.active_wo") %></th>
         <th><%= t "user.username" %></th>
-        <th><%= t "global.email" %></th>
-        <th><%= t "global.role" %></th>
         <th><%= t "global.phone" %></th>
         <th><%= t "global.mobile" %></th>
-        <th><%= t "global.active" %></th>
         <th align="center"><%= t "supplier.actions" %></th>
       </tr>
       </thead>
@@ -29,14 +26,14 @@
       <% for user in @users do %>
           <tr class="<%= cycle :odd, :even %>">
             <td><%= link_to user.id, user %></td>
-            <td><%= user.name %></td>
+            <td>
+              <% if user.active %>
+                  <span class="label label-success"><%= user.name %></span>
+              <% end %></td>
             <td><%= active_work_order_count(user.id).count %></td>
             <td><%= user.username %></td>
-            <td><%= user.email %></td>
-            <td style="text-transform:capitalize;"><%= user.role.name %></td>
             <td><%= user.phone %></td>
             <td><%= user.mobile %></td>
-            <td><%= user.active %></td>
             <td>
               <a class="btn btn-small" href="<%= new_user_work_order_path(:user_id => user.id) %>"><i class="icon-plus"></i><%= t("navbar.new_work_order") if can? :create, WorkOrder if user.client? %>
               </a>

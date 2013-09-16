@@ -1,41 +1,32 @@
-<!--mytodo - heaps to fix up here....add tabs and all fields required.-->
+<div class="row-fluid">
+  <div class="span10">
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#<%= t "workorder.tab_menu_basic_name" %>" data-toggle="tab"><%= (t "workorder.tab_menu_basic") %></a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="resolution">
+          <%= simple_form_for [@user, @work_order], :html => {:class => "form-horizontal"} do |f| %>
+              <%= f.input :subject, :label => (t "workorder.subject") %>
+              <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+              <%= f.input :description, :label => (t "workorder.details"), :input_html => {:class => "input-block-level", :rows => "10"} %>
 
-<div id="sidebar_left">
-    <% if logged_in? and can? :edit, WorkOrder %>
-     <%= module_header %>
-        <div class="module">
-          <ul>
-            <li class="exit"><%= link_to (t "global.exit"), work_orders_path %></li>
-            <li class="back"><%= link_to (t "global.back"), :back %></li>
-          </ul>
-        </div>
-      <% end %>
-     <%= render 'layouts/left_sidebar_modules' %>
-</div>
 
-<div id="center_col" class="no_right_sidebar">
-  <div id="ddtabs1" class="basictab">
-    <ul>
-      <li><a href="#<%= t "workorder.tab_menu_basic_name" %>" rel="sc1"><%= (t "workorder.tab_menu_basic") %></a></li>
-    </ul>
-  </div>
-
-  <div class="tabcontainer">
-    <div id="sc1" class="tabcontent">
-      <%= simple_form_for(@work_order) do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :subject, :label => (t "workorder.subject"), :input_html => { :size => 60 } %>
-          <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
-         <%= f.input :description, :label => (t "workorder.details"),  :input_html => { :cols => 60, :rows => 12  } %>
-
-          <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
-          <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } %>
-          <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
-
-          <div class="center">
-            <%= f.submit %>
+              </div>
+              <div class="form-actions">
+                <%= f.submit nil, :class => "btn btn-primary" %>
+                <%= link_to t("global.cancel"), :clients, :class => "btn" %>
+              </div>
+          <% end %>
           </div>
-      <% end %>
+
     </div>
+
+  </div>
+  <!--EOF WO Edit Form-->
+  <!--SOF Sidebar-->
+  <div class="span2">
   </div>
 </div>

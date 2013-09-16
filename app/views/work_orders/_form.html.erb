@@ -1,0 +1,61 @@
+<!--EOF WO Edit Form-->
+<div class="row-fluid">
+  <div class="span10">
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#<%= t "workorder.tab_menu_basic_name" %>" data-toggle="tab"><%= (t "workorder.tab_menu_basic") %></a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="resolution">
+          <%= simple_form_for [@user, @work_order], :html => {:class => "form-horizontal"} do |f| %>
+              <%= f.input :subject, :label => (t "workorder.subject") %>
+              <% if current_user.workorder_assignability %>
+                  <%= f.association :status, :label => (t "workorder.status"), :include_blank => false %>
+                  <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+                  <%= f.input :assigned_to_username, :label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name %>
+              <% else %>
+                  <%= f.association :status, :label => (t "workorder.status"), :disabled => true, :include_blank => false %>
+                  <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+                  <%= f.input :assigned_to_username, :label => (t "workorder.assigned_to"), :as => :select, :collection => User.where("workorder_assignability = ?", true), :value_method => :name, :disabled => true %>
+              <% end %>
+              <%= f.input :description, :label => (t "workorder.details"), :input_html => {:class => "input-block-level", :rows => "10"} %>
+
+              <% if can? :close, WorkOrder %>
+                  <%= f.input :resolution, :label => (t "workorder.resolution"), :input_html => {:class => "input-block-level", :rows => "10"} %>
+                  <%= f.input :closed, :label => (t "workorder.closed"), :hint => (t "workorder.hint.re_open") %>
+              <% end %>
+              </div>
+              <div class="form-actions">
+                <%= f.submit nil, :class => "btn btn-primary" %>
+                <%= link_to t("global.cancel"), work_order_path, :class => "btn" %>
+              </div>
+          <% end %>
+          </div>
+
+    </div>
+
+  </div>
+  <!--EOF WO Edit Form-->
+  <!--SOF Sidebar-->
+  <div class="span2">
+    <div><p><a href="#resolution" role="button" class="btn btn-success btn-large btn-block" data-toggle="modal">Mark as
+      Completed</a></p></div>
+
+    <!-- Modal -->
+    <div id="resolution" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Work Order Resolution</h3>
+      </div>
+      <div class="modal-body">
+        <p>Test</p>
+      </div>
+    </div>
+    <p><%= link_to t("global.close"), close_path, :class => "btn btn-success btn-large btn-block", :confirm => (t "workorder.message_close_confirmation"), :method => :put %></p>
+
+    <p><%= link_to (t "global.delete"), work_order_path, :class => "btn btn-danger btn-large btn-block", :confirm => t("alert.destroy"), :method => :delete %></p>
+    <%= menu_button t("global.exit"), work_orders_path, " icon-arrow-left icon-white" %>
+  </div>
+</div>
