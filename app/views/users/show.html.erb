@@ -1,182 +1,90 @@
-<div id="sidebar_left">
-  <%= module_header %>
-  <div class="module">
-    <ul>
-      <% if can? :manage, User %>
-        <li class="delete"><%= link_to (t "global.delete"), @user, :confirm => 'Are you sure?', :method => :delete %></li>
-      <% end %>
-      <li class="edit"><%= link_to (t "global.edit"), edit_user_path %></li>
-      <% if can? :create, WorkOrder %>
-      <hr />
-      <li class="wrench"><%= link_to t("global.workorder"),  new_user_work_order_path(@user) %> </li>
-      <hr />
-       <% end %>
-      <li class="exit"><%= link_to (t "global.exit"), users_path %></li>
-    </ul>
-  </div>
-  <%= render 'layouts/left_sidebar_modules' %>
-</div>
-
-<div id="center_col" class="no_right_sidebar">
-  <div id="ddtabs1" class="basictab">
-    <ul>
-      <li><a href="#details" rel="contact_info"><%= t "users.tab.contact_info" %></a></li>
-      <li><a href="#address" rel="address_info"><%= t "users.tab.address_info" %></a></li>
-      <li><a href="#notes" rel="notes"><%= t "users.tab.notes" %></a></li>
-      <li><a href="#log" rel="log"><%= t "users.tab.log" %></a></li>
-    </ul>
-  </div>
-    <div class="tabcontainer">
-
-      <div id="contact_info" class="tabcontent">
-        <table>
-              <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t "user.name" %>:</strong>
-                </td>
-                <td align="left">
-                 <%= @user.name %>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t "user.username" %>:</strong>
-                </td>
-                <td align="left">
-                 <%= @user.username %>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t "global.email" %>:</strong>
-                </td>
-                <td align="left">
-                 <%=  mail_to @user.email %>
-                </td>
-              </tr>
-            <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t "global.role" %>:</strong>
-                </td>
-                <td align="left" style="text-transform:capitalize;">
-                 <%= @user.role.name %>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t "global.active" %>:</strong>
-                </td>
-                <td align="left">
-                 <% if @user.active %>
-                  <%= image_tag("tick.png", :title => (t "global.active")) %>
-                 <% else %>
-                  <%= image_tag("delete.png", :title => (t "global.disabled")) %>
-                 <% end %>
-                </td>
-            </tr>
-             <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t "global.phone" %>:</strong>
-                </td>
-                <td align="left">
-                 <%=h @user.phone %>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t"global.mobile" %>:</strong>
-                </td>
-                <td align="left">
-                 <%=h @user.mobile %>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" align="right">
-                  <strong><%= t"global.fax" %>:</strong>
-                </td>
-                <td align="left">
-                 <%=h @user.fax %>
-                </td>
-              </tr>
-
-              </table>
-      </div>
-
-      <div id="address_info" class="tabcontent">
-         <div class="show_layout">
-           <label><%= t "global.address" %></label><div class="field"><textarea rows="6" cols="50" name="address" readonly="readonly" ><%=h @user.address  %></textarea></div>
-           <label><%= t "global.city" %></label><div class="field"><%=h @user.city %></div>
-           <label><%= t "global.state" %></label><div class="field"><%=h @user.state %></div>
-           <label><%= t "global.zip" %></label><div class="field"> <%=h @user.zip %></div>
-         </div>
-      </div>
-      <div id="notes" class="tabcontent">
-        <div class="show_layout">
-           <label><%= t "global.notes" %></label><div class="field"><textarea rows="6" cols="50" name="contact" readonly="readonly" ><%=h @user.notes  %></textarea></div>
+<div class="row-fluid">
+  <div class="span10">
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#contact_details" data-toggle="tab"><%= t "users.tab.contact_info" %></a></li>
+        <li><a href="#notes" data-toggle="tab"><%= t "users.tab.notes" %></a></li>
+        <li><a href="#dashboard" data-toggle="tab"><%= t "global.dashboard" %></a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="contact_details">
+          <p><%= render(:partial => 'users/contact_details') %></p>
         </div>
-      </div>
-      <div id="log" class="tabcontent">
-         <fieldset id="collapsable">
-              <h1 align="center"><%= t "user.t_log" %></h1>
-            <table >
-              <tr>
-                <td align="right" >
-                  <strong><%= t "global.created_at" %>:</strong>
-                </td>
-                <td >
-                  <%= time_ago_in_words(@user.created_at) %> <%= t "global.ago" %> (<%= localize @user.created_at, :format => :short  %>) <%= t "global.by" %> <%= @user.created_by %>.
-                </td>
-              </tr>
-              <% if @user.edited_at.nil? %>
-                  <% else %>
-              <tr>
-                <td align="right">
-                  <strong><%= t "global.updated_at" %>:</strong>
-                </td>
-                <td >
-                  <%= time_ago_in_words(@user.edited_at) %> <%= t "global.ago" %> (<%= localize @user.edited_at, :format => :short  %>) <%= t "global.by" %> <%= @user.edited_by %>.
-                </td>
-              </tr>
-                  <% end %>
-              <tr>
-                <td align="right">
-                  <strong><%= t "user.account_accessed" %>:</strong>
-                </td>
-                <td >
-                  <% if @user.login_count == 0 %>
-                      <%= t "user.not_logged_in_yet" %>
-                      <% else %>
-                      <% if @user.login_count == 1 %>
-                          <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.current_login_ip %>
-                       <% else %>
-                          <% if @user.login_count > 1 %>
-                  <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.last_login_ip %>
-                      <% end %>
-                      <% end %>
-                      <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td align="right">
-                  <strong><%= t "user.login_failures" %>:</strong>
-                </td>
-                <td >
-                  <%= @user.failed_login_count %>
-                </td>
-              </tr>
-            <tr>
-                <td align="right">
-                  <strong><%= t "user.login_count" %>:</strong>
-                </td>
-                <td >
-                  <%= @user.login_count %>
-                </td>
-              </tr>
-
-            </table><br>
-            </fieldset>
+        <div class="tab-pane" id="notes">
+          <p><%= render(:partial => 'users/notes') %></p>
+        </div>
+        <div class="tab-pane" id="dashboard">
+          <p><%= render(:partial => 'dashboard') %></p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="clear"></div>
+
+  <div class="span2">
+      <%= menu_button t("global.create"), new_user_work_order_path(:user_id => current_user.id),  "icon-pencil icon-white" if current_user.client  %>
+      <%= menu_button t("global.create"), clients_path, "icon-pencil icon-white" if can? :manage, User %>
+    </div>
+</div>
+
+  <fieldset id="collapsable">
+    <h3 align="center"><%= t "user.t_log" %></h3>
+    <table >
+      <tr>
+        <td align="right" >
+          <strong><%= t "global.created_at" %>:</strong>
+        </td>
+        <td >
+          <%= time_ago_in_words(@user.created_at) %> <%= t "global.ago" %> (<%= localize @user.created_at, :format => :short  %>) <%= t "global.by" %> <%= @user.created_by %>.
+        </td>
+      </tr>
+      <% if @user.edited_at.nil? %>
+      <% else %>
+          <tr>
+            <td align="right">
+              <strong><%= t "global.updated_at" %>:</strong>
+            </td>
+            <td >
+              <%= time_ago_in_words(@user.edited_at) %> <%= t "global.ago" %> (<%= localize @user.edited_at, :format => :short  %>) <%= t "global.by" %> <%= @user.edited_by %>.
+            </td>
+          </tr>
+      <% end %>
+      <tr>
+        <td align="right">
+          <strong><%= t "user.account_accessed" %>:</strong>
+        </td>
+        <td >
+          <% if @user.login_count == 0 %>
+              <%= t "user.not_logged_in_yet" %>
+          <% else %>
+              <% if @user.login_count == 1 %>
+                  <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.current_login_ip %>
+              <% else %>
+                  <% if @user.login_count > 1 %>
+                      <%= time_ago_in_words(@user.last_request_at) %> <%= t "global.ago" %> (<%= localize @user.last_request_at, :format => :short  %>) <%= t "global.from" %> <%= @user.last_login_ip %>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td align="right">
+          <strong><%= t "user.login_failures" %>:</strong>
+        </td>
+        <td >
+          <%= @user.failed_login_count %>
+        </td>
+      </tr>
+      <tr>
+        <td align="right">
+          <strong><%= t "user.login_count" %>:</strong>
+        </td>
+        <td >
+          <%= @user.login_count %>
+        </td>
+      </tr>
+
+    </table><br>
+  </fieldset>
+
+  </div>
 

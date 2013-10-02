@@ -7,7 +7,7 @@ gem 'cancan'
 gem 'simple_form'
 gem 'authlogic'
 gem 'will_paginate'
-gem 'jquery-rails'
+gem 'jquery-rails', '2.3.0'
 gem 'redcarpet'
 
 

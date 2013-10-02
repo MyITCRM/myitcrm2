@@ -1,0 +1,97 @@
+<div class="span10">
+  <div class="span5">
+    <div class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label"><%= t "user.name" %>:</label>
+
+        <div class="controls">
+          <span class="span4 uneditable-input"><%= @user.name %></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label"><%= t "user.username" %>:</label>
+
+        <div class="controls">
+          <span class="span4 uneditable-input"><%= @user.username %></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label"><%= t "user.email" %>:</label>
+
+        <div class="controls">
+          <span class="span4 uneditable-input"><%= @user.email %></span>
+        </div>
+      </div>
+    <div class="control-group">
+      <label class="control-label"><%= t "user.phone" %>:</label>
+
+      <div class="controls">
+        <span class="span4 uneditable-input"><%= @user.phone %></span>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label"><%= t "user.mobile" %>:</label>
+
+      <div class="controls">
+        <span class="span2 uneditable-input"><%= @user.mobile %></span>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label"><%= t "user.fax" %>:</label>
+
+      <div class="controls">
+        <span class="span2 uneditable-input"><%= @user.fax %></span>
+      </div>
+    </div>
+      <div class="control-group">
+        <label class="control-label"><%= t "user.role" %>:</label>
+
+        <div class="controls">
+          <span class="span2 uneditable-input"><%= @user.role.name %></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label"><%= t "global.active" %>:</label>
+
+        <div class="controls">
+          <% if @user.active = true %>
+          <span class="label label-success"><%= @user.active %></span>
+              <% else %>
+          <span class="label label-important"><%= @user.active %></span>
+          <% end %>
+        </div>
+      </div>
+    <div class="span5">
+      <div class="control-group">
+        <label class="control-label"><%= t "user.address" %>:</label>
+
+        <div class="controls">
+          <span class="span2 uneditable-input"><%= @user.address %></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label"><%= t "user.city" %>:</label>
+
+        <div class="controls">
+          <span class="span2 uneditable-input"><%= @user.city %></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label"><%= t "user.state" %>:</label>
+
+        <div class="controls">
+          <span class="span2 uneditable-input"><%= @user.state %></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label"><%= t "user.zip" %>:</label>
+
+        <div class="controls">
+          <span class="span2 uneditable-input"><%= @user.zip %></span>
+        </div>
+      </div>
+      </div>
+      </div>
+
+    </div>
+  </div>

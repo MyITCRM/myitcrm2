@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-
   end
 
 
@@ -94,6 +93,7 @@ class UsersController < ApplicationController
       #@user = User.find(params[:id])
       @user = User.find(params[:id]) if current_user.employee and can? :update, User
       @user = User.find(current_user.id) if current_user.client and can? :update, User
+      @user.dynamic_attributes = [:active]  if current_user.employee and can? :update, User
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

@@ -29,6 +29,8 @@
             <td>
               <% if user.active %>
                   <span class="label label-success"><%= user.name %></span>
+                  <% else %>
+                  <span class="label label-important"><%= user.name %></span>
               <% end %></td>
             <td><%= active_work_order_count(user.id).count %></td>
             <td><%= user.username %></td>
