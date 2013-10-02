@@ -26,15 +26,15 @@ module ApplicationHelper
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
-   # This is the module
-   def module_header(title = nil, module_class = nil)
-     title.present? ? title : title = t('global.quick_links')
-     css_class = module_class
-     "<div class='module_header text_shadow #{css_class}'>#{title}</div>".html_safe
-   end
+  # This is the module
+  def module_header(title = nil, module_class = nil)
+    title.present? ? title : title = t('global.quick_links')
+    css_class = module_class
+    "<div class='module_header text_shadow #{css_class}'>#{title}</div>".html_safe
+  end
 
   # Menu and Action Icons helper
-  def menu_button( link_name = nil, link_action = nil, icon_class = nil, button_class = nil)
+  def menu_button(link_name = nil, link_action = nil, icon_class = nil, button_class = nil)
     if button_class == nil
       button_class = "btn btn-large btn-inverse btn-block"
     end
@@ -44,24 +44,25 @@ module ApplicationHelper
   end
 
 # Used to show Employees Overview
-   def employees_work_overview(status_id, employee_number = nil)
-     if employee_number.present?
-      WorkOrder.where("assigned_to_id = ? AND status_id = ? ", "#{employee_number}","#{status_id}")
-      else
-      WorkOrder.where("status_id = ?","#{status_id}")
-     end
-   end
+  def employees_work_overview(status_id, employee_number = nil)
+    if employee_number.present?
+      WorkOrder.where("assigned_to_id = ? AND status_id = ? ", "#{employee_number}", "#{status_id}")
+    else
+      WorkOrder.where("status_id = ?", "#{status_id}")
+    end
+  end
+
 #  Used to Show Clients Overview
   def clients_overview(status_id, client_number)
-      WorkOrder.where("user_id = ? AND status_id = ?","#{client_number}", "#{status_id}")
+    WorkOrder.where("user_id = ? AND status_id = ?", "#{client_number}", "#{status_id}")
   end
 
 #  TEXT Helpers
 
-    def markdown(text)
-      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
-      markdown.render(text).html_safe
-      end
+  def markdown(text)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    markdown.render(text).html_safe
+  end
 
 
   # Used to add and remove fields through JQuery in Invoice Service and Product Lines
@@ -71,13 +72,14 @@ module ApplicationHelper
   #end
 
   def link_to_add_fields(name, f, association, section)
-      new_object = f.object.send(association).klass.new
-      id = new_object.object_id
-      fields = f.fields_for(association, new_object, child_index: id) do |builder|
-        render(association.to_s.singularize, f: builder)
-      end
-      link_to(name, '#', class: "#{section} btn btn-small btn-success", data: {id: id, fields: fields.gsub("\n", "")})
+    new_object = f.object.send(association).klass.new
+    id = new_object.object_id
+    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+      render(association.to_s.singularize, f: builder)
     end
+    link_to(name, '#', class: "#{section} btn btn-small btn-success", data: {id: id, fields: fields.gsub("\n", "")})
+  end
+
   #def link_to_add_fields(name, f, association)
   #  new_object = f.object.class.reflect_on_association(association).klass.new
   #  fields = f.simple_fields_for(association, new_object, :index => "new_#{association}") do |builder|
@@ -88,10 +90,14 @@ module ApplicationHelper
   #end
 
   def toggle_link(name, id, options={})
-      onclick = "Element.toggle('#{id}'); "
-      onclick << (options[:focus] ? "Form.Element.focus('#{options[:focus]}'); " : "this.blur(); ")
-      onclick << "return false;"
-      link_to(name, "#", :onclick => onclick)
+    onclick = "Element.toggle('#{id}'); "
+    onclick << (options[:focus] ? "Form.Element.focus('#{options[:focus]}'); " : "this.blur(); ")
+    onclick << "return false;"
+    link_to(name, "#", :onclick => onclick)
+  end
+
+  def shallow_args(parent, child)
+    child.try(:new_record?) ? [parent, child] : child
   end
 
 end
