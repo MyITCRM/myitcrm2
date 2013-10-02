@@ -9,3 +9,4 @@ describe 'UserLogins' do
     click_button 'sign in'
   end
 end
+
