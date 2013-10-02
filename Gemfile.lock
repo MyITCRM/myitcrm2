@@ -96,6 +96,7 @@ GEM
     mime-types (1.25)
     mini_portile (0.5.1)
     multi_json (1.8.0)
+    mysql2 (0.3.11-x86-mingw32)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     nokogiri (1.6.0-x86-mingw32)
@@ -216,6 +217,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   jquery-ui-rails
+  mysql2
   prawn
   prawnto
   rails (= 3.2.11)
