@@ -10,9 +10,6 @@ gem 'will_paginate'
 gem 'jquery-rails', '2.3.0'
 gem 'redcarpet'
 
-gem 'mysql2'
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -39,6 +36,7 @@ group :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'rake'
+  gem 'mysql2'
 
 end
 
