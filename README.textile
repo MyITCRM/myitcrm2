@@ -30,7 +30,7 @@ If you like this program, please visit our website and help support it by making
 
 h2. MyITCRM2 Demo?
 
-http://ruby.myitcrm.com
+http://ruby2.myitcrm.com
 
 Username: admin
 Password: password
