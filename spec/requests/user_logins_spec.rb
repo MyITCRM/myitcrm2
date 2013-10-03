@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'UserLogins' do
   it 'logs user into system' do
     @user = FactoryGirl(:user)
