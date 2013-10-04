@@ -1,0 +1,33 @@
+<h4>Active Work Orders</h4>
+<p>
+  <%  recent_activity(1).each do |new_wo| %>
+      <a href="<%= work_order_path(new_wo.id) %>" rel="tooltip" data-placement="left" data-html="true" data-original-title="
+                [<%= t "global.created_at" %>:<%= l new_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= new_wo.created_by %>]&nbsp;&nbsp;&nbsp;<br>
+                [<%= t "global.updated_at" %>:<%= l new_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= new_wo.edited_by %>]">
+        <span class="label label-info">[#<%= new_wo.id %>] <%= new_wo.status.name %> - <%= truncate(new_wo.subject, :length => 18) %></span> </a>
+  <% end %>
+  <%  recent_activity(2).each do |assigned_wo| %>
+      <a href="<%= work_order_path(assigned_wo.id) %>" rel="tooltip" data-placement="left" data-html="true" data-original-title="
+                [<%= t "global.created_at" %>:<%= l assigned_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.created_by %>]<br>
+                [<%= t "global.updated_at" %>:<%= l assigned_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= assigned_wo.edited_by %>]">
+        <span class="label label-success">[#<%= assigned_wo.id %>] <%= assigned_wo.status.name %> - <%= truncate(assigned_wo.subject, :length => 18) %></span> </a>
+  <% end %>
+<%  recent_activity(3).each do |held_wo| %>
+      <a href="<%= work_order_path(held_wo.id) %>" rel="tooltip" data-placement="left" data-html="true" data-original-title="
+                [<%= t "global.created_at" %>:<%= l held_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= held_wo.created_by %>]<br>
+                [<%= t "global.updated_at" %>:<%= l held_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= held_wo.edited_by %>]">
+        <span class="label">[#<%= held_wo.id %>] <%= held_wo.status.name %> - <%= truncate(held_wo.subject, :length => 18) %></span> </a>
+  <% end %>
+<%  recent_activity(4).each do |pending_wo| %>
+      <a href="<%= work_order_path(pending_wo.id) %>" rel="tooltip" data-placement="left" data-html="true" data-original-title="
+                [<%= t "global.created_at" %>:<%= l pending_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= pending_wo.created_by %>]<br>
+                [<%= t "global.updated_at" %>:<%= l pending_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= pending_wo.edited_by %>]">
+        <span class="label label-warning">[#<%= pending_wo.id %>] <%= pending_wo.status.name %> - <%= truncate(pending_wo.subject, :length => 18) %></span> </a>
+  <% end %>
+<%  recent_activity(5).each do |re_opened_wo| %>
+      <a href="<%= work_order_path(re_opened_wo.id) %>" rel="tooltip" data-placement="left" data-html="true" data-original-title="
+                [<%= t "global.created_at" %>:<%= l re_opened_wo.created_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= re_opened_wo.created_by %>]<br>
+                [<%= t "global.updated_at" %>:<%= l re_opened_wo.updated_at, :format => :medium %>&nbsp;<%= t "global.by" %>&nbsp;<%= re_opened_wo.edited_by %>]">
+        <span class="label label-inverse">[#<%= re_opened_wo.id %>] <%= re_opened_wo.status.name %> - <%= truncate(re_opened_wo.subject, :length => 18) %></span> </a>
+  <% end %>
+</p>

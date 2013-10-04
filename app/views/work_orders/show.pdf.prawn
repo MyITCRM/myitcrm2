@@ -27,16 +27,7 @@ end
 # Logo
 # mytodo - add if statement to include user supplied logo instead of default logo
 #pdf.image "", :at => [200, 720], :height => 40
-# Business information
- pdf.bounding_box([450,720], :width => 400, :align => :right ) do
-    pdf.text t "setting_details"
-    pdf.text Setting::business_name, :size => 6
-    pdf.text Setting::business_address, :size => 6
-    pdf.text Setting::business_phone, :size => 6
-    if Setting::business_email ||= nil
-      pdf.text Setting::business_email, :size => 6
-    end
-  end
+
 # Customer information
  pdf.bounding_box([10,720], :width => 200, :align => :right ) do
     pdf.text t "workorder.pdf.t_customer_details"
@@ -47,6 +38,17 @@ end
     pdf.text "#{@work_order.user.email}", :size => 8
 
   end
+
+  # Business information
+   pdf.bounding_box([450,720], :width => 400, :align => :right ) do
+      pdf.text t "setting_details"
+      pdf.text Setting::business_name, :size => 8
+      pdf.text Setting::business_address, :size => 8
+      pdf.text Setting::business_phone, :size => 8
+      if Setting::business_email ||= nil
+        pdf.text Setting::business_email, :size => 8
+      end
+    end
 
 # Lets move down the pdf xx points before next object
  pdf.move_down(20)
@@ -85,7 +87,7 @@ end
 pdf.move_down(30)
 #Customers Signature required.
 pdf.bounding_box([30,pdf.cursor],:width => 500 ) do
-  pdf.pad_top(15) { pdf.text "Job Completion Signoff", :size => 12, :align => :center }
+  pdf.pad_top(15) { pdf.text "Job Completion Sign off", :size => 12, :align => :center }
   pdf.pad_top(5) { pdf.text "This section is required to be signed by both Client and the Repairer before leaving the work site.\n
     By signing this form, you both acknowledge that the work detailed out in this work order form has been carried out in a Safe and Professional manor.", :size => 8, :align => :center }
   pdf.table([[ "Whom","Names & Signatures" ],

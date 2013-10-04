@@ -58,10 +58,17 @@ module ApplicationHelper
   end
 
 #  TEXT Helpers
-
   def markdown(text)
+    #rendered_text =text.gsub( /(\[([a-zA-Z0-9]{1,60})\:)+[a-zA-Z0-9]{2,60}\]/,'<a href='"/\2"'>Link</a>')
+    interlinked = %r{([a-zA-Z0-9]{1,60}):([a-zA-Z0-9]{1,60})+}i
+    rendered_text =text.gsub( interlinked,'<a href=''/\1/\2''>\2</a>')
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
-    markdown.render(text).html_safe
+    markdown.render(rendered_text).html_safe
+  end
+
+  def markdown_hint
+    @inst_id = rand(1..10)
+    render "layouts/markdown_examples"
   end
 
 
@@ -100,5 +107,9 @@ module ApplicationHelper
     child.try(:new_record?) ? [parent, child] : child
   end
 
+  # Used to display list of active work orders when creating or editing that relate to that client.
+  def recent_activity (status_id)
+    WorkOrder.where("user_id = ? AND status_id = ?","#{params[:user_id]}", "#{status_id}").order("created_at ASC")
+  end
 end
 

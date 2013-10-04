@@ -1,221 +1,219 @@
-<div id="sidebar_left">
-      <%= module_header %>
-      <div class="module">
-        <ul>
-            <% if @invoice.paid.blank? %>
-            <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path if can? :edit, Invoice  %></li>
-            <% end %>
-            <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) if can? :read, Invoice %></li>
-            <hr>
-            <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete  if can? :manage, Invoice %> </li>
-            <hr>
-          <li class="exit"><%= link_to (t "global.exit"), invoices_path if can? :read, Invoice %></li>
-        </ul>
-      </div>
-  <%= render 'layouts/left_sidebar_modules' %>
-</div>
-<div id="sidebar_right">
-      <%= module_header "Invoice Log" %>
-      <div class="module">
-          <p>Created <%= l @invoice.created_at, :format => :short %> <%= t "global.by" %> <%= @invoice.created_by %></p>
-          <p>Updated <%= time_ago_in_words @invoice.updated_at %> <%= t "global.ago" %> <%= t "global.by" %> <%= @invoice.updated_by if present? %><%= @invoice.created_by if @invoice.updated_by.blank? %></p>
-          <%= payment_status @invoice.paid? %>
-
-      </div>
-</div>
-<div id="center_col" class="content">
-  <div id="invoice">
-<h1 align="center">INVOICE #<%= @invoice.id %></h1>
+<div class="span10">
+  <h1 align="center">INVOICE #<%= @invoice.id %></h1>
+  <div style="text-align: right">
     <p>Invoice Date: <%= l @invoice.created_at, :format => :short  %></p>
     <p>Invoice Due Date: <%= l @invoice.due_date, :format => :short if @invoice.due_date.present?  %></p>
-    <div class="invoice_stamp inline"><%= invoice_stamp(@invoice.paid, @invoice.due_date) %></div>
-    <div class="printed_logo"><%= image_tag('logo.png', :height => '64', :alt => Setting::business_slogan) %></div>
-    <div style="clear: right"></div>
-    <div class="bill_to">
-     <div class="bill_header">Bill To:</div>
-      <div class="invoice_label">
-        <p><%= t "invoice.billing_account" %></p>
-        <p><%= t "invoice.billing_name" %></p>
-        <% if client_info.address.present? then %>
-            <p><%= t "global.address" %></p>
+  </div>
+    <div class="row-fluid">
+      <div class="span3">
+        <h4>Bill To:</h4>
+        <p><%= t "invoice.billing_account" %><%= @invoice.user_id %></p>
+        <address>
+          <strong><%= client_info.name %></strong><br>
+          <% if client_info.address? %>
+              <%= client_info.address %><br>
+              <%= client_info.city %>,<%= client_info.state %>, <%= client_info.zip %><br>
+          <% end %>
+          <% if client_info.phone?%><abbr title="Phone">P: </abbr><%= client_info.phone %><br><% end %>
+          <% if client_info.mobile?%><abbr title="Mobile">M: </abbr><%= client_info.mobile %><br><% end %>
+          <% if client_info.fax?%><abbr title="Fax">F: </abbr><%= client_info.fax %><br><% end %>
+          <% if client_info.email?%><abbr title="Email">E: </abbr><a href="mailto:'<%= client_info.email  %>'"><%= client_info.email  %></a><% end %>
+        </address>
+      </div>
+      <div class="span3 offset6" >
+        <h4>Bill From:</h4>
+        <address>
+          <strong><%= Setting::business_name %></strong><br>
+          <%= Setting::business_address %><br>
+          <% if Setting::business_phone?%><abbr title="Phone">P: </abbr><%= Setting::business_phone %><br><% end %>
+          <% if Setting::business_toll_free?%><abbr title="Toll Free">TF: </abbr><%= Setting::business_toll_free %><br><% end %>
+          <% if Setting::business_fax %><abbr title="Fax">F: </abbr><%= Setting::business_fax %><br><% end %>
+          <% if Setting::business_email %><abbr title="Email">E: </abbr><a href="mailto:'<%= Setting::business_email  %>'"><%= Setting::business_email  %></a><% end %>
+        </address>
+      </div>
+    </div>
+  <div class="span8 offset2">
+    <% if @invoice.work_order_id %>
+        <table class="table table-condensed table-bordered">
+          <caption>Work Order Details</caption>
+          <thead>
+          <tr>
+            <th><%= t "workorder.pdf.t_workorder" %></th>
+            <th>Description</th>
+            <th>Completed</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="success">
+            <td>#<%= @invoice.work_order_id %></td>
+            <td><%= wo_details.subject %></td>
+            <td><%= l wo_details.closed_date, :format => :short %> <%= t "global.by" %> <%= wo_details.assigned_to_username  %></td>
+          </tr>
+          </tbody>
+        </table>
+    <% end %>
+  </div>
+  <div>
+    <% if service_invoice_lines.present? %>
+        <table class="table table-condensed table-bordered table-striped">
+          <caption>Service's</caption>
+          <thead>
+          <tr>
+            <th>Qty</th>
+            <th>SKU</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Sub Total</th>
+            <th>Tax</th>
+            <th>Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% service_invoice_lines.each do |lines| %>
+              <tr>
+                <td><%= lines.qty %></td>
+                <td><%= lines.sku %></td>
+                <td><%= lines.description %>
+                  <br/>
+                  <em style="font-size: 0.8em"><%= lines.line_comment %></em>
+                </td>
+                <td><%= number_to_currency lines.price %></td>
+                <td><%= number_to_currency lines.sub_total %></td>
+                <td><%= number_to_currency lines.tax %> </td>
+                <td><%= number_to_currency lines.total_price %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="row-fluid">
+          <div class="span12" style="font-size: 0.8em">
+            <div class="span3 offset9" style="text-align: right">
+              <table>
+                <tbody>
+                <tr>
+                  <td>Service's Sub Total:</td>
+                  <td><strong><%= number_to_currency @invoice.srv_sub_totals %></strong></td>
+                </tr>
+                <tr>
+                  <td>Service's Tax  <%= Setting::tax_type %>:</td>
+                  <td><strong><%= number_to_currency @invoice.srv_tax_totals %></strong></td>
+                </tr>
+                <tr>
+                  <td>Service's Total:</td>
+                  <td><strong><%= number_to_currency @invoice.srv_price_totals %></strong></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+  <% if product_invoice_lines.present? %>
+      <table class="table table-condensed table-bordered table-striped">
+        <caption>Parts</caption>
+        <thead>
+        <tr>
+          <th>Qty</th>
+          <th>SKU</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Sub Total</th>
+          <th>Tax</th>
+          <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% product_invoice_lines.each do |lines| %>
+            <tr>
+              <td><%= lines.qty %></td>
+              <td><%= lines.sku %></td>
+              <td><%= lines.description %>
+                <br/>
+                <em style="font-size: 0.8em"><%= lines.line_comment %></em>
+              </td>
+              <td><%= number_to_currency lines.price %></td>
+              <td><%= number_to_currency lines.sub_total %></td>
+              <td><%= number_to_currency lines.tax %> </td>
+              <td><%= number_to_currency lines.total_price %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <div class="row-fluid">
+        <div class="span12" style="font-size: 0.8em">
+          <div class="span3 offset9" style="text-align: right">
+            <table>
+              <tbody>
+              <tr>
+                <td>Parts Sub Total:</td>
+                <td><strong><%= number_to_currency @invoice.srv_sub_totals %></strong></td>
+              </tr>
+              <tr>
+                <td>Parts Tax <%= Setting::tax_type %>:</td>
+                <td><strong><%= number_to_currency @invoice.srv_tax_totals %></strong></td>
+              </tr>
+              <tr>
+                <td>Parts Total:</td>
+                <td><strong><%= number_to_currency @invoice.srv_price_totals %></strong></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  <% end %>
+<!--Invoice Totals here-->
+<hr/>
+  <div class="row-fluid">
+    <div class="span12" style="font-size: 1em">
+      <div class="span4">
+        <% if @invoice.invoice_note.present? then %>
+
+              <h5>Invoice note:</h5>
+              <p><%= @invoice.invoice_note %></p>
+
         <% end %>
       </div>
-       <div class="invoice_fields">
-          <p><%= @invoice.user_id %></p>
-      <p><%= client_info.name %></p>
-      <%if client_info.address.present? then %>
-        <p><%= client_info.address %></p>
-        <p><%= client_info.state %> <%= client_info.city %> <%= client_info.zip %> </p>
-      <% end %>
-       </div>
-    </div>
-    <div class="bill_from">
-      <div class="bill_header">Bill From:</div>
-      <div class="invoice_label">
-        <p>Name:</p>
-        <p>Phone:</p>
-        <p>Fax:</p>
-        <p>Toll free:</p>
-        <p>Email:</p>
-        <p>Address:</p>
+      <div class="span3 offset5" style="text-align: right">
+        <table>
+          <tbody>
+          <tr>
+            <td>Invoice Sub Total:</td>
+            <td><strong><%= number_to_currency @invoice.inv_sub_totals %></strong></td>
+          </tr>
+          <tr>
+            <td>Invoice Tax <%= Setting::tax_type %>:</td>
+            <td><strong><%= number_to_currency @invoice.inv_tax_totals %></strong></td>
+          </tr>
+          <tr>
+            <td>Invoice Total:</td>
+            <td><strong><%= number_to_currency @invoice.inv_price_totals %></strong></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-       <div class="invoice_fields">
-         <p><%= Setting::business_name %></p>
-        <p><%= Setting::business_phone %></p>
-        <p><%= Setting::business_fax %></p>
-        <p><%= Setting::business_toll_free %></p>
-        <p><%= Setting::business_email %></p>
-        <p><%= Setting::business_address %></p>
     </div>
-    </div>
-    <div style="clear: both;">
-      <div id="invoice_description">
-       <div class="invoice_fields">
-        <% if @invoice.work_order_id.present? %>
-        <h4 align="center">Work Order Details</h4>
-            <div class="invoice_line_items center">
-                <div class="header">
-                    <div class="inline w70 centered_text"><%= t "workorder.pdf.t_workorder" %></div>
-                    <div class="inline w230">Description</div>
-                    <div class="inline w230 centered_text ">Completed</div>
-                </div>
-                <div class="boxed">
-                    <div class="inline w70 centered_text">#<%= @invoice.work_order_id %></div>
-                    <div class="inline w230"><%= wo_details.subject %></div>
-                    <div class="inline w230 centered_text "><%= l wo_details.closed_date, :format => :short %> <%= t "global.by" %> <%= wo_details.assigned_to_username  %></div>
-                </div>
-            </div>
-          <% end %>
-    </div>
-        </div>
-      <% if service_invoice_lines.present? %>
-          <h4 align="center">Service's</h4>
-          <table class="invoice_line_items">
-            <thead>
-            <th width="5%">QTY</th>
-            <th width="15%">SKU</th>
-            <th width="40%">DESC</th>
-            <th width="10%">PRICE</th>
-            <th width="10%">SUB TOTAL</th>
-            <th width="10%">TAX</th>
-            <th width="10%">TOTAL</th>
-            </thead>
-
-            <% service_invoice_lines.each do |lines| %>
-                <tr class="<%= cycle :invoice_lines_even, :invoice_lines_odd %>">
-                  <td class="w30"><%= lines.qty %></td>
-                  <td  class="w150"><%= lines.sku %></td>
-                  <td><%= lines.description %>
-                    <br/>
-                    <em style="font-size: 0.8em"><%= lines.line_comment %></em>
-                  </td>
-                  <td align="right"><%= number_to_currency lines.price %></td>
-                  <td align="right"><%= number_to_currency lines.sub_total %></td>
-                  <td align="right"><%= number_to_currency lines.tax %> </td>
-                  <td align="right"><%= number_to_currency lines.total_price %></td>
-                </tr>
-            <% end %>
-          </table>
-      <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
-        <div class="inline float_left">
-          <p>SUB TOTAL:</p>
-          <p>SERVICES TAX <%= Setting::tax_type %>:</p>
-          <p>SERVICE TOTAL:</p>
-        </div>
-        <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
-          <p><%= number_to_currency @invoice.srv_sub_totals %></p>
-          <p><%= number_to_currency @invoice.srv_tax_totals %> </p>
-          <p><%= number_to_currency @invoice.srv_price_totals %></p>
-        </div>
-      </div>
-       <% end %>
-      <div style="clear: right"></div>
-      <% if product_invoice_lines.present? %>
-          <h4 align="center">Parts</h4>
-          <table class="invoice_line_items" >
-            <thead>
-                <th width="5%">QTY</th>
-                <th width="15%">SKU</th>
-                <th width="40%">DESC</th>
-                <th width="10%">PRICE</th>
-                <th width="10%">SUB TOTAL</th>
-                <th width="10%">TAX</th>
-                <th width="10%">TOTAL</th>
-            </thead>
-            <% product_invoice_lines.each do |lines| %>
-                <tr class="<%= cycle :invoice_lines_even, :invoice_lines_odd %>">
-                  <td><%= lines.qty %></td>
-                  <td><%= lines.sku %></td>
-                  <td><%= lines.description %>
-                    <br/>
-                    <em style="font-size: 0.8em"><%= lines.line_comment %></em>
-                  </td>
-                  <td align="right"><%= number_to_currency lines.price %></td>
-                  <td align="right"><%= number_to_currency lines.sub_total %></td>
-                  <td align="right"><%= number_to_currency lines.tax %> </td>
-                  <td align="right"><%= number_to_currency lines.total_price %></td>
-                </tr>
-            <% end %>
-          </table>
-
-      <div style="float:right; text-align:right;line-height: 0.4em; font-size: 0.8em">
-        <div class="inline float_left">
-          <p>SUB TOTAL:</p>
-
-          <p>PARTS TAX <%= Setting::tax_type %>:</p>
-
-          <p>PARTS TOTAL:</p>
-        </div>
-        <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
-          <p><%= number_to_currency @invoice.prod_sub_totals %></p>
-
-          <p><%= number_to_currency @invoice.prod_tax_totals %> </p>
-
-          <p><%= number_to_currency @invoice.prod_price_totals %></p>
-        </div>
-
-
-    </div>
-           <div style="clear: right"></div>
-      <% end %>
-    </div>
-    <!--Invoice Totals here-->
-    <hr/>
-          <div style="float:right; text-align:right;line-height: .6em">
-        <div style="display: inline-block;" class="float_left">
-          <p>INVOICE SUB TOTAL:</p>
-
-          <p>INVOICE <%= Setting::tax_type %>:</p>
-
-          <p>INVOICE TOTAL:</p>
-        </div>
-        <div style="float:right; text-align:right;width: 55px; padding-right: 5px">
-          <p><%= number_to_currency @invoice.inv_sub_totals %></p>
-
-          <p><%= number_to_currency @invoice.inv_tax_totals %> </p>
-
-          <p><%= number_to_currency @invoice.inv_price_totals %></p>
-        </div>
-    </div>
-
-
-
-    <div style="width:80%; display: inline-block;">
-      <% if @invoice.invoice_note.present? then %>
-    <p>
-      <b>Invoice note:</b>
-      <%= @invoice.invoice_note %>
-    </p>
-    <% end %>
-    </div>
-
-    <div style="clear: both"></div><hr/>
-    <p>
-      <b>Paid:</b>
-      <%= @invoice.paid %>
-    </p>
-
-
   </div>
+  <hr/>
+</div><!--end of span10-->
+
+
+<div class="span2">
+  <ul>
+    <% if @invoice.paid.blank? %>
+        <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path if can? :edit, Invoice  %></li>
+    <% end %>
+    <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) if can? :read, Invoice %></li>
+    <hr>
+    <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete  if can? :manage, Invoice %> </li>
+    <hr>
+    <li class="exit"><%= link_to (t "global.exit"), invoices_path if can? :read, Invoice %></li>
+  </ul>
+  <p>Created <%= l @invoice.created_at, :format => :short %> <%= t "global.by" %> <%= @invoice.created_by %></p>
+  <p>Updated <%= time_ago_in_words @invoice.updated_at %> <%= t "global.ago" %> <%= t "global.by" %> <%= @invoice.updated_by if present? %><%= @invoice.created_by if @invoice.updated_by.blank? %></p>
+  <%= payment_status @invoice.paid? %>
 </div>
+
 

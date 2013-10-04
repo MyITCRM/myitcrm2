@@ -61,12 +61,12 @@ MyITCRM2::Application.routes.draw do
   match 'settings/edit' => 'settings#edit', :as => :edit
 
 #  Ensure these are last in this list and before the root route
-#  match '/article/:permalink' => 'pages#show'
-#  match '/article/:category/:permalink' => 'pages#show'
-#  match '/:category/:permalink' => 'pages#show'
-#  match '/:permalink' => 'pages#show'
-#  match '/faq/:permalink' => 'pages#show'
-#  match '/faq/:category/:permalink' => 'pages#show'
+  match '/article/:permalink' => 'pages#show'
+  match '/article/:category/:permalink' => 'pages#show'
+  match '/:category/:permalink' => 'pages#show'
+  match '/:permalink' => 'pages#show'
+  match '/faq/:permalink' => 'pages#show'
+  match '/faq/:category/:permalink' => 'pages#show'
 
 #  map.root :register
 #  root :to => 'pages#show'

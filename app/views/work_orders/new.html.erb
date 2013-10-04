@@ -7,12 +7,16 @@
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="resolution">
+        <div class="tab-pane active">
           <%= simple_form_for [@user, @work_order], :html => {:class => "form-horizontal"} do |f| %>
-              <%= f.input :subject, :label => (t "workorder.subject") %>
+              <%= f.error_notification %>
+              <%= f.input :subject, :label => (t "workorder.subject"), :input_html => {:class => "span3"} %>
               <%= f.association :priority_list, :label => (t "workorder.priority"), :include_blank => false %>
+              <%= markdown_hint %>
               <%= f.input :description, :label => (t "workorder.details"), :input_html => {:class => "input-block-level", :rows => "10"} %>
-
+              <%= f.input :edited_by, :as => :hidden, :input_html => { :value => current_user.username } %>
+              <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id] } %>
+              <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.username } %>
 
               </div>
               <div class="form-actions">
@@ -28,5 +32,6 @@
   <!--EOF WO Edit Form-->
   <!--SOF Sidebar-->
   <div class="span2">
+    <%= render :partial => 'active_workorders_sidebar' %>
   </div>
 </div>

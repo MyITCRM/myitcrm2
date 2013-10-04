@@ -40,13 +40,13 @@ class WorkOrdersController < ApplicationController
   end
 
   def show
-    @title = (t "workorder.t_viewing_workorder_details") + ' #' + params[:id].to_s
+
     @work_order = WorkOrder.find(params[:id])
     @invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
     @reply = Reply.new(:work_order_id => @work_order.id)
     @task = Task.new(:work_order_id => @work_order.id, :user_id => current_user.id)
     @tasks = Task.find_all_by_work_order_id(params[:id])
-
+    @title = (t "workorder.t_viewing_workorder_details") + ' #' + params[:id].to_s + ' ' + t('global.for') + ' ' + @work_order.user.name
   end
 
   def new
@@ -63,9 +63,11 @@ class WorkOrdersController < ApplicationController
       end
       if params[:user_id].blank? and current_user.employee
         redirect_to clients_url
-        flash[:info] = 'Please Select a Client first'
+        flash[:info] = t('message.info.select_client_first')
       end
+
     end
+
   end
 
   def edit

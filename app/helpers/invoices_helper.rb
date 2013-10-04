@@ -55,7 +55,7 @@ module InvoicesHelper
   # This is used to display a invoice status stamp on the invoice
   def invoice_stamp(paid, due_date)
     # If this invoice is paid in full, then display the PAID stamp
-    if paid == true
+    if paid
       text = t "invoice.paid"
       "<a class='paid'>#{text}</a>".html_safe
     else

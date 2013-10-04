@@ -18,5 +18,4 @@
 //= require products
 //= require work_orders
 //= require invoices
-//= require textile_jquery
 //= require myitcrm

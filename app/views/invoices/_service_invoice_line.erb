@@ -1,6 +1,6 @@
 <tr>
     <td><%= f.number_field :qty, :style => 'width:50px;' %></td>
-    <td><%= f.collection_select :service_id, active_service_rates, :id, :rate_lookup, :include_blank => true, :style => 'width:90%;' %></td>
+    <td><%= f.collection_select :service_id, active_service_rates, :id, :rate_lookup, :include_blank => true, :class => 'span3' %></td>
     <td><%= f.text_field :line_comment, :style => 'width:90%;' %></td>
     <td><%= link_to 'Remove', 'services', class: 'remove_fields btn btn-small btn-danger' %></td>
 </tr>

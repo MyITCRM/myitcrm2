@@ -124,6 +124,9 @@ en_AU:
     editing: "Editing"
     wrote: "wrote"
     additional: "Additional"
+    markdown_heading: "Use Markdown for formatting."
+    markdown_examples: "See examples."
+    for: "for"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -635,3 +638,6 @@ en_AU:
   seeds:
     role:
       super: "Super User"
+  message:
+    info:
+      select_client_first: "Please select a client first."
