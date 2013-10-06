@@ -1,11 +1,10 @@
 language: ruby
 
 before_script:
-  - mysql -e 'create database myitcrm_test;'
   - ruby script/setup
 
 env:
-  - DB=mysql
+  - DB=sqlite
 
 rvm:
   - 1.9.3

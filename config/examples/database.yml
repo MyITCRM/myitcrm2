@@ -23,8 +23,6 @@
 #  encoding: utf8
 
 test:
-  adapter: mysql2
-  database: myitcrm_test
-  username: root
-  encoding: utf8
+  adapter: sqlite3
+  database: db/<%= Rails.env %>.sqlite3
 
