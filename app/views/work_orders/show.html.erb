@@ -133,7 +133,7 @@
           <% if @invoiced %>
               <%= menu_button t("invoice.show"), invoice_path(@invoiced.id), "icon-list-alt icon-white" %>
           <% else %>
-              <%= menu_button t("invoice.create"), new_work_order_invoice_path(:work_order_id => @work_order.id, :user_id => @work_order.user_id), "icon-list-alt icon-white" %>
+              <%= menu_button t("invoice.create"), new_work_order_invoice_path(:work_order_id => @work_order.id), "icon-list-alt icon-white" %>
           <% end %>
       <% else %>
       <% end %>

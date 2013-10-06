@@ -1,8 +1,8 @@
 <div class="span10">
   <h1 align="center">INVOICE #<%= @invoice.id %></h1>
   <div style="text-align: right">
-    <p>Invoice Date: <%= l @invoice.created_at, :format => :short  %></p>
-    <p>Invoice Due Date: <%= l @invoice.due_date, :format => :short if @invoice.due_date.present?  %></p>
+    <p></p>
+    <p></p>
   </div>
     <div class="row-fluid">
       <div class="span3">
@@ -32,10 +32,10 @@
         </address>
       </div>
     </div>
-  <div class="span8 offset2">
+  <div class="span7">
     <% if @invoice.work_order_id %>
         <table class="table table-condensed table-bordered">
-          <caption>Work Order Details</caption>
+          <caption><strong>Work Order Details</strong> </caption>
           <thead>
           <tr>
             <th><%= t "workorder.pdf.t_workorder" %></th>
@@ -46,12 +46,29 @@
           <tbody>
           <tr class="success">
             <td>#<%= @invoice.work_order_id %></td>
-            <td><%= wo_details.subject %></td>
-            <td><%= l wo_details.closed_date, :format => :short %> <%= t "global.by" %> <%= wo_details.assigned_to_username  %></td>
+            <td><%=truncate wo_details.subject, :length => 20 %></td>
+            <td><%= l wo_details.closed_date, :format => :default %> <%= t "global.by" %> <%= wo_details.assigned_to_username  %></td>
           </tr>
           </tbody>
         </table>
     <% end %>
+  </div>
+  <div class="span2 offset2">
+    <table class="table table-condensed table-bordered">
+      <caption><strong>Invoice Dates</strong></caption>
+      <thead>
+      <tr>
+        <th>Created:</th>
+        <th>Due:</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= l @invoice.created_at, :format => :short  %></td>
+        <td> <%= l @invoice.due_date, :format => :default if @invoice.due_date.present?  %></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
   <div>
     <% if service_invoice_lines.present? %>
@@ -148,15 +165,15 @@
               <tbody>
               <tr>
                 <td>Parts Sub Total:</td>
-                <td><strong><%= number_to_currency @invoice.srv_sub_totals %></strong></td>
+                <td><strong><%= number_to_currency @invoice.prod_sub_totals %></strong></td>
               </tr>
               <tr>
                 <td>Parts Tax <%= Setting::tax_type %>:</td>
-                <td><strong><%= number_to_currency @invoice.srv_tax_totals %></strong></td>
+                <td><strong><%= number_to_currency @invoice.prod_tax_totals %></strong></td>
               </tr>
               <tr>
                 <td>Parts Total:</td>
-                <td><strong><%= number_to_currency @invoice.srv_price_totals %></strong></td>
+                <td><strong><%= number_to_currency @invoice.prod_price_totals %></strong></td>
               </tr>
               </tbody>
             </table>

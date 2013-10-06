@@ -17,5 +17,5 @@
 //= require bootstrap_additions
 //= require products
 //= require work_orders
-//= require invoices
+//= require datepicker_format
 //= require myitcrm

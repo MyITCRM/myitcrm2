@@ -1,11 +1,12 @@
-<div class="navbar">
+<div id="menu_nav" class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
+    <a class="brand" href="#">MyITCRM</a>
     <div class="container">
-      <ul class="nav">
-        <li><%= link_to "Home", root_path %></li>
+      <ul class="nav" >
+        <li class=""><%= link_to "Home", root_path %></li>
         <!--User Menu-->
         <% if can? :view, User %>
-            <li class="dropdown">
+            <li id="user" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= t("user.t_users_account") %>
                 <b class="caret"></b>
@@ -19,17 +20,16 @@
                 <% end %>
               </ul>
             </li>
-            </li>
         <% end %>
         <!--WorkOrder Menu-->
         <% if can? :create, WorkOrder %>
-            <li class="dropdown">
+            <li id="wo" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= t("workorder.t_workorders") %>
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "List All", work_orders_path %></li>
+                <li id="test"><%= link_to "List All", work_orders_path %></li>
                 <% if can? :manage, WorkOrder %>
                     <li><%= link_to "Create New", new_work_order_path %></li>
                 <% else %>
@@ -38,7 +38,6 @@
                     <% end %>
                 <% end %>
               </ul>
-            </li>
             </li>
         <% end %>
         <!--Invoice Menu-->

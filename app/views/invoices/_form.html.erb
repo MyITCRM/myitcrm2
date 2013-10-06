@@ -1,7 +1,8 @@
 <div class="span10">
 <%= simple_form_for @invoice, :html => {:class => "form-horizontal"} do |f| %>
-      <%= f.text_field :due_date %>
+
       <%= f.input :paid %>
+      <%= f.input :due_date, :as => :date_picker %>
       <div>
         <h3 align="center">Service Charges</h3>
         <table id="lines" class="table table-bordered table-condensed">
@@ -20,7 +21,6 @@
           <% end %>
           <%= link_to_add_fields 'Add Services', f, :service_invoice_lines, 'services' %>
           </tbody>
-
         </table>
       </div>
 
@@ -61,5 +61,17 @@
                    </div>
 
 <% end %>
+</div>
+<div class="span2">
+  <ul>
+    <% if can? :destroy, WorkOrder and @invoice.id.present?  %>
+        <li class="print"><%= link_to (t "global.print"), invoice_path(@invoice.id) %></li>
+        <li class="delete"><%= link_to (t "global.delete"), invoice_path, :confirm => 'Are you sure?', :method => :delete  %> </li>
+    <% end %>
+    <% if can? :edit, WorkOrder and @invoice.id.present?  %>
+        <li class="edit"><%= link_to (t "global.edit"), edit_invoice_path %></li>
+    <% end %>
+    <li class="exit"><%= link_to (t "global.exit"), invoices_path %></li>
+  </ul>
 </div>
 

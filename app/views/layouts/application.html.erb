@@ -12,6 +12,7 @@
   <meta name="keywords" content="<%= Setting::meta_tags %>"/>
 </head>
 <body>
+<div id="wrap">
 <%= render 'layouts/header' %>
 <div class="container-fluid">
   <% if logged_in?  %>
@@ -26,12 +27,16 @@
       <% if logged_in?  %><h3><%= @title || "" %></h3><% end %>
     <div class="row-fluid">
       <div class="span12"> <%= yield %></div>
-      <div id="footer" class="span12">
-        <p style="margin: 0 auto;">
-                  Powered by <a href="http://myitcrm.com">MyIT CRM</a>&copy; 2010 - <%= Date.today.year %> - <%= Setting::version %> - Glen Vanderhel
-                </p>
-      </div>
     </div>
+  <div id="push"></div>
+</div>
+
+
+<div id="footer">
+  <div class="container">
+    <p class="muted credit" style="text-align: center">Powered by <a href="http://myitcrm.com">MyIT CRM</a>&copy; 2010 - <%= Date.today.year %> - <%= Setting::version %> - Glen Vanderhel </p>
   </div>
+</div>
+</div>
 </body>
 </html>

@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.boolean  "paid_partially"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "due_date"
+    t.date     "due_date"
     t.datetime "paid_date"
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
