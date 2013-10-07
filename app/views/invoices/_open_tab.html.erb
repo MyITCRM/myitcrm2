@@ -1,36 +1,38 @@
 <table class="table table-bordered table-hover table table-condensed">
   <thead>
       <tr>
-          <th><%= t "invoice.invoice_id" %></th>
-          <th><%= t "invoice.wo_id" %></th>
-          <th><%= t "invoice.clients_name" %></th>
-          <th><%= t "invoice.sub_total" %></th>
-          <th><%= t "invoice.tax_total" %></th>
-          <th><%= t "invoice.total" %></th>
-          <th><%= t "global.actions" %></th>
+          <th><%= t('invoice.invoice_id') %></th>
+          <th><%= t('global.due_date') %></th>
+          <th><%= t('invoice.wo_id') %></th>
+          <th><%= t('invoice.clients_name') %></th>
+          <th><%= t('invoice.sub_total') %></th>
+          <th><%= t('invoice.tax_total') %></th>
+          <th><%= t('invoice.total') %></th>
+          <th><%= t('global.actions') %></th>
       </tr>
     </thead>
     <tbody>
     <% @open_invoices.each do |open| %>
-        <tr>
-            <td align="center"><%= link_to(open.id, invoice_path(open.id)) %></td>
-          <% if open.due_date < Time.now %>
-            <td align="center" class="overdue_highlight"><%= l open.due_date, :format => :short %></td>
-          <% else %>
-              <td align="center"><%= l open.due_date, :format => :short %></td>
-          <% end %>
-            <td align="center"><%= open.work_order_id %></td>
-            <td align="center"><%= link_to(open.user.name, user_path(open.user_id)) if open.user_id.present? %></td>
-            <td align="center"><%= number_to_currency(open.sub_total) %></td>
-            <td align="center"><%= number_to_currency(open.tax_total) %></td>
-            <td align="center"><%= number_to_currency(open.total) %></td>
+        <tr <% if open.due_date < Date.today %> class="error" <% end %>>
+            <td><%= link_to(open.id, invoice_path(open.id)) %></td>
+            <td><% if open.due_date < Date.today %>
+                  <span class="badge badge-important"><%= l open.due_date, :format => :short %></span>
+                    <% else %>
+                  <%= l open.due_date, :format => :short %>
+              <%end %>
+            </td>
+            <td><%= link_to open.work_order_id, work_order_path(open.work_order_id) if open.work_order_id.present? %></td>
+            <td><%= link_to(open.user.name, user_path(open.user_id)) if open.user_id.present? %></td>
+            <td><%= number_to_currency(open.sub_total) %></td>
+            <td><%= number_to_currency(open.tax_total) %></td>
+            <td><%= number_to_currency(open.total) %></td>
 
-            <td width="120" align="center">
-                <%= link_to(image_tag('view.png', :title => (t "global.view")), invoice_path(open.id) )%>&nbsp;
-                <%= link_to(image_tag('edit.png', :title => (t "global.edit")), edit_invoice_path(open.id)) %>&nbsp;
+            <td>
+                <%= link_to(image_tag('view.png', :title => ( t('global.view'))), invoice_path(open.id) )%>&nbsp;
+                <%= link_to(image_tag('edit.png', :title => (t('global.edit'))), edit_invoice_path(open.id)) %>&nbsp;
              <% if can? :manage, Invoice %>
-                <%= link_to(image_tag('printer.png', :title => (t "global.print")), invoice_path(open.id,:format => 'pdf'))%>&nbsp;
-                <%= link_to(image_tag('delete.png', :title => (t "global.delete")), invoice_path(open.id), :confirm => (t "alert.destroy"), :method => :delete ) %>&nbsp;
+                <%= link_to(image_tag('printer.png', :title => (t('global.print'))), invoice_path(open.id,:format => 'pdf'))%>&nbsp;
+                <%= link_to(image_tag('delete.png', :title => (t('global.delete'))), invoice_path(open.id), :confirm => t('alert.destroy'), :method => :delete ) %>&nbsp;
           <% end %>
         </td>
       </tr>

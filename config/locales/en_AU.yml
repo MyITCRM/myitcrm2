@@ -127,6 +127,7 @@ en_AU:
     markdown_heading: "Use Markdown for formatting."
     markdown_examples: "See examples."
     for: "for"
+    due_date: "Due Date"
   supplier:
    t_title: "Supplier's"
    t_new: "New Supplier"
@@ -272,7 +273,7 @@ en_AU:
 #         t.strftime("at %I:%M%p")            #=> "at 08:56AM"
 
       default: "%d/%m/%Y"
-      short: "%d %m %y"
+      short: "%d/%m/%y"
       long: "%B %d %Y"
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
