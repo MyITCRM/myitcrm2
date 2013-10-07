@@ -18,4 +18,5 @@
 //= require products
 //= require work_orders
 //= require datepicker_format
+//= require invoices
 //= require myitcrm
