@@ -1,5 +1,5 @@
 # MyIT CRM - Repair's Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,16 +19,16 @@
 class UserSession < Authlogic::Session::Base
 
 #  myTODO - Feature #68 - Need to re-enable when near completion of Public Release
-#  if Setting::logout_limit = 1
-#    logout_on_timeout true
-#  else
-#     logout_on_timeout false
-#  end
+  if Setting::logout_limit?
+    logout_on_timeout true
+  else
+    logout_on_timeout false
+  end
   consecutive_failed_logins_limit 6
 
-def to_key
-   new_record? ? nil : [ self.send(self.class.primary_key) ]
-end
+  def to_key
+    new_record? ? nil : [self.send(self.class.primary_key)]
+  end
 
- 
+
 end

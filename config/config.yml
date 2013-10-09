@@ -24,6 +24,8 @@ tax_rate:
   default: '10'
 logout_limit:
   default: 'true'
+idle_time:
+  default: '10'
 version:
   default: 'v2.0.0'
 default_invoice_note:

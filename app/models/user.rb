@@ -19,7 +19,7 @@
 class User < ActiveRecord::Base
 # This allows/connects the Users to many Work Orders
   has_many :work_orders # MyTODO protection for mass-assignment
-  has_many :replies  # MyTODO protection for mass-assignment
+  has_many :replies # MyTODO protection for mass-assignment
   belongs_to :role
 
 # Mass Assignment Protection
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :username, :email
   validates_uniqueness_of :name, :username, :email
   validates_length_of :password, :password_confirmation, :in => 8..64
-  validates_format_of  :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   before_create :new_user
 
 # Used to set New Users defaults
@@ -51,11 +51,12 @@ class User < ActiveRecord::Base
 
 ###  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
   acts_as_authentic do |c|
-    c.logged_in_timeout 15.minutes # default is 15 minutes. Change this value and restart server to take effect of new value
-end
+    time = Setting::idle_time.to_i
+    c.logged_in_timeout time.minutes # default is 15 minutes. Change this value and restart server to take effect of new value
+  end
 
   def self.search_users(search_users, sort_column, sort_direction)
-       User.where('name LIKE  ?', "%#{search_users}%").order(sort_column+ " "+sort_direction)
+    User.where('name LIKE  ?', "%#{search_users}%").order(sort_column+ " "+sort_direction)
   end
 
 end
