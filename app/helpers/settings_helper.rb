@@ -27,7 +27,8 @@ module SettingsHelper
       choices = [[blank_text.is_a?(Symbol) ? l(blank_text) : blank_text, '']] + choices
     end
     setting_label(setting, options).html_safe +
-      select_tag("settings[#{setting}]", options_for_select(choices, Setting.send(setting).to_s), options).html_safe
+        content_tag(:div, content_tag(:div, select_tag("settings[#{setting}]", options_for_select(choices, Setting.send(setting).to_s), options).html_safe, :class => "controls"), :class => "control-group")
+
   end
 
   def setting_multiselect(setting, choices, options={})
@@ -35,34 +36,36 @@ module SettingsHelper
     setting_values = [] unless setting_values.is_a?(Array).html_safe
 
     setting_label(setting, options).html_safe +
-      hidden_field_tag("settings[#{setting}][]", '').html_safe +
-      choices.collect do |choice|
-        text, value = (choice.is_a?(Array) ? choice : [choice, choice])
-        content_tag('label',
-          check_box_tag("settings[#{setting}][]", value, Setting.send(setting).include?(value)) + text.to_s,
-          :class => 'block'
-        )
-      end.join.html_safe
+        hidden_field_tag("settings[#{setting}][]", '').html_safe +
+        choices.collect do |choice|
+          text, value = (choice.is_a?(Array) ? choice : [choice, choice])
+          content_tag('label',
+                      check_box_tag("settings[#{setting}][]", value, Setting.send(setting).include?(value)) + text.to_s,
+                      :class => 'block'
+          )
+        end.join.html_safe
   end
 
   def setting_text_field(setting, options={})
     setting_label(setting, options).html_safe +
-      text_field_tag("settings[#{setting}]", Setting.send(setting), options).html_safe
+        content_tag(:div, content_tag(:div, text_field_tag("settings[#{setting}]", Setting.send(setting), options).html_safe, :class => "controls"), :class => "control-group")
+
   end
 
   def setting_text_area(setting, options={})
     setting_label(setting, options).html_safe +
-      text_area_tag("settings[#{setting}]", Setting.send(setting), options).html_safe
+        content_tag(:div, content_tag(:div, text_area_tag("settings[#{setting}]", Setting.send(setting), options).html_safe, :class => "controls"), :class => "control-group")
+
   end
 
   def setting_check_box(setting, options={})
     setting_label(setting, options).html_safe +
-      hidden_field_tag("settings[#{setting}]", 0).html_safe +
-      check_box_tag("settings[#{setting}]", 1, Setting.send("#{setting}?"), options).html_safe
+        hidden_field_tag("settings[#{setting}]", 0).html_safe +
+        check_box_tag("settings[#{setting}]", 1, Setting.send("#{setting}?"), options).html_safe
   end
 
   def setting_label(setting, options={})
     label = options.delete(:label)
-    label ? content_tag("label", t(label || "setting_#{setting}")).html_safe : ''
+    label ? content_tag('label class="control-label"', t(label || "setting_#{setting}")).html_safe : ''
   end
 end

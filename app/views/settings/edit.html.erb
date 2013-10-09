@@ -1,90 +1,78 @@
-<!--myTODO Setting Labels not showing up. Also escaping output-->
-<div id="sidebar_left">
-  <%= module_header %>
-  <div class="module">
-    <ul>
-        <li class="exit"><%= link_to t("global.exit"), root_url %></li>
-    </ul>
-  </div>
-  <%= render 'layouts/left_sidebar_modules' %>
-</div>
-<div id="center_col">
-  <div id="ddtabs1" class="basictab">
-  <ul>
-    <li><a href="#<%= t("products.tab_menu_basic_name") %>" rel="sc1"><%= t("products.tab_menu_basic") %></a></li>
-    <li><a href="#<%= t("settings.tab.taxation_info") %>" rel="sc2"><%= t ("settings.tab.taxation_information") %></a></li>
-    <li><a href="#<%= t "settings.tab.payment_options_url" %>" rel="sc3"><%= t "settings.tab.payment_options" %></a></li>
-    <li><a href="#<%= t "settings.tab.invoice_defaults_url" %>" rel="sc4"><%= t "settings.tab.invoice_defaults" %></a></li>
-    <!--<li><a href="#<%= t "settings.tab.localisation_url" %>" rel="sc5"><%= t "settings.tab.localisation_url" %></a></li>-->
-    <li><a href="#<%= t "settings.tab.misc" %>" rel="sc6"><%= t "settings.tab.misc_url" %></a></li>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab"><%= t("products.tab_menu_basic") %></a></li>
+    <li><a href="#tab2" data-toggle="tab"><%= t ("settings.tab.taxation_information") %></a></li>
+    <li><a href="#tab3" data-toggle="tab"><%= t "settings.tab.payment_options" %></a></li>
+    <li><a href="#tab4" data-toggle="tab"><%= t "settings.tab.invoice_defaults" %></a></li>
+    <li><a href="#tab5" data-toggle="tab"><%= t "settings.tab.localisation_url" %></a></li>
+    <li><a href="#tab6" data-toggle="tab"><%= t "settings.tab.misc_url" %></a></li>
   </ul>
-</div>
-
-<div class="tabcontainer">
-
-  <div id="sc1" class="tabcontent">
-    <div class="simple_form">
-      <%= form_tag({:action => 'edit'}) do %>
-              <p><%= setting_text_field :business_name, :size => 40, :label => :business_name %></p>
-              <p><%= setting_text_field :business_slogan, :size => 80, :label => :business_slogan %></p>
-              <p><%= setting_text_field :business_phone, :size => 20, :label => :business_phone %></p>
-              <p><%= setting_text_field :business_toll_free, :size => 20,:label => :business_toll_free %></p>
-              <p><%= setting_text_field :business_fax, :size => 20, :label => :business_fax %></p>
-              <p><%= setting_text_field :business_mobile, :size => 20, :label => :business_mobile%></p>
-              <p><%= setting_text_field :business_email, :size => 50, :label => :business_email %></p>
-              <p><%= setting_text_area :business_address, :cols => 35 , :rows => 8, :label => :business_address %></p>
-               <div class="center">
-                  <%= submit_tag t "global.apply" %>
-               </div>
-               <% end %>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <%= form_tag({:action => 'edit'}, :class => "form-horizontal") do %>
+          <%= setting_text_field :business_name, :class => "span6", :label => :business_name %>
+          <%= setting_text_field :business_slogan, :class => "span6", :label => :business_slogan %>
+          <%= setting_text_field :business_phone, :size => 20, :label => :business_phone %>
+          <%= setting_text_field :business_toll_free, :size => 20, :label => :business_toll_free %>
+          <%= setting_text_field :business_fax, :size => 20, :label => :business_fax %>
+          <%= setting_text_field :business_mobile, :size => 20, :label => :business_mobile %>
+          <%= setting_text_field :business_email, :size => 50, :label => :business_email %>
+          <%= setting_text_field :business_address, :cols => 35, :rows => 8, :label => :business_address %>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+          </div>
+      <% end %>
     </div>
-
+    <div class="tab-pane" id="tab2">
+      <%= form_tag({:action => 'edit'}, :class => "form-horizontal") do %>
+          <%= setting_text_field(:tax_type, :size => 10, :label => :tax_type) %>
+          <%= setting_text_field(:tax_rate, :size => 10, :label => :tax_rate) %>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+          </div>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <%= form_tag({:action => 'edit'}, :class => "form-horizontal") do %>
+          <%= setting_text_field(:tax_type, :size => 10, :label => :tax_type) %>
+          <%= setting_text_field(:tax_rate, :size => 10, :label => :tax_rate) %>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+          </div>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="tab4">
+      <%= form_tag({:action => 'edit'}, :class => "form-horizontal") do %>
+          <%= setting_select(:default_invoice_terms, [['HTTP', 'http'], ['HTTPS', 'https']], :label => :default_invoice_terms) %>
+          <%= setting_text_area(:default_invoice_note, :cols => 70, :rows => 8, :label => :default_invoice_note) %>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+          </div>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="tab5">
+      <%= form_tag({:action => 'edit'}, :class => "form-horizontal") do %>
+          <%= setting_select(:default_invoice_terms, [['HTTP', 'http'], ['HTTPS', 'https']], :label => :default_invoice_terms) %>
+          <%= setting_text_area(:default_invoice_note, :cols => 70, :rows => 8, :label => :default_invoice_note) %>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+          </div>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="tab6">
+      <%= form_tag({:action => 'edit'}, :class => "form-horizontal") do %>
+          <%= setting_check_box(:logout_limit, :label => :logout_limit) %>
+          <%= setting_text_field(:idle_time, :label => :idle_time) %>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+          </div>
+      <% end %>
+    </div>
   </div>
-
-  <div id="sc2" class="tabcontent">
-    <div class="simple_form">
-        <%= form_tag({:action => 'edit'}) do %>
-            <p><%= setting_text_field(:tax_type, :size => 10, :label => :tax_type)%></p>
-            <p><%= setting_text_field(:tax_rate, :size => 10, :label => :tax_rate)%></p>
-             <div class="center">
-                <%= submit_tag t "global.apply" %>
-             </div>
-             <% end %>
-
-        </div>
-
-  </div>
-
-  <div id="sc3" class="tabcontent">
-
-  </div>
-
-  <div id="sc4" class="tabcontent">
-     <div class="simple_form">
-        <%= form_tag({:action => 'edit'}) do %>
-            <p><%= setting_select(:default_invoice_terms, [['HTTP', 'http'], ['HTTPS', 'https']], :label => :default_invoice_terms) %></p>
-            <p><%= setting_text_area(:default_invoice_note, :cols => 70 , :rows => 8, :label => :default_invoice_note) %></p>
-             <div class="center">
-                <%= submit_tag t "global.apply" %>
-             </div>
-            <% end %>
-
-        </div>
-  </div>
-<div id="sc5" class="tabcontent">
-
-  </div>
-<div id="sc6" class="tabcontent">
-      <div class="simple_form">
-        <%= form_tag({:action => 'edit'}) do %>
-            <p><%= setting_check_box(:logout_limit, :label => :logout_limit) %></p>
-             <div class="center">
-                <%= submit_tag t "global.apply" %>
-             </div>
-            <% end %>
-
-        </div>
-  </div>
-</div>
-   <div class="clear"></div>
 </div>
