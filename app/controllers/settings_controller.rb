@@ -17,7 +17,7 @@
 
 class SettingsController < ApplicationController
   #  Used by CanCan to restrict controller access
-  #skip_authorize_resource
+  authorize_resource
 
   def index
     #unauthourized! if cannot? :edit, Setting
@@ -37,7 +37,7 @@ class SettingsController < ApplicationController
         value.delete_if { |v| v.blank? } if value.is_a?(Array)
         Setting[name] = value
       end
-      flash[:notice] = "All Good!"
+      flash[:notice] = t('settings.flash.updated_successfully')
       redirect_to :action => 'index'
 
     end

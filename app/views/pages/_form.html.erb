@@ -4,12 +4,11 @@
 
      <%= f.input :name %>
      <%= f.input :permalink, :hint => "Don't use spaces between words. Please insert _ underscores instead" %>
+     <%= markdown_hint %>
       <%= f.input :content, :input_html => {:cols => 60, :rows => 15 } %>
        <p>
         <%= f.input :page_category_name%>
        </p>
       <%= content_tag :div, f.submit, :class => "center" %>
-
-      <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
       <% end %>
 

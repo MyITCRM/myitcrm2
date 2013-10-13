@@ -1,6 +1,5 @@
-<div id="center_col" class="content">
-  <div class="page_info">
-    <div class="page_name"><%= @title = @page.name %>
+<div class="offset2 span8">
+    <h2><%= @page.name %> </h2>
       <% if can? :manage, User %>
       <ul>
         <li><%= link_to 'Edit', edit_page_path(@page) %> </li>
@@ -8,12 +7,10 @@
         <li class="delete"><%= link_to (t "global.delete"), @page, :confirm => 'Are you sure?', :method => :delete %></li>
       </ul>
        <% end %>
-    </div>
     <p>
-      <var class="created_on"><%= t"page.created_at" %> <%= @page.created_at.strftime("%b %d %Y") %> by <%= @page.user.username %></var>
+      <small><%= t"page.created_at" %> <%= @page.created_at.strftime("%B %e %Y") %> by <%= @page.user.username %></small>
     </p>
 
-  </div>
 
 
 

@@ -17,7 +17,11 @@
           <%= setting_text_field :business_fax, :size => 20, :label => :business_fax %>
           <%= setting_text_field :business_mobile, :size => 20, :label => :business_mobile %>
           <%= setting_text_field :business_email, :size => 50, :label => :business_email %>
-          <%= setting_text_field :business_address, :cols => 35, :rows => 8, :label => :business_address %>
+          <%= setting_text_field :business_address, :class => "span3", :label => :business_address %>
+          <%= setting_text_field :business_city, :class => "span3", :label => :business_city %>
+          <%= setting_text_field :business_state, :class => "span3", :label => :business_state %>
+          <%= setting_text_field :business_zip_code, :class => "span3", :label => :business_zip_code %>
+          <%= setting_text_field :business_country, :class => "span3", :label => :business_country %>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Save changes</button>
             <button type="button" class="btn">Cancel</button>

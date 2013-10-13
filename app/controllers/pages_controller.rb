@@ -31,10 +31,11 @@ class PagesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.xml
   def show
+    @title
     if params[:permalink]
       @page = Page.find_by_permalink(params[:permalink])
     else
-      @page = Page.find(params[:id])
+      create
     end
 
 
@@ -69,6 +70,7 @@ class PagesController < ApplicationController
   def create
     @page = Page.new
     if can? :manage, WorkOrder
+      @page.user_id = current_user.id
       @page.permalink = params[:permalink] if current_user.employee?
 
     end

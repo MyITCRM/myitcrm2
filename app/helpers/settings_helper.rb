@@ -61,7 +61,7 @@ module SettingsHelper
   def setting_check_box(setting, options={})
     setting_label(setting, options).html_safe +
         hidden_field_tag("settings[#{setting}]", 0).html_safe +
-        check_box_tag("settings[#{setting}]", 1, Setting.send("#{setting}?"), options).html_safe
+        content_tag(:div, content_tag(:div, check_box_tag("settings[#{setting}]", 1, Setting.send("#{setting}?"), options).html_safe, :class => "controls"), :class => "control-group")
   end
 
   def setting_label(setting, options={})

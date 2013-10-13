@@ -69,8 +69,8 @@ MyITCRM2::Application.routes.draw do
   match '/faq/:category/:permalink' => 'pages#show'
 
 #  map.root :register
-#  root :to => 'pages#show'
-  root :to => 'user_sessions#new'
+  root :to => 'pages#show',:permalink => 'home'
+  #root :to => 'user_sessions#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

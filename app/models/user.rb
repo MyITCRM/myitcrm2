@@ -51,8 +51,10 @@ class User < ActiveRecord::Base
 
 ###  Authlogic GEM - Used to logout/destroy user sessions if they exceed the timeout limit.
   acts_as_authentic do |c|
-    time = Setting::idle_time.to_i
-    c.logged_in_timeout time.minutes # default is 15 minutes. Change this value and restart server to take effect of new value
+    if Setting::logout_limit?
+      time = Setting::idle_time.to_i
+      c.logged_in_timeout time.minutes # default is 15 minutes. Change this value and restart server to take effect of new value
+    end
   end
 
   def self.search_users(search_users, sort_column, sort_direction)

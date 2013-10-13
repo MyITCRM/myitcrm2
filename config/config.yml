@@ -14,6 +14,14 @@ business_email:
   default: "admin@exmaple.com"
 business_address:
   default: '49 Fake Road'
+business_city:
+  default: 'Sydney'
+business_state:
+  default: 'NSW'
+business_zip_code:
+  default: '2000'
+business_country:
+  default: 'Australia'
 business_number:
   default: ''
 meta_tags:

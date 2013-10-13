@@ -502,6 +502,8 @@ en_AU:
       tax_format: "eg:To include 10% on your invoices, enter 10"
       tax_type: "eg: GST, VAT, Sales, etc"
 
+    flash:
+      updated_successfully: "Sucessfully updated settings."
   user_t_edit_profile: "Edit My Profile"
   
   users:
