@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,9 +16,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class PriorityListsController < ApplicationController
-   # myTODO - Add cancan auth here and in ability model
-   #authorize_resource
-   #skip_authorize_resource :only =>  [:index]
+  # myTODO - Add cancan auth here and in ability model
+  #authorize_resource
+  #skip_authorize_resource :only =>  [:index]
   def index
     @title = t 'global.priority_list'
     @priority_lists = PriorityList.all
@@ -35,11 +35,11 @@ class PriorityListsController < ApplicationController
     respond_to do |format|
       if @priority_list.update_attributes(params[:priority_list])
         flash[:notice] = 'PriorityList was successfully updated.'
-        format.html { redirect_to( priority_lists_path) }
-        format.xml  { head :ok }
+        format.html { redirect_to(priority_lists_path) }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @priority_list.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @priority_list.errors, :status => :unprocessable_entity }
       end
     end
   end

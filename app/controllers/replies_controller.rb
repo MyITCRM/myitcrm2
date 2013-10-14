@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,14 +17,14 @@
 
 class RepliesController < ApplicationController
   before_filter :login_required # User must be logged in first
-  authorize_resource  # Used by CanCan to restrict controller access
+  authorize_resource # Used by CanCan to restrict controller access
 
   def index
     @replies = Reply.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @replies }
+      format.xml { render :xml => @replies }
     end
   end
 
@@ -35,7 +35,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @reply }
+      format.xml { render :xml => @reply }
     end
   end
 
@@ -46,7 +46,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @reply }
+      format.xml { render :xml => @reply }
     end
   end
 
@@ -67,11 +67,11 @@ class RepliesController < ApplicationController
     @reply.attributes = params[:reply]
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to( :back, :notice => (t "reply.notice.successful")) }
-        format.xml  { render :xml => @reply, :status => :created, :location => @reply }
+        format.html { redirect_to(:back, :notice => (t "reply.notice.successful")) }
+        format.xml { render :xml => @reply, :status => :created, :location => @reply }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @reply.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @reply.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -87,11 +87,11 @@ class RepliesController < ApplicationController
     end
     respond_to do |format|
       if @reply.update_attributes(params[:reply])
-        format.html { redirect_to( work_order_path(@reply.work_order_id), :notice => (t "reply.notice.updated")) }
-        format.xml  { head :ok }
+        format.html { redirect_to(work_order_path(@reply.work_order_id), :notice => (t "reply.notice.updated")) }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @reply.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @reply.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -103,8 +103,8 @@ class RepliesController < ApplicationController
     @reply.destroy
 
     respond_to do |format|
-      format.html { redirect_to( work_order_path(@reply.work_order_id), :notice => 'Reply was successfully deleted.') }
-      format.xml  { head :ok }
+      format.html { redirect_to(work_order_path(@reply.work_order_id), :notice => 'Reply was successfully deleted.') }
+      format.xml { head :ok }
     end
   end
 end

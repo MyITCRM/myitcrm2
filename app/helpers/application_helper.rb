@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,19 +26,11 @@ module ApplicationHelper
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
-  # This is the module
-  def module_header(title = nil, module_class = nil)
-    title.present? ? title : title = t('global.quick_links')
-    css_class = module_class
-    "<div class='module_header text_shadow #{css_class}'>#{title}</div>".html_safe
-  end
-
   # Menu and Action Icons helper
   def menu_button(link_name = nil, link_action = nil, icon_class = nil, button_class = nil)
     if button_class == nil
       button_class = "btn btn-large btn-inverse btn-block"
     end
-
     "<a href='#{link_action}' class='#{button_class}'><i class='#{icon_class}'></i> #{link_name}</a>".html_safe
 
   end
@@ -61,7 +53,7 @@ module ApplicationHelper
   def markdown(text)
     #rendered_text =text.gsub( /(\[([a-zA-Z0-9]{1,60})\:)+[a-zA-Z0-9]{2,60}\]/,'<a href='"/\2"'>Link</a>')
     interlinked = %r{([a-zA-Z0-9]{1,60}):([a-zA-Z0-9]{1,60})+}i
-    rendered_text =text.gsub( interlinked,'<a href=''/\1/\2''>\2</a>')
+    rendered_text =text.gsub(interlinked, '<a href=' '/\1/\2' '>\2</a>')
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
     markdown.render(rendered_text).html_safe
   end
@@ -109,9 +101,8 @@ module ApplicationHelper
 
   # Used to display list of active work orders when creating or editing that relate to that client.
   def recent_activity (status_id)
-    WorkOrder.where("user_id = ? AND status_id = ?","#{params[:user_id]}", "#{status_id}").order("created_at ASC")
+    WorkOrder.where("user_id = ? AND status_id = ?", "#{params[:user_id]}", "#{status_id}").order("created_at ASC")
   end
-
 
 
 end
@@ -123,8 +114,8 @@ module SimpleForm
       def input_html_options
         value = object.send(attribute_name)
         options = {
-            value: value.nil?? nil : I18n.localize(value),
-            data: { behaviour: 'datepicker' }  # for example
+            value: value.nil? ? nil : I18n.localize(value),
+            data: {behaviour: 'datepicker'} # for example
         }
         # add all html option you need...
         super.merge options

@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@ class ProductInvoiceLinesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @product_invoice_lines }
+      format.xml { render :xml => @product_invoice_lines }
     end
   end
 
@@ -34,7 +34,7 @@ class ProductInvoiceLinesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @product_invoice_line }
+      format.xml { render :xml => @product_invoice_line }
     end
   end
 
@@ -45,7 +45,7 @@ class ProductInvoiceLinesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @product_invoice_line }
+      format.xml { render :xml => @product_invoice_line }
     end
   end
 
@@ -62,10 +62,10 @@ class ProductInvoiceLinesController < ApplicationController
     respond_to do |format|
       if @product_invoice_line.save
         format.html { redirect_to(@product_invoice_line, :notice => 'Product invoice line was successfully created.') }
-        format.xml  { render :xml => @product_invoice_line, :status => :created, :location => @product_invoice_line }
+        format.xml { render :xml => @product_invoice_line, :status => :created, :location => @product_invoice_line }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @product_invoice_line.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @product_invoice_line.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -78,10 +78,10 @@ class ProductInvoiceLinesController < ApplicationController
     respond_to do |format|
       if @product_invoice_line.update_attributes(params[:product_invoice_line])
         format.html { redirect_to(@product_invoice_line, :notice => 'Product invoice line was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @product_invoice_line.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @product_invoice_line.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -94,7 +94,7 @@ class ProductInvoiceLinesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(product_invoice_lines_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 end

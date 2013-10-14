@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,15 +16,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class PagesController < ApplicationController
-   skip_authorize_resource
+  skip_authorize_resource
 # GET /invoices
-  # GET /invoices.xml
+# GET /invoices.xml
   def index
     @pages = Page.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @pages }
+      format.xml { render :xml => @pages }
     end
   end
 
@@ -41,7 +41,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @page }
+      format.xml { render :xml => @page }
     end
   end
 
@@ -55,7 +55,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @page }
+      format.xml { render :xml => @page }
     end
   end
 
@@ -81,10 +81,10 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.save
         format.html { redirect_to(@page, :notice => 'Page was successfully created.') }
-        format.xml  { render :xml => @page, :status => :created, :location => @page }
+        format.xml { render :xml => @page, :status => :created, :location => @page }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @page.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @page.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -97,10 +97,10 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.update_attributes(params[:page])
         format.html { redirect_to(@page, :notice => 'Page was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @page.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @page.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -113,15 +113,15 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(root_path) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 
   def home
     if params[:permalink]
-          @page = Page.find_by_permalink(params[:permalink])
-        else
-          @page = Page.first
-        end
+      @page = Page.find_by_permalink(params[:permalink])
+    else
+      @page = Page.first
+    end
   end
 end

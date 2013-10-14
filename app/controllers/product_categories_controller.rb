@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -20,6 +20,6 @@ class ProductCategoriesController < ApplicationController
 
   def index
     @product_categories = ProductCategory.order(:name).where("name like ?", "%#{params[:term]}%")
-      render json: @product_categories.map(&:name)
-    end
+    render json: @product_categories.map(&:name)
+  end
 end

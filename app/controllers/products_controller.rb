@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,11 +26,11 @@ class ProductsController < ApplicationController
     @title = t "products.t_title"
 #    @products = Product.paginate :page => params[:page], :order => sort_column+ " " +sort_direction, :per_page => 50
 #    @products = Product.order(:id).page params[:page]
-    @products = Product.search_products(params[:search_products], sort_column, sort_direction ).paginate :per_page => 50, :page => params[:page]
+    @products = Product.search_products(params[:search_products], sort_column, sort_direction).paginate :per_page => 50, :page => params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @products }
+      format.xml { render :xml => @products }
     end
   end
 
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @product }
+      format.xml { render :xml => @product }
     end
   end
 
@@ -49,14 +49,14 @@ class ProductsController < ApplicationController
     @product = Product.new
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @product }
+      format.xml { render :xml => @product }
     end
   end
 
   def edit
     @title = t "products.t_title"
     @product = Product.find(params[:id])
-    
+
   end
 
   def create
@@ -67,10 +67,10 @@ class ProductsController < ApplicationController
       if @product.save
         flash[:notice] = 'Item was successfully created.'
         format.html { redirect_to(@product) }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
+        format.xml { render :xml => @product, :status => :created, :location => @product }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @product.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -84,10 +84,10 @@ class ProductsController < ApplicationController
       if @product.update_attributes(params[:product])
         flash[:notice] = 'Item was successfully updated.'
         format.html { redirect_to(@product) }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @product.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -99,18 +99,18 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(products_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 
   private
 
   def sort_column
-   Product.column_names.include?(params[:sort]) ? params[:sort] : "our_sku"
+    Product.column_names.include?(params[:sort]) ? params[:sort] : "our_sku"
   end
 
   def sort_direction
-   %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "ASC"
+    %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "ASC"
   end
 end
   

@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2012  Glen Vanderhel
+# Copyright (C) 2009-2013  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,16 +16,16 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class PageCategoriesController < ApplicationController
-   load_and_authorize_resource
+  load_and_authorize_resource
 
   def new
     @page_category = PageCategory.new
   end
 
   def show
-     @page_category = PageCategory.where(["name LIKE ?", "%#{params[:term]}%"]).order('name ASC')
+    @page_category = PageCategory.where(["name LIKE ?", "%#{params[:term]}%"]).order('name ASC')
     respond_to do |format|
-      format.js  { render :layout => false }
+      format.js { render :layout => false }
     end
   end
 end
