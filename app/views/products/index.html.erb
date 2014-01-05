@@ -1,14 +1,3 @@
-<div id="sidebar_left">
-  <%= module_header %>
-  <div class="module">
-    <ul>
-        <li class="create"><%= link_to (t "workorder.t_add_new"), new_product_path %></li>
-        <li class="back"><%= link_to (t "global.back"), :back %></li>
-    </ul>
-  </div>
-  <%= render 'layouts/left_sidebar_modules' %>
-</div>
-
 <div id="center_col" class="no_right_sidebar">
   <% form_tag products_path, :method => 'get' do %>
    <p><%= t "products.search"  %>

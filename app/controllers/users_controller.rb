@@ -30,10 +30,6 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-    if params[:deactivate].present?
-      flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
-
-    end
     if current_user.employee
       @users = User.where('client = ?','1').order(:name)
     end

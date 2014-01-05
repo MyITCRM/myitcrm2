@@ -17,6 +17,7 @@
 
 class PagesController < ApplicationController
   skip_authorize_resource
+  before_filter :find_page, only: [:show, :edit, :update, :destroy]
 # GET /invoices
 # GET /invoices.xml
   def index
@@ -31,18 +32,6 @@ class PagesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.xml
   def show
-    @title
-    if params[:permalink]
-      @page = Page.find_by_permalink(params[:permalink])
-    else
-      create
-    end
-
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @page }
-    end
   end
 
   # GET /invoices/new
@@ -62,7 +51,6 @@ class PagesController < ApplicationController
   # GET /invoices/1/edit
   def edit
     @title = "Edit Page"
-    @page = Page.find(params[:id])
   end
 
   # POST /invoices
@@ -92,7 +80,6 @@ class PagesController < ApplicationController
   # PUT /invoices/1
   # PUT /invoices/1.xml
   def update
-    @page = Page.find(params[:id])
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
@@ -108,7 +95,6 @@ class PagesController < ApplicationController
   # DELETE /invoices/1
   # DELETE /invoices/1.xml
   def destroy
-    @page = Page.find(params[:id])
     @page.destroy
 
     respond_to do |format|
@@ -117,9 +103,14 @@ class PagesController < ApplicationController
     end
   end
 
+  private
+
+  def find_page
+    @page = Page.find_by_permalink!(params[:id])
+  end
   def home
     if params[:permalink]
-      @page = Page.find_by_permalink(params[:permalink])
+      @page = Page.find_by_permalink(params[:id])
     else
       @page = Page.first
     end
