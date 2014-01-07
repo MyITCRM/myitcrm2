@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2013  Glen Vanderhel
+# Copyright (C) 2009-2014  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,7 +17,7 @@
 
 class RolesController < ApplicationController
   #skip_authorization_check
-  #load_and_authorize_resource
+  load_and_authorize_resource
   # GET /roles
   # GET /roles.json
   def index
@@ -65,8 +65,12 @@ class RolesController < ApplicationController
   # POST /roles
   # POST /roles.json
   def create
-    @role = Role.new(params[:role])
-
+    @title = t('role.t_new')
+    @role = Role.new
+    if can? :create, Role
+      @role.dynamic_attributes = [:name, :enabled, :list_position, :permission_ids] if can? :manage, Role
+    end
+    @role.attributes = params[:role]
     respond_to do |format|
       if @role.save
         format.html { redirect_to roles_url, notice: 'Role was successfully created.' }

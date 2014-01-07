@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2013  Glen Vanderhel
+# Copyright (C) 2009-2014  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -30,10 +30,6 @@ class UsersController < ApplicationController
 
   def index
     @title = t "user.t_title"
-    if params[:deactivate].present?
-      flash[:info] = "Please call #{Setting::business_phone} to have you account deactivated"
-
-    end
     if current_user.employee
       @users = User.where('client = ?','1').order(:name)
     end

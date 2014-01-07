@@ -1,5 +1,5 @@
 # MyITCRM - Repairs Business CRM Software
-# Copyright (C) 2009-2013  Glen Vanderhel
+# Copyright (C) 2009-2014  Glen Vanderhel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,10 +17,16 @@
 
 module UsersHelper
 
+  # Returns all but work orders with a status ID of 6 for Clients
   def active_work_order_count(id = nil)
     status_id = 6
     @active_work_order_count = WorkOrder.where("user_id = ? AND status_id NOT LIKE ?", id, status_id)
+  end
 
+  # Returns opened and assigned to specific employee, work orders with a status ID of 6.
+  def employee_active_work_orders(id = nil)
+    status_id = 6
+    WorkOrder.where("assigned_to_id = ? AND status_id NOT LIKE ?", id, status_id)
   end
 
   def clients_workorders(id = nil, status_id = nil)

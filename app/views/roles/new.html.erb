@@ -1,19 +1,2 @@
-<div id="sidebar_left">
-    <% if logged_in? and can? :edit, Role %>
-     <%= module_header %>
-        <div class="module">
-          <ul>
-            <li class="exit"><%= link_to (t "global.exit"), roles_path %></li>
-            <li class="back"><%= link_to (t "global.back"), :back %></li>
-          </ul>
-        </div>
-      <% end %>
-     <%= render 'layouts/left_sidebar_modules' %>
-</div>
 
-<div id="center_col" class="no_right_sidebar">
 <%= render 'form' %>
-
-<%= link_to 'Back', roles_path %>
-
-</div>

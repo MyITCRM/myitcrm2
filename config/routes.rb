@@ -16,7 +16,7 @@ MyITCRM2::Application.routes.draw do
     get :page_category_name, :on => :collection
   end
 
-  resources :pages
+
   resources :statuses
   resources :priority_lists
 
@@ -61,16 +61,12 @@ MyITCRM2::Application.routes.draw do
   match 'settings/edit' => 'settings#edit', :as => :edit
 
 #  Ensure these are last in this list and before the root route
-  match '/article/:permalink' => 'pages#show'
-  match '/article/:category/:permalink' => 'pages#show'
-  match '/:category/:permalink' => 'pages#show'
-  match '/:permalink' => 'pages#show'
-  match '/faq/:permalink' => 'pages#show'
-  match '/faq/:category/:permalink' => 'pages#show'
+#  resources :pages, only: [:index, :new, :create]
+#  resources :pages, path: "", except: [:index, :new, :create]
 
 #  map.root :register
-  root :to => 'pages#show',:permalink => 'home'
-  #root :to => 'user_sessions#new'
+#  root :to => 'pages#show',:permalink => 'home'
+  root :to => 'user_sessions#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

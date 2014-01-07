@@ -15,7 +15,9 @@ class Page < ActiveRecord::Base
   end
   def page_category_name=(name)
     self.page_category_id = PageCategory.find_or_create_by_name(name) unless name.blank?
-
-end
+  end
+  def to_param
+    permalink
+  end
 
 end
