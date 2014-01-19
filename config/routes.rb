@@ -60,6 +60,8 @@ MyITCRM2::Application.routes.draw do
   match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign
   match 'settings/edit' => 'settings#edit', :as => :edit
 
+  match 'help/:page_id' => 'help#show'
+
 #  Ensure these are last in this list and before the root route
 #  resources :pages, only: [:index, :new, :create]
 #  resources :pages, path: "", except: [:index, :new, :create]

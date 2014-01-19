@@ -34,6 +34,12 @@ module ApplicationHelper
     "<a href='#{link_action}' class='#{button_class}'><i class='#{icon_class}'></i> #{link_name}</a>".html_safe
 
   end
+# Help Icon Linkhelper
+  def help_button(help_page = nil)
+
+    "<a href='/help/#{help_page}', target='_blank'><i class='icon-question-sign'></i></a>".html_safe
+
+  end
 
 # Used to show Employees Overview
   def employees_work_overview(status_id, employee_number = nil)

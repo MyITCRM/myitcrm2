@@ -1,5 +1,6 @@
 <div class="row-fluid">
 <div class="span10">
+  <%= help_button('home') %>
   <div class="tabbable"> <!-- Only required for left/right tabs -->
     <ul class="nav nav-tabs">
       <li class="active"><a href="#new" data-toggle="tab"><%= t "workorder.tab_menu_new" %>&nbsp;<% if @new_work_orders.count > 0 %><span class="badge badge-important"><%= @new_work_orders.count %></span><% end %></a></li>
