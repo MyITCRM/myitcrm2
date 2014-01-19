@@ -1,60 +1,64 @@
 <div class="row-fluid">
-<div class="span10">
-  <div class="tabbable"> <!-- Only required for left/right tabs -->
-    <ul class="nav nav-tabs">
-    <li class="active"><a href="#basic" data-toggle="tab"><%= t "role.tab.basic" %></a></li>
-  </ul>
-</div>
-      <div class="tab-content">
-           <div class="tab-pane active" id="basic">
-    <%= simple_form_for @role, :html => {:class => "form-horizontal"} do |f| %>
-        <%= f.error_notification %>
-        <%= f.input :name %>
-        <%= f.input :enabled  %>
-        <%= f.input :list_position %>
-
-    <h3>Permissions</h3>
-    <fieldset>
-        <legend>Invoices</legend>
-        <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Invoice") %>
-    </fieldset>
-    <fieldset>
-            <legend>Permissions</legend>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Permission") %>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Role") %>
-    </fieldset>
-    <fieldset>
-            <legend>Products</legend>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Product") %>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","ProductCategory") %>
-        </fieldset>
-    <fieldset>
-        <legend>Users</legend>
-        <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","User") %>
-    </fieldset>
-    <fieldset>
-            <legend>Service Rates</legend>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","ServiceRate") %>
-        </fieldset>
-    <fieldset>
-            <legend>Work Orders</legend>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","WorkOrder") %>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Reply") %>
-    </fieldset>
-    <fieldset>
-            <legend>Settings</legend>
-            <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Setting") %>
-        </fieldset>
-    <fieldset>
-        <legend>Suppliers</legend>
-        <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?","Supplier") %>
-    </fieldset>
-                 <div class="form-actions">
-                    <%= f.submit nil, :class => "btn btn-primary" %>
-                    <%= link_to t("global.cancel"), roles_path, :class => "btn" %>
-                 </div>
-    <% end %>
+  <div class="span10">
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#basic" data-toggle="tab"><%= t "role.tab.basic" %></a></li>
+      </ul>
     </div>
-</div>
-</div>
+    <div class="tab-content">
+      <div class="tab-pane active" id="basic">
+        <%= simple_form_for @role, :html => {:class => "form-horizontal"} do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :name %>
+            <%= f.input :enabled %>
+            <%= f.input :list_position %>
+
+            <h3>Permissions</h3>
+            <fieldset>
+              <legend>Invoices</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Invoice") %>
+            </fieldset>
+            <fieldset>
+              <legend>Pages (CMS)</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Page") %>
+            </fieldset>
+            <fieldset>
+              <legend>Permissions</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Permission") %>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Role") %>
+            </fieldset>
+            <fieldset>
+              <legend>Products</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Product") %>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "ProductCategory") %>
+            </fieldset>
+            <fieldset>
+              <legend>Users</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "User") %>
+            </fieldset>
+            <fieldset>
+              <legend>Service Rates</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "ServiceRate") %>
+            </fieldset>
+            <fieldset>
+              <legend>Work Orders</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "WorkOrder") %>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Reply") %>
+            </fieldset>
+            <fieldset>
+              <legend>Settings</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Setting") %>
+            </fieldset>
+            <fieldset>
+              <legend>Suppliers</legend>
+              <%= f.association :permissions, :as => :check_boxes, :label => "", :collection => Permission.where("subject_class = ?", "Supplier") %>
+            </fieldset>
+            <div class="form-actions">
+              <%= f.submit nil, :class => "btn btn-primary" %>
+              <%= link_to t("global.cancel"), roles_path, :class => "btn" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
