@@ -52,6 +52,19 @@
               </ul>
             </li>
         <% end %>
+        <!--Invoice Menu-->
+        <% if can? :manage, Page %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= t("global.pages") %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Create", new_page_path %></li>
+                <li><%= link_to "List All", pages_path %></li>
+              </ul>
+            </li>
+        <% end %>
         <% if can? :view, Setting %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

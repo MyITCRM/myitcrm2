@@ -16,7 +16,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class PageCategoriesController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource
+  skip_authorize_resource
 
   def new
     @page_category = PageCategory.new

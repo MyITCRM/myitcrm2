@@ -3,7 +3,7 @@
 
     <%= f.input :name %>
     <%= f.input :action, :collection => %W(read create show index update destroy access_clients edit_profile manage) %>
-    <%= f.input :subject_class, :collection => %W(Invoice Permission PriorityList Product ProductCategory Reply Role ServiceRate Setting Supplier User User_Session WorkOrder WorkOrders Employees Clients Profile) %>
+    <%= f.input :subject_class, :collection => %W(Invoice Page Permission PriorityList Product ProductCategory Reply Role ServiceRate Setting Supplier User User_Session WorkOrder WorkOrders Employees Clients Profile) %>
  <div class="form-actions">
                    <%= f.submit nil, :class => "btn btn-primary" %>
                    <%= link_to t("global.cancel"), permissions_path, :class => "btn" %>

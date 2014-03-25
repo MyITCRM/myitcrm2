@@ -12,6 +12,8 @@ MyITCRM2::Application.routes.draw do
     end
       resources :invoices, :work_orders
   end
+
+  resources :pages
   resources :page_categories do
     get :page_category_name, :on => :collection
   end
@@ -61,9 +63,11 @@ MyITCRM2::Application.routes.draw do
   match 'settings/edit' => 'settings#edit', :as => :edit
 
   match 'help/:page_id' => 'help#show'
+  get '*page_category/:id' => 'pages#show', :only => [:show]
 
 #  Ensure these are last in this list and before the root route
-#  resources :pages, only: [:index, :new, :create]
+
+  #resources :pages, :only => [:index, :new, :edit]
 #  resources :pages, path: "", except: [:index, :new, :create]
 
 #  map.root :register

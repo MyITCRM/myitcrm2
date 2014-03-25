@@ -33,6 +33,10 @@
             <%= hidden_field_tag "user[created_by]", current_user.username %>
         <% end %>
       </div>
+      <div class="span5 well">
+        <h4 class="offset4"><%= t("global.notes") %></h4>
+        <%= f.input :notes, :input_html => {:rows => 5}, :label => nil %>
+      </div>
 
       <div class="form-actions span10">
         <%= f.submit nil, :class => "btn btn-primary" %>

@@ -1,8 +1,8 @@
 <div class="offset2 span8">
     <h2><%= @page.name %> </h2>
-      <% if can? :manage, User %>
+      <% if can? :manage, Page %>
       <ul>
-        <li><%= link_to 'Edit', edit_page_path(@page) %> </li>
+        <li><%= link_to 'Edit', edit_page_path %> </li>
         <li><%= link_to 'New', new_page_path %></li>
         <li class="delete"><%= link_to (t "global.delete"), @page, :confirm => 'Are you sure?', :method => :delete %></li>
       </ul>

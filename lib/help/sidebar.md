@@ -1,6 +1,8 @@
 Table of Contents
 
-**Users Menu**
+[Home](/help/home)
+
+Users Menu
 
  * [Create New User](/help/users_create_new)
 
