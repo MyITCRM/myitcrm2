@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '4.1.1'
 gem 'prawn'
 gem 'prawnto'
 gem 'cancan'
@@ -12,24 +12,16 @@ gem 'redcarpet'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  #gem "less-rails"
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  #gem 'therubyracer'
-
-  gem 'uglifier', '>= 1.0.3'
-
-  gem 'jquery-ui-rails'
-
-  #gem "twitter-bootstrap-rails"
-  gem 'bootstrap-sass'
-end
-
+gem 'sass-rails',  '~> 4.0.0'
+gem 'coffee-rails'
+#gem "less-rails"
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+#gem 'therubyracer'
+gem 'uglifier', '>= 1.0.3'
+gem 'jquery-ui-rails'
+#gem "twitter-bootstrap-rails"
+gem 'bootstrap-sass'
 gem 'rspec-rails', :group => [:test, :development]
-
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'capybara'
