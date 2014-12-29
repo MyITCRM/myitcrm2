@@ -87,7 +87,7 @@ class InvoicesController < ApplicationController
   def update
     @invoice = Invoice.find(params[:id])
     respond_to do |format|
-      if @invoice.update_attributes(params[:invoice])
+      if @invoice.update!(invoice_params)
         format.html { redirect_to(@invoice, :notice => 'Invoice was successfully updated.') }
         format.xml { head :ok }
       else
@@ -107,5 +107,12 @@ class InvoicesController < ApplicationController
       format.html { redirect_to(invoices_url) }
       format.xml { head :ok }
     end
+  end
+
+  private
+  def invoice_params
+    params.require(:invoice).permit(:service_id, :product_id, :invoice_note, :user_id, :work_order_id,
+                                    :paid, :service_invoice_lines_attributes, :product_invoice_lines_attributes,
+                                    :created_by, :updated_by, :due_date, :qty, :service_id, :line_comment, :sku)
   end
 end

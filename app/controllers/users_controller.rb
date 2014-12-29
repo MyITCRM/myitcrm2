@@ -58,10 +58,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    #@title = t "user.t_new_user"
-    @user = User.new(params[:user])
-   # @user.dynamic_attributes = [:client, :employee, :workorder_assignability, :role_id] if can? :manage, User
-
+    @user = User.create(user_params)
 
     respond_to do |format|
       if @user.save
@@ -130,6 +127,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+
+  params.require(:user).permit(:name, :address, :city, :username, :email, :phone, :state, :zip, :updated_by,
+                    :created_by, :password_confirmation, :mobile, :fax, :password, :edited_by, :edited_at,
+                    :client, :employee, :workorder_assignability, :role_id, :notes, :active)
+  end
 
   def sort_column
    User.column_names.include?(params[:sort]) ? params[:sort] : "name"

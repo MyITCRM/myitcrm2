@@ -9,19 +9,19 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123020937) do
+ActiveRecord::Schema.define(version: 20121123020937) do
 
-  create_table "invoices", :force => true do |t|
+  create_table "invoices", force: true do |t|
     t.integer  "user_id"
     t.integer  "work_order_id"
-    t.decimal  "sub_total",      :precision => 12, :scale => 2, :default => 0.0
-    t.decimal  "tax_total",      :precision => 12, :scale => 2, :default => 0.0
-    t.decimal  "total",          :precision => 12, :scale => 2, :default => 0.0
-    t.decimal  "tax_rate",       :precision => 12, :scale => 2, :default => 0.0
-    t.decimal  "shipping",       :precision => 12, :scale => 2, :default => 0.0
-    t.decimal  "discount",       :precision => 12, :scale => 2, :default => 0.0
+    t.decimal  "sub_total",      precision: 12, scale: 2, default: 0.0
+    t.decimal  "tax_total",      precision: 12, scale: 2, default: 0.0
+    t.decimal  "total",          precision: 12, scale: 2, default: 0.0
+    t.decimal  "tax_rate",       precision: 12, scale: 2, default: 0.0
+    t.decimal  "shipping",       precision: 12, scale: 2, default: 0.0
+    t.decimal  "discount",       precision: 12, scale: 2, default: 0.0
     t.text     "invoice_note"
     t.boolean  "paid"
     t.boolean  "paid_partially"
@@ -29,15 +29,15 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.string   "updated_by"
     t.date     "due_date"
     t.datetime "paid_date"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
   end
 
-  create_table "page_categories", :force => true do |t|
+  create_table "page_categories", force: true do |t|
     t.string "name"
   end
 
-  create_table "pages", :force => true do |t|
+  create_table "pages", force: true do |t|
     t.string   "name"
     t.string   "permalink"
     t.text     "content"
@@ -45,52 +45,52 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.string   "page_category_id"
     t.boolean  "published"
     t.boolean  "private"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  create_table "permissions", :force => true do |t|
+  create_table "permissions", force: true do |t|
     t.string "name"
     t.string "action"
     t.string "subject_class"
     t.string "subject_id"
   end
 
-  create_table "permittables", :id => false, :force => true do |t|
+  create_table "permittables", id: false, force: true do |t|
     t.integer "role_id"
     t.integer "permission_id"
   end
 
-  create_table "priority_lists", :force => true do |t|
+  create_table "priority_lists", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "product_categories", :force => true do |t|
+  create_table "product_categories", force: true do |t|
     t.string   "name"
     t.integer  "sub_category_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table "product_invoice_lines", :force => true do |t|
-    t.integer  "invoice_id",                                  :default => 0,   :null => false
-    t.integer  "product_id",                                  :default => 0,   :null => false
-    t.string   "sku",                                                          :null => false
-    t.string   "description",                                                  :null => false
-    t.decimal  "qty",          :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "tax_rate",     :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "tax",          :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "price",        :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "sub_total",    :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "total_price",  :precision => 12, :scale => 2, :default => 0.0, :null => false
+  create_table "product_invoice_lines", force: true do |t|
+    t.integer  "invoice_id",                            default: 0,   null: false
+    t.integer  "product_id",                            default: 0,   null: false
+    t.string   "sku",                                                 null: false
+    t.string   "description",                                         null: false
+    t.decimal  "qty",          precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "tax_rate",     precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "tax",          precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "price",        precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "sub_total",    precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "total_price",  precision: 12, scale: 2, default: 0.0, null: false
     t.string   "line_comment"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
-  create_table "products", :force => true do |t|
+  create_table "products", force: true do |t|
     t.integer  "supplier_id"
     t.string   "supplier_sku"
     t.string   "our_sku"
@@ -103,86 +103,86 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.string   "warranty_length"
     t.string   "warranty_unit"
     t.boolean  "taxable"
-    t.decimal  "tax_rate",            :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "cost_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "sell_price",          :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "mark_up",             :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "tax_rate",            precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "cost_price",          precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "sell_price",          precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "mark_up",             precision: 10, scale: 2, default: 0.0, null: false
     t.boolean  "active"
-    t.decimal  "weight",              :precision => 10, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "weight",              precision: 10, scale: 3, default: 0.0, null: false
     t.boolean  "discountable"
-    t.decimal  "disc_percent",        :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "disc_amount",         :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "disc_percent",        precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "disc_amount",         precision: 10, scale: 2, default: 0.0, null: false
     t.string   "created_by"
     t.string   "edited_by"
     t.datetime "edited_at"
-    t.decimal  "qty_on_hand",         :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "qty_allocated",       :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "qty_available",       :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "qty_ordered",         :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "stocking_qty",        :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "qty_on_hand",         precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "qty_allocated",       precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "qty_available",       precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "qty_ordered",         precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "stocking_qty",        precision: 10, scale: 2, default: 0.0, null: false
     t.boolean  "stocked_product"
-    t.datetime "created_at",                                                          :null => false
-    t.datetime "updated_at",                                                          :null => false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
   end
 
-  create_table "replies", :force => true do |t|
+  create_table "replies", force: true do |t|
     t.integer  "user_id"
     t.integer  "work_order_id"
     t.text     "content"
     t.boolean  "private"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "roles", :force => true do |t|
+  create_table "roles", force: true do |t|
     t.string   "name"
     t.boolean  "enabled"
     t.integer  "list_position"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "service_invoice_lines", :force => true do |t|
-    t.integer  "invoice_id",                                  :default => 0,   :null => false
-    t.integer  "service_id",                                  :default => 0,   :null => false
-    t.string   "sku",                                                          :null => false
-    t.string   "description",                                                  :null => false
-    t.decimal  "qty",          :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "tax_rate",     :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "tax",          :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "price",        :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "sub_total",    :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "total_price",  :precision => 12, :scale => 2, :default => 0.0, :null => false
+  create_table "service_invoice_lines", force: true do |t|
+    t.integer  "invoice_id",                            default: 0,   null: false
+    t.integer  "service_id",                            default: 0,   null: false
+    t.string   "sku",                                                 null: false
+    t.string   "description",                                         null: false
+    t.decimal  "qty",          precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "tax_rate",     precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "tax",          precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "price",        precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "sub_total",    precision: 12, scale: 2, default: 0.0, null: false
+    t.decimal  "total_price",  precision: 12, scale: 2, default: 0.0, null: false
     t.string   "line_comment"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
-  create_table "service_rates", :force => true do |t|
+  create_table "service_rates", force: true do |t|
     t.string   "sku"
     t.string   "description"
-    t.decimal  "rate",        :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "rate",        precision: 12, scale: 2, default: 0.0, null: false
     t.boolean  "taxable"
-    t.decimal  "tax_rate",    :precision => 12, :scale => 3
+    t.decimal  "tax_rate",    precision: 12, scale: 3
     t.boolean  "active"
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
-  create_table "settings", :force => true do |t|
-    t.string   "name",       :limit => 30, :default => "", :null => false
+  create_table "settings", force: true do |t|
+    t.string   "name",       limit: 30, default: "", null: false
     t.text     "value"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  create_table "statuses", :force => true do |t|
+  create_table "statuses", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "suppliers", :force => true do |t|
+  create_table "suppliers", force: true do |t|
     t.string   "company_name"
     t.text     "address"
     t.string   "city"
@@ -200,8 +200,8 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.datetime "date_created"
     t.datetime "date_updated"
     t.integer  "parts_leadtime_days"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "user_id"
     t.string   "created_by"
     t.string   "edited_by"
@@ -209,23 +209,23 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.string   "website"
   end
 
-  create_table "tasks", :force => true do |t|
+  create_table "tasks", force: true do |t|
     t.integer  "work_order_id"
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
     t.integer  "calendar_id"
     t.boolean  "completed"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "user_sessions", :force => true do |t|
+  create_table "user_sessions", force: true do |t|
     t.string "username"
     t.string "password"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "crypted_password"
@@ -235,8 +235,8 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.boolean  "employee"
     t.boolean  "workorder_assignability"
     t.boolean  "client"
-    t.integer  "login_count",             :default => 0,    :null => false
-    t.integer  "failed_login_count",      :default => 0,    :null => false
+    t.integer  "login_count",             default: 0,    null: false
+    t.integer  "failed_login_count",      default: 0,    null: false
     t.datetime "last_request_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
@@ -250,30 +250,30 @@ ActiveRecord::Schema.define(:version => 20121123020937) do
     t.string   "mobile"
     t.string   "fax"
     t.text     "notes"
-    t.boolean  "active",                  :default => true
+    t.boolean  "active",                  default: true
     t.datetime "edited_at"
     t.string   "edited_by"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "created_by"
   end
 
-  create_table "work_orders", :force => true do |t|
-    t.string   "subject",                             :null => false
-    t.text     "description",                         :null => false
+  create_table "work_orders", force: true do |t|
+    t.string   "subject",                          null: false
+    t.text     "description",                      null: false
     t.boolean  "closed"
     t.string   "closed_by"
     t.datetime "closed_date"
     t.text     "resolution"
-    t.integer  "user_id",                             :null => false
+    t.integer  "user_id",                          null: false
     t.integer  "assigned_to_id"
     t.text     "assigned_to_username"
     t.integer  "priority_list_id"
-    t.integer  "status_id",            :default => 1, :null => false
+    t.integer  "status_id",            default: 1, null: false
     t.string   "created_by"
     t.string   "edited_by"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "task_id"
   end
 

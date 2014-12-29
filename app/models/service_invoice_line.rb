@@ -2,7 +2,6 @@ class ServiceInvoiceLine < ActiveRecord::Base
   belongs_to :invoice
   belongs_to :service_rate
 
-  attr_accessible :qty, :service_id, :line_comment
   validates_presence_of :service_id
 
   accepts_nested_attributes_for :service_rate

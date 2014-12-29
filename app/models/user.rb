@@ -22,10 +22,6 @@ class User < ActiveRecord::Base
   has_many :replies # MyTODO protection for mass-assignment
   belongs_to :role
 
-# Mass Assignment Protection
-  attr_accessible :name, :address, :city, :username, :email, :phone, :state, :zip, :updated_by,
-                  :created_by, :password_confirmation, :mobile, :fax, :password, :edited_by, :edited_at,
-                  :client, :employee, :workorder_assignability, :role_id, :notes, :active
 
 # Validations for Users
   validates_presence_of :name, :username, :email

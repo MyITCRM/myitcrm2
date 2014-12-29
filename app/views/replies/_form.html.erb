@@ -1,5 +1,4 @@
 <%= simple_form_for [@work_order,@reply] do |f| %>
-    <%=  %>
     <%= f.input :content,:label => (t 'reply.message'), :input_html => { :class => "input-block-level", :rows => "10"}  %>
      <%= f.input :work_order_id, :as => :hidden %>
     <div class="form-actions">

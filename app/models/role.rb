@@ -7,6 +7,6 @@ class Role < ActiveRecord::Base
 
   validates_uniqueness_of :name
 
-  attr_accessible :name, :list_position, :enabled, :permission_ids
+
 
 end

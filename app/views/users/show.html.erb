@@ -3,26 +3,27 @@
     <div class="tabbable"> <!-- Only required for left/right tabs -->
       <ul class="nav nav-tabs">
         <li class="active"><a href="#contact_details" data-toggle="tab"><%= t "users.tab.contact_info" %></a></li>
-        <li><a href="#notes" data-toggle="tab"><%= t "users.tab.notes" %></a></li>
-        <li><a href="#dashboard" data-toggle="tab"><%= t "global.dashboard" %></a></li>
+        <!--<li><a href="#notes" data-toggle="tab"><%= t "users.tab.notes" %></a></li>-->
+        <!--<li><a href="#dashboard" data-toggle="tab"><%= t "global.dashboard" %></a></li>-->
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="contact_details">
           <p><%= render(:partial => 'users/contact_details') %></p>
         </div>
-        <div class="tab-pane" id="notes">
-          <p><%= render(:partial => 'users/notes') %></p>
-        </div>
-        <div class="tab-pane" id="dashboard">
-          <p><%= render(:partial => 'dashboard') %></p>
-        </div>
+        <!--<div class="tab-pane" id="notes">-->
+          <!--<p><%= render(:partial => 'users/notes') %></p>-->
+        <!--</div>-->
+        <!--<div class="tab-pane" id="dashboard">-->
+          <!--<p><%= render(:partial => 'dashboard') %></p>-->
+        <!--</div>-->
       </div>
     </div>
   </div>
 
   <div class="span2">
-      <%= menu_button t("global.create"), new_user_work_order_path(:user_id => current_user.id),  "icon-pencil icon-white" if current_user.client  %>
-      <%= menu_button t("global.create"), clients_path, "icon-pencil icon-white" if can? :manage, User %>
+      <%= menu_button t("global.create"), new_user_work_order_path(:user_id => current_user.id),  "icon-plus-sign icon-white" if current_user.client  %>
+      <%= menu_button t("global.create"), new_user_work_order_path(:user_id => @user.id),  "icon-plus-sign icon-white" if can? :manage, WorkOrder  %>
+      <%= menu_button t("global.create"), clients_path, "icon-plus-sign icon-white" if can? :manage, User %>
       <%= menu_button t("global.edit"), edit_user_path, "icon-pencil icon-white" if can? :manage, User %>
     </div>
 </div>

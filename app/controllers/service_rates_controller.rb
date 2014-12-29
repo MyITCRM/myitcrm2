@@ -63,7 +63,7 @@ class ServiceRatesController < ApplicationController
   # POST /service_rates.xml
   def create
     @title = 'Adding New Service Rate'
-    @service_rate = ServiceRate.new(params[:service_rate])
+    @service_rate = ServiceRate.create(service_rate_params)
 
     respond_to do |format|
       if @service_rate.save
@@ -82,7 +82,7 @@ class ServiceRatesController < ApplicationController
     @service_rate = ServiceRate.find(params[:id])
 
     respond_to do |format|
-      if @service_rate.update_attributes(params[:service_rate])
+      if @service_rate.update!(service_rate_params)
         format.html { redirect_to service_rates_path, :notice => 'Service rate was successfully updated.' }
         format.xml { head :ok }
       else
@@ -102,5 +102,10 @@ class ServiceRatesController < ApplicationController
       format.html { redirect_to(service_rates_url) }
       format.xml { head :ok }
     end
+  end
+
+  private
+  def service_rate_params
+    params.require(:service_rate).permit(:sku, :description, :rate, :taxable, :tax_rate, :active)
   end
 end

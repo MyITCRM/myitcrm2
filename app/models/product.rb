@@ -3,9 +3,6 @@ class Product < ActiveRecord::Base
   belongs_to :product_category
   has_many :product_invoice_lines
 
-  attr_accessible :our_sku, :description, :model, :manufacturer, :category_name, :supplier_id,
-                  :supplier_sku, :cost_price, :sell_price, :created_by, :created_at, :product_category_id,
-                  :product_category_name, :name, :updated_at, :warranty_info, :warranty_length, :warranty_unit
 
 # Validations on inputs
   validates_presence_of :supplier, :description, :cost_price, :manufacturer, :model, :sell_price, :our_sku, :supplier_sku

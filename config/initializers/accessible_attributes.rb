@@ -1,6 +1,6 @@
 class  ActiveRecord::Base
 
-  attr_accessible
+#  attr_accessible
   attr_accessor :dynamic_attributes
 
   private

@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
       if @user_session.save
-        flash[:notice] = t("user.login_success")
+        flash[:success] = t("user.login_success")
         redirect_to_target_or_default work_orders_url
       else
         flash[:alert] = t "user.login_incorrect"
@@ -22,7 +22,7 @@ class UserSessionsController < ApplicationController
     @title = t "global.logout"
     @user_session = UserSession.find
     @user_session.destroy
-    flash[:notice] = t("user.logout_success")
+    flash[:success] = t("user.logout_success")
      redirect_to_target_or_default root_url
     end
   end

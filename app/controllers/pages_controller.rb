@@ -55,7 +55,7 @@ class PagesController < ApplicationController
 
     end
 
-    @page.attributes = params[:page]
+    Page.create(page_params)
 
 
     respond_to do |format|
@@ -72,7 +72,7 @@ class PagesController < ApplicationController
   def update
     @page = Page.find_by_permalink!(params[:id])
     respond_to do |format|
-      if @page.update_attributes(params[:page])
+      if @page.update!(page_params)
         format.html { redirect_to(@page, :notice => 'Page was successfully updated.') }
         format.xml { head :ok }
       else
@@ -93,6 +93,10 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def page_params
+    params.require(:page).permit(:name, :permalink, :content, :page_category_name, :user_id)
+  end
 
   def find_page
     @page = Page.find_by_permalink!(params[:id])

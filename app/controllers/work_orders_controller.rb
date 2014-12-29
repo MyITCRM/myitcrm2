@@ -42,10 +42,10 @@ class WorkOrdersController < ApplicationController
   def show
 
     @work_order = WorkOrder.find(params[:id])
-    @invoiced = Invoice.find_all_by_work_order_id(params[:id]).first
+    @invoiced = Invoice.find_by_work_order_id(params[:id])
     @reply = Reply.new(:work_order_id => @work_order.id)
     @task = Task.new(:work_order_id => @work_order.id, :user_id => current_user.id)
-    @tasks = Task.find_all_by_work_order_id(params[:id])
+    @tasks = Task.find_by_work_order_id(params[:id])
     @title = (t "workorder.t_viewing_workorder_details") + ' #' + params[:id].to_s + ' ' + t('global.for') + ' ' + @work_order.user.name
   end
 
@@ -78,21 +78,22 @@ class WorkOrdersController < ApplicationController
 
   def create
     @title = t "workorder.t_workorders"
-    @work_order = WorkOrder.new
+    @work_order = WorkOrder.create(work_order_params)
+
     if can? :create, WorkOrder
-      @work_order.user_id = params[:user_id] if current_user.employee?
+      @work_order.user_id = work_order_params[:user_id] if current_user.employee?
       @work_order.user_id = current_user.id if current_user.client?
       @work_order.created_at = Time.now
       @work_order.status_id = 1 # Applies a status of "NEW" by default
       @work_order.closed = 0 # Work Order is not "closed" by default
       @work_order.created_by = current_user.username
     end
-    @work_order.attributes = params[:work_order]
+
     respond_to do |format|
       if @work_order.save
         format.html { redirect_to @work_order, notice: 'Work Order was successfully created.' }
       else
-        redirect_to(:back)
+        redirect_to(work_orders_url)
       end
     end
   end
@@ -102,13 +103,12 @@ class WorkOrdersController < ApplicationController
     @work_order = WorkOrder.find(params[:id])
     @work_order.user_id = current_user.id if current_user.client
     @work_order.edited_by = current_user.username
-    @work_order.dynamic_attributes = [:status_id, :resolution, :assigned_to_username, :closed] if can? :manage, WorkOrder
     invoicing_enabled = true
 
     if invoicing_enabled.present? and @work_order.closed
       respond_to do |format|
-        if @work_order.update_attributes(params[:work_order])
-          flash[:notice] = 'Work Order was successfully updated.'
+        if @work_order.update!(work_order_params)
+          flash[:success] = 'Work Order was successfully updated.'
           format.html { redirect_to new_work_order_invoice_path(:work_order_id => @work_order.id) }
           format.xml { head :ok }
         else
@@ -118,8 +118,8 @@ class WorkOrdersController < ApplicationController
       end
     else
       respond_to do |format|
-        if @work_order.update_attributes(params[:work_order])
-          flash[:notice] = 'Work Order was successfully updated.'
+        if @work_order.update!(work_order_params)
+          flash[:success] = 'Work Order was successfully updated.'
           format.html { redirect_to(@work_order) }
           format.xml { head :ok }
         else
@@ -142,7 +142,7 @@ class WorkOrdersController < ApplicationController
       flash[:alert] = "Work Order needs to be assigned to an employee first before closing."
       respond_to do |format|
         if @work_order.update_attributes(params[:work_order])
-          flash[:notice] = 'Work Order was successfully closed.'
+          flash[:success] = 'Work Order was successfully closed.'
           format.html { redirect_to(@work_order) }
           format.xml { head :ok }
         else
@@ -159,8 +159,8 @@ class WorkOrdersController < ApplicationController
 # Only change status if the status is either NEW or Assigned
     @status = @work_order.status_id = 2 if @work_order.status_id < 3
     respond_to do |format|
-      if @work_order.update_attributes(params[:work_order])
-        flash[:notice] = t "workorder.message_assigned_success"
+      if @work_order.update!(work_order_params)
+        flash[:success] = t "workorder.message_assigned_success"
         format.html { redirect_to(work_orders_url) }
         format.xml { head :ok }
       else
@@ -183,6 +183,15 @@ class WorkOrdersController < ApplicationController
 
 
   private
+
+  def work_order_params
+    params.require(:work_order).permit(:description, :subject, :priority_list_id, :edited_by, :created_by,
+                                       :user_id)
+    params.require(:work_order).permit(:description, :subject, :priority_list_id, :edited_by, :created_by,
+                                       :user_id, :task_id,:status_id, :resolution, :assigned_to_username,
+                                       :closed) if can? :manage, WorkOrder
+
+  end
 
   def sort_column
     Product.column_names.include?(params[:sort]) ? params[:sort] : "id"

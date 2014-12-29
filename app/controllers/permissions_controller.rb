@@ -63,7 +63,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.new
     @permission.dynamic_attributes = [:name, :action, :subject_class, :subject_id] if can? :manage, User
 
-    @permission.attributes = params[:permission]
+    @permission.create(:permission_params)
 
     respond_to do |format|
       if @permission.save
@@ -82,7 +82,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.find(params[:id])
     @permission.dynamic_attributes = [:name, :action, :subject_class, :subject_id] if can? :manage, User
     respond_to do |format|
-      if @permission.update_attributes(params[:permission])
+      if @permission.update!(:permission_params)
         format.html { redirect_to permissions_url, notice: 'Permission was successfully updated.' }
         format.json { head :no_content }
       else
@@ -102,5 +102,11 @@ class PermissionsController < ApplicationController
       format.html { redirect_to permissions_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def permission_params
+    params.require(:permission).permit(:name, :action, :subject_class)
   end
 end

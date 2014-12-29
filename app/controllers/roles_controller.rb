@@ -68,9 +68,9 @@ class RolesController < ApplicationController
     @title = t('role.t_new')
     @role = Role.new
     if can? :create, Role
-      @role.dynamic_attributes = [:name, :enabled, :list_position, :permission_ids] if can? :manage, Role
+      role.create(role_params) if can? :manage, Role
     end
-    @role.attributes = params[:role]
+    role.update!(role_params)
     respond_to do |format|
       if @role.save
         format.html { redirect_to roles_url, notice: 'Role was successfully created.' }
@@ -86,11 +86,11 @@ class RolesController < ApplicationController
   # PUT /roles/1.json
   def update
     @role = Role.find(params[:id])
-    @role.dynamic_attributes = [:name, :enabled, :list_position, :permission_ids, :permission_id]
+    role.update!(role_params)
     #@role.dynamic_attributes :all if can? :manage, Role
 
     respond_to do |format|
-      if @role.update_attributes(params[:role])
+      if role.update!(role_params)
         format.html { redirect_to roles_url, notice: 'Role was successfully updated.' }
         format.json { head :no_content }
       else
@@ -111,4 +111,10 @@ class RolesController < ApplicationController
       format.json { head :no_content }
     end
   end
+end
+
+private
+
+def role_params
+  params.require(:role).permit(:name, :list_position, :enabled, :permission_ids, :permission_id)
 end

@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
 
   def create
     @title = t "products.t_title"
-    @product = Product.new(params[:product])
+    @product = Product.create(product_params)
 
     respond_to do |format|
       if @product.save
@@ -81,7 +81,7 @@ class ProductsController < ApplicationController
     @product.dynamic_attributes = [:taxable, :tax_rate, :discountable, :disc_amount, :disc_percent] if can? :manage, Product
 
     respond_to do |format|
-      if @product.update_attributes(params[:product])
+      if @product.update!(product_params)
         flash[:notice] = 'Item was successfully updated.'
         format.html { redirect_to(@product) }
         format.xml { head :ok }
@@ -104,6 +104,12 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def product_params
+    params.require(:product).permit(:our_sku, :description, :model, :manufacturer, :category_name, :supplier_id,
+                                    :supplier_sku, :cost_price, :sell_price, :created_by, :created_at, :product_category_id,
+                                    :product_category_name, :name, :updated_at, :warranty_info, :warranty_length, :warranty_unit)
+  end
 
   def sort_column
     Product.column_names.include?(params[:sort]) ? params[:sort] : "our_sku"

@@ -33,7 +33,7 @@ class PriorityListsController < ApplicationController
     @priority_list = PriorityList.find(params[:id])
 
     respond_to do |format|
-      if @priority_list.update_attributes(params[:priority_list])
+      if @priority_list.update!(:priority_list_params)
         flash[:notice] = 'PriorityList was successfully updated.'
         format.html { redirect_to(priority_lists_path) }
         format.xml { head :ok }
@@ -42,5 +42,11 @@ class PriorityListsController < ApplicationController
         format.xml { render :xml => @priority_list.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  private
+
+  def priority_list_params
+    params.require(:priority_lists).permit(:name)
   end
 end

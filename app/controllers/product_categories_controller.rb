@@ -22,4 +22,10 @@ class ProductCategoriesController < ApplicationController
     @product_categories = ProductCategory.order(:name).where("name like ?", "%#{params[:term]}%")
     render json: @product_categories.map(&:name)
   end
+
+  private
+
+  def prodcat_params
+    params.require(:product_categories).permit(:name, :created_at, :updated_at)
+  end
 end

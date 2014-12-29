@@ -52,17 +52,17 @@ MyITCRM2::Application.routes.draw do
   resources :service_rates
   resources :replies, :only => [:show, :edit, :update]
   resources :tasks, :only => [:index, :show, :edit, :update]
-  match '/login' => 'user_sessions#new', :as => :login
-  match '/logout' => 'user_sessions#destroy', :as => :logout
-  match '/register' => 'users#register', :as => :register
-  match '/clients' => 'users#clients', :as => :clients
-  match '/employees' => 'users#employees', :as => :employees
-  match 'profile/:id' => 'users#edit_profile', :as => :my_account
-  match 'work_orders/:id/close' => 'work_orders#close', :as => :close
-  match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign
-  match 'settings/edit' => 'settings#edit', :as => :edit
+  match '/login' => 'user_sessions#new', :as => :login, via: [:get, :post]
+  match '/logout' => 'user_sessions#destroy', :as => :logout, via: [:get,:post]
+  match '/register' => 'users#register', :as => :register, via: [:get, :post]
+  match '/clients' => 'users#clients', :as => :clients, via: [:get, :post]
+  match '/employees' => 'users#employees', :as => :employees, via: [:get, :post]
+  match 'profile/:id' => 'users#edit_profile', :as => :my_account, via: [:get, :post]
+  match 'work_orders/:id/close' => 'work_orders#close', :as => :close, via: [:get, :post]
+  match 'work_order/:id/assign' => 'work_orders#assign', :as => :assign, via: [:get, :post]
+  match 'settings/edit' => 'settings#edit', :as => :edit, via: [:get, :post]
 
-  match 'help/:page_id' => 'help#show'
+  match 'help/:page_id' => 'help#show', via: [:get, :post]
   get '*page_category/:id' => 'pages#show', :only => [:show]
 
 #  Ensure these are last in this list and before the root route

@@ -4,10 +4,6 @@ class Invoice < ActiveRecord::Base
   belongs_to :user
   belongs_to :work_order
 
-  attr_accessible :service_id, :product_id, :invoice_note, :user_id, :work_order_id,
-                  :paid, :service_invoice_lines_attributes, :product_invoice_lines_attributes,
-                  :created_by, :updated_by, :due_date, :qty, :service_id, :line_comment, :sku
-
   validates_uniqueness_of :work_order_id, :allow_blank => true
   validates_presence_of :due_date, :user_id
 

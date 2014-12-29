@@ -97,4 +97,10 @@ class PermittablesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def permittables_params
+    params.require(:permittable).permit(:role_id, :permission_id )
+  end
 end

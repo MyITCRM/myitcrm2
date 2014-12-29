@@ -54,11 +54,9 @@ class SuppliersController < ApplicationController
 
   def create
     @title = t "supplier.t_new"
-    @supplier = Supplier.new
+    @supplier.create(supplier_params)
     @supplier.created_by = current_user.username
     @supplier.dynamic_attributes = [:created_by,] if can? :edit, Supplier
-
-    @supplier.attributes = params[:supplier]
 
     respond_to do |format|
       if @supplier.save
@@ -105,5 +103,11 @@ class SuppliersController < ApplicationController
       format.html { redirect_to(suppliers_url) }
       format.xml { head :ok }
     end
+  end
+
+  private
+
+  def supplier_params
+    params.require(:supplier).permit(:company_name, :website, :contact_name, :contact_phone, :address, :city, :state, :zip, :phone, :fax, :email, :notes, :created_at)
   end
 end

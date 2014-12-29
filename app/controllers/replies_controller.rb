@@ -60,11 +60,10 @@ class RepliesController < ApplicationController
   def create
     @reply = Reply.new
     if can? :create, WorkOrder
-      @reply.work_order_id = params[:work_order_id]
+      @reply.work_order_id = reply_params[:work_order_id]
       @reply.user_id = current_user.id
-      @reply.dynamic_attributes = [:private] if can? :manage, WorkOrder
     end
-    @reply.attributes = params[:reply]
+    @reply = Reply.create(reply_params)
     respond_to do |format|
       if @reply.save
         format.html { redirect_to(:back, :notice => (t "reply.notice.successful")) }
@@ -86,7 +85,7 @@ class RepliesController < ApplicationController
       @reply.dynamic_attributes = [:private] if current_user.employee
     end
     respond_to do |format|
-      if @reply.update_attributes(params[:reply])
+      if @reply.update!(reply_params)
         format.html { redirect_to(work_order_path(@reply.work_order_id), :notice => (t "reply.notice.updated")) }
         format.xml { head :ok }
       else
@@ -106,5 +105,14 @@ class RepliesController < ApplicationController
       format.html { redirect_to(work_order_path(@reply.work_order_id), :notice => 'Reply was successfully deleted.') }
       format.xml { head :ok }
     end
+  end
+
+  private
+
+  def reply_params
+    params.require(:reply).permit(:content, :work_order_id, :user_id)
+
+    params.require(:reply).permit(:content, :work_order_id, :user_id, :private) if can? :manage, WorkOrder
+
   end
 end

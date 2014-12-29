@@ -58,7 +58,7 @@ class ServiceInvoiceLinesController < ApplicationController
   # POST /service_invoice_line
   # POST /service_invoice_line.xml
   def create
-    @service_invoice_line = ServiceInvoiceLine.new(params[:service_invoice_line])
+    @service_invoice_line = ServiceInvoiceLine.create(service_invoice_line_params)
 
     respond_to do |format|
       if @service_invoice_line.save
@@ -77,7 +77,7 @@ class ServiceInvoiceLinesController < ApplicationController
     @service_invoice_line = ServiceInvoiceLine.find(params[:id])
 
     respond_to do |format|
-      if @service_invoice_line.update_attributes(params[:service_invoice_line])
+      if @service_invoice_line.update!(service_invoice_line_params)
         format.html { redirect_to(@service_invoice_line, :notice => 'Invoice line was successfully updated.') }
         format.xml { head :ok }
       else
@@ -97,5 +97,10 @@ class ServiceInvoiceLinesController < ApplicationController
       format.html { redirect_to(service_invoice_lines_url) }
       format.xml { head :ok }
     end
+  end
+
+  private
+  def service_invoice_line_params
+    params.require(:service_invoice_line).permit(:qty, :service_id, :line_comment)
   end
 end

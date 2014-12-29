@@ -8,7 +8,8 @@ class WorkOrder < ActiveRecord::Base
 # Validate presence of Input information when creating or editing
   validates_presence_of :subject, :description
 
-  attr_accessible :description, :subject, :priority_list_id, :edited_by, :created_by, :user_id, :task_id
+  # Depreciated in rails 4.x
+  # attr_accessible :description, :subject, :priority_list_id, :edited_by, :created_by, :user_id, :task_id
 
   before_update :workorder_updated, :change_assignment, :lookup_assigned_username, :change_status
 
