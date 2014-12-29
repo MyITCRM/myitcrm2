@@ -1,4 +1,4 @@
-!http://myitcrm.com/images/logo.png!
+!https://github.com/MyITCRM/myitcrm.github.com/blob/master/images/logos.png!
 
 h2. Build Status: !https://secure.travis-ci.org/MyITCRM/myitcrm2.png?branch=master(Build Status)!:http://travis-ci.org/MyITCRM/myitcrm2  !https://hakiri.io/github/MyITCRM/myitcrm2/Rails4.svg!:https://hakiri.io/github/MyITCRM/myitcrm2/Rails4
 
