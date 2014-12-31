@@ -11,6 +11,7 @@ Dir['config/examples/*'].each do |source|
 end
 
 # run rake and setup tasks
+system 'rake secret'
 system 'bundle'
 system 'bundle exec rake db:create:all'
 system 'bundle exec rake db:migrate --trace'
