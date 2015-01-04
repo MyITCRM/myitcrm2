@@ -57,7 +57,7 @@ class ProductInvoiceLinesController < ApplicationController
   # POST /product_invoice_lines
   # POST /product_invoice_lines.xml
   def create
-    @product_invoice_line = ProductInvoiceLine.new(params[:product_invoice_line])
+    @product_invoice_line = ProductInvoiceLine.create(product_invoice_lines_params)
 
     respond_to do |format|
       if @product_invoice_line.save
@@ -76,8 +76,8 @@ class ProductInvoiceLinesController < ApplicationController
     @product_invoice_line = ProductInvoiceLine.find(params[:id])
 
     respond_to do |format|
-      if @product_invoice_line.update_attributes(params[:product_invoice_line])
-        format.html { redirect_to(@product_invoice_line, :notice => 'Product invoice line was successfully updated.') }
+      if @product_invoice_line.update!(product_invoice_lines_params)
+        format.html { redirect_to(@product_invoice_line, :success => 'Product invoice line was successfully updated.') }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }
@@ -96,5 +96,11 @@ class ProductInvoiceLinesController < ApplicationController
       format.html { redirect_to(product_invoice_lines_url) }
       format.xml { head :ok }
     end
+  end
+
+  private
+
+  def product_invoice_lines_params
+    params.require(:product_invoice_line).permit(:qty, :product_id, :line_comment)
   end
 end
