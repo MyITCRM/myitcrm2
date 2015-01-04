@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.5'
 gem 'prawn'
 gem 'prawnto'
 gem 'cancan'
