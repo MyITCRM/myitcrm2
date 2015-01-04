@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 # Used to notify user that they have tried to request a restricted action. Refer to log for more details
 # mytodo - Uncomment the next 4 lines of code before going live in production mode and also once permissions are sorted out.
   rescue_from CanCan::AccessDenied do
-    flash[:alert] = t "global.access_denied"
+    flash[:error] = t "global.access_denied"
     redirect_to root_url
   end
 
