@@ -18,8 +18,8 @@
   <% if logged_in?  %>
 <%= render 'layouts/navbar' %>
 <% end %>
-  <% flash.each do |name, msg| %>
-        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+   <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>">
           <a class="close" data-dismiss="alert">×</a>
           <%= msg %>
         </div>
