@@ -38,7 +38,7 @@ module Authentication
     unless logged_in?
       flash[:notice] = t 'global.not_logged_in'
       store_target_location
-      redirect_to login
+      redirect_to login_url
     end
   end
 
@@ -50,6 +50,6 @@ module Authentication
   private
 
   def store_target_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.url
   end
 end
