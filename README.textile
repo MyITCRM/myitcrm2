@@ -21,7 +21,7 @@ MyITCRM2 Features (Current and Planned):
     * Detailed Reporting.
 
 
-Check out http://myitcrm.com for more details
+Check out https://myitcrm.github.io for more details
 and the current version of MyIT CRM.
 
 MyITCRM2 is a Open Source and Free Web Program written in Ruby/Rails. It's released under the GNU GPL3 Software License.
