@@ -4,7 +4,7 @@ gem 'rails', '3.2.11'
 gem 'prawn'
 gem 'prawnto'
 gem 'cancan'
-gem 'simple_form'
+gem "simple_form", ">= 5.0.0"
 gem 'authlogic'
 gem 'will_paginate'
 gem 'jquery-rails', '2.3.0'
