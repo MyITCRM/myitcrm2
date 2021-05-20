@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem "rails", ">= 3.2.17"
 gem 'prawn'
 gem 'prawnto'
 gem 'cancan'
 gem "simple_form", ">= 5.0.0"
 gem 'authlogic'
-gem 'will_paginate'
-gem 'jquery-rails', '2.3.0'
+gem "will_paginate", ">= 3.0.5"
+gem "jquery-rails", ">= 3.1.3"
 gem 'redcarpet'
 
 # Gems used only for assets and not required
